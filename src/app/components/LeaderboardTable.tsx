@@ -28,7 +28,7 @@ const LeaderboardTable: React.FC<{ category: Category }> = ({ category }) => {
               <td data-label="Posición" style={{ textAlign: "center" }}>{result.rank}</td>
               <td data-label="Nombre del Piloto" style={{ textAlign: "center" }}>{result.number}</td>
               <td style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <CountryFlag style={{ width: "30px", height: "20px" }} countryCode={result.country} alt={result.country} />
+                <CountryFlag  countryCode={result.country} alt={result.country} />
                 {result.driver}
               </td>
               <td style={{ textAlign: "center" }}>{result.team}</td>

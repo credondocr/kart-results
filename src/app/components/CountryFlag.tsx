@@ -13,8 +13,8 @@ const CountryFlag: React.FC<CountryFlagProps> = ({ countryCode, alt, style }) =>
       <Image
         src={flagUrl}
         alt={alt || `Flag of ${countryCode}`}
-        width={50}
-        height={50}
+        width={25}
+        height={25}
         style={{
           height: "auto",
           ...style,
