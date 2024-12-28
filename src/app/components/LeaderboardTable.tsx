@@ -1,10 +1,10 @@
 import { Category } from "@/data/mockData";
 import CountryFlag from "@/app/components/CountryFlag"
-
+import TeamLogo from "@/app/components/TeamLogo";
 const LeaderboardTable: React.FC<{ category: Category }> = ({ category }) => {
   return (
     <div>
-      <div>
+      <div style={{width: "900px"}}>
         <h1 >{category.name}</h1>
       </div>
       <div className="table-container">
@@ -20,7 +20,6 @@ const LeaderboardTable: React.FC<{ category: Category }> = ({ category }) => {
                 zIndex: 1,
               }}>No</th>
               <th>Piloto</th>
-              <th>Equipo</th>
               {[...Array(6).keys()].map((r, index) => (
                 <th key={index}>R{index + 1}</th>
               ))}
@@ -41,9 +40,9 @@ const LeaderboardTable: React.FC<{ category: Category }> = ({ category }) => {
                 }}>{result.number}</td>
                 <td style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                   <CountryFlag countryCode={result.country} alt={result.country} />
+                  <TeamLogo team="fik" altText="FIK Sport Academy" />
                   {result.driver}
                 </td>
-                <td style={{ textAlign: "center" }}>{result.team}</td>
                 {result.scores.map((score, index) => (
                   <td data-label={`R${index + 1}`} key={index} style={{ textAlign: "center" }}>{score}</td>
                 ))}
