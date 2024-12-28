@@ -4,7 +4,7 @@ import TeamLogo from "@/app/components/TeamLogo";
 const LeaderboardTable: React.FC<{ category: Category }> = ({ category }) => {
   return (
     <div>
-      <div style={{width: "900px"}}>
+      <div >
         <h1 >{category.name}</h1>
       </div>
       <div className="table-container">

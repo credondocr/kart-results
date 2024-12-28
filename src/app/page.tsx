@@ -23,7 +23,7 @@ export default function Home() {
     <div>
       <HeaderTabs onTabSelect={handleTabSelect} />
       {filteredClasses.map((item, o) => (
-        <div key={`class-${o}`} style={{width: "900px"}}>
+        <div key={`class-${o}`} >
           <h1 style={{ textAlign: "center" }}>{item.title}</h1>
           {item.categories.map((category, i) => (
             <div key={`category-${o}-${i}`}>
