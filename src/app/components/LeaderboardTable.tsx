@@ -1,14 +1,14 @@
-import {  Category } from "@/data/mockData";
+import { Category } from "@/data/mockData";
 import CountryFlag from "@/app/components/CountryFlag"
 
-const LeaderboardTable: React.FC<{ category: Category }> = ({  category }) => {
+const LeaderboardTable: React.FC<{ category: Category }> = ({ category }) => {
   return (
-    <div>
-     <div>
-            <h1 >{category.name}</h1>
-          </div>
+    <div  className="table-container">
+      <div>
+        <h1 >{category.name}</h1>
+      </div>
 
-          <table border={1} cellPadding="10" style={{ width: "100%", borderCollapse: "collapse" }}>
+      <table border={1} cellPadding="10" style={{ width: "900px", borderCollapse: "collapse" }}>
         <thead>
           <tr>
             <th style={{ textAlign: "center" }}>Posición</th>
@@ -25,24 +25,24 @@ const LeaderboardTable: React.FC<{ category: Category }> = ({  category }) => {
         <tbody>
           {category.results.map((result) => (
             <tr key={result.rank}>
-              <td style={{ textAlign: "center" }}>{result.rank}</td>
-              <td style={{ textAlign: "center" }}>{result.number}</td>
+              <td data-label="Posición" style={{ textAlign: "center" }}>{result.rank}</td>
+              <td data-label="Nombre del Piloto" style={{ textAlign: "center" }}>{result.number}</td>
               <td style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                 <CountryFlag style={{ width: "30px", height: "20px" }} countryCode={result.country} alt={result.country} />
                 {result.driver}
               </td>
               <td style={{ textAlign: "center" }}>{result.team}</td>
               {result.scores.map((score, index) => (
-                <td key={index} style={{ textAlign: "center" }}>{score}</td>
+                <td  data-label={`R${index +1}`} key={index} style={{ textAlign: "center" }}>{score}</td>
               ))}
-              <td style={{ textAlign: "center" }}>{result.points}</td>
-              <td style={{ textAlign: "center" }}>{result.points || 0 - result.worst}</td>
+              <td data-label="Total" style={{ textAlign: "center" }}>{result.points}</td>
+              <td data-label="Best 4" style={{ textAlign: "center" }}>{result.points || 0 - result.worst}</td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      
+
     </div>
   );
 };

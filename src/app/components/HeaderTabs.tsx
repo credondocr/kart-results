@@ -17,7 +17,7 @@ const HeaderTabs: React.FC<HeaderTabsProps> = ({ onTabSelect }) => {
   ];
 
   return (
-    <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+    <div style={{ display: "flex", gap: "10px", marginBottom: "20px", overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
       {tabs.map((tab) => (
         <button
           key={tab}
