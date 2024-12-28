@@ -37,3 +37,8 @@ th, td {
 }
 
 
+tr:hover {
+  background-color: #444; /* Hover más claro */
+}
+
+
