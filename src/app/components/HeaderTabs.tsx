@@ -23,7 +23,7 @@ const HeaderTabs: React.FC<HeaderTabsProps> = ({ onTabSelect }) => {
           key={tab}
           onClick={() => onTabSelect(tab)} // Ejecuta la función con el tab seleccionado
           style={{
-            padding: "10px 20px",
+            padding: "5px 10px",
             border: "1px solid #ccc",
             backgroundColor: "#f0f0f0",
             cursor: "pointer",
