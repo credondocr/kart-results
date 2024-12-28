@@ -11,7 +11,7 @@ const HeaderTabs: React.FC<HeaderTabsProps> = ({ onTabSelect }) => {
     "MICRO ROK",
     "MINI ROK",
     "ROK SHIFTER",
-    "START OF TOMORROW",
+    "STARS OF TOMORROW",
     "TILLOTSON",
     "VLR",
   ];
