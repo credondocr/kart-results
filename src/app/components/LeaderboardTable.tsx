@@ -11,7 +11,7 @@ const LeaderboardTable: React.FC<{ category: Category }> = ({ category }) => {
       <table border={1} cellPadding="10" style={{ width: "900px", borderCollapse: "collapse" }}>
         <thead>
           <tr>
-            <th style={{ textAlign: "center" }}>Posición</th>
+            <th style={{ textAlign: "center" }}>Po</th>
             <th style={{ textAlign: "center" }}>No</th>
             <th>Piloto</th>
             <th>Equipo</th>
