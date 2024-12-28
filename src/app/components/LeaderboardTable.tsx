@@ -3,59 +3,59 @@ import CountryFlag from "@/app/components/CountryFlag"
 
 const LeaderboardTable: React.FC<{ category: Category }> = ({ category }) => {
   return (
-    <div className="table-container">
+    <div>
       <div>
         <h1 >{category.name}</h1>
       </div>
-
-      <table border={1} cellPadding="10" style={{ width: "900px", borderCollapse: "collapse" }}>
-        <thead>
-          <tr>
-            <th style={{ textAlign: "center" }}>Po</th>
-            <th style={{
-              textAlign: "center",
-              position: "sticky",
-              left: 0,
-              background: "black", // Color de fondo para que sea visible
-              zIndex: 1,
-            }}>No</th>
-            <th>Piloto</th>
-            <th>Equipo</th>
-            {[...Array(6).keys()].map((r, index) => (
-              <th key={index}>R{index + 1}</th>
-            ))}
-            <th>Total</th>
-            <th style={{ textAlign: "center", background: "gray", color: "black" }}>Best 4</th>
-          </tr>
-        </thead>
-        <tbody>
-          {category.results.map((result) => (
-            <tr key={result.rank}>
-              <td data-label="Posición" style={{ textAlign: "center" }}>{result.rank}</td>
-              <td data-label="Nombre del Piloto" style={{
+      <div className="table-container">
+        <table border={1} cellPadding="10" style={{ width: "900px", borderCollapse: "collapse" }}>
+          <thead>
+            <tr>
+              <th style={{ textAlign: "center" }}>Po</th>
+              <th style={{
                 textAlign: "center",
                 position: "sticky",
                 left: 0,
-                background: "black", 
+                background: "black", // Color de fondo para que sea visible
                 zIndex: 1,
-              }}>{result.number}</td>
-              <td style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <CountryFlag countryCode={result.country} alt={result.country} />
-                {result.driver}
-              </td>
-              <td style={{ textAlign: "center" }}>{result.team}</td>
-              {result.scores.map((score, index) => (
-                <td data-label={`R${index + 1}`} key={index} style={{ textAlign: "center" }}>{score}</td>
+              }}>No</th>
+              <th>Piloto</th>
+              <th>Equipo</th>
+              {[...Array(6).keys()].map((r, index) => (
+                <th key={index}>R{index + 1}</th>
               ))}
-              <td data-label="Total" style={{ textAlign: "center" }}>{result.points}</td>
-              <td data-label="Best 4" style={{ textAlign: "center", background: "gray", color: "black" }}>{(result.points || 0) - result.worst}</td>
+              <th>Total</th>
+              <th style={{ textAlign: "center", background: "gray", color: "black" }}>Best 4</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-
-
+          </thead>
+          <tbody>
+            {category.results.map((result) => (
+              <tr key={result.rank}>
+                <td data-label="Posición" style={{ textAlign: "center" }}>{result.rank}</td>
+                <td data-label="Nombre del Piloto" style={{
+                  textAlign: "center",
+                  position: "sticky",
+                  left: 0,
+                  background: "black",
+                  zIndex: 1,
+                }}>{result.number}</td>
+                <td style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <CountryFlag countryCode={result.country} alt={result.country} />
+                  {result.driver}
+                </td>
+                <td style={{ textAlign: "center" }}>{result.team}</td>
+                {result.scores.map((score, index) => (
+                  <td data-label={`R${index + 1}`} key={index} style={{ textAlign: "center" }}>{score}</td>
+                ))}
+                <td data-label="Total" style={{ textAlign: "center" }}>{result.points}</td>
+                <td data-label="Best 4" style={{ textAlign: "center", background: "gray", color: "black" }}>{(result.points || 0) - result.worst}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
+
   );
 };
 
