@@ -1,11 +1,12 @@
 // mockData.ts
 export interface RaceResult {
+  points?: number;
+  rank?: number
   number: number;
   country: string;
   driver: string;
   team: string;
   scores: number[];
-  points: number;
   worst: number;
 }
 
@@ -17,12 +18,18 @@ export interface Class {
   img: string;
 }
 
+export interface Leaderboard {
+  year: number;
+  season: string;
+  classes: Class[];
+}
+
 export interface Category {
   name: string;
   results: RaceResult[];
 }
 
-export const mockLeaderboard = {
+export const mockLeaderboard: Leaderboard = {
   year: 2024,
   season: "Invierno",
   classes: [
@@ -47,6 +54,8 @@ export const mockLeaderboard = {
               driver: "Alfie DAVIDSON",
               team: "FIK Sport Academy",
               scores: [65, 65, 65, 62, 65, 65],
+              points: 0,
+              worst: 0
             },
             {
               rank: 2,
@@ -55,6 +64,8 @@ export const mockLeaderboard = {
               driver: "Daniel FERGUSON",
               team: "Advanced",
               scores: [13, 62, 60, 59, 65, 590],
+              points: 0,
+              worst: 0
             },
             // Más datos...
           ],
@@ -69,6 +80,8 @@ export const mockLeaderboard = {
               driver: "Alfie DAVIDSON",
               team: "FIK Sport Academy",
               scores: [65, 65, 65, 62, 65, 65],
+              points: 0,
+              worst: 0
             },
             {
               rank: 2,
@@ -77,6 +90,8 @@ export const mockLeaderboard = {
               driver: "Daniel FERGUSON",
               team: "Advanced",
               scores: [60, 62, 60, 59, 65, 59],
+              points: 0,
+              worst: 0
             },
             // Más datos...
           ],
@@ -91,6 +106,8 @@ export const mockLeaderboard = {
               driver: "Alfie DAVIDSON",
               team: "FIK Sport Academy",
               scores: [65, 65, 65, 62, 65, 65],
+              points: 0,
+              worst: 0
             },
             {
               rank: 2,
@@ -99,6 +116,8 @@ export const mockLeaderboard = {
               driver: "Daniel FERGUSON",
               team: "Advanced",
               scores: [60, 62, 60, 59, 65, 59],
+              points: 0,
+              worst: 0
             },
             // Más datos...
           ],
@@ -152,7 +171,6 @@ export const mockLeaderboard = {
               scores: [0, 30, 30, 41.5, 32, 11],
               worst: 30
             },
-            ,
             {
               number: 916,
               country: "CR",
@@ -433,16 +451,24 @@ export const mockLeaderboard = {
 };
 
 // Función para calcular los puntos y ordenar
-function calculatePointsAndSort(data: typeof mockLeaderboard) {
+function calculatePointsAndSort(data: Leaderboard) {
   data.classes.forEach((classItem) => {
     classItem.categories.forEach((category) => {
+      // Filtra resultados para garantizar que no haya elementos undefined
+      category.results = category.results.filter((result): result is RaceResult => !!result);
+
       // Calcula los puntos
       category.results.forEach((result) => {
+        if (result == undefined) return 
         result.points = result.scores.reduce((sum, score) => sum + score, 0);
       });
 
-      // Ordena por puntos en orden descendente
-      category.results.sort((a, b) => (b.points - b?.worst) - (a.points - a?.worst));
+      // Ordena por puntos en orden descendente (considerando 'worst')
+      category.results.sort((a, b) => {
+        const pointsA = a.points || 0 - a.worst;
+        const pointsB = b.points || 0 - b.worst;
+        return pointsB - pointsA; // Descendente
+      });
 
       // Actualiza el rango (rank) basado en el nuevo orden
       category.results.forEach((result, index) => {
@@ -456,9 +482,3 @@ function calculatePointsAndSort(data: typeof mockLeaderboard) {
 calculatePointsAndSort(mockLeaderboard);
 
 export default mockLeaderboard;
-
-
-export function getClassByTitle(title: string): Class | null {
-  const foundClass = mockLeaderboard.classes.find((cls) => cls.title === title);
-  return foundClass || null;
-}

@@ -1,5 +1,4 @@
 import React from "react";
-import Flag from "react-world-flags";
 
 interface CountryFlagProps {
     countryCode: string; // Acrónimo del país, como 'US', 'FR', 'JP'

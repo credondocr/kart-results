@@ -28,8 +28,7 @@ export default function Home() {
           {item.categories.map((category, i) => (
             <div key={`category-${o}-${i}`}>
               <LeaderboardTable
-                name={category.name}
-                results={category.results}
+                category={category}
               />
               <br />
             </div>

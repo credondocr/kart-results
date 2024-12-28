@@ -1,14 +1,14 @@
-import { RaceResult, Category } from "@/data/mockData";
+import {  Category } from "@/data/mockData";
 import CountryFlag from "@/app/components/CountryFlag"
 
-const LeaderboardTable: React.FC<{ name: string, results: RaceResult[] }> = ({ name, results }) => {
+const LeaderboardTable: React.FC<{ category: Category }> = ({  category }) => {
   return (
     <div>
      <div>
-            <h1 >{name}</h1>
+            <h1 >{category.name}</h1>
           </div>
 
-          <table border="1" cellPadding="10" style={{ width: "100%", borderCollapse: "collapse" }}>
+          <table border={1} cellPadding="10" style={{ width: "100%", borderCollapse: "collapse" }}>
         <thead>
           <tr>
             <th style={{ textAlign: "center" }}>Posición</th>
@@ -23,7 +23,7 @@ const LeaderboardTable: React.FC<{ name: string, results: RaceResult[] }> = ({ n
           </tr>
         </thead>
         <tbody>
-          {results.map((result) => (
+          {category.results.map((result) => (
             <tr key={result.rank}>
               <td style={{ textAlign: "center" }}>{result.rank}</td>
               <td style={{ textAlign: "center" }}>{result.number}</td>
@@ -36,7 +36,7 @@ const LeaderboardTable: React.FC<{ name: string, results: RaceResult[] }> = ({ n
                 <td key={index} style={{ textAlign: "center" }}>{score}</td>
               ))}
               <td style={{ textAlign: "center" }}>{result.points}</td>
-              <td style={{ textAlign: "center" }}>{result.points - result.worst}</td>
+              <td style={{ textAlign: "center" }}>{result.points || 0 - result.worst}</td>
             </tr>
           ))}
         </tbody>

@@ -1,6 +1,4 @@
-import { Class as ClassDetailsType } from "@/data/mockData";
-
-const ClassDetails: React.FC<{ c: ClassDetailsType }> = ({ c }) => {
+const ClassDetails: React.FC = () => {
   return (
     <div style={{ display: "flex", marginBottom: "20px" }}>
       <div style={{ marginLeft: "auto", textAlign: "right" }}>
