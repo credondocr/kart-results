@@ -1,4 +1,5 @@
 import React from "react";
+import Image from 'next/image'
 
 interface CountryFlagProps {
     countryCode: string; // Acrónimo del país, como 'US', 'FR', 'JP'
@@ -9,13 +10,13 @@ interface CountryFlagProps {
 const CountryFlag: React.FC<CountryFlagProps> = ({ countryCode, alt, style }) => {
     const flagUrl = `https://flagcdn.com/w320/${countryCode.toLowerCase()}.png`; // URL para obtener la bandera
     return (
-      <img
+      <Image
         src={flagUrl}
         alt={alt || `Flag of ${countryCode}`}
+        width={50}
+        height={50}
         style={{
-          width: "50px",
           height: "auto",
-          borderRadius: "5px",
           ...style,
         }}
       />
