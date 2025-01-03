@@ -10,6 +10,13 @@ const nextConfig: NextConfig = {
         pathname: '/w320/**',
         search: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+        port: '',
+        pathname: '/**',
+        search: '',
+      },
     ],
   },
 };

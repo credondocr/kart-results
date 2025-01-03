@@ -4,9 +4,9 @@ import TeamLogo from "@/app/components/TeamLogo";
 const LeaderboardTable: React.FC<{ category: Category }> = ({ category }) => {
   return (
     <div>
-      <div >
-        <h1 >{category.name}</h1>
-      </div>
+
+      <h3 className="text-2xl font-extrabold dark:text-white">Categoría {category.name}</h3>
+
       <div className="table-container">
         <table border={1} cellPadding="10" style={{ width: "900px", borderCollapse: "collapse" }}>
           <thead>
@@ -40,7 +40,7 @@ const LeaderboardTable: React.FC<{ category: Category }> = ({ category }) => {
                 }}>{result.number}</td>
                 <td style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                   <CountryFlag countryCode={result.country} alt={result.country} />
-                  <TeamLogo team="fik" altText="FIK Sport Academy" />
+                  <TeamLogo team={result.team} altText={result.team} />
                   {result.driver}
                 </td>
                 {result.scores.map((score, index) => (

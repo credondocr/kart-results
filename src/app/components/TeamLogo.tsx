@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 interface TeamLogoProps {
@@ -11,7 +12,7 @@ const TeamLogo: React.FC<TeamLogoProps> = ({ team, altText }) => {
   const logoPath = `/logos/${formattedTeamName}.png`;
 
   return (
-    <img
+    <Image
       src={logoPath}
       alt={altText || `${team} Logo`}
       style={{ width: 50, height: 50, objectFit: "contain" }}
