@@ -22,5 +22,7 @@ export const FMV: Pilot[] = [
     { name: "Gabriel Fabrega", kartNumber: 981, categories: ["TILLOTSON Senior"], biography: "", country: "CR", teamName: "FMV", profileUrl: "https://placehold.co/300x400", teamLogo: "fmv" },
     { name: "Diego Ardiles", kartNumber: 323, categories: ["VLR Senior", "VLR Junior"], biography: "", country: "CR", teamName: "FMV", profileUrl: "https://placehold.co/300x400", teamLogo: "fmv" },
     { name: "Julian Regueyra", kartNumber: 255, categories: ["VLR Junior"], biography: "", country: "CR", teamName: "FMV", profileUrl: "https://placehold.co/300x400", teamLogo: "fmv" },
+    { name: "Luciana Morales", kartNumber: 218, categories: ["VLR Junior"], biography: "", country: "CR", teamName: "FMV", profileUrl: "https://placehold.co/300x400", teamLogo: "fmv" },
     { name: "Andres Ardiles", kartNumber: 302, categories: ["VLR Senior"], biography: "", country: "CR", teamName: "FMV", profileUrl: "https://placehold.co/300x400", teamLogo: "fmv" },
+    { name: "Fabricio Montoya", kartNumber: 909, categories: ["TILLOTSON Junior"], biography: "", country: "CR", teamName: "FMV", profileUrl: "https://placehold.co/300x400", teamLogo: "fmv" },
 ]
