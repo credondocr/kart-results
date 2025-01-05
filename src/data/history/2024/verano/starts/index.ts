@@ -18,7 +18,7 @@ export const stars : Class = {
             "rank": 1,
             "number": 184,
             "driver": "Abraham Murillo",
-            "team": "unknown",
+            "team": "advanced",
             "country": "CR",
             "scores": [34, 31, 29, 40, 38],
             "points": 143,
