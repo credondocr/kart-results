@@ -1,0 +1,14 @@
+import { Pilot } from "@/data/types";
+
+export const FMV: Pilot[] = [
+    { name: "Omar Rojas Wolff", kartNumber: 10, categories: ["KID KART"], biography: "", country: "CR", teamName: "FMV", profileUrl: "https://placehold.co/300x400", teamLogo: "fmv" },
+    { name: "José A. Halphen", kartNumber: 236, categories: ["VLR 100 JUNIOR"], biography: "", country: "CR", teamName: "FMV", profileUrl: "https://placehold.co/300x400", teamLogo: "fmv" },
+    { name: "Felipe Vargas", kartNumber: 611, categories: ["ROK SHIFTER"], biography: "", country: "CR", teamName: "FMV", profileUrl: "https://placehold.co/300x400", teamLogo: "fmv" },
+    { name: "RAFAEL FABREGA", kartNumber: 905, categories: ["TILLOTSON Senior"], biography: "", country: "CR", teamName: "FMV", profileUrl: "https://placehold.co/300x400", teamLogo: "fmv" },
+    { name: "Saul cespedes jimenez", kartNumber: 521, categories: ["MINI ROK"], biography: "", country: "CR", teamName: "FMV", profileUrl: "https://placehold.co/300x400", teamLogo: "fmv" },
+    { name: "Ricardo Vargas", kartNumber: 612, categories: ["ROK SHIFTER"], biography: "", country: "CR", teamName: "FMV", profileUrl: "https://placehold.co/300x400", teamLogo: "fmv" },
+    { name: "Osvaldo Blanco", kartNumber: 957, categories: ["TILLOTSON Senior"], biography: "", country: "CR", teamName: "FMV", profileUrl: "https://placehold.co/300x400", teamLogo: "fmv" },
+    { name: "Benjamin Beckley", kartNumber: 220, categories: ["VLR 100 JUNIOR"], biography: "", country: "CR", teamName: "FMV", profileUrl: "https://placehold.co/300x400", teamLogo: "fmv" },
+    { name: "Bernal Valverde", kartNumber: 305, categories: ["VLR 100 SENIOR"], biography: "", country: "CR", teamName: "FMV", profileUrl: "https://placehold.co/300x400", teamLogo: "fmv" },
+    { name: "Sofía Calderón Vargas", kartNumber: 517, categories: ["MINI ROK"], biography: "", country: "CR", teamName: "FMV", profileUrl: "https://placehold.co/300x400", teamLogo: "fmv" },
+]

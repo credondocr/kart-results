@@ -1,4 +1,4 @@
-import { Category } from "@/data/mockData";
+import { Category } from "@/data/types";
 import CountryFlag from "@/app/components/CountryFlag"
 import TeamLogo from "@/app/components/TeamLogo";
 const LeaderboardTable: React.FC<{ category: Category, season: string }> = ({ category, season }) => {

@@ -1,11 +1,12 @@
 "use client";
-
-import { mockHistory, Championship, Leaderboard, Class, Category, RaceResult } from "@/data/mockData";
+import {Championships, } from "@/data/history/data"
+import { Championship, Leaderboard, Class, Category } from "@/data/types";
 import HeaderTabs from "@/app/components/HeaderTabs";
 import LeaderboardTable from "@/app/components/LeaderboardTable";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Breadcrumb from "@/app/components/Breadcrumb";
+import { calculatePointsAndSort } from "@/app/utils/common";
 
 interface Params {
     [key: string]: string | undefined;
@@ -29,11 +30,11 @@ const SeasonLeaderboard = () => {
     };
 
     useEffect(() => {
-        const filteredData = mockHistory.years
+        const filteredData = Championships.years
             .find((championship) => championship.year === year)?.[season as keyof Championship] as Leaderboard;
 
         if (filteredData) {
-            calculatePointsAndSort(filteredData.classes); // Recalcular puntos y ordenar
+            calculatePointsAndSort(filteredData.classes); 
             setLeaderboard(filteredData);
         }
     }, [year, season]);
@@ -77,25 +78,3 @@ const SeasonLeaderboard = () => {
 };
 
 export default SeasonLeaderboard;
-
-// Función para calcular puntos y ordenar
-function calculatePointsAndSort(classes: Class[]) {
-    classes.forEach((classItem: Class) => {
-        classItem.categories.forEach((category: Category) => {
-            category.results.forEach((result: RaceResult) => {
-                // Calcular los puntos sumando los scores
-                result.points = result.scores.reduce((sum, score) => sum + score, 0);
-            });
-
-            // Ordenar resultados por puntos (descendente) y restar "worst"
-            category.results.sort(
-                (a, b) => (b.points! - b.worst) - (a.points! - a.worst)
-            );
-
-            // Asignar el ranking (rank) después del ordenamiento
-            category.results.forEach((result, index) => {
-                result.rank = index + 1;
-            });
-        });
-    });
-}

@@ -1,7 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { mockHistory } from "@/data/mockData";
+import { Championships } from "@/data/history/data";
+
 
 const Navbar: React.FC = () => {
   const [isSeasonMenuOpen, setSeasonMenuOpen] = useState(false);
@@ -44,7 +45,7 @@ const Navbar: React.FC = () => {
             {isSeasonMenuOpen && (
               <div className="absolute bg-gray-700 text-white mt-2 rounded-md shadow-lg z-50">
                 <ul className="space-y-1 p-2">
-                  {mockHistory.years.map((year) => (
+                  {Championships.years.map((year) => (
                     <li key={year.year}>
                       <button
                         onClick={() => handleYearSelect(year.year)}
@@ -150,7 +151,7 @@ const Navbar: React.FC = () => {
             </button>
             {isSeasonMenuOpen && (
               <ul className="pl-4">
-                {mockHistory.years.map((year) => (
+                {Championships.years.map((year) => (
                   <li key={year.year}>
                     <button
                       onClick={() => handleYearSelect(year.year)}

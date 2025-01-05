@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { mockHistory } from "@/data/mockData";
+
+import { Championships } from "@/data/history/data";
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,10 +46,10 @@ const Menu = () => {
               {/* Submenú de invierno/verano */}
               {openYear === year && (
   <ul className="pl-4 space-y-2 bg-gray-700">
-    {mockHistory.years
+    {Championships.years
       .find((championship) => championship.year === year) &&
       Object.entries(
-        mockHistory.years.find((championship) => championship.year === year) || {}
+        Championships.years.find((championship) => championship.year === year) || {}
       )
         .filter(([season]) => season === "invierno" || season === "verano")
         .map(([season]) => (

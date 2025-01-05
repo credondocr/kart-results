@@ -1,6 +1,6 @@
 "use client";
 import { useParams } from "next/navigation";
-import { mockPilots } from "@/data/mockData"; // Ajusta la ruta según corresponda
+import { Drivers } from "@/data/drivers/data"; // Ajusta la ruta según corresponda
 import Image from "next/image";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import Link from "next/link";
@@ -9,7 +9,7 @@ const TeamPage = () => {
   const { team } = useParams(); // Obtener el parámetro dinámico "team" de la URL
 
   // Filtrar los pilotos que pertenecen al equipo seleccionado
-  const teamPilots = mockPilots.filter(
+  const teamPilots = Drivers.filter(
     (pilot) => pilot.teamLogo.toLowerCase() === team?.toString().toLowerCase()
   );
 

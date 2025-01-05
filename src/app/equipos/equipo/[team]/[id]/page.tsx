@@ -1,10 +1,10 @@
 "use client";
-import { mockPilots } from "@/data/mockData"; // Ajusta esta importación a tu archivo de datos
+import { Drivers } from "@/data/drivers/data"; // Ajusta esta importación a tu archivo de datos
 import { notFound, useParams } from "next/navigation";
 
 const PilotoPage =  ( ) => {
   const { id } = useParams(); 
-  const piloto = mockPilots.find(
+  const piloto = Drivers.find(
     (p) => p.kartNumber.toString() === id
   );
 
