@@ -1,6 +1,5 @@
 "use client";
 import { mockPilots } from "@/data/mockData"; // Ajusta esta importación a tu archivo de datos
-import Image from "next/image";
 import { notFound, useParams } from "next/navigation";
 
 const PilotoPage =  ( ) => {

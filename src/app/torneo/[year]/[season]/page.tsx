@@ -6,12 +6,11 @@ import LeaderboardTable from "@/app/components/LeaderboardTable";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Breadcrumb from "@/app/components/Breadcrumb";
-import Menu from "@/app/components/Menu";
 
 interface Params {
     [key: string]: string | undefined;
     year?: string;
-    season?: string;
+    season: string;
 }
 
 
