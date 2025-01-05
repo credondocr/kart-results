@@ -16,7 +16,7 @@ const PilotoPage =  ( ) => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold">{piloto?.name}</h1>
-      <Image src={piloto?.profileUrl} alt={piloto?.name} className="w-48 h-64" />
+      <img src={piloto?.profileUrl} width={300} height={400} alt={piloto?.name} className="w-48 h-64" />
       <p className="mt-4 text-gray-700">{piloto?.biography || "No biography available."}</p>
       <p className="mt-2">
         <strong>Kart Number:</strong> {piloto?.kartNumber}

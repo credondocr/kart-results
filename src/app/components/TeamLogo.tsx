@@ -14,6 +14,8 @@ const TeamLogo: React.FC<TeamLogoProps> = ({ team, altText }) => {
   return (
     <Image
       src={logoPath}
+      width={50}
+      height={50}
       alt={altText || `${team} Logo`}
       style={{ width: 50, height: 50, objectFit: "contain" }}
       onError={(e) => {

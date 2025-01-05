@@ -30,7 +30,6 @@ const SeasonLeaderboard = () => {
     };
 
     useEffect(() => {
-        // Filtrar el leaderboard basado en el año y la temporada
         const filteredData = mockHistory.years
             .find((championship) => championship.year === year)?.[season as keyof Championship] as Leaderboard;
 
@@ -48,10 +47,10 @@ const SeasonLeaderboard = () => {
 
     return (
         <div>
-            <header className="bg-gray-900 text-white p-4">
+            {/* <header className="bg-gray-900 text-white p-4">
                 <h1 className="text-center text-xl">Liga de Kartismo</h1>
                 <Menu />
-            </header>
+            </header> */}
             <div className="flex justify-center items-center px-4 py-4">
                 <div className="w-full max-w-6xl flex justify-center">
                     <Breadcrumb />
@@ -68,7 +67,7 @@ const SeasonLeaderboard = () => {
                     {classItem.categories.map((category: Category, i: number) => (
                         <div key={i} className="flex items-center px-4 py-8  md:justify-center">
                             <div className="flex md:justify-center w-full max-w-6xl" style={{ overflowX: "auto" }}>
-                                <LeaderboardTable category={category} />
+                                <LeaderboardTable category={category} season={season}/>
                             </div>
                         </div>
                     ))}

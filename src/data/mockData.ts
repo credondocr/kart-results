@@ -218,7 +218,7 @@ export const mockHistory: History = {
                     rank: 6,
                     number: 721,
                     driver: 'Leandro Ramirez',
-                    team: 'fik',
+                    team: 'fsa',
                     country: 'CR',
                     scores: [ 0, 29, 21.5, 28.5, 14, 19 ],
                     points: 112,
@@ -723,13 +723,13 @@ export const mockHistory: History = {
             img: 'https://kartshop.com/images/VLR1-2-p.webp',
             categories: [
               {
-                name: 'HEAVY',
+                name: 'TILLOTSON - HEAVY',
                 results: [
                   {
                     number: 969,
                     country: 'CR',
                     driver: 'Cesar Redondo',
-                    team: 'fik',
+                    team: 'fsa',
                     scores: [ 0, 0, 0, 11, 24.5, 24.5 ],
                     worst: 0
                   },
@@ -775,7 +775,7 @@ export const mockHistory: History = {
                 ]
               },
               {
-                name: 'JUNIOR',
+                name: 'TILLOTSON - JUNIOR',
                 results: [
                   {
                     number: 956,
@@ -854,7 +854,7 @@ export const mockHistory: History = {
                 ]
               },
               {
-                name: 'SENIOR',
+                name: 'TILLOTSON - SENIOR',
                 results: [
                   {
                     rank: 1,
@@ -947,7 +947,7 @@ export const mockHistory: History = {
                     scores: [ 13, 16.5, 20, 15.5, 0, 0 ],
                     worst: 0,
                     country: 'CR',
-                    team: 'FIK Sport Academy'
+                    team: 'fsa'
                   },
                   {
                     rank: 9,
@@ -1508,6 +1508,1221 @@ export const mockHistory: History = {
             ]
           }
         ]
+      },
+      verano: {
+        year: 2024,
+        season: 'Invierno',
+        classes: [
+          {
+            title: 'KID KART',
+            ageGroup: 'Age 8-12',
+            details: [
+              '8-12 years old',
+              '950mm CIK/MSUK (Group 3) homologated chassis',
+              'IAME 60cc Water Cooled Engine',
+              'Vega tyres'
+            ],
+            img: 'https://kartshop.com/images/VLR1-2-p.webp',
+            categories: [
+              {
+                name: '',
+                results: [
+                  {
+                    rank: 1,
+                    number: 10,
+                    driver: 'Omar Rojas',
+                    team: 'fmv',
+                    country: 'CR',
+                    scores: [
+                      37.5,
+                      42.5,
+                      40,
+                      38,
+                      29
+                    ],
+                    points: 231.5,
+                    worst: 0
+                  },
+                  {
+                    rank: 2,
+                    number: 1,
+                    driver: 'Fede Sequeira',
+                    team: 'losprimos',
+                    country: 'CR',
+                    scores: [ 39, 30.5, 36.5, 36.5, 33 ],
+                    points: 152,
+                    worst: 30.5
+                  },
+                  {
+                    rank: 3,
+                    number: 5,
+                    driver: 'Damian Ramirez',
+                    team: 'fik',
+                    country: 'CR',
+                    scores: [ 23, 25, 21.5, 18.5, 20.5 ],
+                    worst: 18.5
+                  },
+                  {
+                    rank: 4,
+                    number: 18,
+                    driver: 'Antonio Quesada',
+                    team: 'losprimos',
+                    country: 'CR',
+                    scores: [
+                      25.5,
+                      27,
+                      27,
+                      20.5,
+                      18.5
+                    ],
+                    points: 150,
+                    worst: 18.5
+                  },
+                  {
+                    rank: 5,
+                    number: 3,
+                    driver: 'Ezequiel Gomez',
+                    team: 'Advanced',
+                    country: 'CR',
+                    scores: [ 0, 0, 0, 29, 41.5 ],
+                    points: 38,
+                    worst: 0
+                  },
+                  {
+                    rank: 5,
+                    number: 9,
+                    driver: 'Lisandro Salas',
+                    team: 'Advanced',
+                    country: 'CR',
+                    scores: [ 17, 0, 0, 0, 0 ],
+                    points: 38,
+                    worst: 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            title: 'MICRO ROK',
+            ageGroup: 'Age 8-12',
+            details: [
+              '8-12 years old',
+              '950mm CIK/MSUK (Group 3) homologated chassis',
+              'IAME 60cc Water Cooled Engine',
+              'Vega tyres'
+            ],
+            img: 'https://kartshop.com/images/VLR1-2-p.webp',
+            categories: [
+              {
+                name: '',
+                results: [
+                  {
+                    "rank": 1,
+                    "number": 721,
+                    "driver": "Leandro Ramirez",
+                    "team": "formula",
+                    "country": "CR",
+                    "scores": [37.5, 38.5, 30.5, 33.5, 32],
+                    "points": 141.5,
+                    "worst": 30.5
+                  },
+                  {
+                    "rank": 2,
+                    "number": 728,
+                    "driver": "Nico Salazar",
+                    "team": "valerio",
+                    "country": "CR",
+                    "scores": [38, 0, 24, 36, 33.5],
+                    "points": 131.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 3,
+                    "number": 701,
+                    "driver": "Samuel Chaverri",
+                    "team": "mhkarting",
+                    "country": "CR",
+                    "scores": [0, 25, 34, 34, 38],
+                    "points": 131,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 4,
+                    "number": 737,
+                    "driver": "Enzo Formal",
+                    "team": "advanced",
+                    "country": "CR",
+                    "scores": [20, 23.5, 19.5, 19.5, 19.5],
+                    "points": 82.5,
+                    "worst": 19.5
+                  },
+                  {
+                    "rank": 5,
+                    "number": 715,
+                    "driver": "Ayrton Hayes",
+                    "team": "Advanced",
+                    "country": "CR",
+                    "scores": [14, 0, 21.5, 19.5, 19.5],
+                    "points": 74.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 6,
+                    "number": 777,
+                    "driver": "Samantha Thomas",
+                    "team": "valerio",
+                    "country": "CR",
+                    "scores": [26.5, 21, 27, 0, 0],
+                    "points": 74.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 7,
+                    "number": 717,
+                    "driver": "Camila Moreno",
+                    "team": "losprimos",
+                    "country": "CR",
+                    "scores": [14.5, 0, 14.5, 15, 6],
+                    "points": 50,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 8,
+                    "number": 708,
+                    "driver": "Luciano Albanese",
+                    "team": "mhkarting",
+                    "country": "CR",
+                    "scores": [20, 29, 0, 0, 0],
+                    "points": 49,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 9,
+                    "number": 799,
+                    "driver": "Philippe Marshall",
+                    "team": "valerio",
+                    "country": "CR",
+                    "scores": [15.5, 16.5, 15, 0, 0],
+                    "points": 47,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 10,
+                    "number": 704,
+                    "driver": "Felipe Nanne",
+                    "team": "valerio",
+                    "country": "CR",
+                    "scores": [0, 0, 0, 15.5, 15.5],
+                    "points": 31,
+                    "worst": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            title: 'MINI ROK',
+            ageGroup: 'Age 8-12',
+            details: [
+              '8-12 years old',
+              '950mm CIK/MSUK (Group 3) homologated chassis',
+              'IAME 60cc Water Cooled Engine',
+              'Vega tyres'
+            ],
+            img: 'https://kartshop.com/images/VLR1-2-p.webp',
+            categories: [
+              {
+                name: '',
+                results: [
+                  {
+                    "rank": 1,
+                    "number": 517,
+                    "driver": "Sofia Calderon",
+                    "team": "fmv",
+                    "country": "CR",
+                    "scores": [42.5, 42.5, 35.5, 32, 20],
+                    "points": 152.5,
+                    "worst": 20
+                  },
+                  {
+                    "rank": 2,
+                    "number": 516,
+                    "driver": "Luciano Dajles",
+                    "team": "valerio",
+                    "country": "CR",
+                    "scores": [34, 28, 33.5, 42.5, 23.5],
+                    "points": 138,
+                    "worst": 23.5
+                  },
+                  {
+                    "rank": 3,
+                    "number": 575,
+                    "driver": "Rafael Cañas",
+                    "team": "fsa",
+                    "country": "CR",
+                    "scores": [10, 32, 29, 5.5, 34],
+                    "points": 100.5,
+                    "worst": 10
+                  },
+                  {
+                    "rank": 4,
+                    "number": 521,
+                    "driver": "Saúl Céspedes",
+                    "team": "fmv",
+                    "country": "CR",
+                    "scores": [27, 21.5, 18.5, 18.5, 26.5],
+                    "points": 93.5,
+                    "worst": 18.5
+                  },
+                  {
+                    "rank": 5,
+                    "number": 506,
+                    "driver": "Samuel Chaverri",
+                    "team": "mhkarting",
+                    "country": "CR",
+                    "scores": [17.5, 18.5, 14, 25.5, 26.5],
+                    "points": 88,
+                    "worst": 14
+                  },
+                  {
+                    "rank": 6,
+                    "number": 510,
+                    "driver": "Leandro Ramirez",
+                    "team": "formula",
+                    "country": "CR",
+                    "scores": [19, 10, 16, 24, 24],
+                    "points": 77,
+                    "worst": 16
+                  },
+                  {
+                    "rank": 7,
+                    "number": 555,
+                    "driver": "Emilio Wong",
+                    "team": "advanced",
+                    "country": "CR",
+                    "scores": [13.5, 16, 26, 16, 18.5],
+                    "points": 76.5,
+                    "worst": 13.5
+                  },
+                  {
+                    "rank": 8,
+                    "number": 528,
+                    "driver": "Nico Salazar",
+                    "team": "losprimos",
+                    "country": "CR",
+                    "scores": [17.5, 0, 13.5, 0, 0],
+                    "points": 31,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 9,
+                    "number": 512,
+                    "driver": "Sebastian Nuñez",
+                    "team": "valerio",
+                    "country": "CR",
+                    "scores": [13, 0, 0, 0, 0],
+                    "points": 13,
+                    "worst": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            title: 'STARS OF TOMORROW',
+            ageGroup: 'Age 8-12',
+            details: [
+              '8-12 years old',
+              '950mm CIK/MSUK (Group 3) homologated chassis',
+              'IAME 60cc Water Cooled Engine',
+              'Vega tyres'
+            ],
+            img: 'https://kartshop.com/images/VLR1-2-p.webp',
+            categories: [
+              {
+                name: '',
+                results: [
+                  {
+                    "rank": 1,
+                    "number": 184,
+                    "driver": "Abraham Murillo",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [34, 31, 29, 40, 38],
+                    "points": 143,
+                    "worst": 29
+                  },
+                  {
+                    "rank": 2,
+                    "number": 128,
+                    "driver": "Emil Brautigam",
+                    "team": "formula",
+                    "country": "CR",
+                    "scores": [42.5, 42.5, 41.5, 0, 0],
+                    "points": 126.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 3,
+                    "number": 198,
+                    "driver": "Santiago Navas",
+                    "team": "advanced",
+                    "country": "CR",
+                    "scores": [19.5, 21, 29.5, 36.5, 17.5],
+                    "points": 104.5,
+                    "worst": 19.5
+                  },
+                  {
+                    "rank": 4,
+                    "number": 107,
+                    "driver": "Filippo Tucci",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [16.5, 18.5, 20, 25, 28.5],
+                    "points": 92,
+                    "worst": 16.5
+                  },
+                  {
+                    "rank": 5,
+                    "number": 108,
+                    "driver": "Valentina Giraldo",
+                    "team": "formula",
+                    "country": "CR",
+                    "scores": [17, 14, 15, 21.5, 25],
+                    "points": 78.5,
+                    "worst": 14
+                  },
+                  {
+                    "rank": 6,
+                    "number": 199,
+                    "driver": "Mia Castro",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [16.5, 16.5, 17.5, 16.5, 19],
+                    "points": 69.5,
+                    "worst": 16.5
+                  },
+                  {
+                    "rank": 7,
+                    "number": 155,
+                    "driver": "Carlos Andres Valverde",
+                    "team": "formula",
+                    "country": "CR",
+                    "scores": [27, 8.5, 20.5, 7.5, 20.5],
+                    "points": 75.5,
+                    "worst": 8.5
+                  },
+                  {
+                    "rank": 8,
+                    "number": 111,
+                    "driver": "Matthew Phillips",
+                    "team": "mhkarting",
+                    "country": "CR",
+                    "scores": [0, 26, 0, 17, 15.5],
+                    "points": 58.5,
+                    "worst": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            title: 'TILLOTSON',
+            ageGroup: 'Age 8-12',
+            details: [
+              '8-12 years old',
+              '950mm CIK/MSUK (Group 3) homologated chassis',
+              'IAME 60cc Water Cooled Engine',
+              'Vega tyres'
+            ],
+            img: 'https://kartshop.com/images/VLR1-2-p.webp',
+            categories: [
+              {
+                name: 'TILLOTSON - HEAVY',
+                results: [
+                  {
+                    "rank": 1,
+                    "number": 912,
+                    "driver": "Nicolas Otero",
+                    "team": "advanced",
+                    "country": "CR",
+                    "scores": [42.5, 38, 0, 17.5, 33],
+                    "points": 131,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 2,
+                    "number": 901,
+                    "driver": "Daniel Sequeira",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [34, 28.5, 15, 39, 33.5],
+                    "points": 121.5,
+                    "worst": 28.5
+                  },
+                  {
+                    "rank": 3,
+                    "number": 977,
+                    "driver": "Javier Jose Mora",
+                    "team": "mhkarting",
+                    "country": "CR",
+                    "scores": [20.5, 32, 16.5, 26.5, 37],
+                    "points": 112,
+                    "worst": 20.5
+                  },
+                  {
+                    "rank": 4,
+                    "number": 916,
+                    "driver": "Erick Brenes",
+                    "team": "advanced",
+                    "country": "CR",
+                    "scores": [23.5, 21.5, 30, 20.5, 18.5],
+                    "points": 95.5,
+                    "worst": 18.5
+                  },
+                  {
+                    "rank": 5,
+                    "number": 935,
+                    "driver": "Alvaro Golfin",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [0, 22.5, 34.5, 0, 0],
+                    "points": 57,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 6,
+                    "number": 924,
+                    "driver": "Henry Nanne",
+                    "team": "valerio",
+                    "country": "CR",
+                    "scores": [0, 0, 0, 27, 20.5],
+                    "points": 47.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 7,
+                    "number": 919,
+                    "driver": "Dieter Breisig",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [11, 0, 0, 0, 0],
+                    "points": 11,
+                    "worst": 0
+                  }
+                ]
+              },
+              {
+                name: 'TILLOTSON - JUNIOR',
+                results: [
+                  {
+                    "rank": 1,
+                    "number": 945,
+                    "driver": "Federico Rojas",
+                    "team": "advanced",
+                    "country": "CR",
+                    "scores": [3.5, 23, 42.5, 28.5, 42.5],
+                    "points": 136.5,
+                    "worst": 3.5
+                  },
+                  {
+                    "rank": 2,
+                    "number": 922,
+                    "driver": "Tomas Arias",
+                    "team": "valerio",
+                    "country": "CR",
+                    "scores": [28, 39.5, 32, 31, 22.5],
+                    "points": 130.5,
+                    "worst": 22.5
+                  },
+                  {
+                    "rank": 3,
+                    "number": 956,
+                    "driver": "Jian Luca Pastore",
+                    "team": "mhkarting",
+                    "country": "CR",
+                    "scores": [42.5, 31, 22.5, 24.5, 31],
+                    "points": 129,
+                    "worst": 22.5
+                  },
+                  {
+                    "rank": 4,
+                    "number": 984,
+                    "driver": "Julian Serrano",
+                    "team": "advanced",
+                    "country": "CR",
+                    "scores": [19, 22, 22, 31.5, 18.5],
+                    "points": 94.5,
+                    "worst": 18.5
+                  },
+                  {
+                    "rank": 5,
+                    "number": 914,
+                    "driver": "Martin Salom",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [31, 20.5, 3, 24, 28],
+                    "points": 86,
+                    "worst": 20.5
+                  },
+                  {
+                    "rank": 6,
+                    "number": 946,
+                    "driver": "Alberto Soto",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [20.5, 19.5, 18.5, 0, 0],
+                    "points": 58.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 7,
+                    "number": 908,
+                    "driver": "Mayra Londoño",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [10.5, 10.5, 0, 19, 16],
+                    "points": 56,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 8,
+                    "number": 904,
+                    "driver": "Gabriel Valverde",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [0, 14, 19, 0, 0],
+                    "points": 33,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 9,
+                    "number": 909,
+                    "driver": "Fabricio Montoya",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [14.5, 14.5, 0, 0, 0],
+                    "points": 29,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 10,
+                    "number": 905,
+                    "driver": "Valentina Chaverri",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [17.5, 0, 0, 0, 0],
+                    "points": 17.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 11,
+                    "number": 913,
+                    "driver": "Emma Mora",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [1, 12, 0, 0, 0],
+                    "points": 13,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 12,
+                    "number": 918,
+                    "driver": "Ariadna Calderon",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [13, 0, 0, 0, 0],
+                    "points": 13,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 13,
+                    "number": 972,
+                    "driver": "Luciana Aguilar",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [11, 0, 0, 0, 0],
+                    "points": 11,
+                    "worst": 0
+                  }
+                ]
+              },
+              {
+                name: 'TILLOTSON - SENIOR',
+                results: [
+                  {
+                    "rank": 1,
+                    "number": 921,
+                    "driver": "Manrique Valverde",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [42.5, 34.5, 42.5, 42.5, 38],
+                    "points": 165.5,
+                    "worst": 34.5
+                  },
+                  {
+                    "rank": 2,
+                    "number": 927,
+                    "driver": "Eduardo Glenn",
+                    "team": "fmv",
+                    "country": "CR",
+                    "scores": [34, 22, 25, 29, 28.5],
+                    "points": 116.5,
+                    "worst": 22
+                  },
+                  {
+                    "rank": 3,
+                    "number": 971,
+                    "driver": "Andres Valldeperas",
+                    "team": "formula",
+                    "country": "CR",
+                    "scores": [11, 37.5, 29.5, 25.5, 29.5],
+                    "points": 103.5,
+                    "worst": 29.5
+                  },
+                  {
+                    "rank": 4,
+                    "number": 920,
+                    "driver": "Mathias Hernandez",
+                    "team": "formula",
+                    "country": "CR",
+                    "scores": [20.5, 13, 28, 25, 27],
+                    "points": 93,
+                    "worst": 20.5
+                  },
+                  {
+                    "rank": 5,
+                    "number": 906,
+                    "driver": "Natalia Bräutigam",
+                    "team": "fmv",
+                    "country": "CR",
+                    "scores": [23.5, 20, 14.5, 18.5, 19.5],
+                    "points": 81.5,
+                    "worst": 14.5
+                  },
+                  {
+                    "rank": 6,
+                    "number": 929,
+                    "driver": "Luca Albanese",
+                    "team": "mhkarting",
+                    "country": "CR",
+                    "scores": [10, 19, 0, 14.5, 16],
+                    "points": 59.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 7,
+                    "number": 999,
+                    "driver": "Sebastian Mora",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [16, 22.5, 16, 0, 0],
+                    "points": 54.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 8,
+                    "number": 957,
+                    "driver": "Osvaldo Blanco",
+                    "team": "fmv",
+                    "country": "CR",
+                    "scores": [14.5, 0, 16.5, 0, 0],
+                    "points": 31,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 9,
+                    "number": 910,
+                    "driver": "Stefano Morice",
+                    "team": "fsa",
+                    "country": "CR",
+                    "scores": [13.5, 0, 0, 17, 0],
+                    "points": 30.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 10,
+                    "number": 964,
+                    "driver": "Santiago Alfaro",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [0, 16.5, 0, 0, 0],
+                    "points": 16.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 11,
+                    "number": 981,
+                    "driver": "Gabriel Fabrega",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [15, 0, 0, 0, 0],
+                    "points": 15,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 12,
+                    "number": 917,
+                    "driver": "Julian Gutierrez",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [0, 0, 14, 0, 0],
+                    "points": 14,
+                    "worst": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            title: 'VLR',
+            ageGroup: 'Age 8-12',
+            details: [
+              '8-12 years old',
+              '950mm CIK/MSUK (Group 3) homologated chassis',
+              'IAME 60cc Water Cooled Engine',
+              'Vega tyres'
+            ],
+            img: 'https://kartshop.com/images/VLR1-2-p.webp',
+            categories: [
+              {
+                name: 'VLR JUNIOR',
+                results: [
+                  {
+                    "rank": 1,
+                    "number": 236,
+                    "driver": "Jose Alejandro Halphen",
+                    "team": "fmv",
+                    "country": "PA",
+                    "scores": [17, 0, 18, 37.5, 42.5],
+                    "points": 115,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 2,
+                    "number": 229,
+                    "driver": "Luis Fernando Cedeño",
+                    "team": "fmv",
+                    "country": "CR",
+                    "scores": [40.5, 34, 17.5, 12, 16.5],
+                    "points": 108.5,
+                    "worst": 12
+                  },
+                  {
+                    "rank": 3,
+                    "number": 267,
+                    "driver": "Lautaro Otero",
+                    "team": "advanced",
+                    "country": "CR",
+                    "scores": [27.5, 23.5, 12, 11, 34],
+                    "points": 97,
+                    "worst": 11
+                  },
+                  {
+                    "rank": 4,
+                    "number": 207,
+                    "driver": "Anouk Valerio",
+                    "team": "valerio",
+                    "country": "CR",
+                    "scores": [22, 13.5, 25, 35, 9],
+                    "points": 95.5,
+                    "worst": 9
+                  },
+                  {
+                    "rank": 5,
+                    "number": 226,
+                    "driver": "Gerardo Moreno",
+                    "team": "losprimos",
+                    "country": "CR",
+                    "scores": [19, 23.5, 15.5, 23.5, 15.5],
+                    "points": 81.5,
+                    "worst": 15.5
+                  },
+                  {
+                    "rank": 6,
+                    "number": 277,
+                    "driver": "Alessandro Carboni",
+                    "team": "advanced",
+                    "country": "CR",
+                    "scores": [12.5, 7.5, 11.5, 25, 14.5],
+                    "points": 63.5,
+                    "worst": 7.5
+                  },
+                  {
+                    "rank": 7,
+                    "number": 244,
+                    "driver": "Fabian Acevedo",
+                    "team": "fsa",
+                    "country": "CR",
+                    "scores": [10, 30.5, 3, 10, 15],
+                    "points": 58.5,
+                    "worst": 10
+                  },
+                  {
+                    "rank": 8,
+                    "number": 218,
+                    "driver": "Luciana Morales",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [15.5, 15.5, 7.5, 15.5, 12],
+                    "points": 58.5,
+                    "worst": 7.5
+                  },
+                  {
+                    "rank": 9,
+                    "number": 251,
+                    "driver": "Daniel Gardella",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [6.5, 7.5, 10.5, 13.5, 21.5],
+                    "points": 53,
+                    "worst": 6.5
+                  },
+                  {
+                    "rank": 10,
+                    "number": 217,
+                    "driver": "Samuel Castro",
+                    "team": "fsa",
+                    "country": "CR",
+                    "scores": [3, 15, 13.5, 12, 11],
+                    "points": 51.5,
+                    "worst": 3
+                  },
+                  {
+                    "rank": 11,
+                    "number": 235,
+                    "driver": "Andres Dumith",
+                    "team": "fmv",
+                    "country": "CR",
+                    "scores": [21.5, 10, 20, 0, 0],
+                    "points": 51.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 12,
+                    "number": 294,
+                    "driver": "Francesca Morice",
+                    "team": "fsa",
+                    "country": "CR",
+                    "scores": [4.5, 10, 19, 5.5, 11],
+                    "points": 45.5,
+                    "worst": 4.5
+                  },
+                  {
+                    "rank": 13,
+                    "number": 220,
+                    "driver": "Benjamin Beckley",
+                    "team": "fmv",
+                    "country": "CR",
+                    "scores": [14, 21, 9.5, 0, 0],
+                    "points": 44.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 14,
+                    "number": 223,
+                    "driver": "Diego Ardiles",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [0, 0, 38.5, 0, 0],
+                    "points": 38.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 15,
+                    "number": 255,
+                    "driver": "Julian Regueyra",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [0, 0, 7.5, 18.5, 12.5],
+                    "points": 38.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 16,
+                    "number": 222,
+                    "driver": "Sebastian Delgado",
+                    "team": "fmv",
+                    "country": "CR",
+                    "scores": [10.5, 4.5, 4, 5.5, 8],
+                    "points": 28.5,
+                    "worst": 4
+                  },
+                  {
+                    "rank": 17,
+                    "number": 201,
+                    "driver": "Alberto Rojas Segura",
+                    "team": "advanced",
+                    "country": "CR",
+                    "scores": [0, 7, 5.5, 7, 9.5],
+                    "points": 29,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 18,
+                    "number": 272,
+                    "driver": "Luis Pedro Barrientos Jr",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [11, 11, 0, 0, 0],
+                    "points": 22,
+                    "worst": 0
+                  }
+                ]
+              },
+              {
+                name: 'VLR MASTER',
+                results: [
+                  {
+                    "rank": 1,
+                    "number": 317,
+                    "driver": "Andres Fonseca",
+                    "team": "formula",
+                    "country": "CR",
+                    "scores": [39, 31, 42.5, 41.5, 25],
+                    "points": 154,
+                    "worst": 25
+                  },
+                  {
+                    "rank": 2,
+                    "number": 376,
+                    "driver": "Peppe Di Falco",
+                    "team": "advanced",
+                    "country": "CR",
+                    "scores": [0, 40.5, 32, 31, 20],
+                    "points": 123.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 3,
+                    "number": 365,
+                    "driver": "David Gardella Sr",
+                    "team": "advanced",
+                    "country": "CR",
+                    "scores": [6, 27.5, 26, 31, 37.5],
+                    "points": 122,
+                    "worst": 6
+                  },
+                  {
+                    "rank": 4,
+                    "number": 396,
+                    "driver": "Luis Alvarado",
+                    "team": "valerio",
+                    "country": "CR",
+                    "scores": [23.5, 17.5, 21.5, 21.5, 26],
+                    "points": 92.5,
+                    "worst": 17.5
+                  },
+                  {
+                    "rank": 5,
+                    "number": 327,
+                    "driver": "Tim Vivian",
+                    "team": "valerio",
+                    "country": "CR",
+                    "scores": [37.5, 15, 0, 0, 0],
+                    "points": 52.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 6,
+                    "number": 325,
+                    "driver": "Paulo Sequeira",
+                    "team": "losprimos",
+                    "country": "CR",
+                    "scores": [11, 22, 19.5, 0, 0],
+                    "points": 52.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 7,
+                    "number": 324,
+                    "driver": "Henry Nanne",
+                    "team": "valerio",
+                    "country": "CR",
+                    "scores": [19.5, 15, 0, 0, 0],
+                    "points": 34.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 8,
+                    "number": 328,
+                    "driver": "Adrian Salazar",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [17.5, 0, 0, 0, 0],
+                    "points": 17.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 9,
+                    "number": 326,
+                    "driver": "Gerardo Moreno",
+                    "team": "losprimos",
+                    "country": "CR",
+                    "scores": [0, 1, 0, 0, 0],
+                    "points": 1,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 10,
+                    "number": 319,
+                    "driver": "Lineth Valerio",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [1, 0, 0, 0, 0],
+                    "points": 1,
+                    "worst": 0
+                  }
+                ]
+              },
+              {
+                name: 'VLR SENIOR',
+                results: [
+                  {
+                    "rank": 1,
+                    "number": 305,
+                    "driver": "Bernal Valverde",
+                    "team": "fmv",
+                    "country": "CR",
+                    "scores": [42.5, 42.5, 37.5, 42.5, 0],
+                    "points": 122.5,
+                    "worst": 42.5
+                  },
+                  {
+                    "rank": 2,
+                    "number": 316,
+                    "driver": "Charlie Fonseca",
+                    "team": "fsa",
+                    "country": "CR",
+                    "scores": [31, 27, 31, 23.5, 28.5],
+                    "points": 117.5,
+                    "worst": 23.5
+                  },
+                  {
+                    "rank": 3,
+                    "number": 315,
+                    "driver": "Luis Felipe Aguilar",
+                    "team": "formula",
+                    "country": "CR",
+                    "scores": [22.5, 21, 17.5, 34, 38],
+                    "points": 115.5,
+                    "worst": 17.5
+                  },
+                  {
+                    "rank": 4,
+                    "number": 398,
+                    "driver": "Isabella Valldeperas",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [24, 17, 0, 21, 28.5],
+                    "points": 90.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 5,
+                    "number": 302,
+                    "driver": "Andres Ardiles",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [13.5, 27.5, 19.5, 21.5, 14.5],
+                    "points": 83,
+                    "worst": 13.5
+                  },
+                  {
+                    "rank": 6,
+                    "number": 345,
+                    "driver": "Luciano Sosto",
+                    "team": "advanced",
+                    "country": "CR",
+                    "scores": [10, 17.5, 20, 16, 19],
+                    "points": 72.5,
+                    "worst": 10
+                  },
+                  {
+                    "rank": 7,
+                    "number": 384,
+                    "driver": "Sebastian Arce",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [9.5, 11.5, 0, 10, 28],
+                    "points": 59,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 8,
+                    "number": 344,
+                    "driver": "Augusto Acevedo",
+                    "team": "fsa",
+                    "country": "CR",
+                    "scores": [12, 14.5, 12.5, 13.5, 11.5],
+                    "points": 52.5,
+                    "worst": 11.5
+                  },
+                  {
+                    "rank": 9,
+                    "number": 309,
+                    "driver": "Franco Segnini",
+                    "team": "advanced",
+                    "country": "CR",
+                    "scores": [9, 11, 16, 10.5, 14],
+                    "points": 51.5,
+                    "worst": 9
+                  },
+                  {
+                    "rank": 10,
+                    "number": 310,
+                    "driver": "David Gardella",
+                    "team": "advanced",
+                    "country": "CR",
+                    "scores": [16.5, 13, 13, 8, 12],
+                    "points": 50.5,
+                    "worst": 12
+                  },
+                  {
+                    "rank": 11,
+                    "number": 323,
+                    "driver": "Diego Ardiles",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [0, 0, 26.5, 0, 0],
+                    "points": 26.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 12,
+                    "number": 303,
+                    "driver": "Yariela Chaves",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [0, 0, 0, 12, 13.5],
+                    "points": 25.5,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 13,
+                    "number": 307,
+                    "driver": "Frederik Lund",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [20, 0, 0, 0, 0],
+                    "points": 20,
+                    "worst": 0
+                  },
+                  {
+                    "rank": 14,
+                    "number": 304,
+                    "driver": "Gabriel Kawer",
+                    "team": "unknown",
+                    "country": "CR",
+                    "scores": [6, 10, 0, 0, 0],
+                    "points": 16,
+                    "worst": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     }
   ]
@@ -1550,30 +2765,32 @@ export const mockPilots = [
   { name: "Sofía Calderón Vargas", kartNumber: 517, categories: ["MINI ROK"], biography: "", country: "CR", teamName: "FMV", profileUrl: "https://placehold.co/300x400", teamLogo: "fmv" },
   
 
-  { name: "Emilio Bolaños Mora", kartNumber: 105, categories: ["STARS of TOMORROW"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Damian Ramirez", kartNumber: 5, categories: ["KID KART"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Jaden Spielman", kartNumber: 141, categories: ["STARS of TOMORROW"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Fabian Acevedo", kartNumber: 244, categories: ["VLR 100 JUNIOR"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Luana Daniela Dorado Yumbato", kartNumber: 152, categories: ["STARS of TOMORROW"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "César Redondo Arrieta", kartNumber: 969, categories: ["TILLOTSON Heavy"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Carlos Andrés Valverde Blanco", kartNumber: 155, categories: ["STARS of TOMORROW"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Charlie Fonseca", kartNumber: 316, categories: ["VLR 100 SENIOR"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Samuel Castro", kartNumber: 217, categories: ["VLR 100 JUNIOR"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Leandro Ramirez", kartNumber: 510, categories: ["MINI ROK"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Francesca Morice", kartNumber: 294, categories: ["VLR 100 JUNIOR"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Leandro Ramirez", kartNumber: 721, categories: ["MICRO ROK"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Valentina Giraldo Chavarría", kartNumber: 197, categories: ["STARS of TOMORROW"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Diego Mejía Rojas", kartNumber: 247, categories: ["VLR 100 JUNIOR"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Julian Lahmann", kartNumber: 124, categories: ["STARS of TOMORROW"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Luis Felipe Aguilar", kartNumber: 315, categories: ["VLR 100 SENIOR"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Andres Fonseca", kartNumber: 317, categories: ["VLR 100 MASTER"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Pablo Bolaños", kartNumber: 319, categories: ["VLR 100 MASTER"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Martin Salom", kartNumber: 342, categories: ["VLR 100 SENIOR"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Augusto Acevedo Urbina", kartNumber: 344, categories: ["VLR 100 SENIOR"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Jaden Spielman", kartNumber: 541, categories: ["MINI ROK"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Andrés Valldeperas Calvo", kartNumber: 671, categories: ["ROK SHIFTER"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Mathias Hernández Arce", kartNumber: 920, categories: ["TILLOTSON Senior"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
-  { name: "Emil Bräutigam Arguello", kartNumber: 928, categories: ["TILLOTSON Junior"], biography: "", country: "CR", teamName: "FORMULA KART - FIK", profileUrl: "https://placehold.co/300x400", teamLogo: "fik" },
+  { name: "Emilio Bolaños Mora", kartNumber: 105, categories: ["STARS of TOMORROW"], biography: "", country: "CR", teamName: "Fik Sport Academy", profileUrl: "https://placehold.co/300x400", teamLogo: "fsa" },
+  { name: "Stefano Morice", kartNumber: 910, categories: ["TILLOTSON SENIOR"], biography: "", country: "CR", teamName: "Fik Sport Academy", profileUrl: "https://placehold.co/300x400", teamLogo: "fsa" },
+  { name: "Jaden Spielman", kartNumber: 141, categories: ["STARS of TOMORROW", "MINI ROK"], biography: "", country: "CR", teamName: "FIK SPORT ACADEMY", profileUrl: "https://placehold.co/300x400", teamLogo: "fsa" },
+  { name: "Fabian Acevedo", kartNumber: 244, categories: ["VLR 100 JUNIOR"], biography: "", country: "CR", teamName: "Fik Sport Academy", profileUrl: "https://placehold.co/300x400", teamLogo: "fsa" },
+  { name: "César Redondo Arrieta", kartNumber: 969, categories: ["TILLOTSON Heavy"], biography: "", country: "CR", teamName: "FIK SPORT ACADEMY", profileUrl: "https://placehold.co/300x400", teamLogo: "fsa" },
+  { name: "Charlie Fonseca", kartNumber: 316, categories: ["VLR 100 SENIOR"], biography: "", country: "CR", teamName: "FIK SPORT ACADEMY", profileUrl: "https://placehold.co/300x400", teamLogo: "fsa" },
+  { name: "Samuel Castro", kartNumber: 217, categories: ["VLR 100 JUNIOR"], biography: "", country: "CR", teamName: "FIK SPORT ACADEMY", profileUrl: "https://placehold.co/300x400", teamLogo: "fsa" },
+  { name: "Augusto Acevedo Urbina", kartNumber: 344, categories: ["VLR 100 SENIOR"], biography: "", country: "CR", teamName: "FIK SPORT ACADEMY", profileUrl: "https://placehold.co/300x400", teamLogo: "fsa" },
+  { name: "Jaden Spielman", kartNumber: 541, categories: ["MINI ROK"], biography: "", country: "CR", teamName: "FIK SPORT ACADEMY", profileUrl: "https://placehold.co/300x400", teamLogo: "fsa" },
+  { name: "Francesca Morice", kartNumber: 294, categories: ["VLR 100 JUNIOR"], biography: "", country: "CR", teamName: "FIK SPORT ACADEMY", profileUrl: "https://placehold.co/300x400", teamLogo: "fsa" },
+  { name: "Luana Daniela Dorado Yumbato", kartNumber: 152, categories: ["STARS of TOMORROW"], biography: "", country: "CR", teamName: "FIK SPORT ACADEMY", profileUrl: "https://placehold.co/300x400", teamLogo: "fsa" },
+  { name: "Diego Mejía Rojas", kartNumber: 247, categories: ["VLR 100 JUNIOR"], biography: "", country: "CR", teamName: "FIK SPORT ACADEMY", profileUrl: "https://placehold.co/300x400", teamLogo: "fsa" },
+
+  
+  { name: "Damian Ramirez", kartNumber: 5, categories: ["KID KART"], biography: "", country: "CR", teamName: "FORMULA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
+  { name: "Carlos Andrés Valverde Blanco", kartNumber: 155, categories: ["STARS of TOMORROW"], biography: "", country: "CR", teamName: "FORMULA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
+  { name: "Leandro Ramirez", kartNumber: 510, categories: ["MINI ROK", "MICRO ROK"], biography: "", country: "CR", teamName: "FORMULA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
+  { name: "Valentina Giraldo Chavarría", kartNumber: 197, categories: ["STARS of TOMORROW"], biography: "", country: "CR", teamName: "FORMULA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
+  { name: "Julian Lahmann", kartNumber: 124, categories: ["STARS of TOMORROW"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
+  { name: "Luis Felipe Aguilar", kartNumber: 315, categories: ["VLR 100 SENIOR"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
+  { name: "Andres Fonseca", kartNumber: 317, categories: ["VLR 100 MASTER"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
+  { name: "Pablo Bolaños", kartNumber: 319, categories: ["VLR 100 MASTER"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
+  { name: "Martin Salom", kartNumber: 342, categories: ["VLR 100 SENIOR"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
+  { name: "Andrés Valldeperas Calvo", kartNumber: 671, categories: ["ROK SHIFTER"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
+  { name: "Mathias Hernández Arce", kartNumber: 920, categories: ["TILLOTSON Senior"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
+  { name: "Emil Bräutigam Arguello", kartNumber: 928, categories: ["TILLOTSON Junior"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
 
 
   { name: "Mauricio Hernandez", kartNumber: 311, categories: ["VLR 100 SENIOR"], biography: "", country: "CR", teamName: "MH KARTING", profileUrl: "https://placehold.co/300x400", teamLogo: "mhkarting" },

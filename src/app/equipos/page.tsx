@@ -3,7 +3,8 @@ import Link from "next/link";
 
 
 const teams = [
-  { name: "Formula Kart - FIK", logo: "/logos/fik.png", link: "/equipos/equipo/fik" },
+  { name: "Formula Kart - FIK", logo: "/logos/fsa.png", link: "/equipos/equipo/fsa" },
+  { name: "Formula Kart", logo: "/logos/formula.png", link: "/equipos/equipo/formula" },
   { name: "Advanced Karting", logo: "/logos/advanced.png", link: "/equipos/equipo/advanced" },
   { name: "Babyliss Pro - MMR", logo: "/logos/losprimos.png", link: "/equipos/equipo/losprimos" },
   { name: "FMV", logo: "/logos/fmv.png", link: "/equipos/equipo/fmv" },

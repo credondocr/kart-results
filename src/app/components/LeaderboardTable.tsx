@@ -1,7 +1,13 @@
 import { Category } from "@/data/mockData";
 import CountryFlag from "@/app/components/CountryFlag"
 import TeamLogo from "@/app/components/TeamLogo";
-const LeaderboardTable: React.FC<{ category: Category }> = ({ category }) => {
+const LeaderboardTable: React.FC<{ category: Category, season: string }> = ({ category, season }) => {
+
+  let races = 6
+
+  if (season == "verano") {
+    races = 5
+  }
   return (
     <div>
 
@@ -20,7 +26,7 @@ const LeaderboardTable: React.FC<{ category: Category }> = ({ category }) => {
                 zIndex: 1,
               }}>No</th>
               <th>Piloto</th>
-              {[...Array(6).keys()].map((r, index) => (
+              {[...Array(races).keys()].map((r, index) => (
                 <th key={index}>R{index + 1}</th>
               ))}
               <th>Total</th>
