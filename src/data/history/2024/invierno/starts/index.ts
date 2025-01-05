@@ -136,7 +136,7 @@ export const stars : Class = {
           number: 928,
           country: 'CR',
           driver: 'Emil Brautigam ',
-          team: 'fik',
+          team: 'formula',
           scores: [ 19.5, 0, 0, 0, 5, 21 ],
           worst: 0
         }
@@ -177,7 +177,7 @@ export const stars : Class = {
           scores: [ 33.5, 20.5, 29, 22.5, 7, 0 ],
           worst: 7,
           country: 'CR',
-          team: 'fik'
+          team: 'formula'
         },
         {
           rank: 4,

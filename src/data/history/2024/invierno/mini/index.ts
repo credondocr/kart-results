@@ -62,7 +62,7 @@ export const mini: Class = {
           rank: 4,
           number: 510,
           driver: 'Leandro Ramirez',
-          team: 'fik',
+          team: 'formula',
           country: 'CR',
           scores: [ 23.5, 16, 26, 18.5, 25, 23 ],
           points: 132,

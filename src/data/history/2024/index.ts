@@ -1,6 +1,6 @@
 import { Championship } from "../../types";
-import { invierno } from "./invierno/data";
-import { verano } from "./verano/data";
+import { invierno } from "./invierno";
+import { verano } from "./verano";
 
 export const championship2024: Championship = {
     year: "2024",

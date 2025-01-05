@@ -45,7 +45,7 @@ export const kid: Class = {
           rank: 3,
           number: 5,
           driver: 'Damian Ramirez',
-          team: 'fik',
+          team: 'formula',
           country: 'CR',
           scores: [ 28, 28, 30.5, 34, 27, 31 ],
           points: 178.5,

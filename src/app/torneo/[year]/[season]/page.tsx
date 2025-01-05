@@ -1,5 +1,5 @@
 "use client";
-import {Championships, } from "@/data/history/data"
+import {Championships, } from "@/data/history"
 import { Championship, Leaderboard, Class, Category } from "@/data/types";
 import HeaderTabs from "@/app/components/HeaderTabs";
 import LeaderboardTable from "@/app/components/LeaderboardTable";

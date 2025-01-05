@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-import { Championships } from "@/data/history/data";
+import { Championships } from "@/data/history";
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);

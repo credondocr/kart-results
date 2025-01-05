@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { Championships } from "@/data/history/data";
+import { Championships } from "@/data/history";
 
 
 const Navbar: React.FC = () => {
