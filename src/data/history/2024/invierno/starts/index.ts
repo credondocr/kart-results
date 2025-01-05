@@ -254,7 +254,7 @@ export const stars : Class = {
           scores: [ 31, 0, 0, 0, 0, 0 ],
           worst: 0,
           country: 'CR',
-          team: 'Advanced'
+          team: 'fmv'
         },
         {
           rank: 10,
@@ -272,7 +272,7 @@ export const stars : Class = {
           scores: [ 13, 0, 0, 0, 0, 0 ],
           worst: 0,
           country: 'CR',
-          team: 'Advanced'
+          team: 'fsa'
         }
       ]
     }

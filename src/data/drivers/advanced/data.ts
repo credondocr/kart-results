@@ -14,4 +14,11 @@ export const Advanced: Pilot[] = [
     { name: "David Gardella Santamaria", kartNumber: 310, categories: ["VLR 100 SENIOR"], biography: "", country: "CR", teamName: "ADVANCED KARTING", profileUrl: "https://placehold.co/300x400", teamLogo: "advanced" },
     { name: "Felipe Hernandez González", kartNumber: 991, categories: ["TILLOTSON Senior"], biography: "", country: "CR", teamName: "ADVANCED KARTING", profileUrl: "https://placehold.co/300x400", teamLogo: "advanced" },
     { name: "Santiago Navas Castro", kartNumber: 998, categories: ["TILLOTSON Junior"], biography: "", country: "CR", teamName: "ADVANCED KARTING", profileUrl: "https://placehold.co/300x400", teamLogo: "advanced" },
+    { name: "Alvaro Golfin", kartNumber: 935, categories: ["TILLOTSON Heavy"], biography: "", country: "CR", teamName: "ADVANCED KARTING", profileUrl: "https://placehold.co/300x400", teamLogo: "advanced" },
+    { name: "Dieter Breisig", kartNumber: 919, categories: ["TILLOTSON Heavy"], biography: "", country: "CR", teamName: "ADVANCED KARTING", profileUrl: "https://placehold.co/300x400", teamLogo: "advanced" },
+    { name: "Mayra Londoño", kartNumber: 908, categories: ["TILLOTSON Junior"], biography: "", country: "CR", teamName: "ADVANCED KARTING", profileUrl: "https://placehold.co/300x400", teamLogo: "advanced" },
+    { name: "Luis Pedro Barrientos Jr", kartNumber: 272, categories: ["VLR Junior"], biography: "", country: "CR", teamName: "ADVANCED KARTING", profileUrl: "https://placehold.co/300x400", teamLogo: "advanced" },
+    { name: "Isabella Valldeperas", kartNumber: 398, categories: ["VLR Senior"], biography: "", country: "CR", teamName: "ADVANCED KARTING", profileUrl: "https://placehold.co/300x400", teamLogo: "advanced" },
+    { name: "Sebastian Arce", kartNumber: 384, categories: ["VLR Senior"], biography: "", country: "CR", teamName: "ADVANCED KARTING", profileUrl: "https://placehold.co/300x400", teamLogo: "advanced" },
+
 ] 

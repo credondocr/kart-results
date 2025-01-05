@@ -119,7 +119,7 @@ export const mini: Class = {
           rank: 9,
           number: 507,
           driver: 'Jaden Spielman',
-          team: 'Advanced',
+          team: 'fsa',
           country: 'CR',
           scores: [ 0, 0, 0, 0, 17.5, 17.5 ],
           points: 35,

@@ -13,4 +13,8 @@ export const FSA: Pilot[] = [
     { name: "Francesca Morice", kartNumber: 294, categories: ["VLR 100 JUNIOR"], biography: "", country: "CR", teamName: "FIK SPORT ACADEMY", profileUrl: "https://placehold.co/300x400", teamLogo: "fsa" },
     { name: "Luana Daniela Dorado Yumbato", kartNumber: 152, categories: ["STARS of TOMORROW"], biography: "", country: "CR", teamName: "FIK SPORT ACADEMY", profileUrl: "https://placehold.co/300x400", teamLogo: "fsa" },
     { name: "Diego Mejía Rojas", kartNumber: 247, categories: ["VLR 100 JUNIOR"], biography: "", country: "CR", teamName: "FIK SPORT ACADEMY", profileUrl: "https://placehold.co/300x400", teamLogo: "fsa" },
+    { name: "Yariela Chaves", kartNumber: 303, categories: ["VLR 100 JUNIOR"], biography: "", country: "CR", teamName: "FIK SPORT ACADEMY", profileUrl: "https://placehold.co/300x400", teamLogo: "fsa" },
+    { name: "Pablo Bolaños", kartNumber: 319, categories: ["VLR 100 MASTER"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "fsa" },
+    { name: "Julian Gutierrez", kartNumber: 917, categories: ["TILLOTSON Senior"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "fsa" },
+    { name: "Daniel Gardella", kartNumber: 351, categories: ["VLR Senior"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "fsa" },
 ]

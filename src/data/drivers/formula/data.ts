@@ -8,9 +8,9 @@ export const Formula: Pilot[] = [
     { name: "Julian Lahmann", kartNumber: 124, categories: ["STARS of TOMORROW"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
     { name: "Luis Felipe Aguilar", kartNumber: 315, categories: ["VLR 100 SENIOR"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
     { name: "Andres Fonseca", kartNumber: 317, categories: ["VLR 100 MASTER"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
-    { name: "Pablo Bolaños", kartNumber: 319, categories: ["VLR 100 MASTER"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
     { name: "Martin Salom", kartNumber: 342, categories: ["VLR 100 SENIOR"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
     { name: "Andrés Valldeperas Calvo", kartNumber: 671, categories: ["ROK SHIFTER"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
     { name: "Mathias Hernández Arce", kartNumber: 920, categories: ["TILLOTSON Senior"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
     { name: "Emil Bräutigam Arguello", kartNumber: 928, categories: ["TILLOTSON Junior"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
+    { name: "Gabriel Kawer", kartNumber: 304, categories: ["VLR Senior"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
 ]
