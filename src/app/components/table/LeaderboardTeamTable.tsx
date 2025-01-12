@@ -29,7 +29,6 @@ const LeaderboardTeamTable: React.FC<{ category: Category, season: string }> = (
         </table>
       </div>
     </div>
-
   );
 };
 
