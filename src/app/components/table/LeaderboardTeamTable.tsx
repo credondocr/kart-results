@@ -1,7 +1,6 @@
 import { Category } from "@/data/types";
-import CountryFlag from "@/app/components/CountryFlag"
 import TeamLogo from "@/app/components/TeamLogo";
-const LeaderboardTeamTable: React.FC<{ category: Category, season: string }> = ({ category, season }) => {
+const LeaderboardTeamTable: React.FC<{ category: Category }> = ({ category }) => {
   return (
     <div>
       <h3 className="text-2xl font-extrabold dark:text-white">Puntos por Equipos</h3>

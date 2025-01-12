@@ -130,7 +130,7 @@ export const calculateGeneralPoints = (invierno: Leaderboard, verano: Leaderboar
             }
   
             // Sumar puntos
-            combinedResult.points += result.points || 0;
+            combinedResult.points = (combinedResult.points || 0) + (result.points || 0);
           });
         });
       });
@@ -143,7 +143,7 @@ export const calculateGeneralPoints = (invierno: Leaderboard, verano: Leaderboar
     // Ordenar resultados por puntos y asignar posiciones
     Object.values(combinedClasses).forEach((cls) => {
       cls.categories.forEach((category) => {
-        category.results.sort((a, b) => b.points - a.points);
+        category.results.sort((a, b) => (b.points || 0) - (a.points || 0));
         category.results.forEach((result, index) => {
           result.rank = index + 1;
         });
@@ -225,7 +225,7 @@ export const calculateGeneralPoints = (invierno: Leaderboard, verano: Leaderboar
     // Ordenar resultados por puntos y asignar posiciones
     Object.values(combinedClasses).forEach((cls) => {
       cls.categories.forEach((category) => {
-        category.results.sort((a, b) => b.points - a.points);
+        category.results.sort((a, b) => (b.points ||0) - (a.points||0));
         category.results.forEach((result, index) => {
           result.rank = index + 1;
         });
@@ -239,14 +239,6 @@ export const calculateGeneralPoints = (invierno: Leaderboard, verano: Leaderboar
       classes: Object.values(combinedClasses),
     };
   };
-
-
-
-  interface TeamCount {
-    team: string;
-    totalDrivers: number;
-}
-
 
 
 export const addTeamsCategory = (leaderboard: Leaderboard): Leaderboard => {

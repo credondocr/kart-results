@@ -24,10 +24,6 @@ const SeasonLeaderboard = () => {
 
     const [leaderboard, setLeaderboard] = useState<Leaderboard | null>(null);
     const [selectedTab, setSelectedTab] = useState<string | null>(null);
-    const [generalLeaderboard, setGeneralLeaderboard] = useState<Record<
-        string,
-        { driver: string; points: number }[]
-    > | null>(null);
 
     const handleTabSelect = (tab: string) => {
         setSelectedTab(tab);
@@ -42,7 +38,6 @@ const SeasonLeaderboard = () => {
             if (filteredData) {
                 calculatePointsAndSort(filteredData.classes);
                 setLeaderboard(addTeamsCategory(filteredData));
-                console.log(leaderboard)
             }
         } else if (season == "general") {
             const championship = Championships.years.find((champ) => champ.year === year);
@@ -76,12 +71,12 @@ const SeasonLeaderboard = () => {
                 <div>
                     <div className="flex justify-center items-center px-1 py-1">
                         <div className="w-full max-w-6xl flex justify-center">
-                            <HeaderTabs onTabSelect={handleTabSelect} />
+                            <HeaderTabs onTabSelect={handleTabSelect} showTeamTab={false}/>
                         </div>
                     </div>
                     <div className="flex items-center px-1 py-1  md:justify-center">
                         <div className="flex md:justify-center w-full max-w-6xl" style={{ overflowX: "auto" }}>
-                            <GeneralTable leaderboard={{ classes: filteredClasses }} />
+                            <GeneralTable leaderboard={leaderboard} />
                         </div>
                     </div>
                 </div>
