@@ -38,7 +38,7 @@ export const mini: Class = {
             "rank": 3,
             "number": 575,
             "driver": "Rafael Cañas",
-            "team": "fsa",
+            "team": "fsa-white",
             "country": "CR",
             "scores": [10, 32, 29, 5.5, 34],
             "points": 100.5,

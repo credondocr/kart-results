@@ -4,7 +4,7 @@ import Link from "next/link";
 
 
 const teams = [
-  { name: "FIK SPORT ACADEMY", logo: "/logos/fsa.png", link: "/equipos/equipo/fsa" },
+  { name: "FIK SPORT ACADEMY", logo: "/logos/fsa-white.png", link: "/equipos/equipo/fsa" },
   { name: "FORMULKA KART", logo: "/logos/formula.png", link: "/equipos/equipo/formula" },
   { name: "ADVANCED KARTING", logo: "/logos/advanced.png", link: "/equipos/equipo/advanced" },
   { name: "BABYLISS PRO - MMR", logo: "/logos/losprimos.png", link: "/equipos/equipo/losprimos" },

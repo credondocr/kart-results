@@ -89,7 +89,7 @@ export const micro: Class = {
           rank: 6,
           number: 721,
           driver: 'Leandro Ramirez',
-          team: 'fsa',
+          team: 'fsa-white',
           country: 'CR',
           scores: [ 0, 29, 21.5, 28.5, 14, 19 ],
           points: 112,
