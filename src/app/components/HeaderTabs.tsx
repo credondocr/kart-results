@@ -2,9 +2,10 @@ import React, { useState } from "react";
 
 interface HeaderTabsProps {
   onTabSelect: (category: string) => void;
+  showTeamTab: boolean
 }
 
-const HeaderTabs: React.FC<HeaderTabsProps> = ({ onTabSelect }) => {
+const HeaderTabs: React.FC<HeaderTabsProps> = ({ onTabSelect, showTeamTab = false }) => {
   const tabs = [
     "ALL",
     "KID KART",
@@ -14,8 +15,12 @@ const HeaderTabs: React.FC<HeaderTabsProps> = ({ onTabSelect }) => {
     "STARS OF TOMORROW",
     "TILLOTSON",
     "VLR",
+    
   ];
 
+  if (showTeamTab) {
+    tabs.push("Equipos")
+  }
   // Estado para rastrear el tab seleccionado
   const [selectedTab, setSelectedTab] = useState<string>(tabs[0]);
 

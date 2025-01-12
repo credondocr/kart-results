@@ -150,7 +150,7 @@ export const vlr: Class = {
           rank: 10,
           number: 294,
           driver: 'Francesca Morice',
-          team: 'advanced',
+          team: 'fsa',
           country: 'CR',
           scores: [ 9, 5, 13.5, 10.5, 7, 13 ],
           points: 58,

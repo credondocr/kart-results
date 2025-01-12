@@ -179,7 +179,7 @@ export const stars : Class = {
           rank: 15,
           number: 164,
           driver: 'Julian de la Cruz',
-          team: 'Advanced',
+          team: 'fsa',
           country: 'CR',
           scores: [ 8.5, 5, 9, 0, 0, 0 ],
           points: 22.5,

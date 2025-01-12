@@ -9,7 +9,7 @@ const PilotoPage =  ( ) => {
   );
 
   if (!piloto) {
-    notFound(); // Manejo del error 404 si no encuentra el piloto
+    notFound(); 
   }
 
   return (

@@ -6,9 +6,9 @@ import Breadcrumb from "@/app/components/Breadcrumb";
 import Link from "next/link";
 
 const TeamPage = () => {
-  const { team } = useParams(); // Obtener el parámetro dinámico "team" de la URL
+  const { team } = useParams(); 
 
-  // Filtrar los pilotos que pertenecen al equipo seleccionado
+
   const teamPilots = Drivers.filter(
     (pilot) => pilot.teamLogo.toLowerCase() === team?.toString().toLowerCase()
   );
@@ -21,12 +21,12 @@ const TeamPage = () => {
       </div>
     );
   }
-
   return (
     <div className="container mx-auto p-4">
       <Breadcrumb />
       <h1 className="text-3xl font-bold text-center mb-6">Equipo: {team}</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        
         {teamPilots.map((pilot) => (
           <div
             key={pilot.kartNumber}

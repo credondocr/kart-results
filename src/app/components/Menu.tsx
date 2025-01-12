@@ -32,6 +32,7 @@ const Menu = () => {
         } md:block bg-gray-800 text-white`}
       >
         <ul className="space-y-2 p-4">
+        <li>General</li>
           {years.map((year) => (
             <li key={year}>
               {/* Año principal */}
@@ -46,6 +47,7 @@ const Menu = () => {
               {/* Submenú de invierno/verano */}
               {openYear === year && (
   <ul className="pl-4 space-y-2 bg-gray-700">
+    <li>General</li>
     {Championships.years
       .find((championship) => championship.year === year) &&
       Object.entries(

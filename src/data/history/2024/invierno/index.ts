@@ -9,7 +9,7 @@ import { shifter } from "./shifter";
 
 export const invierno :Leaderboard = {
   year: 2024,
-  season: 'Invierno',
+  season: 'invierno',
   classes: [
     kid,
     micro,

@@ -65,7 +65,7 @@ export const shifter: Class = {
             rank: 5,
             number: 680,
             driver: 'Jose Montalto',
-            team: 'Advanced',
+            team: 'fsa',
             country: 'CR',
             scores: [ 0, 21, 29.5, 0, 0, 0 ],
             points: 50.5,

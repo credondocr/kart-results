@@ -1,6 +1,7 @@
 import { Category } from "@/data/types";
 import CountryFlag from "@/app/components/CountryFlag"
 import TeamLogo from "@/app/components/TeamLogo";
+import LeaderboardTeamTable from "./table/LeaderboardTeamTable";
 const LeaderboardTable: React.FC<{ category: Category, season: string }> = ({ category, season }) => {
 
   let races = 6
@@ -8,11 +9,15 @@ const LeaderboardTable: React.FC<{ category: Category, season: string }> = ({ ca
   if (season == "verano") {
     races = 5
   }
+
+  if (category.name == "Equipos") {
+    return (
+      <LeaderboardTeamTable category={category} season={season} />
+    )
+  }
   return (
     <div>
-
       <h3 className="text-2xl font-extrabold dark:text-white">Categoría {category.name}</h3>
-
       <div className="table-container">
         <table border={1} cellPadding="10" style={{ width: "900px", borderCollapse: "collapse" }}>
           <thead>

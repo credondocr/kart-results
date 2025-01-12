@@ -1,15 +1,16 @@
+import { Drivers } from "@/data/drivers/data";
 import Image from "next/image";
 import Link from "next/link";
 
 
 const teams = [
-  { name: "Formula Kart - FIK", logo: "/logos/fsa.png", link: "/equipos/equipo/fsa" },
-  { name: "Formula Kart", logo: "/logos/formula.png", link: "/equipos/equipo/formula" },
-  { name: "Advanced Karting", logo: "/logos/advanced.png", link: "/equipos/equipo/advanced" },
-  { name: "Babyliss Pro - MMR", logo: "/logos/losprimos.png", link: "/equipos/equipo/losprimos" },
+  { name: "FIK SPORT ACADEMY", logo: "/logos/fsa.png", link: "/equipos/equipo/fsa" },
+  { name: "FORMULKA KART", logo: "/logos/formula.png", link: "/equipos/equipo/formula" },
+  { name: "ADVANCED KARTING", logo: "/logos/advanced.png", link: "/equipos/equipo/advanced" },
+  { name: "BABYLISS PRO - MMR", logo: "/logos/losprimos.png", link: "/equipos/equipo/losprimos" },
   { name: "FMV", logo: "/logos/fmv.png", link: "/equipos/equipo/fmv" },
-  { name: "MH Karting", logo: "/logos/mhkarting.png", link: "/equipos/equipo/mhkarting" },
-  { name: "Valerio Racing System", logo: "/logos/valerio.png", link: "/equipos/equipo/valerio" },
+  { name: "MH KARTING", logo: "/logos/mhkarting.png", link: "/equipos/equipo/mhkarting" },
+  { name: "VALERIO RACING SYSTEM", logo: "/logos/valerio.png", link: "/equipos/equipo/valerio" },
 ];
 
 const PilotosPage = () => {
@@ -32,6 +33,10 @@ const PilotosPage = () => {
               </div>
               <h2 className="text-xl font-semibold text-center group-hover:text-gray-600">
                 {team.name}
+              </h2>
+
+              <h2 className="text-xl font-semibold text-center group-hover:text-gray-600">
+                {Drivers.filter(i => i.teamName == team.name).length} Pilotos
               </h2>
             </div>
           </Link>
