@@ -52,7 +52,7 @@ export default async function BlogPage(
               <img
                 src={post.coverImage}
                 alt={post.title}
-                className="h-48 w-full object-cover rounded-t-lg"
+                className="h-60 w-full object-cover rounded-t-lg"
               />
             )}
             <h2 className="text-2xl font-bold text-gray-900">
@@ -64,28 +64,7 @@ export default async function BlogPage(
         ))}
       </div>
 
-      {/* Paginación */}
-      <div className="mt-8 flex justify-center items-center space-x-4">
-        {currentPage > 1 && (
-          <Link
-            href={`/posts?page=${currentPage - 1}`}
-            className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
-          >
-            Anterior
-          </Link>
-        )}
-        <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded">
-          Página {currentPage} de {totalPages}
-        </span>
-        {currentPage < totalPages && (
-          <Link
-            href={`/posts?page=${currentPage + 1}`}
-            className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
-          >
-            Siguiente
-          </Link>
-        )}
-      </div>
+      
     </div>
   );
 }
