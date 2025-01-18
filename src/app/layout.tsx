@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ACEK - Tabla de Posiciones",
-  description: "Tabla de posiciones para el campeonato nacional de kartismo",
+  title: "Inicio | Kartismo",
+  description: "Bienvenido al sitio oficial de kartismo.",
 };
 
 export default function RootLayout({

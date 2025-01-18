@@ -18,7 +18,7 @@ async function getAllEvents() {
 
     return {
       title: data.title,
-      slug: filename.replace(/\.md$/, ''), // Elimina la extensión .md
+      slug: filename.replace(/\.md$/, ''), 
       date: data.date,
       excerpt: data.excerpt || '',
       coverImage: data.coverImage || '',

@@ -58,3 +58,34 @@ button {
   font-size: 1rem;
   cursor: pointer;
 }
+
+/* Estilos personalizados para tablas */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid #e5e7eb; /* Color gris claro */
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.prose th {
+  background-color: #f3f4f6; /* Color gris claro */
+  font-weight: bold;
+}
+
+.prose tbody tr:nth-child(odd) {
+  background-color: #f9fafb; /* Alternar colores para filas */
+}
+
+.prose table tbody tr:hover {
+  background-color: inherit; /* Elimina el color de fondo del hover */
+}
+
+.center {
+  text-align: center;
+}

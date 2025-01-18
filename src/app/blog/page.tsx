@@ -38,7 +38,7 @@ export default async function BlogPage(
   const endIndex = startIndex + POSTS_PER_PAGE;
   const paginatedPosts = allPosts.slice(startIndex, endIndex);
 
-  const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+
 
   return (
     <div className="max-w-4xl mx-auto p-8 bg-gray-50 shadow-lg rounded-lg mt-5 mb-5">

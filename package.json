@@ -21,12 +21,15 @@
     "react-world-flags": "^1.6.0",
     "rehype": "^13.0.2",
     "rehype-parse": "^9.0.1",
+    "rehype-raw": "^7.0.0",
     "rehype-sanitize": "^6.0.0",
     "rehype-stringify": "^10.0.1",
     "remark": "^15.0.1",
+    "remark-gfm": "^4.0.0",
     "remark-html": "^16.0.1",
     "remark-parse": "^11.0.0",
-    "remark-rehype": "^11.1.1"
+    "remark-rehype": "^11.1.1",
+    "remark-slug": "^8.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
