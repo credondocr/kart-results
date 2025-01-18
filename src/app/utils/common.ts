@@ -237,7 +237,7 @@ export const calculateGeneralPoints = (invierno: Leaderboard, verano: Leaderboar
   };
 
 
-export const addTeamsCategory = (leaderboard: Leaderboard): Leaderboard => {
+  export const addTeamsCategory = (leaderboard: Leaderboard): Leaderboard => {
     // Mantenemos un mapa para acumular puntos por equipo
     const teamPoints: Record<string, number> = {};
 
@@ -246,7 +246,14 @@ export const addTeamsCategory = (leaderboard: Leaderboard): Leaderboard => {
         cls.categories.forEach((category) => {
             category.results.forEach((result) => {
                 if (result.team) {
-                    const totalPoints = result.scores.reduce((sum, score) => sum + score, 0);
+                    // Ordenamos las puntuaciones de mayor a menor y tomamos los 3 mejores
+                    const topScores = result.scores
+                        .slice() // Copia para no modificar el array original
+                        .sort((a, b) => b - a) // Orden descendente
+                        .slice(0, 3); // Tomar los 3 mejores
+
+                    const totalPoints = topScores.reduce((sum, score) => sum + score, 0);
+
                     teamPoints[result.team] = (teamPoints[result.team] || 0) + totalPoints;
                 }
             });

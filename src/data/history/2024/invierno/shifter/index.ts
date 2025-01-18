@@ -28,7 +28,7 @@ export const shifter: Class = {
             rank: 2,
             number: 637,
             driver: 'Daniel Formal',
-            team: 'Advanced',
+            team: 'advanced',
             country: 'CR',
             scores: [ 0, 42.5, 42.5, 0, 0, 0 ],
             points: 85,
@@ -48,7 +48,7 @@ export const shifter: Class = {
             rank: 4,
             number: 679,
             driver: 'Ricardo Esquivel',
-            team: 'Advanced',
+            team: 'advanced',
             country: 'CR',
             scores: [
               0,

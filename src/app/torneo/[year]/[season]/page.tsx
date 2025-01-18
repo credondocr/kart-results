@@ -37,6 +37,7 @@ const SeasonLeaderboard = () => {
 
             if (filteredData) {
                 calculatePointsAndSort(filteredData.classes);
+                console.log(addTeamsCategory(filteredData))
                 setLeaderboard(addTeamsCategory(filteredData));
             }
         } else if (season == "general") {

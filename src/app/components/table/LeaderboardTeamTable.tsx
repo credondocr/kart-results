@@ -17,8 +17,8 @@ const LeaderboardTeamTable: React.FC<{ category: Category }> = ({ category }) =>
             {category.results.map((result) => (
               <tr key={result.rank}>
                 <td data-label="Posición" style={{ textAlign: "center" }}>{result.rank}</td>
-                <td style={{ display: "flex", alignItems: "center", gap: "8px", justifyContent:"center" }}>
-                  <TeamLogo team={result.team} altText={result.team} />
+                <td style={{ display: "flex", alignItems: "center", gap: "50px", justifyContent:"center" }}>
+                  <TeamLogo team={result.team} altText={result.team} /> 
                   {result.driver}
                 </td>
                 <td style={{ textAlign: "center" }}>{result.points}</td>

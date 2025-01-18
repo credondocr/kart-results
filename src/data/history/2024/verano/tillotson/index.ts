@@ -153,7 +153,7 @@ export const tillotson: Class = {
             "rank": 7,
             "number": 908,
             "driver": "Mayra Londoño",
-            "team": "Advanced",
+            "team": "advanced",
             "country": "CR",
             "scores": [10.5, 10.5, 0, 19, 16],
             "points": 56,

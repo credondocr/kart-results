@@ -58,7 +58,7 @@ export const micro: Class = {
             "rank": 5,
             "number": 715,
             "driver": "Ayrton Hayes",
-            "team": "Advanced",
+            "team": "advanced",
             "country": "CR",
             "scores": [14, 0, 21.5, 19.5, 19.5],
             "points": 74.5,
