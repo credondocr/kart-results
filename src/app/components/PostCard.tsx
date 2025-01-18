@@ -20,7 +20,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
         <h2 className="text-lg font-semibold text-gray-800">{post.title}</h2>
         <p className="text-sm text-gray-600">{post.date}</p>
         <a
-          href={`/posts/${post.slug}`}
+          href={`/blog/${post.slug}`}
           className="text-blue-600 hover:text-blue-800 text-sm mt-2 block"
         >
           Leer más

@@ -56,7 +56,7 @@ export default async function BlogPage(
               />
             )}
             <h2 className="text-2xl font-bold text-gray-900">
-              <Link href={`/posts/${post.slug}`}>{post.title}</Link>
+              <Link href={`/blog/${post.slug}`}>{post.title}</Link>
             </h2>
             <p className="text-gray-600 text-sm mb-2">{post.date}</p>
             <p className="text-gray-700">{post.excerpt}</p>
