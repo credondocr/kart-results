@@ -44,12 +44,19 @@ const SeasonLeaderboard = () => {
             if (championship) {
                 const invierno = championship.invierno as Leaderboard;
                 const verano = championship.verano as Leaderboard;
-                if (invierno && verano) {
-                    setLeaderboard(generateGeneralLeaderboard({ invierno, verano }));
+                if (invierno && verano) {  
+                   const general =  generateGeneralLeaderboard({ invierno, verano })
+                   const filteredClasses =
+                    selectedTab && selectedTab !== "ALL"
+                        ? general?.classes.filter((cls) => cls.title === selectedTab)
+                        : general?.classes || [];
+                    general.classes = filteredClasses || [];
+                    setLeaderboard(general);
                 }
             }
         }
-    }, [year, season]);
+   
+    }, [year, season, selectedTab]);
 
     if (!leaderboard) return <div>Loading...</div>;
 

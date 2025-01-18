@@ -168,7 +168,6 @@ export const calculateGeneralPoints = (invierno: Leaderboard, verano: Leaderboar
   
     const processSeason = (season: Leaderboard) => {
       season.classes.forEach((cls) => {
-        // Asegurar que la clase exista en el combinado
         if (!combinedClasses[cls.title]) {
           combinedClasses[cls.title] = {
             title: cls.title,
@@ -180,7 +179,6 @@ export const calculateGeneralPoints = (invierno: Leaderboard, verano: Leaderboar
         }
   
         cls.categories.forEach((category) => {
-          // Asegurar que la categoría exista en la clase
           let combinedCategory = combinedClasses[cls.title].categories.find(
             (cat) => cat.name === category.name
           );
@@ -191,7 +189,6 @@ export const calculateGeneralPoints = (invierno: Leaderboard, verano: Leaderboar
           }
   
           category.results.forEach((result) => {
-            // Asegurar que el piloto exista en la categoría
             let combinedResult = combinedCategory.results.find(
               (res) => res.number === result.number
             );
@@ -210,7 +207,6 @@ export const calculateGeneralPoints = (invierno: Leaderboard, verano: Leaderboar
               combinedCategory.results.push(combinedResult);
             }
   
-            // Combinar los scores y recalcular puntos
             combinedResult.scores = [...combinedResult.scores, ...result.scores];
             combinedResult.points = combinedResult.scores.reduce((acc, score) => acc + score, 0);
           });
