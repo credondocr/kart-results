@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Inicio | Kartismo",
-  description: "Bienvenido al sitio oficial de kartismo.",
+  title: "Inicio | Costa Rica Kart Championship",
+  description: "Costa Rica Kart Championship.",
 };
 
 export default function RootLayout({
