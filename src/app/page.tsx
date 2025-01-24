@@ -1,53 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Countdown from "@/app/components/Countdown";
-import PostCard from "@/app/components/PostCard";
-import { Post } from "@/types/post";
-import EventCard from "./components/EventCard";
 
 
 
 const HomePage = () => {
   const targetDate = new Date("2025-03-01T00:00:00");
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [events, setEvents] = useState<Post[]>([]);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const res = await fetch("/api/posts");
-        const data: Post[] = await res.json();
-
-        // Ordenar por fecha descendente y tomar los últimos 3
-        const recentPosts = data.sort((a, b) => {
-          return new Date(b.date).getTime() - new Date(a.date).getTime();
-        }).slice(0, 3);
-
-        setPosts(recentPosts);
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      }
-    };
-
-    const fetchEvents = async () => {
-      try {
-        const res = await fetch("/api/events");
-        const data: Post[] = await res.json();
-
-        // Ordenar por fecha descendente y tomar los últimos 3
-        const recentPosts = data.sort((a, b) => {
-          return new Date(b.date).getTime() - new Date(a.date).getTime();
-        }).slice(0, 3);
-
-        setEvents(recentPosts);
-      } catch (error) {
-        console.error("Error fetching events:", error);
-      }
-    };
-    fetchEvents();
-    fetchPosts();
-  }, []);
 
   return (
     <div>
