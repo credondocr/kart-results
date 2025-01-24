@@ -40,9 +40,9 @@ const Navbar: React.FC = () => {
 
           {/* Links */}
           <div className="hidden md:flex items-center space-x-6">
-            <Link href="/equipos" className="hover:text-gray-300" onClick={closeMenu}>
+            {/* <Link href="/equipos" className="hover:text-gray-300" onClick={closeMenu}>
               Equipos
-            </Link>
+            </Link> */}
             {/* <Link href="/inscripciones" className="hover:text-gray-300" onClick={closeMenu}>
               Inscripciones
             </Link> */}
@@ -121,9 +121,9 @@ const Navbar: React.FC = () => {
                 </div>
               )}
             </div>
-            <Link href="/reglamento" className="hover:text-gray-300" onClick={closeMenu}>
+            {/* <Link href="/reglamento" className="hover:text-gray-300" onClick={closeMenu}>
               Reglamento
-            </Link>
+            </Link> */}
           </div>
 
           {/* Mobile Menu Button */}
@@ -156,12 +156,12 @@ const Navbar: React.FC = () => {
         <div className="md:hidden bg-gray-700">
           <ul className="flex flex-col py-2 px-4 space-y-2">
       
-            <li>
+            {/* <li>
               <Link href="/equipos" className="hover:text-gray-300" onClick={closeMenu}>
                 Equipos
               </Link>
             </li>
-           
+            */}
   
             {/* <li>
               <Link href="/inscripciones" className="hover:text-gray-300" onClick={closeMenu}>
@@ -223,11 +223,11 @@ const Navbar: React.FC = () => {
                 ))}
               </ul>
             </li>
-            <li>
+            {/* <li>
               <Link href="/reglamento" className="hover:text-gray-300" onClick={closeMenu}>
                 Reglamento
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       )}
