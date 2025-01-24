@@ -12,5 +12,7 @@ export const Valerio: Pilot[] = [
     { name: "Fabian Vargas Barboza", kartNumber: 108, categories: ["STARS of TOMORROW"], biography: "", country: "CR", teamName: "VALERIO RACING SYSTEM", profileUrl: "https://placehold.co/300x400", teamLogo: "valerio" },
     { name: "Luis Alvarado Vargas", kartNumber: 396, categories: ["VLR 100 MASTER"], biography: "", country: "CR", teamName: "VALERIO RACING SYSTEM", profileUrl: "https://placehold.co/300x400", teamLogo: "valerio" },
     { name: "Lineth Valerio", kartNumber: 319, categories: ["VLR 100 MASTER"], biography: "", country: "CR", teamName: "VALERIO RACING SYSTEM", profileUrl: "https://placehold.co/300x400", teamLogo: "valerio" },
+    { name: "Fabricio Montoya", kartNumber: 909, categories: ["TILLOTSON Junior"], biography: "", country: "CR", teamName: "VALERIO RACING SYSTEM", profileUrl: "https://placehold.co/300x400", teamLogo: "valerio" },
     { name: "Frederik Lund", kartNumber: 307, categories: ["VLR Senior"], biography: "", country: "CR", teamName: "VALERIO RACING SYSTEM", profileUrl: "https://placehold.co/300x400", teamLogo: "valerio" },
+    { name: "Nico Salazar", kartNumber: 728, categories: ["MICRO ROK"], biography: "", country: "CR", teamName: "VALERIO RACING SYSTEM", profileUrl: "https://placehold.co/300x400", teamLogo: "valerio" },
 ]

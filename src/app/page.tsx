@@ -73,7 +73,7 @@ const HomePage = () => {
 
       {/* Recent Posts Section */}
 
-      <section className="py-8 bg-gray-100">
+      {/* <section className="py-8 bg-gray-100">
         <div className="max-w-4xl mx-auto text-center mb-5">
           <h2 className="text-5xl font-bold text-gray-900">Próximos Eventos</h2>
         </div>
@@ -82,20 +82,8 @@ const HomePage = () => {
               <EventCard key={post.id} post={post} />
             ))}
           </div>
-      </section>
-      
-
-      <section className="py-8 bg-gray-100">
-        <div className="max-w-4xl mx-auto text-center mb-3">
-          <h2 className="text-3xl font-bold text-gray-900">Últimos Posts</h2>
-          <p className="text-gray-600 mt-2">Explora las últimas novedades sobre kartismo y automovilismo</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mr-2 ml-2">
-            {posts.map((post) => (
-              <PostCard key={post.id} post={post} />
-            ))}
-          </div>
-      </section>
+      </section> */}
+    
 
      
     </div>

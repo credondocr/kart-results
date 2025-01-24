@@ -40,14 +40,8 @@ const Navbar: React.FC = () => {
 
           {/* Links */}
           <div className="hidden md:flex items-center space-x-6">
-          <Link href="/blog" className="hover:text-gray-300" onClick={closeMenu}>
-              Blog
-            </Link>
             <Link href="/equipos" className="hover:text-gray-300" onClick={closeMenu}>
               Equipos
-            </Link>
-            <Link href="/eventos" className="hover:text-gray-300" onClick={closeMenu}>
-              Eventos
             </Link>
             {/* <Link href="/inscripciones" className="hover:text-gray-300" onClick={closeMenu}>
               Inscripciones
@@ -161,22 +155,14 @@ const Navbar: React.FC = () => {
       {isSeasonMenuOpen && (
         <div className="md:hidden bg-gray-700">
           <ul className="flex flex-col py-2 px-4 space-y-2">
-          <li>
-              <Link href="/blog" className="hover:text-gray-300" onClick={closeMenu}>
-                Blog
-              </Link>
-            </li>
+      
             <li>
               <Link href="/equipos" className="hover:text-gray-300" onClick={closeMenu}>
                 Equipos
               </Link>
             </li>
            
-            <li>
-              <Link href="/eventos" className="hover:text-gray-300" onClick={closeMenu}>
-                Eventos
-              </Link>
-            </li>
+  
             {/* <li>
               <Link href="/inscripciones" className="hover:text-gray-300" onClick={closeMenu}>
                 Inscripciones

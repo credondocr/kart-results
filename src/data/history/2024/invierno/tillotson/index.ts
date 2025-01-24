@@ -18,7 +18,7 @@ export const tillotson: Class = {
           number: 969,
           country: 'CR',
           driver: 'Cesar Redondo',
-          team: 'fsa-white',
+          team: 'fsa',
           scores: [ 0, 0, 0, 11, 24.5, 24.5 ],
           worst: 0
         },
@@ -85,7 +85,7 @@ export const tillotson: Class = {
           number: 945,
           country: 'CR',
           driver: 'Federico Rojas',
-          team: 'advanced',
+          team: 'fmv',
           scores: [ 28, 35, 31, 40.5, 0, 0 ],
           worst: 0
         },
@@ -111,7 +111,7 @@ export const tillotson: Class = {
           number: 984,
           country: 'CR',
           driver: 'Julian Serrano',
-          team: 'advanced',
+          team: 'fmv',
           scores: [
             33.5,
             18.5,
@@ -127,7 +127,7 @@ export const tillotson: Class = {
           number: 908,
           country: 'CR',
           driver: 'Mayra Londoño',
-          team: 'advanced',
+          team: 'independiente',
           scores: [ 0, 16, 17, 17.5, 19.5, 16 ],
           worst: 16
         },
@@ -136,7 +136,7 @@ export const tillotson: Class = {
           number: 928,
           country: 'CR',
           driver: 'Emil Brautigam ',
-          team: 'formula',
+          team: 'fmv',
           scores: [ 19.5, 0, 0, 0, 5, 21 ],
           worst: 0
         }
@@ -168,7 +168,7 @@ export const tillotson: Class = {
           ],
           worst: 44.5,
           country: 'CR',
-          team: 'advanced'
+          team: 'fmv'
         },
         {
           rank: 3,
@@ -186,7 +186,7 @@ export const tillotson: Class = {
           scores: [ 19.5, 20, 16, 40.5, 0, 0 ],
           worst: 0,
           country: 'CR',
-          team: 'advanced'
+          team: 'formula'
         },
         {
           rank: 5,
@@ -202,7 +202,7 @@ export const tillotson: Class = {
           ],
           worst: 35.5,
           country: 'CR',
-          team: 'advanced'
+          team: 'fmv'
         },
         {
           rank: 6,
@@ -236,7 +236,7 @@ export const tillotson: Class = {
           scores: [ 13, 16.5, 20, 15.5, 0, 0 ],
           worst: 0,
           country: 'CR',
-          team: 'fsa-white'
+          team: 'fsa'
         },
         {
           rank: 9,
@@ -272,7 +272,7 @@ export const tillotson: Class = {
           scores: [ 13, 0, 0, 0, 0, 0 ],
           worst: 0,
           country: 'CR',
-          team: 'advanced'
+          team: 'fsa'
         }
       ]
     }

@@ -11,6 +11,5 @@ export const Formula: Pilot[] = [
     { name: "Martin Salom", kartNumber: 342, categories: ["VLR 100 SENIOR"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
     { name: "Andrés Valldeperas Calvo", kartNumber: 671, categories: ["ROK SHIFTER"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
     { name: "Mathias Hernández Arce", kartNumber: 920, categories: ["TILLOTSON Senior"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
-    { name: "Emil Bräutigam Arguello", kartNumber: 928, categories: ["TILLOTSON Junior"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
-    { name: "Gabriel Kawer", kartNumber: 304, categories: ["VLR Senior"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
+    { name: "Andres Valldeperas", kartNumber: 971, categories: ["TILLOTSON Senior"], biography: "", country: "CR", teamName: "FORMULKA KART", profileUrl: "https://placehold.co/300x400", teamLogo: "formula" },
 ]

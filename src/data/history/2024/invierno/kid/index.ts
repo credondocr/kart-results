@@ -72,7 +72,7 @@ export const kid: Class = {
           rank: 5,
           number: 3,
           driver: 'Ezequiel Gomez',
-          team: 'advanced',
+          team: 'valerio',
           country: 'CR',
           scores: [ 38, 0, 0, 0, 0, 0 ],
           points: 38,
