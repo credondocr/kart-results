@@ -26,6 +26,7 @@ const GeneralTable: React.FC<LeaderboardTableProps> = ({ leaderboard }) => {
                                         <thead className="bg-gray-700">
                                             <tr>
                                                 <th className="px-2 py-2 text-left">Pos.</th>
+                                                <th className="px-2 py-2 text-left">Num.</th>
                                                 <th className="px-4 py-2 text-left">Piloto</th>
                                                 <th className="px-4 py-2 text-right">Puntos</th>
                                             </tr>
@@ -34,6 +35,7 @@ const GeneralTable: React.FC<LeaderboardTableProps> = ({ leaderboard }) => {
                                             {category.results.map((result, index) => (
                                                 <tr key={index} className="hover:bg-gray-600">
                                                     <td className="px-2 py-2">{result.rank}</td>
+                                                    <td className="px-2 py-2">{result.number}</td>
                                                     <td className="flex items-center gap-2 px-4 py-2">
                                                         <CountryFlag countryCode={result.country} alt={result.country} />
                                                         <TeamLogo team={result.team} altText={result.team} />
