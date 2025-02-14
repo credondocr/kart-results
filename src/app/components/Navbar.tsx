@@ -84,7 +84,7 @@ const Navbar: React.FC = () => {
                           <ul className="mt-2 pl-4 space-y-1">
                             <li>
                               <Link
-                                href={`/torneo/${year.year}/general`}
+                                href={`/Campeonato/${year.year}/general`}
                                 className="block hover:bg-gray-600 px-2 py-1"
                                 onClick={closeMenu}
                               >
@@ -94,7 +94,7 @@ const Navbar: React.FC = () => {
                             {year.invierno && (
                               <li>
                                 <Link
-                                  href={`/torneo/${year.year}/invierno`}
+                                  href={`/Campeonato/${year.year}/invierno`}
                                   className="block hover:bg-gray-600 px-2 py-1"
                                   onClick={closeMenu}
                                 >
@@ -105,7 +105,7 @@ const Navbar: React.FC = () => {
                             {year.verano && (
                               <li>
                                 <Link
-                                  href={`/torneo/${year.year}/verano`}
+                                  href={`/Campeonato/${year.year}/verano`}
                                   className="block hover:bg-gray-600 px-2 py-1"
                                   onClick={closeMenu}
                                 >
@@ -188,7 +188,7 @@ const Navbar: React.FC = () => {
                       <ul className="pl-4 space-y-1">
                         <li>
                           <Link
-                            href={`/torneo/${year.year}/general`}
+                            href={`/Campeonato/${year.year}/general`}
                             className="block hover:bg-gray-600"
                             onClick={closeMenu}
                           >
@@ -198,7 +198,7 @@ const Navbar: React.FC = () => {
                         {year.invierno && (
                           <li>
                             <Link
-                              href={`/torneo/${year.year}/invierno`}
+                              href={`/Campeonato/${year.year}/invierno`}
                               className="block hover:bg-gray-600"
                               onClick={closeMenu}
                             >
@@ -209,7 +209,7 @@ const Navbar: React.FC = () => {
                         {year.verano && (
                           <li>
                             <Link
-                              href={`/torneo/${year.year}/verano`}
+                              href={`/Campeonato/${year.year}/verano`}
                               className="block hover:bg-gray-600"
                               onClick={closeMenu}
                             >
