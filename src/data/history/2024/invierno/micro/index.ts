@@ -19,7 +19,7 @@ export const micro: Class = {
           number: 711,
           driver: 'Chayton Rodriguez',
           team: 'valerio',
-          country: 'CR',
+          country: 'BR',
           scores: [
             33,
             36.5,
@@ -80,7 +80,7 @@ export const micro: Class = {
           number: 712,
           driver: 'Makya Rodriguez',
           team: 'valerio',
-          country: 'CR',
+          country: 'BR',
           scores: [ 0, 23, 14, 15, 30, 15.5 ],
           points: 97.5,
           worst: 14

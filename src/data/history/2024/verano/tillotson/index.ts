@@ -134,7 +134,7 @@ export const tillotson: Class = {
             "number": 914,
             "driver": "Martin Salom",
             "team": "formula",
-            "country": "CR",
+            "country": "FR",
             "scores": [31, 20.5, 3, 24, 28],
             "points": 86,
             "worst": 20.5

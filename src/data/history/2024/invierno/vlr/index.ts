@@ -71,7 +71,7 @@ export const vlr: Class = {
           driver: 'Anouk Valerio',
           team: 'valerio',
           country: 'CR',
-          scores: [ 19, 27.5, 11, 22, 35, 13 ],
+          scores: [19, 27.5, 11, 22, 35, 13],
           points: 127.5,
           worst: 24
         },
@@ -115,7 +115,7 @@ export const vlr: Class = {
           driver: 'Samuel Castro',
           team: 'fsa',
           country: 'CR',
-          scores: [ 17, 11, 14.5, 16, 10, 16 ],
+          scores: [17, 11, 14.5, 16, 10, 16],
           points: 84.5,
           worst: 21
         },
@@ -142,7 +142,7 @@ export const vlr: Class = {
           driver: 'Luciana Morales',
           team: 'fmv',
           country: 'CR',
-          scores: [ 16.5, 6, 8, 5, 7, 17 ],
+          scores: [16.5, 6, 8, 5, 7, 17],
           points: 59.5,
           worst: 13
         },
@@ -152,7 +152,7 @@ export const vlr: Class = {
           driver: 'Francesca Morice',
           team: 'fsa',
           country: 'CR',
-          scores: [ 9, 5, 13.5, 10.5, 7, 13 ],
+          scores: [9, 5, 13.5, 10.5, 7, 13],
           points: 58,
           worst: 12
         },
@@ -162,7 +162,7 @@ export const vlr: Class = {
           driver: 'Andres Dumith',
           team: 'fmv',
           country: 'CR',
-          scores: [ 0, 8.5, 13, 6.5, 13.5, 15.5 ],
+          scores: [0, 8.5, 13, 6.5, 13.5, 15.5],
           points: 57,
           worst: 15
         },
@@ -172,7 +172,7 @@ export const vlr: Class = {
           driver: 'Sebastian Delgado',
           team: 'fmv',
           country: 'CR',
-          scores: [ 10.5, 4.5, 7, 7.5, 7, 10.5 ],
+          scores: [10.5, 4.5, 7, 7.5, 7, 10.5],
           points: 47,
           worst: 11.5
         },
@@ -182,7 +182,7 @@ export const vlr: Class = {
           driver: 'Lautaro Otero',
           team: 'advanced',
           country: 'CR',
-          scores: [ 0, 14.5, 14.5, 0, 0, 0 ],
+          scores: [0, 14.5, 14.5, 0, 0, 0],
           points: 29,
           worst: 0
         },
@@ -192,7 +192,7 @@ export const vlr: Class = {
           driver: 'Alessandro Carboni',
           team: 'advanced',
           country: 'CR',
-          scores: [ 0, 4, 1, 7, 15, 6.5 ],
+          scores: [0, 4, 1, 7, 15, 6.5],
           points: 33.5,
           worst: 5
         },
@@ -202,7 +202,7 @@ export const vlr: Class = {
           driver: 'Luis Pedro Barrientos Jr',
           team: 'advanced',
           country: 'CR',
-          scores: [ 0, 11.5, 17, 0, 0, 0 ],
+          scores: [0, 11.5, 17, 0, 0, 0],
           points: 28.5,
           worst: 0
         },
@@ -212,7 +212,7 @@ export const vlr: Class = {
           driver: 'Diego Ardiles',
           team: 'fmv',
           country: 'CR',
-          scores: [ 0, 27, 1, 0, 0, 0 ],
+          scores: [0, 27, 1, 0, 0, 0],
           points: 28,
           worst: 0
         },
@@ -222,7 +222,7 @@ export const vlr: Class = {
           driver: 'Diego Mejia',
           team: 'fsa',
           country: 'CR',
-          scores: [ 2.5, 0, 0, 10, 5.5, 8 ],
+          scores: [2.5, 0, 0, 10, 5.5, 8],
           points: 26,
           worst: 0
         },
@@ -232,7 +232,7 @@ export const vlr: Class = {
           driver: 'Alberto Rojas Segura',
           team: 'advanced',
           country: 'CR',
-          scores: [ 7, 3, 2.5, 6, 0, 0 ],
+          scores: [7, 3, 2.5, 6, 0, 0],
           points: 18.5,
           worst: 0
         },
@@ -242,7 +242,7 @@ export const vlr: Class = {
           driver: 'Julian Regueyra',
           team: 'fmv',
           country: 'CR',
-          scores: [ 15, 0, 0, 0, 0, 0 ],
+          scores: [15, 0, 0, 0, 0, 0],
           points: 15,
           worst: 0
         }
@@ -257,7 +257,7 @@ export const vlr: Class = {
           driver: 'Andres Fonseca',
           team: 'formula',
           country: 'CR',
-          scores: [ 42.5, 42.5, 36.5, 40, 34, 0 ],
+          scores: [42.5, 42.5, 36.5, 40, 34, 0],
           points: 195.5,
           worst: 34
         },
@@ -284,7 +284,7 @@ export const vlr: Class = {
           driver: 'David Gardella Sr',
           team: 'advanced',
           country: 'CR',
-          scores: [ 29, 17.5, 19, 32, 25, 36 ],
+          scores: [29, 17.5, 19, 32, 25, 36],
           points: 158.5,
           worst: 36.5
         },
@@ -294,7 +294,7 @@ export const vlr: Class = {
           driver: 'Paulo Sequeira',
           team: 'losprimos',
           country: 'CR',
-          scores: [ 17.5, 22, 35, 0, 17.5, 32 ],
+          scores: [17.5, 22, 35, 0, 17.5, 32],
           points: 124,
           worst: 17.5
         },
@@ -321,7 +321,7 @@ export const vlr: Class = {
           driver: 'Pablo Bolaños',
           team: 'fsa',
           country: 'CR',
-          scores: [ 0, 19, 16.5, 0, 16, 15 ],
+          scores: [0, 19, 16.5, 0, 16, 15],
           points: 66.5,
           worst: 0
         },
@@ -331,7 +331,7 @@ export const vlr: Class = {
           driver: 'Peppe Di Falco',
           team: 'advanced',
           country: 'CR',
-          scores: [ 25, 18.5, 6.5, 0, 0, 0 ],
+          scores: [25, 18.5, 6.5, 0, 0, 0],
           points: 50,
           worst: 0
         }
@@ -346,7 +346,7 @@ export const vlr: Class = {
           driver: 'Bernal Valverde',
           team: 'fmv',
           country: 'CR',
-          scores: [ 40, 10.5, 27, 34.5, 28, 30 ],
+          scores: [40, 10.5, 27, 34.5, 28, 30],
           points: 170,
           worst: 37.5
         },
@@ -373,7 +373,7 @@ export const vlr: Class = {
           driver: 'Mauricio Hernandez',
           team: 'mhkarting',
           country: 'CR',
-          scores: [ 0, 0, 0, 22.5, 42.5, 42.5 ],
+          scores: [0, 0, 0, 22.5, 42.5, 42.5],
           points: 107.5,
           worst: 0
         },
@@ -400,7 +400,7 @@ export const vlr: Class = {
           driver: 'Luis Felipe Aguilar',
           team: 'formula',
           country: 'CR',
-          scores: [ 36.5, 24, 21.5, 21, 0, 16 ],
+          scores: [36.5, 24, 21.5, 21, 0, 16],
           points: 119,
           worst: 37
         },
@@ -410,7 +410,7 @@ export const vlr: Class = {
           driver: 'Augusto Acevedo',
           team: 'fsa',
           country: 'CR',
-          scores: [ 10, 6, 15.5, 22, 22.5, 17.5 ],
+          scores: [10, 6, 15.5, 22, 22.5, 17.5],
           points: 93.5,
           worst: 16
         },
@@ -420,7 +420,7 @@ export const vlr: Class = {
           driver: 'Danny Formal',
           team: 'advanced',
           country: 'CR',
-          scores: [ 0, 35, 42.5, 0, 0, 0 ],
+          scores: [0, 35, 42.5, 0, 0, 0],
           points: 77.5,
           worst: 0
         },
@@ -430,7 +430,7 @@ export const vlr: Class = {
           driver: 'Diego Ardiles',
           team: 'fmv',
           country: 'CR',
-          scores: [ 0, 41.5, 34, 0, 0, 0 ],
+          scores: [0, 41.5, 34, 0, 0, 0],
           points: 75.5,
           worst: 0
         },
@@ -439,8 +439,8 @@ export const vlr: Class = {
           number: 342,
           driver: 'Martin Salom',
           team: 'formula',
-          country: 'CR',
-          scores: [ 7.5, 13, 10.5, 14, 12, 14.5 ],
+          country: 'FR',
+          scores: [7.5, 13, 10.5, 14, 12, 14.5],
           points: 71.5,
           worst: 18
         },
@@ -450,7 +450,7 @@ export const vlr: Class = {
           driver: 'David Gardella',
           team: 'advanced',
           country: 'CR',
-          scores: [ 13, 10, 5, 12.5, 16, 12 ],
+          scores: [13, 10, 5, 12.5, 16, 12],
           points: 68.5,
           worst: 15
         },
@@ -460,7 +460,7 @@ export const vlr: Class = {
           driver: 'Andres Ardiles',
           team: 'fmv',
           country: 'CR',
-          scores: [ 22, 9.5, 17, 0, 0, 0 ],
+          scores: [22, 9.5, 17, 0, 0, 0],
           points: 48.5,
           worst: 0
         },
@@ -470,7 +470,7 @@ export const vlr: Class = {
           driver: 'Sebastian Arce',
           team: 'advanced',
           country: 'CR',
-          scores: [ 16.5, 15.5, 11.5, 0, 0, 0 ],
+          scores: [16.5, 15.5, 11.5, 0, 0, 0],
           points: 43.5,
           worst: 0
         },
@@ -480,7 +480,7 @@ export const vlr: Class = {
           driver: 'Franco Segnini',
           team: 'advanced',
           country: 'CR',
-          scores: [ 0, 0, 0, 16, 14.5, 12.5 ],
+          scores: [0, 0, 0, 16, 14.5, 12.5],
           points: 43,
           worst: 0
         },
@@ -489,8 +489,8 @@ export const vlr: Class = {
           number: 351,
           driver: 'Daniel Gardella',
           team: 'fsa',
-          country: 'CR',
-          scores: [ 12, 9.5, 8, 11.5, 0, 0 ],
+          country: 'US',
+          scores: [12, 9.5, 8, 11.5, 0, 0],
           points: 41,
           worst: 0
         },
@@ -500,7 +500,7 @@ export const vlr: Class = {
           driver: 'Isabella Valldeperas',
           team: 'advanced',
           country: 'CR',
-          scores: [ 17, 11, 8, 3.5, 0, 0 ],
+          scores: [17, 11, 8, 3.5, 0, 0],
           points: 39.5,
           worst: 0
         },
@@ -510,7 +510,7 @@ export const vlr: Class = {
           driver: 'Daniel Mendez',
           team: 'fmv',
           country: 'CR',
-          scores: [ 10.5, 11, 8, 0, 0, 0 ],
+          scores: [10.5, 11, 8, 0, 0, 0],
           points: 29.5,
           worst: 0
         }

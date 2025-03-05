@@ -103,7 +103,7 @@ export const mini: Class = {
                     number: 512,
                     driver: 'Makya Rodriguez',
                     team: 'valerio',
-                    country: 'CR',
+                    country: 'BR',
                     scores: [14.5, 0, 0, 0, 0,],
                     points: 97.5,
                     worst: 0
@@ -114,7 +114,7 @@ export const mini: Class = {
                     number: 511,
                     driver: 'Chayton Rodriguez',
                     team: 'valerio',
-                    country: 'CR',
+                    country: 'BR',
                     scores: [12.5, 0, 0, 0, 0],
                     points: 162.5,
                     worst: 0

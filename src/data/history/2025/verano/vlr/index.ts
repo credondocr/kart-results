@@ -368,7 +368,7 @@ export const vlr: Class = {
           number: 342,
           driver: 'Martin Salom',
           team: 'formula',
-          country: 'CR',
+          country: 'FR',
           scores: [9.5, 0, 0, 0, 0],
           points: 71.5,
           worst: 0
@@ -388,7 +388,7 @@ export const vlr: Class = {
           number: 351,
           driver: 'Daniel Gardella',
           team: 'fsa',
-          country: 'CR',
+          country: 'US',
           scores: [12, 0, 0, 0, 0],
           points: 41,
           worst: 0
@@ -408,7 +408,7 @@ export const vlr: Class = {
           number: 343,
           driver: 'Evan Michelini',
           team: 'advanced',
-          country: 'IT',
+          country: 'CR',
           scores: [8, 0, 0, 0, 0],
           points: 29.5,
           worst: 0
