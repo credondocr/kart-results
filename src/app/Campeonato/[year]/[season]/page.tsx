@@ -45,18 +45,16 @@ const SeasonLeaderboard = () => {
             if (championship) {
                 const invierno = championship.invierno as Leaderboard;
                 const verano = championship.verano as Leaderboard;
-                if (invierno && verano) {  
-                   const general =  generateGeneralLeaderboard({ invierno, verano })
-                   const filteredClasses =
+                const general = generateGeneralLeaderboard({ invierno, verano })
+                const filteredClasses =
                     selectedTab && selectedTab !== "ALL"
                         ? general?.classes.filter((cls) => cls.title === selectedTab)
                         : general?.classes || [];
-                    general.classes = filteredClasses || [];
-                    setLeaderboard(general);
-                }
+                general.classes = filteredClasses || [];
+                setLeaderboard(general);
             }
         }
-   
+
     }, [year, season, selectedTab]);
 
     if (!leaderboard) return <div>Loading...</div>;
@@ -79,7 +77,7 @@ const SeasonLeaderboard = () => {
                 <div>
                     <div className="flex justify-center items-center px-1 py-1">
                         <div className="w-full max-w-6xl flex justify-center">
-                            <HeaderTabs onTabSelect={handleTabSelect} showTeamTab={false}/>
+                            <HeaderTabs onTabSelect={handleTabSelect} showTeamTab={false} />
                         </div>
                     </div>
                     <div className="flex items-center px-1 py-1  md:justify-center">
@@ -94,9 +92,9 @@ const SeasonLeaderboard = () => {
 
             ) : (season === "invierno" || season === "verano") && (
                 <div>
- <div className="flex justify-center items-center px-1 py-1">
+                    <div className="flex justify-center items-center px-1 py-1">
                         <div className="w-full max-w-6xl flex justify-center">
-                            <HeaderTabs onTabSelect={handleTabSelect} showTeamTab={true}/>
+                            <HeaderTabs onTabSelect={handleTabSelect} showTeamTab={true} />
                         </div>
                     </div>
                     {filteredClasses.map((classItem: Class, index: number) => (

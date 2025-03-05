@@ -10,20 +10,22 @@ const LeaderboardTeamTable: React.FC<{ category: Category }> = ({ category }) =>
             <tr>
               <th style={{ textAlign: "center" }}>Po</th>
               <th>Equipo</th>
-                <th>Puntos</th>
+              <th>Puntos</th>
             </tr>
           </thead>
           <tbody>
-            {category.results.map((result) => (
-              <tr key={result.rank}>
-                <td data-label="Posición" style={{ textAlign: "center" }}>{result.rank}</td>
-                <td style={{ display: "flex", alignItems: "center", gap: "50px", justifyContent:"center" }}>
-                  <TeamLogo team={result.team} altText={result.team} /> 
-                  {result.driver}
-                </td>
-                <td style={{ textAlign: "center" }}>{result.points}</td>
-              </tr>
-            ))}
+            {category.results
+              .filter((result) => result.team.toLowerCase() !== "independiente") // Filtra los equipos independientes
+              .map((result) => (
+                <tr key={result.rank}>
+                  <td data-label="Posición" style={{ textAlign: "center" }}>{result.rank}</td>
+                  <td style={{ display: "flex", alignItems: "center", gap: "50px", justifyContent: "center" }}>
+                    <TeamLogo team={result.team} altText={result.team} />
+                    {result.driver}
+                  </td>
+                  <td style={{ textAlign: "center" }}>{result.points}</td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
