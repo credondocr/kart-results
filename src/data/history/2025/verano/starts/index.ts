@@ -1,4 +1,4 @@
-import { Class, RaceResult } from "@/data/types";
+import { Class } from "@/data/types";
 
 export const stars: Class = {
     title: 'STARS OF TOMORROW',

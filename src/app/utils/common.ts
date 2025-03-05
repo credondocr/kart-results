@@ -216,7 +216,11 @@ export const generateGeneralLeaderboard = (leaderboard: {
   };
 
   // Procesar todas las temporadas disponibles
-  availableSeasons.forEach(processSeason);
+  availableSeasons.forEach((season) => {
+    if (season) {
+      processSeason(season);
+    }
+  });
 
   // Ordenar resultados por puntos y asignar posiciones
   Object.values(combinedClasses).forEach((cls) => {
