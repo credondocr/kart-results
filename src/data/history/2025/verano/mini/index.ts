@@ -96,7 +96,8 @@ export const mini: Class = {
                     country: 'CR',
                     scores: [10, 0, 0, 0, 0],
                     points: 116,
-                    worst: 0
+                    worst: 0,
+                    tiebreaker: 1
                 },
 
                 {
@@ -130,7 +131,8 @@ export const mini: Class = {
                     "country": "CR",
                     "scores": [10, 0, 0, 0, 0],
                     "points": 75.5,
-                    "worst": 0
+                    "worst": 0,
+                    tiebreaker: 2
                 },
             ]
         },

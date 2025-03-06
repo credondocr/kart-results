@@ -15,9 +15,9 @@ export const verano: Leaderboard = {
         micro,
         mini,
         stars,
-        shifter,
         tillotson,
-        vlr
+        vlr,
+        shifter
     ],
     teams: [
         {

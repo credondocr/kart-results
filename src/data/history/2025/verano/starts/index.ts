@@ -86,6 +86,16 @@ export const stars: Class = {
                 },
                 {
                     rank: 1,
+                    "number": 197,
+                    "driver": "Valentina Giraldo",
+                    "team": "valerio",
+                    "country": "CR",
+                    "scores": [5.5, 0, 0, 0, 0],
+                    "points": 143,
+                    "worst": 0
+                },
+                {
+                    rank: 1,
                     "number": 127,
                     "driver": "Isabella Hernandez",
                     "team": "independiente",

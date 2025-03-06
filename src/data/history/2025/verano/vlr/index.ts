@@ -213,7 +213,7 @@ export const vlr: Class = {
         },
         {
           rank: 3,
-          number: 313,
+          number: 308,
           driver: 'Amadeo Quirós',
           team: 'fsa',
           country: 'CR',

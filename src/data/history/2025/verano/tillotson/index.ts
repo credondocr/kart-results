@@ -234,7 +234,7 @@ export const tillotson: Class = {
         },
         {
           rank: 9,
-          number: 994,
+          number: 998,
           driver: 'Mayra Londoño',
           scores: [9, 0, 0, 0, 0],
           worst: 0,
