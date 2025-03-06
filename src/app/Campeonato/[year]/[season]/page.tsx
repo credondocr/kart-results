@@ -103,7 +103,7 @@ const SeasonLeaderboard = () => {
                             {classItem.categories.map((category: Category, i: number) => (
                                 <div key={i} className="flex items-center px-2 py-2  md:justify-center">
                                     <div className="flex md:justify-center w-full max-w-6xl" style={{ overflowX: "auto" }}>
-                                        <LeaderboardTable category={category} season={season} />
+                                        <LeaderboardTable category={category} season={season} leaderboard={leaderboard} />
                                     </div>
                                 </div>
                             ))}

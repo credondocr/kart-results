@@ -1,8 +1,8 @@
-import { Category } from "@/data/types";
+import { Category, Leaderboard } from "@/data/types";
 import CountryFlag from "@/app/components/CountryFlag"
 import TeamLogo from "@/app/components/TeamLogo";
 import LeaderboardTeamTable from "./table/LeaderboardTeamTable";
-const LeaderboardTable: React.FC<{ category: Category, season: string }> = ({ category, season }) => {
+const LeaderboardTable: React.FC<{ category: Category, season: string, leaderboard: Leaderboard }> = ({ category, season, leaderboard }) => {
 
   let races = 6
 
@@ -12,7 +12,7 @@ const LeaderboardTable: React.FC<{ category: Category, season: string }> = ({ ca
 
   if (category.name == "Equipos") {
     return (
-      <LeaderboardTeamTable category={category} />
+      <LeaderboardTeamTable category={category} leaderboard={leaderboard} />
     )
   }
   return (

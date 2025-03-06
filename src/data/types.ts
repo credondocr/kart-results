@@ -32,6 +32,13 @@ export interface Leaderboard {
   year: number;
   season: string;
   classes: Class[];
+  teams?: Team[];
+}
+
+export interface Team {
+  name: string;
+  logo: string;
+  points: number;
 }
 
 export interface Category {

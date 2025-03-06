@@ -18,5 +18,52 @@ export const verano: Leaderboard = {
         shifter,
         tillotson,
         vlr
+    ],
+    teams: [
+        {
+            name: 'MH Racing',
+            logo: 'mhkarting',
+            points: 87
+        },
+        {
+            name: 'FMV Racing',
+            logo: 'fmv',
+            points: 84
+        },
+        {
+            name: 'Valerio Racing System',
+            logo: 'valerio',
+            points: 83
+        },
+        {
+            name: 'Formula Kart',
+            logo: 'formula',
+            points: 79
+        },
+        {
+            name: 'Advanced Racing',
+            logo: 'advanced',
+            points: 75
+        },
+        {
+            name: 'FIK Sport Academy',
+            logo: 'fsa',
+            points: 70
+        },
+        {
+            name: 'DKR',
+            logo: 'independiente',
+            points: 11
+        },
+        {
+            name: 'Babyliss Pro - Los Primos',
+            logo: 'losprimos',
+            points: 4
+        },
+        {
+            name: 'Epson',
+            logo: 'epson',
+            points: 3
+        },
     ]
 }
