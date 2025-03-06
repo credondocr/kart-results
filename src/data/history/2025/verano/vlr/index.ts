@@ -30,7 +30,7 @@ export const vlr: Class = {
           driver: 'Gerardo Moreno',
           team: 'fmv',
           country: 'CR',
-          scores: [8, 0, 0, 0, 0],
+          scores: [18, 0, 0, 0, 0],
           points: 158,
           worst: 0
         },
