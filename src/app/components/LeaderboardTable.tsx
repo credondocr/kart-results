@@ -12,7 +12,7 @@ const LeaderboardTable: React.FC<{ category: Category, season: string, leaderboa
 
   if (category.name == "Equipos") {
     return (
-      <LeaderboardTeamTable category={category} leaderboard={leaderboard} />
+      <LeaderboardTeamTable leaderboard={leaderboard} />
     )
   }
   return (

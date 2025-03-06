@@ -1,6 +1,6 @@
-import { Category, Leaderboard } from "@/data/types";
+import { Leaderboard } from "@/data/types";
 import TeamLogo from "@/app/components/TeamLogo";
-const LeaderboardTeamTable: React.FC<{ category: Category, leaderboard: Leaderboard }> = ({ category, leaderboard }) => {
+const LeaderboardTeamTable: React.FC<{ leaderboard: Leaderboard }> = ({ leaderboard }) => {
   console.log(leaderboard)
   return (
     <div>
