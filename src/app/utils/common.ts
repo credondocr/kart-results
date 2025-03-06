@@ -8,7 +8,12 @@ export function calculatePointsAndSort(classes: Class[]) {
       });
 
       category.results.sort(
-        (a, b) => (b.points! - b.worst) - (a.points! - a.worst)
+        (a, b) => {
+          if ((b.points! - b.worst) !== (a.points! - a.worst)) {
+            return (b.points! - b.worst) - (a.points! - a.worst);
+          }
+          return (b.tiebreaker ?? 0) - (a.tiebreaker ?? 0);
+        }
       );
 
       category.results.forEach((result, index) => {
@@ -204,12 +209,15 @@ export const generateGeneralLeaderboard = (leaderboard: {
               rank: 0,
               scores: [],
               worst: 0,
+              tiebreaker: result.tiebreaker || 0,
             };
             combinedCategory.results.push(combinedResult);
           }
 
           combinedResult.scores = [...combinedResult.scores, ...result.scores];
           combinedResult.points = combinedResult.scores.reduce((acc, score) => acc + score, 0);
+
+          // Mayor puntuación en una carrera
         });
       });
     });
@@ -222,12 +230,26 @@ export const generateGeneralLeaderboard = (leaderboard: {
     }
   });
 
-  // Ordenar resultados por puntos y asignar posiciones
+  // **Ordenar resultados por puntos y aplicar tiebreaker en caso de empate**
   Object.values(combinedClasses).forEach((cls) => {
     cls.categories.forEach((category) => {
-      category.results.sort((a, b) => (b.points || 0) - (a.points || 0));
+      category.results.sort((a, b) => {
+        if (b.points !== a.points) {
+          return (b.points ?? 0) - (a.points ?? 0);
+        }
+        return (b.tiebreaker ?? 0) - (a.tiebreaker ?? 0);
+      });
+
+      // **Asignar rank único**
+      let rank = 1;
       category.results.forEach((result, index) => {
-        result.rank = index + 1;
+        if (index > 0 && result.points === category.results[index - 1].points) {
+          // Si los puntos son iguales, mantener el mismo rank que el anterior
+          result.rank = category.results[index - 1].rank;
+        } else {
+          result.rank = rank;
+        }
+        rank++;
       });
     });
   });
@@ -242,7 +264,6 @@ export const generateGeneralLeaderboard = (leaderboard: {
     classes: Object.values(combinedClasses),
   };
 };
-
 
 export const addTeamsCategory = (leaderboard: Leaderboard): Leaderboard => {
   // Mantenemos un mapa para acumular puntos por equipo

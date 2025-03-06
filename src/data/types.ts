@@ -7,6 +7,7 @@ export interface RaceResult {
   team: string;
   scores: number[];
   worst: number;
+  tiebreaker?: number;
 }
 
 export interface History {

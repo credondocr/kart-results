@@ -62,7 +62,8 @@ export const micro: Class = {
                     country: 'CR',
                     scores: [11.5, 0, 0, 0, 0],
                     points: 77,
-                    worst: 0
+                    worst: 0,
+                    tiebreaker: 2
                 },
                 {
                     rank: 8,
@@ -72,7 +73,8 @@ export const micro: Class = {
                     country: 'CR',
                     scores: [11.5, 0, 0, 0, 0],
                     points: 61,
-                    worst: 0
+                    worst: 0,
+                    tiebreaker: 3
                 },
                 {
                     rank: 9,
@@ -92,7 +94,8 @@ export const micro: Class = {
                     country: 'CR',
                     scores: [11.5, 0, 0, 0, 0],
                     points: 43.5,
-                    worst: 0
+                    worst: 0,
+                    tiebreaker: 1
                 },
                 {
                     rank: 7,

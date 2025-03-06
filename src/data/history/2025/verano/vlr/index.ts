@@ -167,7 +167,8 @@ export const vlr: Class = {
           country: 'CR',
           scores: [24, 0, 0, 0, 0],
           points: 195.5,
-          worst: 0
+          worst: 0,
+          tiebreaker: 1
         },
         {
           rank: 2,
@@ -187,7 +188,8 @@ export const vlr: Class = {
           country: 'CR',
           scores: [24, 0, 0, 0, 0],
           points: 178,
-          worst: 0
+          worst: 0,
+          tiebreaker: 2
         },
         {
           rank: 3,
@@ -302,7 +304,8 @@ export const vlr: Class = {
           country: 'CR',
           scores: [19.5, 0, 0, 0, 0],
           points: 107.5,
-          worst: 0
+          worst: 0,
+          tiebreaker: 2
         },
         {
           rank: 4,
@@ -332,7 +335,8 @@ export const vlr: Class = {
           country: 'CR',
           scores: [19.5, 0, 0, 0, 0],
           points: 93.5,
-          worst: 0
+          worst: 0,
+          tiebreaker: 100
         },
         {
           rank: 6,
@@ -342,7 +346,9 @@ export const vlr: Class = {
           country: 'CR',
           scores: [10.5, 0, 0, 0, 0],
           points: 93.5,
-          worst: 0
+          worst: 0,
+          tiebreaker: 2
+
         },
         {
           rank: 6,
@@ -361,7 +367,8 @@ export const vlr: Class = {
           scores: [10.5, 0, 0, 0, 0],
           worst: 0,
           country: 'CR',
-          team: 'formula'
+          team: 'formula',
+          tiebreaker: 1
         },
         {
           rank: 9,
