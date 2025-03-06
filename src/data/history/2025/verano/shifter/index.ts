@@ -40,8 +40,8 @@ export const shifter: Class = {
                     driver: 'Andres Valdeperas',
                     team: 'formula',
                     country: 'CR',
-                    scores: [0, 0, 0, 0, 0],
-                    points: 20,
+                    scores: [20, 0, 0, 0, 0],
+                    points: 0,
                     worst: 0
                 },
                 {
