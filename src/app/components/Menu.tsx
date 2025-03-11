@@ -3,16 +3,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Championships } from '@/data/history';
-import { useAuth } from '@/contexts/AuthContext';
-import { Modal } from '@/components/ui/Modal';
-import { LoginForm } from '@/components/auth/LoginForm';
-import { Button } from '@/components/ui/Button';
+
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [openYear, setOpenYear] = useState<string | null>(null);
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const { isAuthenticated, user, logout } = useAuth();
+
 
   const years = ['2024', '2025']; // Lista de años
 
@@ -29,30 +25,6 @@ const Menu = () => {
         >
           Temporadas
         </button>
-
-        {/* Botón de Login/Usuario */}
-        <div className="text-white">
-          {isAuthenticated ? (
-            <div className="flex items-center gap-4">
-              <span>Hola, {user?.username}</span>
-              <Button
-                variant="secondary"
-                size="sm"
-                onClick={logout}
-              >
-                Cerrar Sesión
-              </Button>
-            </div>
-          ) : (
-            <Button
-              variant="primary"
-              size="sm"
-              onClick={() => setShowLoginModal(true)}
-            >
-              Iniciar Sesión
-            </Button>
-          )}
-        </div>
       </div>
 
       {/* Menú principal */}
@@ -100,14 +72,7 @@ const Menu = () => {
         </ul>
       </nav>
 
-      {/* Modal de Login */}
-      <Modal
-        isOpen={showLoginModal}
-        onClose={() => setShowLoginModal(false)}
-        title="Iniciar Sesión"
-      >
-        <LoginForm onClose={() => setShowLoginModal(false)} />
-      </Modal>
+
     </div>
   );
 };

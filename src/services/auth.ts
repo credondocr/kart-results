@@ -1,4 +1,3 @@
-import { ApiService } from './api';
 
 const STRAPI_URL = 'https://strapi-production-c6c3.up.railway.app';
 

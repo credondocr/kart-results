@@ -21,7 +21,7 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
         onSuccess();
       }
     } catch (err) {
-      // El error ya está manejado en el contexto
+      console.error('Error al iniciar sesión:', err);
     }
   };
 

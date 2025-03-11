@@ -10,7 +10,7 @@ export class ApiService {
     return response.json();
   }
 
-  static async post<T>(endpoint: string, data: any): Promise<T> {
+  static async post<T, D = Record<string, unknown>>(endpoint: string, data: D): Promise<T> {
     const response = await fetch(`${this.baseUrl}${endpoint}`, {
       method: 'POST',
       headers: {

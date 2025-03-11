@@ -2,14 +2,14 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Championships } from '@/data/history';
-import { useAuth } from '@/contexts/AuthContext';
-import { Button } from '@/components/ui/Button';
+
+// import { useAuth } from '@/contexts/AuthContext';
+// import { Button } from '@/components/ui/Button';
 import { Modal } from '@/components/ui/Modal';
 import { LoginForm } from '@/components/auth/LoginForm';
 
 const Navbar: React.FC = () => {
-  const { user, logout } = useAuth();
+  // const { user, logout } = useAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   return (
@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Right side: Authentication */}
-          <div className="flex items-center">
+          {/* <div className="flex items-center">
             {user ? (
               <div className="flex items-center space-x-4">
                 <span className="text-gray-300">{user.email}</span>
@@ -54,7 +54,7 @@ const Navbar: React.FC = () => {
                 Login
               </Button>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
 
