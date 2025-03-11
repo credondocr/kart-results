@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 interface HeaderTabsProps {
   onTabSelect: (category: string) => void;
@@ -14,44 +14,61 @@ const HeaderTabs: React.FC<HeaderTabsProps> = ({ onTabSelect, showTeamTab = fals
     "ROK SHIFTER",
     "STARS OF TOMORROW",
     "TILLOTSON",
-    "VLR",
-    
+    "VLR"
   ];
 
   if (showTeamTab) {
     tabs.push("Equipos")
   }
-  // Estado para rastrear el tab seleccionado
+
   const [selectedTab, setSelectedTab] = useState<string>(tabs[0]);
 
   const handleTabClick = (tab: string) => {
-    setSelectedTab(tab); // Actualiza el tab seleccionado
-    onTabSelect(tab); // Llama a la función recibida como prop
+    setSelectedTab(tab);
+    onTabSelect(tab);
   };
+
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const checkScroll = () => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const { scrollLeft, scrollWidth, clientWidth } = container;
+      const isAtStart = scrollLeft <= 0;
+      const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 1;
+
+      container.setAttribute('data-at-start', isAtStart.toString());
+      container.setAttribute('data-at-end', isAtEnd.toString());
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('scroll', checkScroll);
+      // Check initial scroll position
+      checkScroll();
+
+      // Recheck on window resize
+      window.addEventListener('resize', checkScroll);
+
+      return () => {
+        container.removeEventListener('scroll', checkScroll);
+        window.removeEventListener('resize', checkScroll);
+      };
+    }
+  }, []);
 
   return (
     <div
-      style={{
-        display: "flex",
-        gap: "10px",
-        marginBottom: "20px",
-        overflowX: "auto",
-        WebkitOverflowScrolling: "touch",
-      }}
+      ref={containerRef}
+      className="tabs-container"
     >
       {tabs.map((tab) => (
         <button
           key={tab}
-          onClick={() => handleTabClick(tab)} // Cambia el estado y ejecuta la función
-          style={{
-            padding: "5px 10px",
-            border: "1px solid #ccc",
-            borderRadius: "5px",
-            backgroundColor: selectedTab === tab ? "#007bff" : "#f0f0f0", // Cambia el color del fondo
-            color: selectedTab === tab ? "white" : "black", // Cambia el color del texto
-            cursor: "pointer",
-            transition: "background-color 0.3s, color 0.3s", // Transición suave
-          }}
+          onClick={() => handleTabClick(tab)}
+          className={`tab-button ${selectedTab === tab ? 'active' : ''}`}
         >
           {tab}
         </button>

@@ -6,6 +6,7 @@ import LeaderboardTable from "@/app/components/LeaderboardTable";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Breadcrumb from "@/app/components/Breadcrumb";
+import SeasonSelector from "@/app/components/SeasonSelector";
 import { calculatePointsAndSort } from "@/app/utils/common";
 import { addTeamsCategory, generateGeneralLeaderboard } from "@/app/utils/common";
 import GeneralTable from "@/app/components/GeneralTable";
@@ -65,8 +66,11 @@ const SeasonLeaderboard = () => {
             : leaderboard?.classes || [];
 
     return (
-        <div>
-            <div className="flex justify-center items-center px-4 py-4">
+        <div className="mt-20">
+            <div className="flex flex-col items-center px-4 py-4 space-y-4">
+                <div className="w-full max-w-6xl flex justify-center">
+                    <SeasonSelector />
+                </div>
                 <div className="w-full max-w-6xl flex justify-center">
                     <Breadcrumb />
                 </div>
