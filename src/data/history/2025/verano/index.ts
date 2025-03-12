@@ -21,7 +21,7 @@ export const verano: Leaderboard = {
     ],
     teams: [
         {
-            name: 'MH Racing',
+            name: 'MH Karting',
             logo: 'mhkarting',
             points: 87
         },
