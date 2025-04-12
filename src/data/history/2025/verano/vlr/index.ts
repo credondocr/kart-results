@@ -100,7 +100,7 @@ export const vlr: Class = {
           driver: 'Luciana Morales',
           team: 'fmv',
           country: 'CR',
-          scores: [11.5, 27.5, 0, 0, 0],
+          scores: [11.5, 17.5, 0, 0, 0],
           points: 59.5,
           worst: 0
         },
