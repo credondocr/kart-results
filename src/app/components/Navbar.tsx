@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
                 className="h-12 w-auto cursor-pointer"
               />
               <span className="text-white font-bold text-xl">
-                Costa Rica Kart Championship
+                CR Kart Championship
               </span>
             </Link>
           </div>
