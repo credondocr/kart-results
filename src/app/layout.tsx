@@ -4,6 +4,7 @@ import './globals.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { AuthProvider } from '@/contexts/AuthContext';
+import GoogleAnalytics from './components/GoogleAnalytics';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -36,6 +37,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased min-h-screen flex flex-col`}>
+        <GoogleAnalytics />
         <AuthProvider>
           <Navbar />
           <main className="flex-grow">{children}</main>
