@@ -13,14 +13,14 @@ const Navbar: React.FC = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-gray-800 shadow-lg z-50">
+    <nav className="fixed top-0 left-0 right-0 bg-[#0E0C2E] shadow-lg z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Left side: Logo and Season Dropdown */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-3">
               <Image
-                src="/logos/acek.webp"
+                src="/logos/acek.png"
                 alt="Logo"
                 width={50}
                 height={50}

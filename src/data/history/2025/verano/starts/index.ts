@@ -20,7 +20,7 @@ export const stars: Class = {
                     "driver": "Theo Grunwedl",
                     "team": "epson",
                     "country": "CR",
-                    "scores": [42.5, 0, 0, 0, 0],
+                    "scores": [42.5, 42.5, 0, 0, 0],
                     "points": 143,
                     "worst": 0
                 },
@@ -30,7 +30,7 @@ export const stars: Class = {
                     "driver": "Mariano Marin",
                     "team": "fmv",
                     "country": "CR",
-                    "scores": [33, 0, 0, 0, 0],
+                    "scores": [33, 31, 0, 0, 0],
                     "points": 143,
                     "worst": 0
                 },
@@ -40,7 +40,7 @@ export const stars: Class = {
                     "driver": "Julian Solis",
                     "team": "fsa",
                     "country": "CR",
-                    "scores": [26, 0, 0, 0, 0],
+                    "scores": [26, 18.5, 0, 0, 0],
                     "points": 143,
                     "worst": 0
                 },
@@ -50,7 +50,7 @@ export const stars: Class = {
                     "driver": "Santiago Blanco",
                     "team": "independiente",
                     "country": "CR",
-                    "scores": [17.5, 0, 0, 0, 0],
+                    "scores": [17.5, 13.5, 0, 0, 0],
                     "points": 143,
                     "worst": 0
                 },
@@ -60,7 +60,7 @@ export const stars: Class = {
                     "driver": "Mathias Leon",
                     "team": "independiente",
                     "country": "CR",
-                    "scores": [17, 0, 0, 0, 0],
+                    "scores": [17, 14, 0, 0, 0],
                     "points": 143,
                     "worst": 0
                 },
@@ -70,7 +70,7 @@ export const stars: Class = {
                     "driver": "Joaquin Solano",
                     "team": "valerio",
                     "country": "CR",
-                    "scores": [16, 0, 0, 0, 0],
+                    "scores": [16, 24, 0, 0, 0],
                     "points": 143,
                     "worst": 0
                 },
@@ -90,7 +90,7 @@ export const stars: Class = {
                     "driver": "Valentina Giraldo",
                     "team": "valerio",
                     "country": "CR",
-                    "scores": [5.5, 0, 0, 0, 0],
+                    "scores": [5.5, 17, 0, 0, 0],
                     "points": 143,
                     "worst": 0
                 },
@@ -100,7 +100,7 @@ export const stars: Class = {
                     "driver": "Isabella Hernandez",
                     "team": "independiente",
                     "country": "CR",
-                    "scores": [4, 0, 0, 0, 0],
+                    "scores": [4, 22.5, 0, 0, 0],
                     "points": 143,
                     "worst": 0
                 },

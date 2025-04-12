@@ -23,47 +23,48 @@ export const verano: Leaderboard = {
         {
             name: 'MH Karting',
             logo: 'mhkarting',
-            points: 87
+            points: 261.5
         },
         {
             name: 'FMV Racing',
             logo: 'fmv',
-            points: 84
-        },
-        {
-            name: 'Valerio Racing System',
-            logo: 'valerio',
-            points: 83
-        },
-        {
-            name: 'Formula Kart',
-            logo: 'formula',
-            points: 79
+            points: 254.5
         },
         {
             name: 'Advanced Racing',
             logo: 'advanced',
-            points: 75
+            points: 243
+        },
+        {
+            name: 'Formula Kart',
+            logo: 'formula',
+            points: 220.5
         },
         {
             name: 'FIK Sport Academy',
             logo: 'fsa',
-            points: 70
+            points: 209
         },
         {
-            name: 'DKR',
-            logo: 'independiente',
-            points: 11
+            name: 'Valerio Racing System',
+            logo: 'valerio',
+            points: 188
+        },
+
+        {
+            name: 'DR Racing Kart CR',
+            logo: 'dr-racing',
+            points: 53.5
         },
         {
             name: 'Babyliss Pro - Los Primos',
             logo: 'losprimos',
-            points: 4
+            points: 31
         },
         {
             name: 'Epson',
             logo: 'epson',
-            points: 3
+            points: 8.5
         },
     ]
 }

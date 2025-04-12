@@ -30,7 +30,7 @@ export const mini: Class = {
                     driver: 'Sofia Calderon',
                     team: 'fmv',
                     country: 'CR',
-                    scores: [30, 0, 0, 0, 0],
+                    scores: [30, 19.5, 0, 0, 0],
                     points: 153.5,
                     worst: 0
                 },
@@ -40,7 +40,7 @@ export const mini: Class = {
                     driver: 'Samuel Chaverri',
                     team: 'mhkarting',
                     country: 'CR',
-                    scores: [28, 0, 0, 0, 0],
+                    scores: [28, 11.5, 0, 0, 0],
                     points: 181.5,
                     worst: 0
                 },
@@ -50,7 +50,7 @@ export const mini: Class = {
                     driver: 'Leandro Ramirez',
                     team: 'formula',
                     country: 'CR',
-                    scores: [20.5, 0, 0, 0, 0],
+                    scores: [20.5, 28, 0, 0, 0],
                     points: 132,
                     worst: 0
                 },
@@ -61,7 +61,7 @@ export const mini: Class = {
                     driver: 'Emilio Wong',
                     team: 'advanced',
                     country: 'CR',
-                    scores: [19, 0, 0, 0, 0],
+                    scores: [19, 42.5, 0, 0, 0],
                     points: 114,
                     worst: 0
                 },
@@ -71,7 +71,7 @@ export const mini: Class = {
                     driver: 'Jaden Spielman',
                     team: 'fsa',
                     country: 'CR',
-                    scores: [12.5, 0, 0, 0, 0,],
+                    scores: [12.5, 33, 0, 0, 0,],
                     points: 35,
                     worst: 0,
                     tiebreaker: 2
@@ -83,7 +83,7 @@ export const mini: Class = {
                     driver: 'Luciano Albanese',
                     team: 'mhkarting',
                     country: 'CR',
-                    scores: [10.5, 0, 0, 0, 0,],
+                    scores: [10.5, 10, 0, 0, 0,],
                     points: 84,
                     worst: 0
                 },
@@ -94,7 +94,7 @@ export const mini: Class = {
                     driver: 'Emilio Bolaños',
                     team: 'fsa',
                     country: 'CR',
-                    scores: [10, 0, 0, 0, 0],
+                    scores: [10, 14.5, 0, 0, 0],
                     points: 116,
                     worst: 0,
                     tiebreaker: 1
@@ -106,7 +106,7 @@ export const mini: Class = {
                     driver: 'Makya Rodriguez',
                     team: 'valerio',
                     country: 'BR',
-                    scores: [14.5, 0, 0, 0, 0,],
+                    scores: [14.5, 13.5, 0, 0, 0,],
                     points: 97.5,
                     worst: 0
                 },
@@ -117,11 +117,10 @@ export const mini: Class = {
                     driver: 'Chayton Rodriguez',
                     team: 'valerio',
                     country: 'BR',
-                    scores: [12.5, 0, 0, 0, 0],
+                    scores: [12.5, 12, 0, 0, 0],
                     points: 162.5,
                     worst: 0,
-                    tiebreaker: 1
-
+                    tiebreaker: 2
                 },
                 {
                     "rank": 7,
@@ -129,10 +128,10 @@ export const mini: Class = {
                     "driver": "Carlos Andres Valverde",
                     "team": "formula",
                     "country": "CR",
-                    "scores": [10, 0, 0, 0, 0],
+                    "scores": [10, 18, 0, 0, 0],
                     "points": 75.5,
-                    "worst": 0,
-                    tiebreaker: 2
+                    "worst": 0
+
                 },
             ]
         },

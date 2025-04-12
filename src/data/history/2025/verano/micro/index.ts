@@ -16,11 +16,22 @@ export const micro: Class = {
             results: [
                 {
                     rank: 2,
+                    number: 710,
+                    driver: 'Omar Rojas',
+                    team: 'dr-racing',
+                    country: 'CR',
+                    scores: [0, 13, 0, 0, 0],
+                    points: 156,
+                    worst: 0,
+                    tiebreaker: 2
+                },
+                {
+                    rank: 2,
                     number: 737,
                     driver: 'Enzo Formal',
                     team: 'advanced',
                     country: 'CR',
-                    scores: [25.5, 0, 0, 0, 0],
+                    scores: [25.5, 22, 0, 0, 0],
                     points: 156,
                     worst: 0
                 },
@@ -30,7 +41,7 @@ export const micro: Class = {
                     driver: 'Luciano Albanesse',
                     team: 'mhkarting',
                     country: 'CR',
-                    scores: [22, 0, 0, 0, 0],
+                    scores: [22, 24.5, 0, 0, 0],
                     points: 127,
                     worst: 0
                 },
@@ -40,7 +51,7 @@ export const micro: Class = {
                     driver: 'Leo Yankelewitz',
                     team: 'mhkarting',
                     country: 'CR',
-                    scores: [18, 0, 0, 0, 0],
+                    scores: [18, 13, 0, 0, 0],
                     points: 97.5,
                     worst: 0
                 },
@@ -50,7 +61,7 @@ export const micro: Class = {
                     driver: 'Leandro Ramirez',
                     team: 'formula',
                     country: 'CR',
-                    scores: [41.5, 0, 0, 0, 0],
+                    scores: [41.5, 42.5, 0, 0, 0],
                     points: 112,
                     worst: 0
                 },
@@ -60,10 +71,9 @@ export const micro: Class = {
                     driver: 'Felipe Nanne',
                     team: 'valerio',
                     country: 'CR',
-                    scores: [11.5, 0, 0, 0, 0],
+                    scores: [11.5, 18.5, 0, 0, 0],
                     points: 77,
                     worst: 0,
-                    tiebreaker: 2
                 },
                 {
                     rank: 8,
@@ -74,7 +84,6 @@ export const micro: Class = {
                     scores: [11.5, 0, 0, 0, 0],
                     points: 61,
                     worst: 0,
-                    tiebreaker: 3
                 },
                 {
                     rank: 9,
@@ -82,7 +91,7 @@ export const micro: Class = {
                     driver: 'Ayrton Hayes',
                     team: 'mhkarting',
                     country: 'CR',
-                    scores: [35, 0, 0, 0, 0],
+                    scores: [35, 34, 0, 0, 0],
                     points: 57.5,
                     worst: 0
                 },
@@ -92,10 +101,9 @@ export const micro: Class = {
                     driver: 'Alejandro Mendoza',
                     team: 'fmv',
                     country: 'CR',
-                    scores: [11.5, 0, 0, 0, 0],
+                    scores: [11.5, 14.5, 0, 0, 0],
                     points: 43.5,
                     worst: 0,
-                    tiebreaker: 1
                 },
                 {
                     rank: 7,
@@ -105,7 +113,8 @@ export const micro: Class = {
                     country: 'CR',
                     scores: [13, 0, 0, 0, 0],
                     points: 84,
-                    worst: 0
+                    worst: 0,
+                    tiebreaker: 3
                 },
 
                 {
@@ -114,7 +123,7 @@ export const micro: Class = {
                     driver: 'Damian Ramirez',
                     team: 'formula',
                     country: 'CR',
-                    scores: [13, 0, 0, 0, 0],
+                    scores: [13, 10.5, 0, 0, 0],
                     points: 178.5,
                     worst: 0
                 },
