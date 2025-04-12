@@ -1,0 +1,121 @@
+{
+    "sections": [
+      {
+        "title": "Participación y Licencias",
+        "questions": [
+          {
+            "question": "¿Necesito licencia para correr?",
+            "answer": "Sí, debes ser socio de ACEK y tener licencia del ACCR vigente, excepto en categorías como Kid Kart o becados Stars of Tomorrow."
+          },
+          {
+            "question": "¿Puedo competir si soy menor de edad?",
+            "answer": "Sí, pero necesitas un representante legal presente durante todas las prácticas y competencias."
+          },
+          {
+            "question": "¿Qué edad debo tener para participar?",
+            "answer": "- Kid Kart: 4 a 7 años<br>- Stars of Tomorrow: 8 a 12 años<br>- Mini Rok: 9 a 12 años<br>- Shifter y VLR Senior/Master: desde 15 años en adelante"
+          }
+        ]
+      },
+      {
+        "title": "Reglas Técnicas Comunes",
+        "questions": [
+          {
+            "question": "¿Quién provee los motores?",
+            "answer": "En casi todas las categorías los motores deben ser comprados y sellados por dealers oficiales (Vortex, Tillotson, ACEK)."
+          },
+          {
+            "question": "¿Puedo modificar el motor?",
+            "answer": "No. Todos deben mantenerse en configuración ‘box stock’ salvo excepciones en partes externas autorizadas."
+          },
+          {
+            "question": "¿Qué pasa si mi motor tiene daño?",
+            "answer": "Las reparaciones deben hacerse en presencia o con aprobación del juez técnico de ACEK."
+          },
+          {
+            "question": "¿Qué llantas y bujías están permitidas?",
+            "answer": "Depende de la categoría, pero todas deben cumplir con lo indicado en el reglamento particular del evento."
+          },
+          {
+            "question": "¿Está permitido el uso de aditivos o gasolina especial?",
+            "answer": "No. Solo gasolina Súper sin aditivos, según reglamento particular."
+          },
+          {
+            "question": "¿Qué pasa si mi kart no cumple el peso mínimo?",
+            "answer": "Serás descalificado del heat o penalizado en la clasificación."
+          }
+        ]
+      },
+      {
+        "title": "Competencia y Conducta",
+        "questions": [
+          {
+            "question": "¿Qué tipo de salidas se realizan?",
+            "answer": "La mayoría son salidas lanzadas. En algunas infantiles o eventos especiales puede variar."
+          },
+          {
+            "question": "¿Puedo cambiar de chasis durante el evento?",
+            "answer": "Solo si sufrís un choque y lo autoriza el comisario técnico. En ese caso, saldrás de último."
+          },
+          {
+            "question": "¿Qué penalizaciones existen?",
+            "answer": "- Amonestación verbal o escrita<br>- Multas económicas (₡50,000 – ₡1,000,000)<br>- Pérdida de posiciones o puntos<br>- Descalificación del evento o campeonato"
+          },
+          {
+            "question": "¿Qué pasa si cometo una infracción técnica?",
+            "answer": "No podés apelar una descalificación técnica. Es definitiva."
+          },
+          {
+            "question": "¿Está permitido recibir ayuda en pista?",
+            "answer": "No, salvo en la zona de reparaciones autorizada o si el piloto está en peligro."
+          },
+          {
+            "question": "¿Qué medidas de seguridad debo tener?",
+            "answer": "- Casco homologado<br>- Overol ignífugo<br>- Cuello, costillas, guantes, botas<br>- Extintor en el paddock (1 por cada 4 pilotos)"
+          }
+        ]
+      },
+      {
+        "title": "Reglas por Categoría",
+        "questions": [
+          {
+            "question": "Kid Kart: ¿Qué debo saber?",
+            "answer": "Motores y clutches solo los proporciona ACEK. No se permite reparar el short block. Carburador y airbox deben ser originales. Requiere acompañamiento de un adulto."
+          },
+          {
+            "question": "Mini Rok: ¿Qué debo saber?",
+            "answer": "Motor Vortex HW-48A con componentes originales, solo vendidos por dealers oficiales. Airbox sin modificaciones. Mufla original sin alteraciones."
+          },
+          {
+            "question": "Shifter: ¿Qué debo saber?",
+            "answer": "Motor Rok Shifter con carburador Dellorto VHSH30. Componentes estrictamente controlados por ficha técnica. Squish mínimo de 1.40mm."
+          },
+          {
+            "question": "VLR: ¿Qué debo saber?",
+            "answer": "Motor Vortex VLR 100. Squish entre 1.10mm y 1.30mm. Solo se permite el carburador HW38A. Reeds, airbox y bujías deben ser los especificados."
+          },
+          {
+            "question": "Tillotson: ¿Qué debo saber?",
+            "answer": "Motor TPP-225R vendido por Formula Kart. No se permite reparar el short block. El filtro, cableado y manifold deben estar intactos. Sellado obligatorio."
+          }
+        ]
+      },
+      {
+        "title": "Campeonato por Equipos",
+        "questions": [
+          {
+            "question": "¿Quién puede participar?",
+            "answer": "Equipos con 5 o más karts inscritos pueden participar automáticamente sin costo adicional."
+          },
+          {
+            "question": "¿Cómo se calculan los puntos?",
+            "answer": "Se suman los puntos de los 5 pilotos con mejores resultados por fecha. Se otorgan puntos extra según cuántos karts le ganaste en tu categoría."
+          },
+          {
+            "question": "¿Qué premios se otorgan?",
+            "answer": "Trofeos por fecha, trofeos anuales y una copa rotativa para el campeón del año."
+          }
+        ]
+      }
+    ]
+  }

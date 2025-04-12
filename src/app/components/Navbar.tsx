@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 // import { useAuth } from '@/contexts/AuthContext';
 // import { Button } from '@/components/ui/Button';
@@ -11,6 +12,9 @@ import { LoginForm } from '@/components/auth/LoginForm';
 const Navbar: React.FC = () => {
   // const { user, logout } = useAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (path: string) => pathname === path;
 
   return (
     <nav className="fixed top-0 left-0 right-0 bg-[#0E0C2E] shadow-lg z-50">
@@ -32,36 +36,31 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          {/* Right side: Authentication */}
-          {/* <div className="flex items-center">
-            {user ? (
-              <div className="flex items-center space-x-4">
-                <span className="text-gray-300">{user.email}</span>
-                <Button
-                  onClick={logout}
-                  variant="secondary"
-                  size="sm"
-                >
-                  Logout
-                </Button>
-              </div>
-            ) : (
-              <Button
-                onClick={() => setShowLoginModal(true)}
-                variant="primary"
-                size="sm"
-              >
-                Login
-              </Button>
-            )}
-          </div> */}
+          {/* Right side: Navigation Links */}
+          <div className="flex items-center space-x-8">
+            <Link
+              href="/"
+              className={`text-white hover:text-blue-400 transition-colors ${isActive('/campeonato') ? 'text-blue-400' : ''
+                }`}
+            >
+              Campeonato
+            </Link>
+            <Link
+              href="/faq"
+              className={`text-white hover:text-blue-400 transition-colors ${isActive('/faq') ? 'text-blue-400' : ''
+                }`}
+            >
+              FAQ
+            </Link>
+          </div>
         </div>
       </div>
 
+      {/* Login Modal */}
       <Modal
         isOpen={showLoginModal}
         onClose={() => setShowLoginModal(false)}
-        title="Login"
+        title="Iniciar Sesión"
       >
         <LoginForm onSuccess={() => setShowLoginModal(false)} />
       </Modal>
