@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
                 height={50}
                 className="h-12 w-auto cursor-pointer"
               />
-              <span className="text-white font-bold text-xl hidden sm:block">
+              <span className="text-white font-bold text-lg sm:text-xl">
                 Costa Rica Kart Championship
               </span>
             </Link>
