@@ -15,6 +15,16 @@ export const vlr: Class = {
       name: 'VLR JUNIOR',
       results: [
         {
+          "rank": 1,
+          "number": 245,
+          "driver": "Federico Rojas",
+          "team": "fmv",
+          "country": "CR",
+          "scores": [0, 11, 0, 0, 0],
+          "points": 136.5,
+          "worst": 0
+        },
+        {
           rank: 2,
           number: 244,
           driver: 'Fabian Acevedo',

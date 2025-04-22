@@ -16,10 +16,10 @@ export const shifter: Class = {
             results: [
                 {
                     rank: 4,
-                    number: 637,
+                    number: 677,
                     driver: 'Daniel Parras',
                     team: 'advanced',
-                    country: 'CR',
+                    country: 'GT',
                     scores: [0, 20, 0, 0, 0],
                     points: 80,
                     worst: 0
