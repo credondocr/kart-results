@@ -16,6 +16,16 @@ export const shifter: Class = {
             results: [
                 {
                     rank: 4,
+                    number: 609,
+                    driver: 'Franco Segnini',
+                    team: 'advanced',
+                    country: 'CR',
+                    scores: [0, 0, 20.5, 11, 0],
+                    points: 80,
+                    worst: 0
+                },
+                {
+                    rank: 4,
                     number: 677,
                     driver: 'Daniel Parras',
                     team: 'advanced',
@@ -30,7 +40,7 @@ export const shifter: Class = {
                     driver: 'Danny Formal',
                     team: 'advanced',
                     country: 'CR',
-                    scores: [0, 27.5, 0, 0, 0],
+                    scores: [0, 27.5, 17.5, 42.5, 0],
                     points: 80,
                     worst: 0
                 },
@@ -40,7 +50,7 @@ export const shifter: Class = {
                     driver: 'Charlie Fonseca',
                     team: 'fsa',
                     country: 'CR',
-                    scores: [0, 30, 0, 0, 0],
+                    scores: [0, 30, 23, 24, 0],
                     points: 80,
                     worst: 0
                 },
@@ -50,7 +60,7 @@ export const shifter: Class = {
                     driver: 'Ricardo Esquivel',
                     team: 'advanced',
                     country: 'CR',
-                    scores: [19.5, 0, 0, 0, 0],
+                    scores: [19.5, 0, 16.5, 10, 0],
                     points: 80,
                     worst: 0
                 },
@@ -60,9 +70,9 @@ export const shifter: Class = {
                     driver: 'Jose Montalto',
                     team: 'dr-racing',
                     country: 'CR',
-                    scores: [37.5, 34, 0, 0, 0],
+                    scores: [37.5, 34, 39, 33, 0],
                     points: 50.5,
-                    worst: 0
+                    worst: 33
                 },
                 {
                     rank: 6,
@@ -80,7 +90,7 @@ export const shifter: Class = {
                     driver: 'Gabriel Kawer',
                     team: 'advanced',
                     country: 'CR',
-                    scores: [35, 24.5, 0, 0, 0],
+                    scores: [35, 24.5, 0, 23.5, 0],
                     points: 22,
                     worst: 0
                 },
@@ -90,9 +100,9 @@ export const shifter: Class = {
                     driver: 'Diego Ardiles',
                     team: 'fmv',
                     country: 'CR',
-                    scores: [24, 21.5, 0, 0, 0],
+                    scores: [24, 21.5, 26, 17.5, 0],
                     points: 1,
-                    worst: 0
+                    worst: 17.5
                 }
             ]
         }

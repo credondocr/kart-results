@@ -20,9 +20,9 @@ export const stars: Class = {
                     "driver": "Theo Grunwedl",
                     "team": "epson",
                     "country": "CR",
-                    "scores": [42.5, 42.5, 0, 0, 0],
+                    "scores": [42.5, 42.5, 42.5, 42.5, 0],
                     "points": 143,
-                    "worst": 0
+                    "worst": 42.5
                 },
                 {
                     rank: 1,
@@ -30,9 +30,9 @@ export const stars: Class = {
                     "driver": "Mariano Marin",
                     "team": "fmv",
                     "country": "CR",
-                    "scores": [33, 31, 0, 0, 0],
+                    "scores": [33, 31, 23.5, 16.5, 0],
                     "points": 143,
-                    "worst": 0
+                    "worst": 16.5
                 },
                 {
                     rank: 1,
@@ -40,7 +40,7 @@ export const stars: Class = {
                     "driver": "Julian Solis",
                     "team": "fsa",
                     "country": "CR",
-                    "scores": [26, 18.5, 0, 0, 0],
+                    "scores": [26, 18.5, 12.5, 0, 0],
                     "points": 143,
                     "worst": 0
                 },
@@ -50,9 +50,9 @@ export const stars: Class = {
                     "driver": "Santiago Blanco",
                     "team": "independiente",
                     "country": "CR",
-                    "scores": [17.5, 13.5, 0, 0, 0],
+                    "scores": [17.5, 13.5, 17, 15, 0],
                     "points": 143,
-                    "worst": 0
+                    "worst": 13.5
                 },
                 {
                     rank: 1,
@@ -60,9 +60,9 @@ export const stars: Class = {
                     "driver": "Mathias Leon",
                     "team": "independiente",
                     "country": "CR",
-                    "scores": [17, 14, 0, 0, 0],
+                    "scores": [17, 14, 17.5, 21.5, 0],
                     "points": 143,
-                    "worst": 0
+                    "worst": 14
                 },
                 {
                     rank: 1,
@@ -70,9 +70,9 @@ export const stars: Class = {
                     "driver": "Joaquin Solano",
                     "team": "valerio",
                     "country": "CR",
-                    "scores": [16, 24, 0, 0, 0],
+                    "scores": [16, 24, 22, 20, 0],
                     "points": 143,
-                    "worst": 0
+                    "worst": 16
                 },
                 {
                     rank: 1,
@@ -98,11 +98,11 @@ export const stars: Class = {
                     rank: 1,
                     "number": 127,
                     "driver": "Isabella Hernandez",
-                    "team": "independiente",
+                    "team": "dr-racing",
                     "country": "CR",
-                    "scores": [4, 22.5, 0, 0, 0],
+                    "scores": [4, 22.5, 34, 34, 0],
                     "points": 143,
-                    "worst": 0
+                    "worst": 4
                 },
             ]
         },

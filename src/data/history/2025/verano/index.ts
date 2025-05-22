@@ -8,7 +8,7 @@ import { micro } from "./micro";
 import { shifter } from "./shifter";
 
 export const verano: Leaderboard = {
-    year: 2024,
+    year: 2025,
     season: 'verano',
     classes: [
         //   kid,
@@ -23,38 +23,39 @@ export const verano: Leaderboard = {
         {
             name: 'MH Karting',
             logo: 'mhkarting',
-            points: 261.5
-        },
-        {
-            name: 'FMV Racing',
-            logo: 'fmv',
-            points: 254.5
+            points: 555
         },
         {
             name: 'Advanced Racing',
             logo: 'advanced',
-            points: 243
+            points: 517
         },
         {
-            name: 'Formula Kart',
-            logo: 'formula',
-            points: 220.5
+            name: 'FMV Racing',
+            logo: 'fmv',
+            points: 514
         },
         {
             name: 'FIK Sport Academy',
             logo: 'fsa',
-            points: 209
+            points: 513
         },
+        {
+            name: 'Formula Kart',
+            logo: 'formula',
+            points: 471
+        },
+
         {
             name: 'Valerio Racing System',
             logo: 'valerio',
-            points: 188
+            points: 343
         },
 
         {
             name: 'DR Racing Kart CR',
             logo: 'dr-racing',
-            points: 53.5
+            points: 196.5
         },
         {
             name: 'Babyliss Pro - Los Primos',
@@ -64,7 +65,7 @@ export const verano: Leaderboard = {
         {
             name: 'Epson',
             logo: 'epson',
-            points: 8.5
+            points: 6.5
         },
     ]
 }
