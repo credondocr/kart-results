@@ -74,6 +74,7 @@ export const micro: Class = {
                     scores: [11.5, 18.5, 21.5, 15, 0],
                     points: 77,
                     worst: 11.5,
+                    tiebreaker: 1
                 },
                 {
                     rank: 8,
@@ -101,9 +102,10 @@ export const micro: Class = {
                     driver: 'Alejandro Mendoza',
                     team: 'fmv',
                     country: 'CR',
-                    scores: [11.5, 14.5, 18.5, 22, 0],
+                    scores: [11.5, 15.5, 18.5, 22, 0],
                     points: 43.5,
                     worst: 11.5,
+                    tiebreaker: 2,
                 },
                 {
                     rank: 7,

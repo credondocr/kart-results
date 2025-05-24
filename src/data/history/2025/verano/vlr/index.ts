@@ -90,9 +90,9 @@ export const vlr: Class = {
           driver: 'Jaden Spielman',
           team: 'fsa',
           country: 'CR',
-          scores: [9, 7.5, 0, 0, 0],
+          scores: [9, 7.5, 13.5, 5, 0],
           points: 103,
-          worst: 0
+          worst: 5
         },
         {
           rank: 4,
@@ -180,7 +180,7 @@ export const vlr: Class = {
           driver: 'Alessandro Carboni',
           team: 'advanced',
           country: 'CR',
-          scores: [14.5, 0, 19.5, 13.5, 0],
+          scores: [14.5, 11, 19.5, 13.5, 0],
           points: 33.5,
           worst: 0
         },

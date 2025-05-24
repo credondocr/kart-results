@@ -97,7 +97,8 @@ export const tillotson: Class = {
           "country": "CR",
           "scores": [0, 0, 0, 10.5, 0],
           "points": 143,
-          "worst": 0
+          "worst": 0,
+          tiebreaker: 2
         },
         {
           number: 957,
@@ -142,7 +143,7 @@ export const tillotson: Class = {
           country: 'CR',
           driver: 'Jian Luca Pastore',
           team: 'mhkarting',
-          scores: [42.5, 42.5, 22.5, 42.5, 0],
+          scores: [42.5, 42.5, 22.5, 41.5, 0],
           worst: 22.5
         },
         {
@@ -187,13 +188,23 @@ export const tillotson: Class = {
           driver: 'Emil Brautigam ',
           team: 'fmv',
           scores: [10, 0, 13.5, 21, 0],
-          worst: 0
+          worst: 0,
+          tiebreaker: 1
         }
       ]
     },
     {
       name: 'TILLOTSON - SENIOR',
       results: [
+        {
+          rank: 2,
+          number: 971,
+          driver: 'Andres Valldeperas',
+          scores: [0, 0, 21.5, 9.5, 0],
+          worst: 21,
+          country: 'CR',
+          team: 'formula'
+        },
         {
           rank: 2,
           number: 927,
@@ -309,7 +320,7 @@ export const tillotson: Class = {
           rank: 9,
           number: 987,
           driver: 'Andreas Veuthey ',
-          scores: [0, 0, 0, 0, 0],
+          scores: [0, 0, 7.5, 0, 0],
           worst: 0,
           country: 'CR',
           team: 'advanced'

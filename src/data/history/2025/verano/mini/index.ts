@@ -20,7 +20,7 @@ export const mini: Class = {
                     driver: 'Alonso Gonzalez',
                     team: 'fsa',
                     country: 'DO',
-                    scores: [0, 0, 17.5, 17, 0],
+                    scores: [0, 0, 18.5, 18, 0],
                     points: 39,
                     worst: 0
                 },
