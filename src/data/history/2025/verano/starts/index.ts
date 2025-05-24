@@ -90,9 +90,9 @@ export const stars: Class = {
                     "driver": "Valentina Giraldo",
                     "team": "valerio",
                     "country": "CR",
-                    "scores": [5.5, 17, 0, 0, 0],
+                    "scores": [5.5, 17, 14, 21.5, 0],
                     "points": 143,
-                    "worst": 0
+                    "worst": 5.5
                 },
                 {
                     rank: 1,
