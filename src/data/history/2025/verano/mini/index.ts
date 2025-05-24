@@ -36,7 +36,7 @@ export const mini: Class = {
                 },
                 {
                     rank: 1,
-                    number: 517,
+                    number: 501,
                     driver: 'Sofia Calderon',
                     team: 'fmv',
                     country: 'CR',
