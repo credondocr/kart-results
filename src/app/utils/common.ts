@@ -163,8 +163,6 @@ export const mergeSeasonsIntoLeaderboard = (
   };
 };
 
-
-
 export const generateGeneralLeaderboard = (leaderboard: {
   invierno?: Leaderboard;
   verano?: Leaderboard;
@@ -217,7 +215,8 @@ export const generateGeneralLeaderboard = (leaderboard: {
           combinedResult.scores = [...combinedResult.scores, ...result.scores];
           combinedResult.points = combinedResult.scores.reduce((acc, score) => acc + score, 0);
 
-          // Mayor puntuación en una carrera
+          // Actualizar el tiebreaker con el mayor valor entre las temporadas
+          combinedResult.tiebreaker = Math.max(combinedResult.tiebreaker || 0, result.tiebreaker || 0);
         });
       });
     });
@@ -240,16 +239,9 @@ export const generateGeneralLeaderboard = (leaderboard: {
         return (b.tiebreaker ?? 0) - (a.tiebreaker ?? 0);
       });
 
-      // **Asignar rank único**
-      let rank = 1;
+      // Asignar posiciones únicas
       category.results.forEach((result, index) => {
-        if (index > 0 && result.points === category.results[index - 1].points) {
-          // Si los puntos son iguales, mantener el mismo rank que el anterior
-          result.rank = category.results[index - 1].rank;
-        } else {
-          result.rank = rank;
-        }
-        rank++;
+        result.rank = index + 1;
       });
     });
   });
