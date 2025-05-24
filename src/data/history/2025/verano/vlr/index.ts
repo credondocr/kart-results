@@ -166,10 +166,10 @@ export const vlr: Class = {
         },
         {
           rank: 13,
-          number: 267,
+          number: 208,
           driver: 'Raymi Guzman',
           team: 'fsa',
-          country: 'CR',
+          country: 'DO',
           scores: [0, 0, 15, 20.5, 0],
           points: 6,
           worst: 0
@@ -182,7 +182,7 @@ export const vlr: Class = {
           country: 'CR',
           scores: [14.5, 11, 19.5, 13.5, 0],
           points: 33.5,
-          worst: 0
+          worst: 11
         },
         {
           rank: 14,
