@@ -144,7 +144,8 @@ export const tillotson: Class = {
           driver: 'Jian Luca Pastore',
           team: 'mhkarting',
           scores: [42.5, 42.5, 22.5, 41.5, 0],
-          worst: 22.5
+          worst: 22.5,
+          tiebreaker: 2
         },
         {
           number: 945,
@@ -305,7 +306,8 @@ export const tillotson: Class = {
           "country": "CR",
           "scores": [0, 12, 15, 16.5, 0],
           "points": 31,
-          "worst": 0
+          "worst": 0,
+          tiebreaker: 1
         },
         {
           rank: 9,
