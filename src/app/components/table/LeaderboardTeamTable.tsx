@@ -2,6 +2,7 @@ import { Leaderboard } from "@/data/types";
 import TeamLogo from "@/app/components/TeamLogo";
 const LeaderboardTeamTable: React.FC<{ leaderboard: Leaderboard }> = ({ leaderboard }) => {
   console.log(leaderboard)
+  const sortedTeams = (leaderboard?.teams ?? []).slice().sort((a, b) => (b.points ?? 0) - (a.points ?? 0));
   return (
     <div>
       <h3 className="text-2xl font-extrabold dark:text-white">Puntos por Equipos</h3>
@@ -15,7 +16,7 @@ const LeaderboardTeamTable: React.FC<{ leaderboard: Leaderboard }> = ({ leaderbo
             </tr>
           </thead>
           <tbody>
-            {leaderboard?.teams?.map((result, index) => (
+            {sortedTeams.map((result, index) => (
               <tr key={index}>
                 <td data-label="Posición" style={{ textAlign: "center" }}>{index + 1}</td>
                 <td style={{ display: "flex", alignItems: "center", justifyContent: "left", gap: "10px" }}>

@@ -20,7 +20,7 @@ export const shifter: Class = {
                     driver: 'Franco Segnini',
                     team: 'advanced',
                     country: 'CR',
-                    scores: [0, 0, 20.5, 11, 0],
+                    scores: [0, 0, 20.5, 11, 36.5],
                     points: 80,
                     worst: 0
                 },
@@ -32,7 +32,8 @@ export const shifter: Class = {
                     country: 'GT',
                     scores: [0, 20, 0, 0, 0],
                     points: 80,
-                    worst: 0
+                    worst: 0,
+                    tiebreaker: 1
                 },
                 {
                     rank: 4,
@@ -40,7 +41,7 @@ export const shifter: Class = {
                     driver: 'Danny Formal',
                     team: 'advanced',
                     country: 'CR',
-                    scores: [0, 27.5, 17.5, 42.5, 0],
+                    scores: [0, 27.5, 17.5, 42.5, 1],
                     points: 80,
                     worst: 0
                 },
@@ -50,7 +51,7 @@ export const shifter: Class = {
                     driver: 'Charlie Fonseca',
                     team: 'fsa',
                     country: 'CR',
-                    scores: [0, 30, 23, 24, 0],
+                    scores: [0, 30, 23, 24, 36.5],
                     points: 80,
                     worst: 0
                 },
@@ -58,9 +59,9 @@ export const shifter: Class = {
                     rank: 4,
                     number: 679,
                     driver: 'Ricardo Esquivel',
-                    team: 'advanced',
+                    team: 'independiente',
                     country: 'CR',
-                    scores: [19.5, 0, 16.5, 10, 0],
+                    scores: [19.5, 0, 16.5, 10, 23],
                     points: 80,
                     worst: 0
                 },
@@ -72,7 +73,7 @@ export const shifter: Class = {
                     country: 'CR',
                     scores: [37.5, 34, 39, 33, 0],
                     points: 50.5,
-                    worst: 33
+                    worst: 0
                 },
                 {
                     rank: 6,
@@ -82,7 +83,8 @@ export const shifter: Class = {
                     country: 'CR',
                     scores: [20, 0, 0, 0, 0],
                     points: 0,
-                    worst: 0
+                    worst: 0,
+                    tiebreaker: 2
                 },
                 {
                     rank: 9,
@@ -102,7 +104,7 @@ export const shifter: Class = {
                     country: 'CR',
                     scores: [24, 21.5, 26, 17.5, 0],
                     points: 1,
-                    worst: 17.5
+                    worst: 0
                 }
             ]
         }
