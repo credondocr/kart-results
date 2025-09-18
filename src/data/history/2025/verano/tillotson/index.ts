@@ -215,7 +215,7 @@ export const tillotson: Class = {
           scores: [0, 0, 21.5, 15, 30],
           worst: 0,
           country: 'CR',
-          team: 'formula'
+          team: 'dr-racing'
         },
         {
           rank: 2,
@@ -313,7 +313,7 @@ export const tillotson: Class = {
           "rank": 8,
           "number": 957,
           "driver": "Osvaldo Blanco",
-          "team": "fmv",
+          "team": "independiente",
           "country": "CR",
           "scores": [0, 12, 15, 16.5, 13.5],
           "points": 31,

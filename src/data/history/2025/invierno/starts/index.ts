@@ -28,7 +28,7 @@ export const stars: Class = {
                     "rank": 2,
                     "number": 177,
                     "driver": "Mariano Marin",
-                    "team": "losprimos",
+                    "team": "independiente",
                     "country": "CR",
                     "scores": [28.5, 0, 0, 0, 0, 0],
                     "points": 28.5,

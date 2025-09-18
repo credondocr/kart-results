@@ -18,7 +18,7 @@ export const shifter: Class = {
           rank: 1,
           number: 624,
           driver: 'Daniel Fabregas',
-          team: 'losprimos',
+          team: 'independiente',
           country: 'CR',
           scores: [21, 0, 0, 0, 0, 0],
           points: 134.5,

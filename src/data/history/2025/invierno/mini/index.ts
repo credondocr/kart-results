@@ -38,7 +38,7 @@ export const mini: Class = {
           rank: 3,
           number: 555,
           driver: 'Emilio Wong',
-          team: 'advanced',
+          team: 'dr-racing',
           country: 'CR',
           scores: [42.5, 0, 0, 0, 0, 0],
           points: 114,
