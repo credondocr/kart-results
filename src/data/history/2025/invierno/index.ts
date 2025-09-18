@@ -5,6 +5,7 @@ import { mini } from "./mini";
 import { shifter } from "./shifter";
 import { stars } from "./starts";
 import { tillotson } from "./tillotson";
+import { vlr } from "./vlr";
 
 export const invierno: Leaderboard = {
     year: 2025,
@@ -15,7 +16,8 @@ export const invierno: Leaderboard = {
         mini,
         shifter,
         stars,
-        tillotson
+        tillotson,
+        vlr
     ],
     teams: [
         {
