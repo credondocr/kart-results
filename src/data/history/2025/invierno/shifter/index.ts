@@ -79,7 +79,7 @@ export const shifter: Class = {
           rank: 6,
           number: 671,
           driver: 'Andres Valdeperas',
-          team: 'formula',
+          team: 'dr-racing',
           country: 'CR',
           scores: [18.5, 0, 0, 0, 0, 0],
           points: 41,
