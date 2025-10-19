@@ -20,7 +20,7 @@ export const vlr: Class = {
           "driver": "Fabian Acevedo",
           "team": "fsa",
           "country": "CR",
-          "scores": [42.5, 0, 0, 0, 0, 0],
+          "scores": [42.5, 19.5, 0, 0, 0, 0],
           "points": 42.5,
           "worst": 0
         },
@@ -30,7 +30,7 @@ export const vlr: Class = {
           "driver": "Anouk Valerio",
           "team": "valerio",
           "country": "CR",
-          "scores": [24.5, 0, 0, 0, 0, 0],
+          "scores": [24.5, 12.5, 0, 0, 0, 0],
           "points": 24.5,
           "worst": 0
         },
@@ -40,7 +40,7 @@ export const vlr: Class = {
           "driver": "Luis Fernando Cedeño",
           "team": "fmv",
           "country": "CR",
-          "scores": [24, 0, 0, 0, 0, 0],
+          "scores": [24, 41.5, 0, 0, 0, 0],
           "points": 24,
           "worst": 0
         },
@@ -50,7 +50,7 @@ export const vlr: Class = {
           "driver": "Andres Dumith",
           "team": "fmv",
           "country": "CR",
-          "scores": [21.5, 0, 0, 0, 0, 0],
+          "scores": [21.5, 15, 0, 0, 0, 0],
           "points": 21.5,
           "worst": 0
         },
@@ -60,7 +60,7 @@ export const vlr: Class = {
           "driver": "Luciana Morales",
           "team": "fmv",
           "country": "CR",
-          "scores": [16, 0, 0, 0, 0, 0],
+          "scores": [16, 9, 0, 0, 0, 0],
           "points": 16,
           "worst": 0
         },
@@ -70,7 +70,7 @@ export const vlr: Class = {
           "driver": "Luciano Dajles",
           "team": "fmv",
           "country": "CR",
-          "scores": [16, 0, 0, 0, 0, 0],
+          "scores": [16, 14.5, 0, 0, 0, 0],
           "points": 16,
           "worst": 0
         },
@@ -80,7 +80,7 @@ export const vlr: Class = {
           "driver": "Emilio Bolaños",
           "team": "fsa",
           "country": "CR",
-          "scores": [16, 0, 0, 0, 0, 0],
+          "scores": [16, 26, 0, 0, 0, 0],
           "points": 16,
           "worst": 0
         },
@@ -90,7 +90,7 @@ export const vlr: Class = {
           "driver": "Saul Cespedes",
           "team": "fmv",
           "country": "CR",
-          "scores": [13.5, 0, 0, 0, 0, 0],
+          "scores": [13.5, 30, 0, 0, 0, 0],
           "points": 13.5,
           "worst": 0
         },
@@ -100,7 +100,7 @@ export const vlr: Class = {
           "driver": "Jaden Spielman",
           "team": "fsa",
           "country": "CR",
-          "scores": [12, 0, 0, 0, 0, 0],
+          "scores": [12, 5.5, 0, 0, 0, 0],
           "points": 12,
           "worst": 0
         },
@@ -110,7 +110,7 @@ export const vlr: Class = {
           "driver": "Alessandro Carboni",
           "team": "advanced",
           "country": "CR",
-          "scores": [10.5, 0, 0, 0, 0, 0],
+          "scores": [10.5, 14.5, 0, 0, 0, 0],
           "points": 10.5,
           "worst": 0
         },
@@ -120,7 +120,7 @@ export const vlr: Class = {
           "driver": "Nikolas Ramila",
           "team": "advanced",
           "country": "CR",
-          "scores": [10.5, 0, 0, 0, 0, 0],
+          "scores": [10.5, 8, 0, 0, 0, 0],
           "points": 10.5,
           "worst": 0
         },
@@ -130,7 +130,17 @@ export const vlr: Class = {
           "driver": "Federico Rojas",
           "team": "dr-racing",
           "country": "CR",
-          "scores": [9, 0, 0, 0, 0, 0],
+          "scores": [9, 11, 0, 0, 0, 0],
+          "points": 9,
+          "worst": 0
+        },
+        {
+          "rank": 12,
+          "number": 267,
+          "driver": "Lautaro Otero",
+          "team": "advanced",
+          "country": "CR",
+          "scores": [0, 13.5, 0, 0, 0, 0],
           "points": 9,
           "worst": 0
         }
@@ -145,7 +155,7 @@ export const vlr: Class = {
           "driver": "Jose Hernandez",
           "team": "mhkarting",
           "country": "CR",
-          "scores": [42.5, 0, 0, 0, 0, 0],
+          "scores": [42.5, 26.5, 0, 0, 0, 0],
           "points": 42.5,
           "worst": 0
         },
@@ -155,7 +165,7 @@ export const vlr: Class = {
           "driver": "Andres Fonseca",
           "team": "formula",
           "country": "CR",
-          "scores": [30, 0, 0, 0, 0, 0],
+          "scores": [30, 39, 0, 0, 0, 0],
           "points": 30,
           "worst": 0
         },
@@ -165,7 +175,7 @@ export const vlr: Class = {
           "driver": "Marco Castro",
           "team": "fsa",
           "country": "CR",
-          "scores": [27, 0, 0, 0, 0, 0],
+          "scores": [27, 21.5, 0, 0, 0, 0],
           "points": 27,
           "worst": 0
         },
@@ -175,7 +185,7 @@ export const vlr: Class = {
           "driver": "Henry Nanne",
           "team": "valerio",
           "country": "CR",
-          "scores": [19.5, 0, 0, 0, 0, 0],
+          "scores": [19.5, 31, 0, 0, 0, 0],
           "points": 19.5,
           "worst": 0
         },
@@ -185,7 +195,7 @@ export const vlr: Class = {
           "driver": "David Gardella Sr",
           "team": "advanced",
           "country": "CR",
-          "scores": [18.5, 0, 0, 0, 0, 0],
+          "scores": [18.5, 22.5, 0, 0, 0, 0],
           "points": 18.5,
           "worst": 0
         },
@@ -195,7 +205,7 @@ export const vlr: Class = {
           "driver": "Luis Alvarado",
           "team": "valerio",
           "country": "CR",
-          "scores": [17, 0, 0, 0, 0, 0],
+          "scores": [17, 16, 0, 0, 0, 0],
           "points": 17,
           "worst": 0
         },
@@ -250,7 +260,7 @@ export const vlr: Class = {
           "driver": "Luis Felipe Aguilar",
           "team": "formula",
           "country": "CR",
-          "scores": [30.5, 0, 0, 0, 0, 0],
+          "scores": [30.5, 15, 0, 0, 0, 0],
           "points": 30.5,
           "worst": 0
         },
@@ -260,7 +270,7 @@ export const vlr: Class = {
           "driver": "Charlie Fonseca",
           "team": "fsa",
           "country": "CR",
-          "scores": [21.5, 0, 0, 0, 0, 0],
+          "scores": [21.5, 21, 0, 0, 0, 0],
           "points": 21.5,
           "worst": 0
         },
@@ -270,7 +280,7 @@ export const vlr: Class = {
           "driver": "Luciano Sosto",
           "team": "advanced",
           "country": "CR",
-          "scores": [19.5, 0, 0, 0, 0, 0],
+          "scores": [19.5, 31.5, 0, 0, 0, 0],
           "points": 19.5,
           "worst": 0
         },
@@ -280,7 +290,7 @@ export const vlr: Class = {
           "driver": "Augusto Acevedo",
           "team": "fsa",
           "country": "CR",
-          "scores": [19.5, 0, 0, 0, 0, 0],
+          "scores": [19.5, 36.5, 0, 0, 0, 0],
           "points": 19.5,
           "worst": 0
         },
@@ -290,7 +300,7 @@ export const vlr: Class = {
           "driver": "Isabella Valldeperas",
           "team": "dr-racing",
           "country": "CR",
-          "scores": [15, 0, 0, 0, 0, 0],
+          "scores": [15, 4, 0, 0, 0, 0],
           "points": 15,
           "worst": 0
         },
@@ -300,7 +310,7 @@ export const vlr: Class = {
           "driver": "Bernal Valverde",
           "team": "fmv",
           "country": "CR",
-          "scores": [13, 0, 0, 0, 0, 0],
+          "scores": [13, 8.5, 0, 0, 0, 0],
           "points": 13,
           "worst": 0
         },
@@ -310,7 +320,7 @@ export const vlr: Class = {
           "driver": "Gerardo Moreno",
           "team": "mhkarting",
           "country": "CR",
-          "scores": [11.5, 0, 0, 0, 0, 0],
+          "scores": [11.5, 18.5, 0, 0, 0, 0],
           "points": 11.5,
           "worst": 0
         },
@@ -320,7 +330,7 @@ export const vlr: Class = {
           "driver": "Martin Salom",
           "team": "formula",
           "country": "CR",
-          "scores": [10.5, 0, 0, 0, 0, 0],
+          "scores": [10.5, 15.5, 0, 0, 0, 0],
           "points": 10.5,
           "worst": 0
         },
@@ -330,7 +340,7 @@ export const vlr: Class = {
           "driver": "Fabian Acevedo",
           "team": "fsa",
           "country": "CR",
-          "scores": [10.5, 0, 0, 0, 0, 0],
+          "scores": [10.5, 11, 0, 0, 0, 0],
           "points": 10.5,
           "worst": 0
         },
@@ -340,7 +350,7 @@ export const vlr: Class = {
           "driver": "David Gardella",
           "team": "advanced",
           "country": "CR",
-          "scores": [10, 0, 0, 0, 0, 0],
+          "scores": [10, 7.5, 0, 0, 0, 0],
           "points": 10,
           "worst": 0
         },
@@ -360,7 +370,7 @@ export const vlr: Class = {
           "driver": "Samuel Castro",
           "team": "fsa",
           "country": "CR",
-          "scores": [6.5, 0, 0, 0, 0, 0],
+          "scores": [6.5, 9, 0, 0, 0, 0],
           "points": 6.5,
           "worst": 0
         },
@@ -370,7 +380,7 @@ export const vlr: Class = {
           "driver": "Mathias Hernandez",
           "team": "advanced",
           "country": "CR",
-          "scores": [6, 0, 0, 0, 0, 0],
+          "scores": [6, 27, 0, 0, 0, 0],
           "points": 6,
           "worst": 0
         },
@@ -380,7 +390,7 @@ export const vlr: Class = {
           "driver": "Francesca Morice",
           "team": "fsa",
           "country": "CR",
-          "scores": [3, 0, 0, 0, 0, 0],
+          "scores": [3, 12.5, 0, 0, 0, 0],
           "points": 3,
           "worst": 0
         }

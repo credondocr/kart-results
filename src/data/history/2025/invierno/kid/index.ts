@@ -22,7 +22,7 @@ export const kid: Class = {
           country: 'CR',
           scores: [
             42.5,
-            0,
+            36.5,
             0,
             0,
             0,
@@ -53,13 +53,13 @@ export const kid: Class = {
         },
         {
           rank: 4,
-          number: 18,
+          number: 17,
           driver: 'Alessandro Calvosa',
           team: 'dr-racing',
           country: 'CR',
           scores: [
             26,
-            0,
+            38,
             0,
             0,
             0,

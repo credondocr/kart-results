@@ -30,7 +30,7 @@ export const shifter: Class = {
           driver: 'Diego Ardiles',
           team: 'fmv',
           country: 'CR',
-          scores: [27, 0, 0, 0, 0, 0],
+          scores: [27, 37.5, 0, 0, 0, 0],
           points: 134.5,
           worst: 0
         },
@@ -60,7 +60,7 @@ export const shifter: Class = {
           driver: 'Ricardo Esquivel',
           team: 'independiente',
           country: 'CR',
-          scores: [9.5, 0, 0, 0, 0, 0],
+          scores: [9.5, 14.5, 0, 0, 0, 0],
           points: 96,
           worst: 0,
           tiebreaker: 2
@@ -71,7 +71,7 @@ export const shifter: Class = {
           driver: 'Jose Montalto',
           team: 'dr-racing',
           country: 'CR',
-          scores: [30, 0, 0, 0, 0, 0],
+          scores: [30, 29, 0, 0, 0, 0],
           points: 96,
           worst: 0
         },
@@ -111,7 +111,7 @@ export const shifter: Class = {
           driver: 'Daniel Parras',
           team: 'valerio',
           country: 'CR',
-          scores: [10, 0, 0, 0, 0, 0],
+          scores: [10, 19, 0, 0, 0, 0],
           points: 96,
           worst: 0
         },
@@ -121,7 +121,7 @@ export const shifter: Class = {
           driver: 'Daniel Gardella',
           team: 'advanced',
           country: 'CR',
-          scores: [12.5, 0, 0, 0, 0, 0],
+          scores: [12.5, 25, 0, 0, 0, 0],
           points: 96,
           worst: 0
         },
@@ -131,7 +131,17 @@ export const shifter: Class = {
           driver: 'Federico Calvosa',
           team: 'advanced',
           country: 'CR',
-          scores: [11, 0, 0, 0, 0, 0],
+          scores: [11, 17.5, 0, 0, 0, 0],
+          points: 96,
+          worst: 0
+        },
+        {
+          rank: 9,
+          number: 616,
+          driver: 'Charlie Fonseca',
+          team: 'fsa',
+          country: 'CR',
+          scores: [0, 19, 0, 0, 0, 0],
           points: 96,
           worst: 0
         }
