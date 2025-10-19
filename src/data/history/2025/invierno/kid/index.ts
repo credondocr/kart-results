@@ -37,7 +37,7 @@ export const kid: Class = {
           driver: 'Mariano Quiros',
           team: 'fsa',
           country: 'CR',
-          scores: [30.5, 0, 0, 0, 0, 0],
+          scores: [30.5, 29, 0, 0, 0, 0],
           points: 152,
           worst: 0
         },
