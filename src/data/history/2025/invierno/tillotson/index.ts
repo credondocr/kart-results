@@ -20,7 +20,7 @@ export const tillotson: Class = {
           "driver": "Daniel Sequeira",
           "team": "losprimos",
           "country": "CR",
-          "scores": [40, 35, 0, 0, 0, 0],
+          "scores": [40, 35, 35, 0, 0, 0],
           "points": 40,
           "worst": 0
         },
@@ -30,7 +30,7 @@ export const tillotson: Class = {
           "driver": "Javier Jose Mora",
           "team": "mhkarting",
           "country": "CR",
-          "scores": [36.5, 0, 0, 0, 0, 0],
+          "scores": [36.5, 0, 37.5, 0, 0, 0],
           "points": 36.5,
           "worst": 0
         },
@@ -70,7 +70,7 @@ export const tillotson: Class = {
           "driver": "Manuel Sandoval",
           "team": "advanced",
           "country": "CR",
-          "scores": [15.5, 11, 0, 0, 0, 0],
+          "scores": [15.5, 11, 22, 0, 0, 0],
           "points": 15.5,
           "worst": 0
         },
@@ -93,6 +93,14 @@ export const tillotson: Class = {
           "scores": [0, 19.5, 0, 0, 0, 0],
           "points": 14,
           "worst": 0
+        },
+        {
+          number: 980,
+          country: 'CR',
+          driver: 'Tomas Camacho',
+          team: 'fsa',
+          scores: [0, 0, 28, 0, 0, 0],
+          worst: 23
         }
       ]
     },
@@ -100,12 +108,12 @@ export const tillotson: Class = {
       name: 'TILLOTSON - JUNIOR',
       results: [
         {
-          "rank": 1,
+          rank: 1,
           "number": 907,
           "driver": "Anouk Valerio",
           "team": "valerio",
           "country": "CR",
-          "scores": [0, 42.5, 0, 0, 0, 0],
+          "scores": [0, 42.5, 40, 0, 0, 0],
           "points": 33.5,
           "worst": 0
         },
@@ -115,7 +123,7 @@ export const tillotson: Class = {
           "driver": "Julian Serrano",
           "team": "fmv",
           "country": "CR",
-          "scores": [33.5, 24, 0, 0, 0, 0],
+          "scores": [33.5, 24, 7.5, 0, 0, 0],
           "points": 33.5,
           "worst": 0
         },
@@ -125,7 +133,7 @@ export const tillotson: Class = {
           "driver": "Jian Luca Pastore",
           "team": "mhkarting",
           "country": "CR",
-          "scores": [27.5, 34, 0, 0, 0, 0],
+          "scores": [27.5, 34, 26.5, 0, 0, 0],
           "points": 27.5,
           "worst": 0
         },
@@ -135,7 +143,7 @@ export const tillotson: Class = {
           "driver": "Sebastian Recinos",
           "team": "fmv",
           "country": "CR",
-          "scores": [25, 0, 0, 0, 0, 0],
+          "scores": [25, 0, 28, 0, 0, 0],
           "points": 25,
           "worst": 0
         },
@@ -145,7 +153,7 @@ export const tillotson: Class = {
           "driver": "Julian Guevara",
           "team": "fsa",
           "country": "CR",
-          "scores": [24.5, 19.5, 0, 0, 0, 0],
+          "scores": [24.5, 19.5, 9, 0, 0, 0],
           "points": 24.5,
           "worst": 0
         },
@@ -155,7 +163,7 @@ export const tillotson: Class = {
           "driver": "Santiago Navas",
           "team": "advanced",
           "country": "CR",
-          "scores": [24.5, 11, 0, 0, 0, 0],
+          "scores": [24.5, 11, 28.5, 0, 0, 0],
           "points": 24.5,
           "worst": 0
         },
@@ -175,7 +183,7 @@ export const tillotson: Class = {
           "driver": "Santiago Blanco",
           "team": "independiente",
           "country": "CR",
-          "scores": [12.5, 0, 0, 0, 0, 0],
+          "scores": [12.5, 0, 9, 0, 0, 0],
           "points": 12.5,
           "worst": 0
         },
@@ -185,7 +193,7 @@ export const tillotson: Class = {
           "driver": "Montserrat Monge",
           "team": "fmv",
           "country": "CR",
-          "scores": [12, 11, 0, 0, 0, 0],
+          "scores": [12, 11, 12.5, 0, 0, 0],
           "points": 12,
           "worst": 0
         },
@@ -205,7 +213,7 @@ export const tillotson: Class = {
           "driver": "Julian Lahmann",
           "team": "formula",
           "country": "CR",
-          "scores": [9, 17.5, 0, 0, 0, 0],
+          "scores": [9, 17.5, 16, 0, 0, 0],
           "points": 9,
           "worst": 0
         },
@@ -216,6 +224,26 @@ export const tillotson: Class = {
           "team": "fsa",
           "country": "CR",
           "scores": [0, 7.5, 0, 0, 0, 0],
+          "points": 9,
+          "worst": 0
+        },
+        {
+          "rank": 10,
+          "number": 933,
+          "driver": "Joaquin Solano",
+          "team": "valerio",
+          "country": "CR",
+          "scores": [0, 0, 12, 0, 0, 0],
+          "points": 9,
+          "worst": 0
+        },
+        {
+          "rank": 10,
+          "number": 972,
+          "driver": "Luciana Aguilar",
+          "team": "fsa",
+          "country": "CR",
+          "scores": [0, 0, 8.5, 0, 0, 0],
           "points": 9,
           "worst": 0
         }
@@ -230,7 +258,7 @@ export const tillotson: Class = {
           "driver": "Felipe Hernandez",
           "team": "fsa",
           "country": "CR",
-          "scores": [0, 21, 0, 0, 0, 0],
+          "scores": [0, 21, 16.5, 0, 0, 0],
           "points": 34.5,
           "worst": 0
         },
@@ -240,7 +268,7 @@ export const tillotson: Class = {
           "driver": "Ryan Nishioka",
           "team": "fmv",
           "country": "CR",
-          "scores": [34.5, 36.5, 0, 0, 0, 0],
+          "scores": [34.5, 36.5, 42.5, 0, 0, 0],
           "points": 34.5,
           "worst": 0
         },
@@ -260,7 +288,7 @@ export const tillotson: Class = {
           "driver": "Gerardo Moreno",
           "team": "mhkarting",
           "country": "CR",
-          "scores": [26, 22.5, 0, 0, 0, 0],
+          "scores": [26, 22.5, 21.5, 0, 0, 0],
           "points": 26,
           "worst": 0
         },
@@ -270,7 +298,7 @@ export const tillotson: Class = {
           "driver": "Rafael Fabrega",
           "team": "fmv",
           "country": "CR",
-          "scores": [24, 0, 0, 0, 0, 0],
+          "scores": [24, 0, 32, 0, 0, 0],
           "points": 24,
           "worst": 0
         },
@@ -280,7 +308,7 @@ export const tillotson: Class = {
           "driver": "Natalia Brautigam",
           "team": "fmv",
           "country": "CR",
-          "scores": [18.5, 28, 0, 0, 0, 0],
+          "scores": [18.5, 28, 6.5, 0, 0, 0],
           "points": 18.5,
           "worst": 0
         },
@@ -290,7 +318,7 @@ export const tillotson: Class = {
           "driver": "Sebastian Arce",
           "team": "advanced",
           "country": "CR",
-          "scores": [15, 30.5, 0, 0, 0, 0],
+          "scores": [15, 30.5, 4.5, 0, 0, 0],
           "points": 15,
           "worst": 0
         },
@@ -300,7 +328,7 @@ export const tillotson: Class = {
           "driver": "Francesca Morice",
           "team": "fsa",
           "country": "CR",
-          "scores": [12.5, 16, 0, 0, 0, 0],
+          "scores": [12.5, 16, 17, 0, 0, 0],
           "points": 12.5,
           "worst": 0
         },
@@ -310,7 +338,7 @@ export const tillotson: Class = {
           "driver": "Stefano Morice",
           "team": "fsa",
           "country": "CR",
-          "scores": [0, 16.5, 0, 0, 0, 0],
+          "scores": [0, 16.5, 9.5, 0, 0, 0],
           "points": 12.5,
           "worst": 0
         },
@@ -330,7 +358,7 @@ export const tillotson: Class = {
           "driver": "Osvaldo Blanco",
           "team": "independiente",
           "country": "CR",
-          "scores": [12, 10, 0, 0, 0, 0],
+          "scores": [12, 10, 14, 0, 0, 0],
           "points": 12,
           "worst": 0
         },
@@ -360,7 +388,7 @@ export const tillotson: Class = {
           "driver": "Andreas Veuthey",
           "team": "advanced",
           "country": "CR",
-          "scores": [9, 6.5, 0, 0, 0, 0],
+          "scores": [9, 6.5, 5, 0, 0, 0],
           "points": 9,
           "worst": 0
         },
@@ -380,7 +408,17 @@ export const tillotson: Class = {
           "driver": "Aldo Barboza",
           "team": "fsa",
           "country": "CR",
-          "scores": [8.5, 6, 0, 0, 0, 0],
+          "scores": [8.5, 6, 10, 0, 0, 0],
+          "points": 8.5,
+          "worst": 0
+        },
+        {
+          "rank": 13,
+          "number": 942,
+          "driver": "Felipe Aguilar",
+          "team": "formula",
+          "country": "CR",
+          "scores": [0, 6, 19, 0, 0, 0],
           "points": 8.5,
           "worst": 0
         }

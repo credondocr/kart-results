@@ -20,7 +20,7 @@ export const micro: Class = {
                     driver: 'Fede Sequeira',
                     team: 'losprimos',
                     country: 'CR',
-                    scores: [0, 3.5, 0, 0, 0, 0],
+                    scores: [0, 3.5, 15.5, 0, 0, 0],
                     points: 162.5,
                     worst: 0
                 },
@@ -30,7 +30,7 @@ export const micro: Class = {
                     driver: 'Damian Ramirez ',
                     team: 'formula',
                     country: 'CR',
-                    scores: [14, 13, 0, 0, 0, 0],
+                    scores: [14, 13, 18.5, 0, 0, 0],
                     points: 162.5,
                     worst: 0
                 },
@@ -40,7 +40,7 @@ export const micro: Class = {
                     driver: 'Omar Rojas ',
                     team: 'dr-racing',
                     country: 'CR',
-                    scores: [15.5, 12.5, 0, 0, 0, 0],
+                    scores: [15.5, 12.5, 20, 0, 0, 0],
                     points: 162.5,
                     worst: 0
                 },
@@ -50,7 +50,7 @@ export const micro: Class = {
                     driver: 'Leo Yankelewitz ',
                     team: 'mhkarting',
                     country: 'CR',
-                    scores: [17.5, 24, 0, 0, 0, 0],
+                    scores: [17.5, 24, 33, 0, 0, 0],
                     points: 162.5,
                     worst: 0
                 },
@@ -60,7 +60,7 @@ export const micro: Class = {
                     driver: 'Theo Grunwedl',
                     team: 'independiente',
                     country: 'CR',
-                    scores: [25, 37.5, 0, 0, 0, 0],
+                    scores: [25, 37.5, 36, 0, 0, 0],
                     points: 162.5,
                     worst: 0
                 },
@@ -80,7 +80,7 @@ export const micro: Class = {
                     driver: 'Leandro Ramirez',
                     team: 'formula',
                     country: 'CR',
-                    scores: [42.5, 39, 0, 0, 0, 0],
+                    scores: [42.5, 39, 10, 0, 0, 0],
                     points: 112,
                     worst: 0
                 },
@@ -90,7 +90,7 @@ export const micro: Class = {
                     driver: 'Felipe Nanne',
                     team: 'valerio',
                     country: 'CR',
-                    scores: [20, 16, 0, 0, 0, 0],
+                    scores: [20, 16, 26, 0, 0, 0],
                     points: 77,
                     worst: 0
                 },
@@ -100,7 +100,7 @@ export const micro: Class = {
                     driver: 'Alejandro Mendoza',
                     team: 'fmv',
                     country: 'CR',
-                    scores: [33, 17, 0, 0, 0, 0],
+                    scores: [33, 17, 42.5, 0, 0, 0],
                     points: 43.5,
                     worst: 0
                 }

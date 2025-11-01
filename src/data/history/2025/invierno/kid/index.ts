@@ -23,7 +23,7 @@ export const kid: Class = {
           scores: [
             42.5,
             36.5,
-            0,
+            27,
             0,
             0,
             0
@@ -37,7 +37,7 @@ export const kid: Class = {
           driver: 'Mariano Quiros',
           team: 'fsa',
           country: 'CR',
-          scores: [30.5, 29, 0, 0, 0, 0],
+          scores: [30.5, 29, 34, 0, 0, 0],
           points: 152,
           worst: 0
         },
@@ -47,7 +47,7 @@ export const kid: Class = {
           driver: 'Lina Salazar Valerio',
           team: 'valerio',
           country: 'CR',
-          scores: [26, 0, 0, 0, 0, 0],
+          scores: [26, 0, 16, 0, 0, 0],
           points: 178.5,
           worst: 0
         },
@@ -60,7 +60,7 @@ export const kid: Class = {
           scores: [
             26,
             38,
-            0,
+            24.5,
             0,
             0,
             0
@@ -74,7 +74,27 @@ export const kid: Class = {
           driver: 'Clara Salazar Valerio',
           team: 'valerio',
           country: 'CR',
-          scores: [17.5, 0, 0, 0, 0, 0],
+          scores: [17.5, 0, 16.5, 0, 0, 0],
+          points: 38,
+          worst: 0
+        },
+        {
+          rank: 5,
+          number: 9,
+          driver: 'Ernesto Montealegre',
+          team: 'fsa',
+          country: 'CR',
+          scores: [0, 0, 13.5, 0, 0, 0],
+          points: 38,
+          worst: 0
+        },
+        {
+          rank: 5,
+          number: 9,
+          driver: 'Damián Ramírez',
+          team: 'formula',
+          country: 'CR',
+          scores: [0, 0, 0, 42.5, 0, 0],
           points: 38,
           worst: 0
         }
