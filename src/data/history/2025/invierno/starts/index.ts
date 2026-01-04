@@ -20,9 +20,9 @@ export const stars: Class = {
                     "driver": "Isabella Hernandez",
                     "team": "dr-racing",
                     "country": "CR",
-                    "scores": [41.5, 37.5, 27, 0, 0, 0],
+                    "scores": [41.5, 37.5, 27, 42.5, 42.5],
                     "points": 41.5,
-                    "worst": 0
+                    "worst": 27
                 },
                 {
                     "rank": 2,
@@ -30,9 +30,9 @@ export const stars: Class = {
                     "driver": "Mariano Marin",
                     "team": "independiente",
                     "country": "CR",
-                    "scores": [28.5, 27, 23.5, 0, 0, 0],
+                    "scores": [28.5, 27, 23.5, 26, 34],
                     "points": 28.5,
-                    "worst": 0
+                    "worst": 23.5
                 },
                 {
                     "rank": 3,
@@ -40,9 +40,9 @@ export const stars: Class = {
                     "driver": "Mathias Leon",
                     "team": "independiente",
                     "country": "CR",
-                    "scores": [27, 39, 42.5, 0, 0, 0],
+                    "scores": [27, 39, 42.5, 34, 26],
                     "points": 27,
-                    "worst": 0
+                    "worst": 26
                 },
                 {
                     "rank": 4,
@@ -50,9 +50,9 @@ export const stars: Class = {
                     "driver": "Ignacio Siles",
                     "team": "valerio",
                     "country": "CR",
-                    "scores": [18.5, 16, 16, 0, 0, 0],
+                    "scores": [18.5, 16, 16, 14, 14],
                     "points": 18.5,
-                    "worst": 0
+                    "worst": 14
                 },
                 {
                     "rank": 5,
@@ -60,9 +60,9 @@ export const stars: Class = {
                     "driver": "Felipe Fraser",
                     "team": "valerio",
                     "country": "CR",
-                    "scores": [16, 16.5, 17.5, 0, 0, 0],
+                    "scores": [16, 16.5, 17.5, 22.5, 22.5],
                     "points": 16,
-                    "worst": 0
+                    "worst": 16
                 },
                 {
                     "rank": 6,
@@ -70,9 +70,9 @@ export const stars: Class = {
                     "driver": "Juan Pablo Gutierrez",
                     "team": "formula",
                     "country": "CR",
-                    "scores": [15, 14.5, 11.5, 0, 0, 0],
+                    "scores": [15, 14.5, 11.5, 13.5, 12.5],
                     "points": 15,
-                    "worst": 0
+                    "worst": 11.5
                 },
                 {
                     "rank": 7,
@@ -80,7 +80,7 @@ export const stars: Class = {
                     "driver": "Joaquin Solano",
                     "team": "valerio",
                     "country": "CR",
-                    "scores": [15, 0, 27.5, 0, 0, 0],
+                    "scores": [15, 0, 27.5, 0, 0],
                     "points": 15,
                     "worst": 0
                 },
@@ -90,7 +90,7 @@ export const stars: Class = {
                     "driver": "Luciana Brenes",
                     "team": "fsa",
                     "country": "CR",
-                    "scores": [12, 10.5, 0, 0, 0, 0],
+                    "scores": [12, 10.5, 0, 0, 0],
                     "points": 12,
                     "worst": 0
                 },
@@ -100,9 +100,9 @@ export const stars: Class = {
                     "driver": "Emiliano Beirute",
                     "team": "fsa",
                     "country": "CR",
-                    "scores": [11.5, 12, 21, 0, 0, 0],
+                    "scores": [11.5, 12, 13, 16.5, 16.5],
                     "points": 11.5,
-                    "worst": 0
+                    "worst": 12
                 },
                 {
                     "rank": 10,
@@ -110,9 +110,9 @@ export const stars: Class = {
                     "driver": "William Alfaro",
                     "team": "fmv",
                     "country": "CR",
-                    "scores": [11.5, 20.5, 18, 0, 0, 0],
+                    "scores": [11.5, 20.5, 15, 14, 15],
                     "points": 11.5,
-                    "worst": 0
+                    "worst": 11.5
                 }
             ]
         }

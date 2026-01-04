@@ -10,6 +10,10 @@ const LeaderboardTable: React.FC<{ category: Category, season: string, leaderboa
     races = 5
   }
 
+  if (season == "invierno" && leaderboard.year == 2025) {
+    races = 5
+  }
+
   if (category.name == "Equipos") {
     return (
       <LeaderboardTeamTable leaderboard={leaderboard} />

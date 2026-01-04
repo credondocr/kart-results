@@ -20,7 +20,7 @@ export const shifter: Class = {
           driver: 'Daniel Fabregas',
           team: 'independiente',
           country: 'CR',
-          scores: [21, 0, 0, 0, 0, 0],
+          scores: [21, 0, 0, 0, 0],
           points: 134.5,
           worst: 0
         },
@@ -30,7 +30,7 @@ export const shifter: Class = {
           driver: 'Diego Ardiles',
           team: 'fmv',
           country: 'CR',
-          scores: [27, 37.5, 42.5, 0, 0, 0],
+          scores: [27, 37.5, 42.5, 0, 39],
           points: 134.5,
           worst: 0
         },
@@ -40,7 +40,7 @@ export const shifter: Class = {
           driver: 'Daniel Formal',
           team: 'advanced',
           country: 'CR',
-          scores: [42.5, 0, 0, 0, 0, 0],
+          scores: [42.5, 0, 0, 0, 17.5],
           points: 96,
           worst: 0
         },
@@ -50,7 +50,7 @@ export const shifter: Class = {
           driver: 'Nicola Zecchinato',
           team: 'advanced',
           country: 'CR',
-          scores: [9.5, 0, 0, 0, 0, 0],
+          scores: [9.5, 0, 0, 0, 0],
           points: 96,
           worst: 0
         },
@@ -60,7 +60,7 @@ export const shifter: Class = {
           driver: 'Ricardo Esquivel',
           team: 'independiente',
           country: 'CR',
-          scores: [9.5, 14.5, 0, 0, 0, 0],
+          scores: [9.5, 14.5, 0, 0, 0],
           points: 96,
           worst: 0,
           tiebreaker: 2
@@ -71,7 +71,7 @@ export const shifter: Class = {
           driver: 'Jose Montalto',
           team: 'dr-racing',
           country: 'CR',
-          scores: [30, 29, 32, 0, 0, 0],
+          scores: [30, 29, 32, 0, 0],
           points: 96,
           worst: 0
         },
@@ -81,7 +81,7 @@ export const shifter: Class = {
           driver: 'Andres Valdeperas',
           team: 'dr-racing',
           country: 'CR',
-          scores: [18.5, 0, 0, 0, 0, 0],
+          scores: [18.5, 0, 0, 0, 0],
           points: 41,
           worst: 0
         },
@@ -91,7 +91,7 @@ export const shifter: Class = {
           driver: 'Franco Segnini',
           team: 'advanced',
           country: 'CR',
-          scores: [18.5, 0, 0, 0, 0, 0],
+          scores: [18.5, 0, 0, 0, 0],
           points: 34,
           worst: 0
         },
@@ -101,7 +101,7 @@ export const shifter: Class = {
           driver: 'David Gardella',
           team: 'advanced',
           country: 'CR',
-          scores: [0, 0, 14.5, 0, 0, 0],
+          scores: [0, 0, 14.5, 28, 6.5],
           points: 22.5,
           worst: 0
         },
@@ -111,7 +111,7 @@ export const shifter: Class = {
           driver: 'Daniel Parras',
           team: 'valerio',
           country: 'CR',
-          scores: [10, 19, 17.5, 0, 0, 0],
+          scores: [10, 19, 17.5, 0, 0],
           points: 96,
           worst: 0
         },
@@ -121,9 +121,9 @@ export const shifter: Class = {
           driver: 'Daniel Gardella',
           team: 'advanced',
           country: 'CR',
-          scores: [12.5, 25, 22, 0, 0, 0],
+          scores: [12.5, 25, 22, 37.5, 31],
           points: 96,
-          worst: 0
+          worst: 12.5
         },
         {
           rank: 9,
@@ -131,7 +131,7 @@ export const shifter: Class = {
           driver: 'Federico Calvosa',
           team: 'advanced',
           country: 'CR',
-          scores: [11, 17.5, 0, 0, 0, 0],
+          scores: [11, 17.5, 0, 31.5, 8.5],
           points: 96,
           worst: 0
         },
@@ -141,7 +141,37 @@ export const shifter: Class = {
           driver: 'Charlie Fonseca',
           team: 'fsa',
           country: 'CR',
-          scores: [0, 19, 24.5, 0, 0, 0],
+          scores: [0, 19, 24.5, 13, 0],
+          points: 96,
+          worst: 0
+        },
+        {
+          rank: 9,
+          number: 611,
+          driver: 'Mauricio Hernandez',
+          team: 'mhkarting',
+          country: 'CR',
+          scores: [0, 0, 18, 0, 0],
+          points: 96,
+          worst: 0
+        },
+        {
+          rank: 9,
+          number: 657,
+          driver: 'Andres Fonseca',
+          team: 'formula',
+          country: 'CR',
+          scores: [0, 0, 0, 0, 0],
+          points: 96,
+          worst: 0
+        },
+        {
+          rank: 9,
+          number: 600,
+          driver: 'Marjin Kremers',
+          team: 'fsa',
+          country: 'CR',
+          scores: [0, 0, 0, 0, 0],
           points: 96,
           worst: 0
         }

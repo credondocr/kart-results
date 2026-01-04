@@ -20,9 +20,9 @@ export const mini: Class = {
           driver: 'Sofia Calderon',
           team: 'fmv',
           country: 'CR',
-          scores: [31, 35, 26.5, 0, 0, 0],
+          scores: [31, 35, 26.5, 37, 42.5],
           points: 153.5,
-          worst: 0
+          worst: 26.5
         },
         {
           rank: 2,
@@ -30,7 +30,7 @@ export const mini: Class = {
           driver: 'Samuel Chaverri',
           team: 'mhkarting',
           country: 'CR',
-          scores: [22.5, 19, 24, 0, 0, 0],
+          scores: [22.5, 19, 19, 0, 0],
           points: 181.5,
           worst: 0
         },
@@ -40,9 +40,9 @@ export const mini: Class = {
           driver: 'Emilio Wong',
           team: 'dr-racing',
           country: 'CR',
-          scores: [42.5, 22.5, 42, 0, 0, 0],
+          scores: [42.5, 22.5, 24, 33.5, 33],
           points: 114,
-          worst: 0
+          worst: 22.5
         },
         {
           rank: 4,
@@ -50,9 +50,9 @@ export const mini: Class = {
           driver: 'Leandro Ramirez',
           team: 'formula',
           country: 'CR',
-          scores: [18.5, 22.5, 18, 0, 0, 0],
+          scores: [18.5, 22.5, 18, 16, 12.5],
           points: 132,
-          worst: 0
+          worst: 16
         },
         {
           rank: 6,
@@ -60,7 +60,7 @@ export const mini: Class = {
           driver: 'Rafael Cañas',
           team: 'fmv',
           country: 'CR',
-          scores: [0, 0, 0, 0, 0, 0],
+          scores: [0, 0, 0, 0, 0],
           points: 96,
           worst: 0
         },
@@ -70,7 +70,7 @@ export const mini: Class = {
           driver: 'Jaden Spielman',
           team: 'fsa',
           country: 'CR',
-          scores: [13.5, 16, 22.5, 0, 0, 0],
+          scores: [13.5, 16, 22.5, 29, 20],
           points: 96,
           worst: 0
         },
@@ -80,9 +80,9 @@ export const mini: Class = {
           driver: 'Emilio Bolaños',
           team: 'fsa',
           country: 'CR',
-          scores: [23, 36.5, 42.5, 0, 0, 0],
+          scores: [23, 36.5, 42.5, 19.5, 22],
           points: 96,
-          worst: 0
+          worst: 19.5
         },
         {
           rank: 9,
@@ -90,9 +90,9 @@ export const mini: Class = {
           driver: 'Carlos Andrés Valverde',
           team: 'formula',
           country: 'CR',
-          scores: [15, 15.5, 15.5, 0, 0, 0],
+          scores: [15, 15.5, 15.5, 5, 8],
           points: 96,
-          worst: 0
+          worst: 5
         },
         {
           rank: 9,
@@ -100,9 +100,9 @@ export const mini: Class = {
           driver: 'Chayton Rodriguez',
           team: 'formula',
           country: 'CR',
-          scores: [14.5, 10, 12, 0, 0, 0],
+          scores: [14.5, 10, 12, 9, 13],
           points: 96,
-          worst: 0
+          worst: 9
         },
         {
           rank: 9,
@@ -110,7 +110,7 @@ export const mini: Class = {
           driver: 'Makya Rodriguez',
           team: 'valerio',
           country: 'CR',
-          scores: [12, 11.5, 9, 0, 0, 0],
+          scores: [12, 11.5, 9, 16.5, 13],
           points: 96,
           worst: 0
         },
@@ -120,7 +120,37 @@ export const mini: Class = {
           driver: 'Rafael Buonafina',
           team: 'valerio',
           country: 'CR',
-          scores: [10, 14, 13.5, 0, 0, 0],
+          scores: [10, 14, 13.5, 12.5, 11],
+          points: 96,
+          worst: 10
+        },
+        {
+          rank: 9,
+          number: 528,
+          driver: 'Nico Salazar',
+          team: 'valerio',
+          country: 'CR',
+          scores: [0, 0, 0, 16.5, 21.5],
+          points: 96,
+          worst: 0
+        },
+        {
+          rank: 9,
+          number: 510,
+          driver: 'Felipe Fraser',
+          team: 'valerio',
+          country: 'CR',
+          scores: [0, 0, 0, 10.5, 7.5],
+          points: 96,
+          worst: 0
+        },
+        {
+          rank: 9,
+          number: 569,
+          driver: 'Jacobo Agudelo',
+          team: 'valerio',
+          country: 'CR',
+          scores: [0, 0, 0, 0, 9.5],
           points: 96,
           worst: 0
         }

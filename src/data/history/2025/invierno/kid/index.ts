@@ -24,12 +24,11 @@ export const kid: Class = {
             42.5,
             36.5,
             27,
-            0,
-            0,
-            0
+            31,
+            34,
           ],
           points: 231.5,
-          worst: 0
+          worst: 27
         },
         {
           rank: 2,
@@ -37,7 +36,7 @@ export const kid: Class = {
           driver: 'Mariano Quiros',
           team: 'fsa',
           country: 'CR',
-          scores: [30.5, 29, 34, 0, 0, 0],
+          scores: [30.5, 29, 34, 0, 0],
           points: 152,
           worst: 0
         },
@@ -47,7 +46,7 @@ export const kid: Class = {
           driver: 'Lina Salazar Valerio',
           team: 'valerio',
           country: 'CR',
-          scores: [26, 0, 16, 0, 0, 0],
+          scores: [26, 0, 16, 11, 18.5],
           points: 178.5,
           worst: 0
         },
@@ -60,13 +59,12 @@ export const kid: Class = {
           scores: [
             26,
             38,
-            24.5,
-            0,
-            0,
-            0
+            21.5,
+            32,
+            23.5,
           ],
           points: 150,
-          worst: 0
+          worst: 21.5
         },
         {
           rank: 5,
@@ -74,7 +72,7 @@ export const kid: Class = {
           driver: 'Clara Salazar Valerio',
           team: 'valerio',
           country: 'CR',
-          scores: [17.5, 0, 16.5, 0, 0, 0],
+          scores: [17.5, 0, 16.5, 13, 24],
           points: 38,
           worst: 0
         },
@@ -84,7 +82,7 @@ export const kid: Class = {
           driver: 'Ernesto Montealegre',
           team: 'fsa',
           country: 'CR',
-          scores: [0, 0, 13.5, 0, 0, 0],
+          scores: [0, 0, 13.5, 0, 0],
           points: 38,
           worst: 0
         },
@@ -94,7 +92,7 @@ export const kid: Class = {
           driver: 'Damián Ramírez',
           team: 'formula',
           country: 'CR',
-          scores: [0, 0, 0, 42.5, 0, 0],
+          scores: [0, 0, 42.5, 40.5, 42.5],
           points: 38,
           worst: 0
         }
