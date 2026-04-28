@@ -49,7 +49,7 @@ export const vlr: Class = {
       results: [
         { rank: 1, number: 337, driver: 'Danny Formal', team: 'advanced', country: 'CR', scores: [37.5, 37.5, 0, 0, 0], points: 75, worst: 0 },
         { rank: 2, number: 323, driver: 'Diego Ardiles', team: 'independiente', country: 'CR', scores: [25.5, 33, 0, 0, 0], points: 58.5, worst: 0 },
-        { rank: 3, number: 300, driver: 'Marijn Kremers', team: 'independiente', country: 'CR', scores: [23.5, 32, 0, 0, 0], points: 55.5, worst: 0 },
+        { rank: 3, number: 300, driver: 'Marijn Kremers', team: 'fsa', country: 'NL', scores: [23.5, 32, 0, 0, 0], points: 55.5, worst: 0 },
         { rank: 4, number: 336, driver: 'Jose Ale. Halpen', team: 'independiente', country: 'CR', scores: [15, 22.5, 0, 0, 0], points: 37.5, worst: 0 },
         { rank: 5, number: 317, driver: 'Mauricio Hernandez', team: 'mhkarting', country: 'CR', scores: [14, 17.5, 0, 0, 0], points: 20, worst: 0 },
         { rank: 6, number: 329, driver: 'Luis Fer. Cedeño', team: 'fmv', country: 'CR', scores: [21.5, 6, 0, 0, 0], points: 27.5, worst: 0 },
@@ -82,7 +82,7 @@ export const vlr: Class = {
         { rank: 33, number: 336, driver: 'Luiciana Pazos', team: 'independiente', country: 'CR', scores: [0, 0, 0, 0, 0], points: 0, worst: 0 },
         { rank: 34, number: 343, driver: 'Aldo Barboza', team: 'fsa', country: 'CR', scores: [0, 0, 0, 0, 0], points: 0, worst: 0 },
         { rank: 35, number: 386, driver: 'Tomas Camacho', team: 'fsa', country: 'CR', scores: [0, 0, 0, 0, 0], points: 0, worst: 0 },
-        { rank: 36, number: 390, driver: 'Federico Rojas', team: 'independiente', country: 'CR', scores: [0, 0, 0, 0, 0], points: 0, worst: 0 },
+        { rank: 36, number: 390, driver: 'Federico Rojas', team: 'dr-racing', country: 'CR', scores: [0, 0, 0, 0, 0], points: 0, worst: 0 },
         { rank: 37, number: 371, driver: 'Alessandro Carboni', team: 'advanced', country: 'CR', scores: [0, 0, 0, 0, 0], points: 0, worst: 0 },
       ]
     }
