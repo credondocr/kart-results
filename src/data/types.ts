@@ -1,7 +1,7 @@
 export interface RaceResult {
   points?: number;
   rank?: number
-  number: number;
+  number: number | string;
   country: string;
   driver: string;
   team: string;

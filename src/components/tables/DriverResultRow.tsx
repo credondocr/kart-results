@@ -6,7 +6,7 @@ import TeamLogo from '@/app/components/TeamLogo';
 
 interface DriverResultRowProps {
   rank: number;
-  number: number;
+  number: number | string;
   driver: string;
   country: string;
   team: string;

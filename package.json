@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export-pilot-map": "tsx -r tsconfig-paths/register scripts/exportPilotMap.ts"
+    "export-pilot-map": "tsx -r tsconfig-paths/register scripts/exportPilotMap.ts",
+    "import:standings": "tsx -r tsconfig-paths/register scripts/import-standings.ts",
+    "seed:pilots": "tsx -r tsconfig-paths/register scripts/seedPilots.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
@@ -45,6 +47,7 @@
     "dotenv": "^16.4.7",
     "eslint": "^9",
     "eslint-config-next": "15.1.2",
+    "pdfjs-dist": "^5.6.205",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
