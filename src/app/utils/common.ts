@@ -24,7 +24,7 @@ export function calculatePointsAndSort(classes: Class[]) {
 }
 
 export const calculateGeneralPoints = (invierno: Leaderboard, verano: Leaderboard) => {
-  const combinedResults: Record<number, { driver: string; points: number }> = {};
+  const combinedResults: Record<string, { driver: string; points: number }> = {};
 
   const mergeResults = (leaderboard: Leaderboard) => {
     leaderboard.classes.forEach((cls) => {
@@ -49,7 +49,7 @@ export const calculateGeneralPoints = (invierno: Leaderboard, verano: Leaderboar
 };
 
 export const calculateGeneralPointsByCategory = (invierno: Leaderboard, verano: Leaderboard) => {
-  const combinedResults: Record<string, Record<number, { driver: string; points: number }>> = {};
+  const combinedResults: Record<string, Record<string, { driver: string; points: number }>> = {};
 
   const mergeResults = (leaderboard: Leaderboard) => {
     leaderboard.classes.forEach((cls) => {
@@ -76,8 +76,8 @@ export const calculateGeneralPointsByCategory = (invierno: Leaderboard, verano: 
 
   // Ordenar por puntos dentro de cada categoría
   Object.keys(combinedResults).forEach((category) => {
-    combinedResults[category] = Object.values(combinedResults[category]).sort(
-      (a, b) => b.points - a.points
+    combinedResults[category] = Object.fromEntries(
+      Object.entries(combinedResults[category]).sort(([, a], [, b]) => b.points - a.points)
     );
   });
 

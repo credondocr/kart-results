@@ -1,0 +1,2194 @@
+{
+  "abraham murillo": {
+    "name": "Abraham Murillo",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv"
+    },
+    "country": "CR"
+  },
+  "adrian salazar": {
+    "name": "Adrian Salazar",
+    "team": "unknown",
+    "teams": {
+      "2024": "unknown"
+    },
+    "country": "CR"
+  },
+  "alan salazar": {
+    "name": "Alan Salazar",
+    "team": "fmv",
+    "teams": {
+      "2025": "fmv"
+    },
+    "country": "CR"
+  },
+  "alberto hernandez": {
+    "name": "Alberto Hernandez",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "alberto rojas segura": {
+    "name": "Alberto Rojas Segura",
+    "team": "advanced",
+    "teams": {
+      "2024": "advanced",
+      "2025": "advanced"
+    },
+    "country": "CR"
+  },
+  "alberto soto": {
+    "name": "Alberto Soto",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv"
+    },
+    "country": "CR"
+  },
+  "aldo barboza": {
+    "name": "Aldo Barboza",
+    "team": "fsa",
+    "teams": {
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "aldo vincenti": {
+    "name": "Aldo Vincenti",
+    "team": "fmv",
+    "teams": {
+      "2025": "fmv"
+    },
+    "country": "CR"
+  },
+  "alejandro mendoza": {
+    "name": "Alejandro Mendoza",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv",
+      "2025": "fmv",
+      "2026": "fmv"
+    },
+    "country": "CR"
+  },
+  "alessandro calvosa": {
+    "name": "Alessandro Calvosa",
+    "team": "dr-racing",
+    "teams": {
+      "2025": "dr-racing",
+      "2026": "dr-racing"
+    },
+    "country": "CR"
+  },
+  "alessandro carboni": {
+    "name": "Alessandro Carboni",
+    "team": "advanced",
+    "teams": {
+      "2024": "advanced",
+      "2025": "advanced",
+      "2026": "advanced"
+    },
+    "country": "CR"
+  },
+  "alonso gonzalez": {
+    "name": "Alonso Gonzalez",
+    "team": "fsa",
+    "teams": {
+      "2025": "fsa"
+    },
+    "country": "DO"
+  },
+  "alvaro golfin": {
+    "name": "Alvaro Golfin",
+    "team": "advanced",
+    "teams": {
+      "2024": "advanced"
+    },
+    "country": "CR"
+  },
+  "amadeo quiros": {
+    "name": "Amadeo Quirós",
+    "team": "fsa",
+    "teams": {
+      "2025": "fsa"
+    },
+    "country": "CR"
+  },
+  "amador martinez": {
+    "name": "Amador Martinez",
+    "team": "fsa",
+    "teams": {
+      "2025": "fsa"
+    },
+    "country": "CO"
+  },
+  "andreas veuthey": {
+    "name": "Andreas Veuthey",
+    "team": "advanced",
+    "teams": {
+      "2025": "advanced",
+      "2026": "advanced"
+    },
+    "country": "CR"
+  },
+  "andres ardiles": {
+    "name": "Andres Ardiles",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv",
+      "2025": "fmv",
+      "2026": "fmv"
+    },
+    "country": "CR"
+  },
+  "andres dumith": {
+    "name": "Andres Dumith",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv",
+      "2025": "fmv",
+      "2026": "fmv"
+    },
+    "country": "CR"
+  },
+  "andres fonseca": {
+    "name": "Andres Fonseca",
+    "team": "formula",
+    "teams": {
+      "2024": "formula",
+      "2025": "formula",
+      "2026": "formula"
+    },
+    "country": "CR"
+  },
+  "andres valdeperas": {
+    "name": "Andres Valdeperas",
+    "team": "formula",
+    "teams": {
+      "2024": "formula",
+      "2025": "formula"
+    },
+    "country": "CR"
+  },
+  "andres valldeperas": {
+    "name": "Andres Valldeperas",
+    "team": "formula",
+    "teams": {
+      "2024": "formula",
+      "2025": "dr-racing",
+      "2026": "formula"
+    },
+    "country": "CR"
+  },
+  "anouk valerio": {
+    "name": "Anouk Valerio",
+    "team": "valerio",
+    "teams": {
+      "2024": "valerio",
+      "2025": "valerio",
+      "2026": "valerio"
+    },
+    "country": "CR"
+  },
+  "antonio quesada": {
+    "name": "Antonio Quesada",
+    "team": "losprimos",
+    "teams": {
+      "2024": "losprimos"
+    },
+    "country": "CR"
+  },
+  "ariadna calderon": {
+    "name": "Ariadna Calderon",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv"
+    },
+    "country": "CR"
+  },
+  "augusto acevedo": {
+    "name": "Augusto Acevedo",
+    "team": "fsa",
+    "teams": {
+      "2024": "fsa",
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "axel cabrera": {
+    "name": "Axel Cabrera",
+    "team": "fsa",
+    "teams": {
+      "2025": "fsa"
+    },
+    "country": "DO"
+  },
+  "ayrton hayes": {
+    "name": "Ayrton Hayes",
+    "team": "mhkarting",
+    "teams": {
+      "2024": "mhkarting",
+      "2025": "mhkarting",
+      "2026": "mhkarting"
+    },
+    "country": "CR"
+  },
+  "benjamin beckley": {
+    "name": "Benjamin Beckley",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv"
+    },
+    "country": "CR"
+  },
+  "bernal valverde": {
+    "name": "Bernal Valverde",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv",
+      "2025": "fmv",
+      "2026": "fmv"
+    },
+    "country": "CR"
+  },
+  "camila moreno": {
+    "name": "Camila Moreno",
+    "team": "losprimos",
+    "teams": {
+      "2024": "losprimos",
+      "2025": "losprimos"
+    },
+    "country": "CR"
+  },
+  "camila nieto": {
+    "name": "Camila Nieto",
+    "team": "fmv",
+    "teams": {
+      "2025": "fmv"
+    },
+    "country": "CR"
+  },
+  "carlos andres valverde": {
+    "name": "Carlos Andres Valverde",
+    "team": "formula",
+    "teams": {
+      "2024": "formula",
+      "2025": "formula",
+      "2026": "formula"
+    },
+    "country": "CR"
+  },
+  "carlos murillo": {
+    "name": "Carlos Murillo",
+    "team": "formula",
+    "teams": {
+      "2025": "formula",
+      "2026": "formula"
+    },
+    "country": "CR"
+  },
+  "cesar redondo": {
+    "name": "Cesar Redondo",
+    "team": "fsa",
+    "teams": {
+      "2024": "fsa",
+      "2025": "fsa"
+    },
+    "country": "CR"
+  },
+  "charlie fonseca": {
+    "name": "Charlie Fonseca",
+    "team": "fsa",
+    "teams": {
+      "2024": "fsa",
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "chayton rodriguez": {
+    "name": "Chayton Rodriguez",
+    "team": "formula",
+    "teams": {
+      "2024": "valerio",
+      "2025": "valerio",
+      "2026": "formula"
+    },
+    "country": "CR"
+  },
+  "clara salazar valerio": {
+    "name": "Clara Salazar Valerio",
+    "team": "valerio",
+    "teams": {
+      "2025": "valerio",
+      "2026": "valerio"
+    },
+    "country": "CR"
+  },
+  "clemente cuevas": {
+    "name": "Clemente Cuevas",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "damian caceres": {
+    "name": "Damian Caceres",
+    "team": "",
+    "country": ""
+  },
+  "damian ramirez": {
+    "name": "Damian Ramirez",
+    "team": "formula",
+    "teams": {
+      "2024": "formula",
+      "2025": "formula",
+      "2026": "formula"
+    },
+    "country": "CR"
+  },
+  "daniel fabregas": {
+    "name": "Daniel Fabregas",
+    "team": "independiente",
+    "teams": {
+      "2025": "independiente",
+      "2026": "independiente"
+    },
+    "country": "CR",
+    "aliases": [
+      "daniel fabrega"
+    ]
+  },
+  "daniel formal": {
+    "name": "Daniel Formal",
+    "team": "advanced",
+    "teams": {
+      "2024": "advanced",
+      "2025": "advanced"
+    },
+    "country": "CR"
+  },
+  "daniel gardella": {
+    "name": "Daniel Gardella",
+    "team": "fsa",
+    "teams": {
+      "2024": "fsa",
+      "2025": "fsa"
+    },
+    "country": "US"
+  },
+  "daniel mendez": {
+    "name": "Daniel Mendez",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv"
+    },
+    "country": "CR"
+  },
+  "daniel parras": {
+    "name": "Daniel Parras",
+    "team": "advanced",
+    "teams": {
+      "2025": "advanced"
+    },
+    "country": "GT"
+  },
+  "daniel sequeira": {
+    "name": "Daniel Sequeira",
+    "team": "independiente",
+    "teams": {
+      "2024": "losprimos",
+      "2025": "losprimos",
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "daniel venegas": {
+    "name": "Daniel Venegas",
+    "team": "",
+    "country": ""
+  },
+  "daniela dorado": {
+    "name": "Daniela Dorado",
+    "team": "fsa",
+    "teams": {
+      "2024": "fsa",
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "danny formal": {
+    "name": "Danny Formal",
+    "team": "advanced",
+    "teams": {
+      "2024": "advanced",
+      "2025": "advanced",
+      "2026": "advanced"
+    },
+    "country": "CR"
+  },
+  "david gardella": {
+    "name": "David Gardella",
+    "team": "advanced",
+    "teams": {
+      "2024": "fsa",
+      "2025": "advanced",
+      "2026": "advanced"
+    },
+    "country": "CR"
+  },
+  "david gardella sr": {
+    "name": "David Gardella Sr",
+    "team": "advanced",
+    "teams": {
+      "2024": "fsa",
+      "2025": "advanced",
+      "2026": "advanced"
+    },
+    "country": "CR"
+  },
+  "diego alvarado": {
+    "name": "Diego Alvarado",
+    "team": "",
+    "country": ""
+  },
+  "diego ardiles": {
+    "name": "Diego Ardiles",
+    "team": "independiente",
+    "teams": {
+      "2024": "fmv",
+      "2025": "fmv",
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "diego mejia": {
+    "name": "Diego Mejia",
+    "team": "fsa",
+    "teams": {
+      "2024": "fsa",
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "dieter breisig": {
+    "name": "Dieter Breisig",
+    "team": "unknown",
+    "teams": {
+      "2024": "unknown"
+    },
+    "country": "CR"
+  },
+  "edder herrera": {
+    "name": "Edder Herrera",
+    "team": "independiente",
+    "teams": {
+      "2025": "fsa",
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "eduardo glenn": {
+    "name": "Eduardo Glenn",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv",
+      "2025": "fmv"
+    },
+    "country": "CR"
+  },
+  "eliam leiton": {
+    "name": "Eliam Leiton",
+    "team": "",
+    "country": ""
+  },
+  "emil brautigam": {
+    "name": "Emil Brautigam",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv",
+      "2025": "fmv",
+      "2026": "fmv"
+    },
+    "country": "CR"
+  },
+  "emiliano beirute": {
+    "name": "Emiliano Beirute",
+    "team": "independiente",
+    "teams": {
+      "2025": "fsa",
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "emiliano cisneros": {
+    "name": "Emiliano Cisneros",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "emilio bolanos": {
+    "name": "Emilio Bolaños",
+    "team": "fsa",
+    "teams": {
+      "2024": "fsa",
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "emilio patino": {
+    "name": "Emilio Patiño",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "emilio penzo": {
+    "name": "Emilio Penzo",
+    "team": "valerio",
+    "teams": {
+      "2025": "valerio"
+    },
+    "country": "CR"
+  },
+  "emilio wong": {
+    "name": "Emilio Wong",
+    "team": "dr-racing",
+    "teams": {
+      "2024": "advanced",
+      "2025": "dr-racing",
+      "2026": "dr-racing"
+    },
+    "country": "CR"
+  },
+  "emma mora": {
+    "name": "Emma Mora",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv"
+    },
+    "country": "CR"
+  },
+  "emmanuel benitez": {
+    "name": "Emmanuel Benitez",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "enzo formal": {
+    "name": "Enzo Formal",
+    "team": "advanced",
+    "teams": {
+      "2024": "advanced",
+      "2025": "advanced",
+      "2026": "advanced"
+    },
+    "country": "CR"
+  },
+  "erick brenes": {
+    "name": "Erick Brenes",
+    "team": "advanced",
+    "teams": {
+      "2024": "advanced",
+      "2025": "advanced",
+      "2026": "advanced"
+    },
+    "country": "CR"
+  },
+  "erick mauricio brenes": {
+    "name": "Erick Mauricio Brenes",
+    "team": "advanced",
+    "teams": {
+      "2024": "advanced"
+    },
+    "country": "CR"
+  },
+  "ernesto montealegre": {
+    "name": "Ernesto Montealegre",
+    "team": "fsa",
+    "teams": {
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "esteban calderon": {
+    "name": "Esteban Calderon",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "esteban hernandez": {
+    "name": "Esteban Hernandez",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "evan michelini": {
+    "name": "Evan Michelini",
+    "team": "advanced",
+    "teams": {
+      "2025": "advanced"
+    },
+    "country": "CR"
+  },
+  "ezequiel gomez": {
+    "name": "Ezequiel Gomez",
+    "team": "valerio",
+    "teams": {
+      "2024": "valerio"
+    },
+    "country": "CR"
+  },
+  "fabian acevedo": {
+    "name": "Fabian Acevedo",
+    "team": "fsa",
+    "teams": {
+      "2024": "fsa",
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "fabian vargas": {
+    "name": "Fabian Vargas",
+    "team": "valerio",
+    "teams": {
+      "2024": "valerio"
+    },
+    "country": "CR"
+  },
+  "fabricio montoya": {
+    "name": "Fabricio Montoya",
+    "team": "valerio",
+    "teams": {
+      "2024": "valerio"
+    },
+    "country": "CR"
+  },
+  "fede sequeira": {
+    "name": "Fede Sequeira",
+    "team": "independiente",
+    "teams": {
+      "2024": "losprimos",
+      "2025": "losprimos",
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "federico calvosa": {
+    "name": "Federico Calvosa",
+    "team": "advanced",
+    "teams": {
+      "2025": "advanced",
+      "2026": "advanced"
+    },
+    "country": "CR"
+  },
+  "federico rojas": {
+    "name": "Federico Rojas",
+    "team": "dr-racing",
+    "teams": {
+      "2024": "fmv",
+      "2025": "dr-racing",
+      "2026": "dr-racing"
+    },
+    "country": "CR"
+  },
+  "felipe aguilar": {
+    "name": "Felipe Aguilar",
+    "team": "formula",
+    "teams": {
+      "2025": "formula"
+    },
+    "country": "CR"
+  },
+  "felipe carvajal": {
+    "name": "Felipe Carvajal",
+    "team": "",
+    "country": ""
+  },
+  "felipe fraser": {
+    "name": "Felipe Fraser",
+    "team": "valerio",
+    "teams": {
+      "2025": "epson",
+      "2026": "valerio"
+    },
+    "country": "CR"
+  },
+  "felipe hernandez": {
+    "name": "Felipe Hernandez",
+    "team": "fsa",
+    "teams": {
+      "2024": "advanced",
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "felipe moreira": {
+    "name": "Felipe Moreira",
+    "team": "",
+    "country": ""
+  },
+  "felipe nanne": {
+    "name": "Felipe Nanne",
+    "team": "independiente",
+    "teams": {
+      "2024": "valerio",
+      "2025": "valerio",
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "felipe vargas": {
+    "name": "Felipe Vargas",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv"
+    },
+    "country": "CR"
+  },
+  "felipe zeledon": {
+    "name": "Felipe Zeledon",
+    "team": "",
+    "country": ""
+  },
+  "fernan montealegre": {
+    "name": "Fernan Montealegre",
+    "team": "fsa",
+    "teams": {
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "fernando rojas": {
+    "name": "Fernando Rojas",
+    "team": "",
+    "country": ""
+  },
+  "filippo tucci": {
+    "name": "Filippo Tucci",
+    "team": "unknown",
+    "teams": {
+      "2024": "unknown"
+    },
+    "country": "CR"
+  },
+  "francesca morice": {
+    "name": "Francesca Morice",
+    "team": "fsa",
+    "teams": {
+      "2024": "fsa",
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "francisco acuna": {
+    "name": "Francisco Acuña",
+    "team": "mhkarting",
+    "teams": {
+      "2025": "mhkarting",
+      "2026": "mhkarting"
+    },
+    "country": "CR"
+  },
+  "franco segnini": {
+    "name": "Franco Segnini",
+    "team": "advanced",
+    "teams": {
+      "2024": "advanced",
+      "2025": "advanced",
+      "2026": "advanced"
+    },
+    "country": "CR"
+  },
+  "frederik lund": {
+    "name": "Frederik Lund",
+    "team": "valerio",
+    "teams": {
+      "2024": "valerio"
+    },
+    "country": "CR"
+  },
+  "gabriel cano": {
+    "name": "Gabriel Cano",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "gabriel fabrega": {
+    "name": "Gabriel Fabrega",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv",
+      "2026": "fmv"
+    },
+    "country": "CR"
+  },
+  "gabriel kawer": {
+    "name": "Gabriel Kawer",
+    "team": "advanced",
+    "teams": {
+      "2024": "advanced",
+      "2025": "advanced"
+    },
+    "country": "CR"
+  },
+  "gabriel valverde": {
+    "name": "Gabriel Valverde",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv"
+    },
+    "country": "CR"
+  },
+  "george farrel": {
+    "name": "George Farrel",
+    "team": "fsa",
+    "teams": {
+      "2025": "fsa"
+    },
+    "country": "US"
+  },
+  "gerardo moreno": {
+    "name": "Gerardo Moreno",
+    "team": "mhkarting",
+    "teams": {
+      "2024": "fmv",
+      "2025": "mhkarting",
+      "2026": "mhkarting"
+    },
+    "country": "CR"
+  },
+  "guillermo rodriguez": {
+    "name": "Guillermo Rodriguez",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "guto mendes": {
+    "name": "Guto Mendes",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "henry nanne": {
+    "name": "Henry Nanne",
+    "team": "valerio",
+    "teams": {
+      "2024": "valerio",
+      "2025": "valerio",
+      "2026": "valerio"
+    },
+    "country": "CR"
+  },
+  "ian leon": {
+    "name": "Ian Leon",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "ian sebastian leon": {
+    "name": "Ian Sebastian Leon",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "ignacio siles": {
+    "name": "Ignacio Siles",
+    "team": "valerio",
+    "teams": {
+      "2025": "valerio"
+    },
+    "country": "CR"
+  },
+  "isaac zuniga": {
+    "name": "Isaac Zuñiga",
+    "team": "",
+    "country": ""
+  },
+  "isabella hernandez": {
+    "name": "Isabella Hernandez",
+    "team": "dr-racing",
+    "teams": {
+      "2024": "advanced",
+      "2025": "dr-racing",
+      "2026": "dr-racing"
+    },
+    "country": "CR"
+  },
+  "isabella valldeperas": {
+    "name": "Isabella Valldeperas",
+    "team": "advanced",
+    "teams": {
+      "2024": "advanced",
+      "2025": "advanced"
+    },
+    "country": "CR"
+  },
+  "jacobo agudelo": {
+    "name": "Jacobo Agudelo",
+    "team": "valerio",
+    "teams": {
+      "2025": "valerio"
+    },
+    "country": "CR"
+  },
+  "jaden spielman": {
+    "name": "Jaden Spielman",
+    "team": "fsa",
+    "teams": {
+      "2024": "fsa",
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "javier jose mora": {
+    "name": "Javier Jose Mora",
+    "team": "mhkarting",
+    "teams": {
+      "2024": "mhkarting",
+      "2025": "mhkarting"
+    },
+    "country": "CR"
+  },
+  "javier mora": {
+    "name": "Javier Mora",
+    "team": "mhkarting",
+    "teams": {
+      "2026": "mhkarting"
+    },
+    "country": "CR"
+  },
+  "jean valerio": {
+    "name": "Jean Valerio",
+    "team": "",
+    "country": ""
+  },
+  "jeronimo coral": {
+    "name": "Jeronimo Coral",
+    "team": "fsa",
+    "teams": {
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "jian luca pastore": {
+    "name": "Jian Luca Pastore",
+    "team": "mhkarting",
+    "teams": {
+      "2024": "mhkarting",
+      "2025": "mhkarting"
+    },
+    "country": "CR"
+  },
+  "joaquin solano": {
+    "name": "Joaquin Solano",
+    "team": "valerio",
+    "teams": {
+      "2025": "valerio",
+      "2026": "valerio"
+    },
+    "country": "CR"
+  },
+  "john antonino": {
+    "name": "John Antonino",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "jorge guerra": {
+    "name": "Jorge Guerra",
+    "team": "fsa",
+    "teams": {
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "jose ale. halpen": {
+    "name": "Jose Ale. Halpen",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "jose alejandro halphen": {
+    "name": "Jose Alejandro Halphen",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv"
+    },
+    "country": "PA"
+  },
+  "jose antonio halphen": {
+    "name": "Jose Antonio Halphen",
+    "team": "fmv",
+    "teams": {
+      "2025": "fmv"
+    },
+    "country": "CR"
+  },
+  "jose hernandez": {
+    "name": "Jose Hernandez",
+    "team": "mhkarting",
+    "teams": {
+      "2024": "mhkarting",
+      "2025": "mhkarting"
+    },
+    "country": "CR"
+  },
+  "jose montalto": {
+    "name": "Jose Montalto",
+    "team": "dr-racing",
+    "teams": {
+      "2024": "fsa",
+      "2025": "dr-racing",
+      "2026": "dr-racing"
+    },
+    "country": "CR"
+  },
+  "jose pablo garita": {
+    "name": "Jose Pablo Garita",
+    "team": "",
+    "country": ""
+  },
+  "josue calderon": {
+    "name": "Josue Calderon",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "juan pablo gutierrez": {
+    "name": "Juan Pablo Gutierrez",
+    "team": "formula",
+    "teams": {
+      "2025": "formula"
+    },
+    "country": "CR"
+  },
+  "juan pablo patino": {
+    "name": "Juan Pablo Patiño",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "julian de la cruz": {
+    "name": "Julian de la Cruz",
+    "team": "fsa",
+    "teams": {
+      "2024": "fsa"
+    },
+    "country": "CR"
+  },
+  "julian de oliva": {
+    "name": "Julian De Oliva",
+    "team": "fmv",
+    "teams": {
+      "2025": "fmv",
+      "2026": "fmv"
+    },
+    "country": "CR"
+  },
+  "julian guevara": {
+    "name": "Julian Guevara",
+    "team": "fsa",
+    "teams": {
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "julian gutierrez": {
+    "name": "Julian Gutierrez",
+    "team": "fsa",
+    "teams": {
+      "2024": "fsa"
+    },
+    "country": "CR"
+  },
+  "julian lahmann": {
+    "name": "Julian Lahmann",
+    "team": "formula",
+    "teams": {
+      "2024": "formula",
+      "2025": "formula"
+    },
+    "country": "CR"
+  },
+  "julian regueyra": {
+    "name": "Julian Regueyra",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv"
+    },
+    "country": "CR"
+  },
+  "julian serrano": {
+    "name": "Julian Serrano",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv",
+      "2025": "fmv",
+      "2026": "fmv"
+    },
+    "country": "CR"
+  },
+  "julian solis": {
+    "name": "Julian Solis",
+    "team": "fsa",
+    "teams": {
+      "2025": "fsa"
+    },
+    "country": "CR"
+  },
+  "keylor gutierrez": {
+    "name": "Keylor Gutierrez",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "lautaro otero": {
+    "name": "Lautaro Otero",
+    "team": "advanced",
+    "teams": {
+      "2024": "advanced",
+      "2025": "advanced"
+    },
+    "country": "CR"
+  },
+  "leandro ramirez": {
+    "name": "Leandro Ramirez",
+    "team": "formula",
+    "teams": {
+      "2024": "formula",
+      "2025": "formula",
+      "2026": "formula"
+    },
+    "country": "CR"
+  },
+  "leo yankelewitz": {
+    "name": "Leo Yankelewitz",
+    "team": "mhkarting",
+    "teams": {
+      "2025": "mhkarting",
+      "2026": "mhkarting"
+    },
+    "country": "CR"
+  },
+  "leonardo paradise": {
+    "name": "Leonardo Paradise",
+    "team": "",
+    "country": ""
+  },
+  "lina salazar valerio": {
+    "name": "Lina Salazar Valerio",
+    "team": "valerio",
+    "teams": {
+      "2025": "valerio"
+    },
+    "country": "CR"
+  },
+  "lineth valerio": {
+    "name": "Lineth Valerio",
+    "team": "valerio",
+    "teams": {
+      "2024": "valerio"
+    },
+    "country": "CR"
+  },
+  "lisandro salas": {
+    "name": "Lisandro Salas",
+    "team": "advanced",
+    "teams": {
+      "2024": "advanced"
+    },
+    "country": "CR"
+  },
+  "luca albanese": {
+    "name": "Luca Albanese",
+    "team": "mhkarting",
+    "teams": {
+      "2024": "mhkarting",
+      "2025": "mhkarting"
+    },
+    "country": "CR"
+  },
+  "luca de la cruz": {
+    "name": "Luca de la Cruz",
+    "team": "fsa",
+    "teams": {
+      "2024": "fsa"
+    },
+    "country": "CR"
+  },
+  "luciana aguilar": {
+    "name": "Luciana Aguilar",
+    "team": "fsa",
+    "teams": {
+      "2024": "fmv",
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "luciana brenes": {
+    "name": "Luciana Brenes",
+    "team": "fsa",
+    "teams": {
+      "2025": "fsa"
+    },
+    "country": "CR"
+  },
+  "luciana morales": {
+    "name": "Luciana Morales",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv",
+      "2025": "fmv"
+    },
+    "country": "CR"
+  },
+  "luciana pazos": {
+    "name": "Luciana Pazos",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR",
+    "aliases": [
+      "luiciana pazos"
+    ]
+  },
+  "luciano albanese": {
+    "name": "Luciano Albanese",
+    "team": "mhkarting",
+    "teams": {
+      "2024": "mhkarting",
+      "2025": "mhkarting",
+      "2026": "mhkarting"
+    },
+    "country": "CR"
+  },
+  "luciano albanesse": {
+    "name": "Luciano Albanesse",
+    "team": "mhkarting",
+    "teams": {
+      "2024": "mhkarting",
+      "2025": "mhkarting"
+    },
+    "country": "CR"
+  },
+  "luciano dajles": {
+    "name": "Luciano Dajles",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv",
+      "2025": "fmv",
+      "2026": "fmv"
+    },
+    "country": "CR"
+  },
+  "luciano sosto": {
+    "name": "Luciano Sosto",
+    "team": "advanced",
+    "teams": {
+      "2024": "advanced",
+      "2025": "advanced",
+      "2026": "advanced"
+    },
+    "country": "CR"
+  },
+  "luiciana pazos": {
+    "name": "Luiciana Pazos",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "luis alvarado": {
+    "name": "Luis Alvarado",
+    "team": "valerio",
+    "teams": {
+      "2024": "valerio",
+      "2025": "valerio"
+    },
+    "country": "CR"
+  },
+  "luis felipe aguilar": {
+    "name": "Luis Felipe Aguilar",
+    "team": "formula",
+    "teams": {
+      "2024": "formula",
+      "2025": "formula",
+      "2026": "formula"
+    },
+    "country": "CR"
+  },
+  "luis fer. cedeno": {
+    "name": "Luis Fer. Cedeño",
+    "team": "fmv",
+    "teams": {
+      "2026": "fmv"
+    },
+    "country": "CR"
+  },
+  "luis fernando cedeno": {
+    "name": "Luis Fernando Cedeño",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv",
+      "2025": "fmv",
+      "2026": "fmv"
+    },
+    "country": "CR"
+  },
+  "luis pedro barrientos jr": {
+    "name": "Luis Pedro Barrientos Jr",
+    "team": "advanced",
+    "teams": {
+      "2024": "advanced"
+    },
+    "country": "CR"
+  },
+  "makya rodriguez": {
+    "name": "Makya Rodriguez",
+    "team": "valerio",
+    "teams": {
+      "2024": "valerio",
+      "2025": "valerio",
+      "2026": "valerio"
+    },
+    "country": "CR"
+  },
+  "manrique valverde": {
+    "name": "Manrique Valverde",
+    "team": "advanced",
+    "teams": {
+      "2024": "fmv",
+      "2025": "advanced"
+    },
+    "country": "CR"
+  },
+  "manuel sandoval": {
+    "name": "Manuel Sandoval",
+    "team": "advanced",
+    "teams": {
+      "2025": "advanced",
+      "2026": "advanced"
+    },
+    "country": "CR"
+  },
+  "marcelo pinago": {
+    "name": "Marcelo Piñago",
+    "team": "valerio",
+    "teams": {
+      "2024": "valerio"
+    },
+    "country": "CR"
+  },
+  "marco castro": {
+    "name": "Marco Castro",
+    "team": "fsa",
+    "teams": {
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "marco segnini": {
+    "name": "Marco Segnini",
+    "team": "advanced",
+    "teams": {
+      "2025": "advanced"
+    },
+    "country": "CR"
+  },
+  "maria jose castro": {
+    "name": "Maria Jose Castro",
+    "team": "fsa",
+    "teams": {
+      "2025": "fsa"
+    },
+    "country": "CR"
+  },
+  "mariano marin": {
+    "name": "Mariano Marin",
+    "team": "independiente",
+    "teams": {
+      "2025": "independiente",
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "mariano quiros": {
+    "name": "Mariano Quiros",
+    "team": "fsa",
+    "teams": {
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "marijn kremers": {
+    "name": "Marijn Kremers",
+    "team": "fsa",
+    "teams": {
+      "2026": "fsa"
+    },
+    "country": "NL"
+  },
+  "mario saborio": {
+    "name": "Mario Saborio",
+    "team": "",
+    "country": ""
+  },
+  "marjin kremers": {
+    "name": "Marjin Kremers",
+    "team": "fsa",
+    "teams": {
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "martin salom": {
+    "name": "Martin Salom",
+    "team": "formula",
+    "teams": {
+      "2024": "formula",
+      "2025": "formula",
+      "2026": "formula"
+    },
+    "country": "CR"
+  },
+  "mathias hernandez": {
+    "name": "Mathias Hernandez",
+    "team": "advanced",
+    "teams": {
+      "2024": "formula",
+      "2025": "formula",
+      "2026": "advanced"
+    },
+    "country": "CR"
+  },
+  "mathias leon": {
+    "name": "Mathias Leon",
+    "team": "independiente",
+    "teams": {
+      "2025": "independiente",
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "matthew phillips": {
+    "name": "Matthew Phillips",
+    "team": "mhkarting",
+    "teams": {
+      "2024": "mhkarting"
+    },
+    "country": "CR"
+  },
+  "mauricio hernandez": {
+    "name": "Mauricio Hernandez",
+    "team": "mhkarting",
+    "teams": {
+      "2024": "mhkarting",
+      "2025": "mhkarting",
+      "2026": "mhkarting"
+    },
+    "country": "CR"
+  },
+  "mauricio villafuerte": {
+    "name": "Mauricio Villafuerte",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "maxi schubert": {
+    "name": "Maxi Schubert",
+    "team": "mhkarting",
+    "teams": {
+      "2025": "mhkarting"
+    },
+    "country": "CR"
+  },
+  "mayra londono": {
+    "name": "Mayra Londoño",
+    "team": "independiente",
+    "teams": {
+      "2024": "independiente",
+      "2025": "independiente"
+    },
+    "country": "CR"
+  },
+  "mia castro": {
+    "name": "Mia Castro",
+    "team": "fsa",
+    "teams": {
+      "2024": "unknown",
+      "2025": "fsa"
+    },
+    "country": "CR"
+  },
+  "mia zuniga": {
+    "name": "Mia Zuñiga",
+    "team": "",
+    "country": ""
+  },
+  "montserrat monge": {
+    "name": "Montserrat Monge",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv",
+      "2025": "fmv",
+      "2026": "fmv"
+    },
+    "country": "CR"
+  },
+  "natalia brautigam": {
+    "name": "Natalia Brautigam",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv",
+      "2025": "fmv",
+      "2026": "fmv"
+    },
+    "country": "CR"
+  },
+  "nico salazar": {
+    "name": "Nico Salazar",
+    "team": "valerio",
+    "teams": {
+      "2024": "valerio",
+      "2025": "valerio",
+      "2026": "valerio"
+    },
+    "country": "CR"
+  },
+  "nicola zecchinato": {
+    "name": "Nicola Zecchinato",
+    "team": "advanced",
+    "teams": {
+      "2025": "advanced"
+    },
+    "country": "CR"
+  },
+  "nicolas garnier": {
+    "name": "Nicolas Garnier",
+    "team": "",
+    "country": ""
+  },
+  "nicolas marin": {
+    "name": "Nicolas Marin",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "nicolas otero": {
+    "name": "Nicolas Otero",
+    "team": "advanced",
+    "teams": {
+      "2024": "advanced",
+      "2025": "advanced",
+      "2026": "advanced"
+    },
+    "country": "CR"
+  },
+  "nicolas porras": {
+    "name": "Nicolas Porras",
+    "team": "",
+    "country": ""
+  },
+  "nikolas ramila": {
+    "name": "Nikolas Ramila",
+    "team": "advanced",
+    "teams": {
+      "2025": "advanced",
+      "2026": "advanced"
+    },
+    "country": "CR"
+  },
+  "omar rojas": {
+    "name": "Omar Rojas",
+    "team": "dr-racing",
+    "teams": {
+      "2024": "fmv",
+      "2025": "dr-racing",
+      "2026": "dr-racing"
+    },
+    "country": "CR"
+  },
+  "oscar ricardo teran": {
+    "name": "Oscar Ricardo Teran",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "osvaldo blanco": {
+    "name": "Osvaldo Blanco",
+    "team": "fsa",
+    "teams": {
+      "2024": "fmv",
+      "2025": "independiente",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "otto knohr": {
+    "name": "Otto Knohr",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "pablo bolanos": {
+    "name": "Pablo Bolaños",
+    "team": "fsa",
+    "teams": {
+      "2024": "fsa",
+      "2025": "fsa"
+    },
+    "country": "CR"
+  },
+  "pablo vieto": {
+    "name": "Pablo Vieto",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "paulo sequeira": {
+    "name": "Paulo Sequeira",
+    "team": "losprimos",
+    "teams": {
+      "2024": "losprimos",
+      "2025": "losprimos"
+    },
+    "country": "CR"
+  },
+  "pedro gutierrez": {
+    "name": "Pedro Gutierrez",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "pedro huguet": {
+    "name": "Pedro Huguet",
+    "team": "valerio",
+    "teams": {
+      "2025": "valerio"
+    },
+    "country": "CR"
+  },
+  "peppe di falco": {
+    "name": "Peppe Di Falco",
+    "team": "fsa",
+    "teams": {
+      "2024": "advanced",
+      "2025": "fsa"
+    },
+    "country": "CR"
+  },
+  "philippe marshall": {
+    "name": "Philippe Marshall",
+    "team": "valerio",
+    "teams": {
+      "2024": "valerio"
+    },
+    "country": "CR"
+  },
+  "popo knohr": {
+    "name": "Popo Knohr",
+    "team": "",
+    "country": ""
+  },
+  "rafael buonafina": {
+    "name": "Rafael Buonafina",
+    "team": "fsa",
+    "teams": {
+      "2025": "valerio",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "rafael buonafina rojas": {
+    "name": "Rafael Buonafina Rojas",
+    "team": "fsa",
+    "teams": {
+      "2025": "fsa"
+    },
+    "country": "CR"
+  },
+  "rafael canas": {
+    "name": "Rafael Cañas",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv",
+      "2025": "fmv"
+    },
+    "country": "CR"
+  },
+  "rafael fabrega": {
+    "name": "Rafael Fabrega",
+    "team": "fmv",
+    "teams": {
+      "2025": "fmv",
+      "2026": "fmv"
+    },
+    "country": "PA"
+  },
+  "rafael fabregas": {
+    "name": "Rafael Fabregas",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv",
+      "2025": "fmv"
+    },
+    "country": "PA"
+  },
+  "rafael teran": {
+    "name": "Rafael Terán",
+    "team": "",
+    "country": ""
+  },
+  "raul auccatoma": {
+    "name": "Raul Auccatoma",
+    "team": "fmv",
+    "teams": {
+      "2025": "fmv"
+    },
+    "country": "PE"
+  },
+  "raymi guzman": {
+    "name": "Raymi Guzman",
+    "team": "fsa",
+    "teams": {
+      "2025": "fsa"
+    },
+    "country": "DO"
+  },
+  "ricardo esquivel": {
+    "name": "Ricardo Esquivel",
+    "team": "independiente",
+    "teams": {
+      "2024": "advanced",
+      "2025": "independiente"
+    },
+    "country": "CR"
+  },
+  "ricardo vargas": {
+    "name": "Ricardo Vargas",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv"
+    },
+    "country": "CR"
+  },
+  "ronald paniagua": {
+    "name": "Ronald Paniagua",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "ryan nishioka": {
+    "name": "Ryan Nishioka",
+    "team": "fmv",
+    "teams": {
+      "2025": "fmv",
+      "2026": "fmv"
+    },
+    "country": "CR"
+  },
+  "salomon piragua": {
+    "name": "Salomon Piragua",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "samantha spielman": {
+    "name": "Samantha Spielman",
+    "team": "",
+    "country": ""
+  },
+  "samantha thomas": {
+    "name": "Samantha Thomas",
+    "team": "valerio",
+    "teams": {
+      "2024": "valerio"
+    },
+    "country": "CR"
+  },
+  "samuel castro": {
+    "name": "Samuel Castro",
+    "team": "fsa",
+    "teams": {
+      "2024": "fsa",
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "samuel chaverri": {
+    "name": "Samuel Chaverri",
+    "team": "mhkarting",
+    "teams": {
+      "2024": "mhkarting",
+      "2025": "mhkarting",
+      "2026": "mhkarting"
+    },
+    "country": "CR"
+  },
+  "samuel venegas": {
+    "name": "Samuel Venegas",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "santiago alfaro": {
+    "name": "Santiago Alfaro",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv"
+    },
+    "country": "CR"
+  },
+  "santiago benito": {
+    "name": "Santiago Benito",
+    "team": "fmv",
+    "teams": {
+      "2025": "fmv"
+    },
+    "country": "DO"
+  },
+  "santiago blanco": {
+    "name": "Santiago Blanco",
+    "team": "independiente",
+    "teams": {
+      "2025": "independiente",
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "santiago delgado": {
+    "name": "Santiago Delgado",
+    "team": "",
+    "country": ""
+  },
+  "santiago monge": {
+    "name": "Santiago Monge",
+    "team": "",
+    "country": ""
+  },
+  "santiago navas": {
+    "name": "Santiago Navas",
+    "team": "advanced",
+    "teams": {
+      "2024": "advanced",
+      "2025": "advanced",
+      "2026": "advanced"
+    },
+    "country": "CR"
+  },
+  "santiago solis": {
+    "name": "Santiago Solis",
+    "team": "",
+    "country": ""
+  },
+  "saul cespedes": {
+    "name": "Saul Cespedes",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv",
+      "2025": "fmv",
+      "2026": "fmv"
+    },
+    "country": "CR"
+  },
+  "saul milanes": {
+    "name": "Saul Milanes",
+    "team": "",
+    "country": ""
+  },
+  "saul montero": {
+    "name": "Saul Montero",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "saul solis": {
+    "name": "Saul Solis",
+    "team": "",
+    "country": ""
+  },
+  "sebastian arce": {
+    "name": "Sebastian Arce",
+    "team": "advanced",
+    "teams": {
+      "2024": "advanced",
+      "2025": "advanced",
+      "2026": "advanced"
+    },
+    "country": "CR"
+  },
+  "sebastian delgado": {
+    "name": "Sebastian Delgado",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv",
+      "2025": "fmv"
+    },
+    "country": "CR"
+  },
+  "sebastian montero": {
+    "name": "Sebastian Montero",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "sebastian mora": {
+    "name": "Sebastian Mora",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv"
+    },
+    "country": "CR"
+  },
+  "sebastian nunez": {
+    "name": "Sebastian Nuñez",
+    "team": "valerio",
+    "teams": {
+      "2024": "valerio"
+    },
+    "country": "CR"
+  },
+  "sebastian recinos": {
+    "name": "Sebastian Recinos",
+    "team": "fmv",
+    "teams": {
+      "2025": "fmv",
+      "2026": "fmv"
+    },
+    "country": "CR"
+  },
+  "sebastian wedel": {
+    "name": "Sebastian Wedel",
+    "team": "independiente",
+    "teams": {
+      "2025": "independiente"
+    },
+    "country": "CR"
+  },
+  "sergio palacios": {
+    "name": "Sergio Palacios",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "sofia calderon": {
+    "name": "Sofia Calderon",
+    "team": "fmv",
+    "teams": {
+      "2024": "fmv",
+      "2025": "fmv",
+      "2026": "fmv"
+    },
+    "country": "CR"
+  },
+  "stefano morice": {
+    "name": "Stefano Morice",
+    "team": "fsa",
+    "teams": {
+      "2024": "fsa",
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "stefany rodriguez": {
+    "name": "Stefany Rodriguez",
+    "team": "independiente",
+    "teams": {
+      "2025": "independiente"
+    },
+    "country": "CR"
+  },
+  "theo grundwedl": {
+    "name": "Theo Grundwedl",
+    "team": "mhkarting",
+    "teams": {
+      "2026": "mhkarting"
+    },
+    "country": "CR"
+  },
+  "theo grunwedl": {
+    "name": "Theo Grunwedl",
+    "team": "mhkarting",
+    "teams": {
+      "2024": "advanced",
+      "2025": "epson",
+      "2026": "mhkarting"
+    },
+    "country": "CR"
+  },
+  "thomas hof": {
+    "name": "Thomas Hof",
+    "team": "",
+    "country": ""
+  },
+  "tim vivian": {
+    "name": "Tim Vivian",
+    "team": "valerio",
+    "teams": {
+      "2024": "valerio",
+      "2025": "valerio"
+    },
+    "country": "CR"
+  },
+  "timothy alan vivian": {
+    "name": "Timothy Alan Vivian",
+    "team": "valerio",
+    "teams": {
+      "2025": "valerio",
+      "2026": "valerio"
+    },
+    "country": "CR"
+  },
+  "tomas arias": {
+    "name": "Tomas Arias",
+    "team": "valerio",
+    "teams": {
+      "2024": "valerio"
+    },
+    "country": "CR"
+  },
+  "tomas camacho": {
+    "name": "Tomas Camacho",
+    "team": "fsa",
+    "teams": {
+      "2025": "fsa",
+      "2026": "fsa"
+    },
+    "country": "CR"
+  },
+  "tomas quesada": {
+    "name": "Tomas Quesada",
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR"
+  },
+  "valentina chaverri": {
+    "name": "Valentina Chaverri",
+    "team": "unknown",
+    "teams": {
+      "2024": "unknown"
+    },
+    "country": "CR"
+  },
+  "valentina giraldo": {
+    "name": "Valentina Giraldo",
+    "team": "valerio",
+    "teams": {
+      "2024": "formula",
+      "2025": "valerio"
+    },
+    "country": "CR"
+  },
+  "valentina lobo": {
+    "name": "Valentina Lobo",
+    "team": "valerio",
+    "teams": {
+      "2025": "valerio"
+    },
+    "country": "CR"
+  },
+  "william alfaro": {
+    "name": "William Alfaro",
+    "team": "fmv",
+    "teams": {
+      "2025": "fmv",
+      "2026": "fmv"
+    },
+    "country": "CR"
+  },
+  "yariela chaves": {
+    "name": "Yariela Chaves",
+    "team": "fsa",
+    "teams": {
+      "2024": "fsa"
+    },
+    "country": "CR"
+  },
+  "zachary bridgeman": {
+    "name": "Zachary Bridgeman",
+    "team": "",
+    "country": ""
+  }
+}

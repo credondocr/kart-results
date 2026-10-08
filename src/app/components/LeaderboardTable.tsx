@@ -2,17 +2,9 @@ import { Category, Leaderboard } from "@/data/types";
 import CountryFlag from "@/app/components/CountryFlag"
 import TeamLogo from "@/app/components/TeamLogo";
 import LeaderboardTeamTable from "./table/LeaderboardTeamTable";
-const LeaderboardTable: React.FC<{ category: Category, season: string, leaderboard: Leaderboard }> = ({ category, season, leaderboard }) => {
+const LeaderboardTable: React.FC<{ category: Category, season: string, leaderboard: Leaderboard }> = ({ category, leaderboard }) => {
 
-  let races = 6
-
-  if (season == "verano") {
-    races = 5
-  }
-
-  if (season == "invierno" && leaderboard.year == 2025) {
-    races = 5
-  }
+  const races = category.results.reduce((max, result) => Math.max(max, result.scores.length), 0);
 
   if (category.name == "Equipos") {
     return (

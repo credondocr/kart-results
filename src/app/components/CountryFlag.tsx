@@ -8,7 +8,10 @@ interface CountryFlagProps {
   }
 
 const CountryFlag: React.FC<CountryFlagProps> = ({ countryCode, alt, style }) => {
-    const flagUrl = `https://flagcdn.com/w320/${countryCode.toLowerCase()}.png`; // URL para obtener la bandera
+    const code = (countryCode ?? "").trim().toLowerCase();
+    if (!code) return null;
+
+    const flagUrl = `https://flagcdn.com/w320/${code}.png`; // URL para obtener la bandera
     return (
       <Image
         src={flagUrl}

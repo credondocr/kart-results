@@ -6,19 +6,21 @@ interface TeamLogoProps {
   altText?: string; // Texto alternativo para accesibilidad
 }
 
+const PLACEHOLDER_LOGO = "/logos/independiente.png";
+
 const TeamLogo: React.FC<TeamLogoProps> = ({ team, altText }) => {
-  const formattedTeamName = team.toLowerCase().replace(/\s+/g, "-");
-  const logoPath = `/logos/${formattedTeamName}.png`;
+  const formattedTeamName = (team ?? "").toLowerCase().replace(/\s+/g, "-").trim();
+  const logoPath = formattedTeamName ? `/logos/${formattedTeamName}.png` : PLACEHOLDER_LOGO;
 
   return (
     <Image
       src={logoPath}
       width={50}
       height={50}
-      alt={altText || `${team} Logo`}
+      alt={altText || (formattedTeamName ? `${team} Logo` : "Sin equipo")}
       style={{ width: 50, height: 50, objectFit: "contain" }}
       onError={(e) => {
-        (e.target as HTMLImageElement).src = "/logos/default.png";
+        (e.target as HTMLImageElement).src = PLACEHOLDER_LOGO;
       }}
     />
   );
