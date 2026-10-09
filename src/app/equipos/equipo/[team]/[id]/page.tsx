@@ -101,6 +101,15 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
 
   const history = getPilotHistory(pilot.name, pilot.kartNumber);
   const raceResults = getPilotRaceResults(pilot.name, pilot.kartNumber);
+
+  // Un piloto puede correr con distintos números según la categoría/temporada.
+  const kartNumbers: string[] = [];
+  for (const entry of history) {
+    const number = String(entry.number);
+    if (!kartNumbers.includes(number)) kartNumbers.push(number);
+  }
+  const profileNumber = String(pilot.kartNumber);
+  if (!kartNumbers.includes(profileNumber)) kartNumbers.push(profileNumber);
   const racedCategories = getPilotRacedCategories(pilot.name, pilot.kartNumber);
   const career = getPilotCareerStats(pilot.name, pilot.kartNumber);
   const categories: CategoryStat[] =
@@ -127,8 +136,8 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
 
           <div className="pilot-profile-stats">
             <div className="stat">
-              <span className="stat-label">Kart</span>
-              <span className="stat-value">#{pilot.kartNumber}</span>
+              <span className="stat-label">{kartNumbers.length > 1 ? "Karts" : "Kart"}</span>
+              <span className="stat-value">{kartNumbers.map((number) => `#${number}`).join(" · ")}</span>
             </div>
             <div className="stat">
               <span className="stat-label">País</span>
@@ -210,6 +219,7 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
                   <tr>
                     <th className="text-left">Temporada</th>
                     <th className="text-left">Clase / Categoría</th>
+                    <th>Nº</th>
                     <th>Equipo</th>
                     <th className="position">Pos</th>
                     <th className="points-cell">Puntos</th>
@@ -232,6 +242,9 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
                         {entry.categoryName && (
                           <span className="history-cat"> · {entry.categoryName}</span>
                         )}
+                      </td>
+                      <td>
+                        <span className="history-number">#{entry.number}</span>
                       </td>
                       <td>
                         <TeamLogo team={entry.team} altText={entry.team} />
@@ -263,6 +276,7 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
                     <th className="text-left">Temporada</th>
                     <th className="text-left">Clase / Categoría</th>
                     <th>Fecha</th>
+                    <th>Nº</th>
                     <th className="position">Pos</th>
                     <th className="points-cell">Puntos</th>
                   </tr>
@@ -287,6 +301,9 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
                       </td>
                       <td>
                         <span className="tag-chip">R{race.fecha}</span>
+                      </td>
+                      <td>
+                        <span className="history-number">#{race.number}</span>
                       </td>
                       <td className="position">
                         <span className="rank-chip">{race.position}</span>

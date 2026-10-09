@@ -967,6 +967,15 @@
     color: var(--text-dim);
   }
 
+  .history-number {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
   .history-class {
     font-weight: 700;
     text-transform: uppercase;
