@@ -236,6 +236,9 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
                         <span className="history-year">{entry.year}</span>
                         {" · "}
                         {seasonLabel(entry.season)}
+                        {entry.rank === 1 && (
+                          <span className="tag-chip champion">Campeón</span>
+                        )}
                       </td>
                       <td className="text-left">
                         <span className="history-class">{entry.classTitle}</span>

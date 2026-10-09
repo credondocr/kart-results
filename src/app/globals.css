@@ -770,6 +770,16 @@
     color: rgba(155, 163, 189, 0.65);
   }
 
+  /* Etiqueta de campeón en el historial de temporadas */
+  .tag-chip.champion {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.15rem 0.5rem;
+    color: var(--gold);
+    background: rgba(232, 184, 75, 0.1);
+    border-color: rgba(232, 184, 75, 0.45);
+  }
+
   /* Pit-board number plate (avatar placeholder) */
   .number-plate {
     display: flex;
