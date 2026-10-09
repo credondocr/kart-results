@@ -208,6 +208,14 @@
     margin: 0.85rem auto 0;
   }
 
+  .class-title.align-left {
+    text-align: left;
+  }
+
+  .class-title.align-left::after {
+    margin-left: 0;
+  }
+
   /* Footer */
   footer {
     @apply relative;
@@ -513,6 +521,234 @@
     text-align: center;
     font-size: 13px;
     color: var(--text-dim);
+  }
+
+  /* Equipos — cards */
+  .team-card,
+  .pilot-card {
+    display: block;
+    background: linear-gradient(180deg, rgba(15, 19, 34, 0.85), rgba(15, 19, 34, 0.45));
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .team-card:hover,
+  .pilot-card:hover {
+    border-color: rgba(76, 141, 255, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .team-card-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 130px;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .team-card-logo.lg {
+    height: 160px;
+    width: 220px;
+    margin-bottom: 0;
+  }
+
+  .team-card-name {
+    font-family: var(--font-archivo);
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    text-wrap: balance;
+  }
+
+  .team-card-count,
+  .pilot-card-number {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .team-card-count strong,
+  .pilot-card-number strong {
+    color: var(--signal);
+    font-weight: 700;
+  }
+
+  .pilot-card-name {
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+    color: var(--text);
+    margin-top: 0.25rem;
+    text-wrap: balance;
+  }
+
+  .pilot-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+    min-height: 24px;
+  }
+
+  .tag-chip {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--line);
+    white-space: nowrap;
+  }
+
+  /* Pit-board number plate (avatar placeholder) */
+  .number-plate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 144px;
+    border-radius: 0.75rem;
+    background:
+      radial-gradient(120% 120% at 50% 0%, rgba(76, 141, 255, 0.16), transparent 60%),
+      linear-gradient(180deg, var(--surface-2), var(--surface));
+    border: 1px solid var(--line-strong);
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    font-size: 44px;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    transition: border-color 0.2s ease;
+  }
+
+  .number-plate.large {
+    height: 300px;
+    font-size: 80px;
+    border-radius: 1rem;
+  }
+
+  .driver-photo {
+    width: 100%;
+    height: 144px;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    border: 1px solid var(--line);
+  }
+
+  .driver-photo.large {
+    height: 300px;
+    border-radius: 1rem;
+  }
+
+  .pilot-card:hover .number-plate,
+  .pilot-card:hover .driver-photo {
+    border-color: rgba(76, 141, 255, 0.5);
+  }
+
+  /* Pilot profile */
+  .pilot-profile {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .pilot-profile {
+      grid-template-columns: 300px 1fr;
+      align-items: start;
+    }
+  }
+
+  .pilot-profile-media {
+    max-width: 360px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .pilot-profile-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .stat {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    min-width: 120px;
+  }
+
+  .stat-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.35rem;
+  }
+
+  .stat-value {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .stat-value .team-logo {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .pilot-profile-categories {
+    margin-top: 1.5rem;
+  }
+
+  .pilot-profile-bio {
+    margin-top: 1.5rem;
+    max-width: 60ch;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--signal);
+    transition: color 0.15s ease;
+  }
+
+  .back-link:hover {
+    color: var(--text);
   }
 
   .table-container {
