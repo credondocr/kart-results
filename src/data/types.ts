@@ -49,7 +49,7 @@ export interface Category {
 
 export interface Pilot {
   name: string;
-  kartNumber: number;
+  kartNumber: number | string;
   categories: string[];
   biography: string;
   country: string;

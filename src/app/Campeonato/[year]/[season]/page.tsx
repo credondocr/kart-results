@@ -3,13 +3,16 @@ import { Championships, } from "@/data/history"
 import { Championship, Leaderboard, Class, Category } from "@/data/types";
 import HeaderTabs from "@/app/components/HeaderTabs";
 import LeaderboardTable from "@/app/components/LeaderboardTable";
-import { useParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import SeasonSelector from "@/app/components/SeasonSelector";
 import { calculatePointsAndSort } from "@/app/utils/common";
 import { addTeamsCategory, generateGeneralLeaderboard } from "@/app/utils/common";
 import GeneralTable from "@/app/components/GeneralTable";
+import SeasonSkeleton from "@/app/components/SeasonSkeleton";
+import FechaToggle from "@/app/components/FechaToggle";
+import WhatsAppShare from "@/app/components/WhatsAppShare";
 interface Params {
     [key: string]: string | undefined;
     year?: string;
@@ -24,21 +27,38 @@ const SeasonLeaderboard = () => {
     const season = params.season;
 
     const [leaderboard, setLeaderboard] = useState<Leaderboard | null>(null);
-    const [selectedTab, setSelectedTab] = useState<string | null>(null);
+    const searchParams = useSearchParams();
+    const router = useRouter();
+    const selectedTab = searchParams.get("tab") ?? "ALL";
+    const fechaParam = searchParams.get("fecha");
+    const fecha =
+        fechaParam && /^\d+$/.test(fechaParam) ? parseInt(fechaParam, 10) : null;
+
+    const updateQuery = (updates: Record<string, string | null>) => {
+        const query = new URLSearchParams(searchParams.toString());
+        for (const [key, value] of Object.entries(updates)) {
+            if (value === null) query.delete(key);
+            else query.set(key, value);
+        }
+        const qs = query.toString();
+        router.replace(`/Campeonato/${year}/${season}${qs ? `?${qs}` : ""}`, { scroll: false });
+    };
 
     const handleTabSelect = (tab: string) => {
-        setSelectedTab(tab);
+        updateQuery({ tab: tab && tab !== "ALL" ? tab : null });
+    };
+
+    const handleFechaChange = (value: number | null) => {
+        updateQuery({ fecha: value === null ? null : String(value) });
     };
 
     useEffect(() => {
         if (season == "invierno" || season == "verano") {
-            console.log("here")
             const filteredData = Championships.years
                 .find((championship) => championship.year === year)?.[season as keyof Championship] as Leaderboard;
 
             if (filteredData) {
                 calculatePointsAndSort(filteredData.classes);
-                console.log(addTeamsCategory(filteredData))
                 setLeaderboard(addTeamsCategory(filteredData));
             }
         } else if (season == "general") {
@@ -58,12 +78,26 @@ const SeasonLeaderboard = () => {
 
     }, [year, season, selectedTab]);
 
-    if (!leaderboard) return <div>Loading...</div>;
+    if (!leaderboard) return <SeasonSkeleton />;
 
     const filteredClasses =
-        selectedTab && selectedTab !== "ALL"
+        selectedTab !== "ALL"
             ? leaderboard?.classes.filter((cls) => cls.title === selectedTab)
             : leaderboard?.classes || [];
+
+    // Fechas realmente disputadas: columnas con al menos un puntaje > 0
+    const fechas = leaderboard.classes.reduce((max, cls) => {
+        const catMax = cls.categories.reduce((inner, cat) => {
+            const width = cat.results.reduce((w, r) => Math.max(w, r.scores.length), 0);
+            const done = Array.from({ length: width }, (_, i) =>
+                cat.results.some((r) => (r.scores[i] ?? 0) !== 0)
+            ).filter(Boolean).length;
+            return Math.max(inner, done);
+        }, 0);
+        return Math.max(max, catMax);
+    }, 0);
+    const seasonLabel = season === "general" ? `General ${year}` : `${season} ${year}`;
+    const activeFecha = fecha && fecha >= 1 && fecha <= fechas ? fecha : null;
 
     return (
         <div className="mt-20">
@@ -74,6 +108,11 @@ const SeasonLeaderboard = () => {
                 <div className="w-full max-w-6xl flex justify-center">
                     <Breadcrumb />
                 </div>
+                <h1 className="season-eyebrow">
+                    CRKC · <strong>{seasonLabel}</strong>
+                    {season !== "general" && fechas > 0 && <> · A la fecha {fechas}</>}
+                </h1>
+                <WhatsAppShare text={`Posiciones ${seasonLabel} — Costa Rica Kart Championship`} />
             </div>
 
             {season === "general" ? (
@@ -81,7 +120,7 @@ const SeasonLeaderboard = () => {
                 <div>
                     <div className="flex justify-center items-center px-1 py-1">
                         <div className="w-full max-w-6xl flex justify-center">
-                            <HeaderTabs onTabSelect={handleTabSelect} showTeamTab={false} />
+                            <HeaderTabs onTabSelect={handleTabSelect} showTeamTab={false} activeTab={selectedTab} />
                         </div>
                     </div>
                     <div className="flex items-center px-1 py-1  md:justify-center">
@@ -98,16 +137,24 @@ const SeasonLeaderboard = () => {
                 <div>
                     <div className="flex justify-center items-center px-1 py-1">
                         <div className="w-full max-w-6xl flex justify-center">
-                            <HeaderTabs onTabSelect={handleTabSelect} showTeamTab={true} />
+                            <HeaderTabs onTabSelect={handleTabSelect} showTeamTab={true} activeTab={selectedTab} />
                         </div>
                     </div>
+                    <div className="flex justify-center px-1 pb-3">
+                        <FechaToggle fechas={fechas} value={activeFecha} onChange={handleFechaChange} />
+                    </div>
                     {filteredClasses.map((classItem: Class, index: number) => (
-                        <div key={index} className="p-2">
-                            <h1 className="text-center my-4 text-4xl font-extrabold dark:text-white">{classItem.title}</h1>
+                        <div key={`${selectedTab}-${classItem.title}-${index}`} className="class-block p-2">
+                            <h2 className="class-title my-4 text-4xl md:text-5xl">{classItem.title}</h2>
                             {classItem.categories.map((category: Category, i: number) => (
                                 <div key={i} className="flex items-center px-2 py-2  md:justify-center">
                                     <div className="flex md:justify-center w-full max-w-6xl" style={{ overflowX: "auto" }}>
-                                        <LeaderboardTable category={category} season={season} leaderboard={leaderboard} />
+                                        <LeaderboardTable
+                                            category={category}
+                                            season={season}
+                                            leaderboard={leaderboard}
+                                            fecha={activeFecha}
+                                        />
                                     </div>
                                 </div>
                             ))}

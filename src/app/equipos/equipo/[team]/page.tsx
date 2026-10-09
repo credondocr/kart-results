@@ -1,62 +1,96 @@
-"use client";
-import { useParams } from "next/navigation";
-import { Drivers } from "@/data/drivers/data"; // Ajusta la ruta según corresponda
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Image from "next/image";
-import Breadcrumb from "@/app/components/Breadcrumb";
 import Link from "next/link";
+import { getTeam } from "@/data/drivers/teams";
+import { getPilotRacedCategories, normalizeName } from "@/app/utils/pilotHistory";
+import { getTeamRoster } from "@/app/utils/teamRoster";
+import Breadcrumb from "@/app/components/Breadcrumb";
+import DriverAvatar from "@/app/components/DriverAvatar";
+import CountryFlag from "@/app/components/CountryFlag";
 
-const TeamPage = () => {
-  const { team } = useParams(); 
+interface PageProps {
+  params: Promise<{ team: string }>;
+}
 
+const prettifyTeam = (slug: string) =>
+  slug
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (letter) => letter.toUpperCase());
 
-  const teamPilots = Drivers.filter(
-    (pilot) => pilot.teamLogo.toLowerCase() === team?.toString().toLowerCase()
-  );
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { team } = await params;
+  const known = getTeam(team);
+  const name = known?.name ?? prettifyTeam((team ?? "").toLowerCase());
+  return {
+    title: `${name} | Costa Rica Kart Championship`,
+    description: `Pilotos del equipo ${name} en el Costa Rica Kart Championship.`,
+  };
+}
 
-  if (!teamPilots.length) {
-    return (
-      <div className="container mx-auto p-4 text-center">
-        <h1 className="text-2xl font-bold">Equipo no encontrado</h1>
-        <p className="mt-4">No hay pilotos registrados para este equipo.</p>
-      </div>
-    );
-  }
+export default async function TeamPage({ params }: PageProps) {
+  const { team } = await params;
+  const slug = (team ?? "").toLowerCase();
+  const known = getTeam(slug);
+  const teamPilots = getTeamRoster(slug);
+
+  if (!teamPilots.length) notFound();
+
+  const meta = known ?? { slug, name: prettifyTeam(slug), logo: "" };
+
   return (
-    <div className="container mx-auto p-4">
+    <div className="max-w-6xl mx-auto px-4 pt-24 pb-16">
       <Breadcrumb />
-      <h1 className="text-3xl font-bold text-center mb-6">Equipo: {team}</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        
-        {teamPilots.map((pilot) => (
-          <div
-            key={pilot.kartNumber}
-            className="bg-gray-100 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
-          >
-            <div className="flex justify-center mb-4">
-              <Image
-                src={pilot.profileUrl + ".png"}
-                alt={pilot.name}
-                width={200}
-                height={200}
-                className="rounded"
-                
-              />
-            </div>
-            <Link href={`/equipos/equipo/${pilot.teamLogo}/${pilot.kartNumber}`}>
-            <h2 className="text-lg font-semibold text-center text-black">{pilot.name}</h2>
-            </Link>
-            
-            <p className="text-center text-sm text-gray-600">
-              Kart #: {pilot.kartNumber}
-            </p>
-            <p className="text-center text-sm text-gray-600">
-              Categoría: {pilot.categories.join(", ")}
-            </p>
+
+      <div className="flex flex-col items-center gap-4 my-6">
+        {meta.logo && (
+          <div className="team-card-logo lg">
+            <Image src={meta.logo} alt={meta.name} width={180} height={180} />
           </div>
-        ))}
+        )}
+        <div className="text-center">
+          <p className="season-eyebrow" style={{ marginBottom: "0.4rem" }}>
+            <Link href="/equipos" className="crumb">Equipos</Link>
+            {" · "}
+            <strong>{teamPilots.length} {teamPilots.length === 1 ? "piloto" : "pilotos"}</strong>
+          </p>
+          <h1 className="class-title text-4xl md:text-5xl">{meta.name}</h1>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
+        {teamPilots.map((pilot) => {
+          const raced = getPilotRacedCategories(pilot.name, pilot.kartNumber);
+          const categories =
+            raced.length > 0
+              ? raced
+              : pilot.categories.map((label) => ({ label, years: [] as string[] }));
+          const isSynthetic = !pilot.profileUrl;
+          const hint = isSynthetic ? `?p=${encodeURIComponent(normalizeName(pilot.name))}` : "";
+          return (
+            <Link
+              key={`${meta.slug}-${pilot.kartNumber}-${pilot.name}`}
+              href={`/equipos/equipo/${meta.slug}/${pilot.kartNumber}${hint}`}
+              className="pilot-card"
+            >
+              <DriverAvatar pilot={pilot} />
+              <h2 className="pilot-card-name">{pilot.name}</h2>
+              <p className="pilot-card-number">
+                Kart <strong>#{pilot.kartNumber}</strong>
+              </p>
+              <div className="pilot-card-tags">
+                <CountryFlag countryCode={pilot.country} alt={pilot.country} />
+                {categories.slice(0, 2).map((category) => (
+                  <span key={category.label} className="tag-chip">{category.label}</span>
+                ))}
+                {categories.length > 2 && (
+                  <span className="tag-chip">+{categories.length - 2}</span>
+                )}
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
-};
-
-export default TeamPage;
+}

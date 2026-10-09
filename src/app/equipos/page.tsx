@@ -1,49 +1,42 @@
-import { Drivers } from "@/data/drivers/data";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { TEAMS } from "@/data/drivers/teams";
+import { getTeamRoster } from "@/app/utils/teamRoster";
+import Breadcrumb from "@/app/components/Breadcrumb";
 
+export const metadata: Metadata = {
+  title: "Equipos | Costa Rica Kart Championship",
+  description: "Equipos y pilotos del Costa Rica Kart Championship.",
+};
 
-const teams = [
-  { name: "FIK SPORT ACADEMY", logo: "/logos/fsa.png", link: "/equipos/equipo/fsa" },
-  { name: "FORMULKA KART", logo: "/logos/formula.png", link: "/equipos/equipo/formula" },
-  { name: "ADVANCED KARTING", logo: "/logos/advanced.png", link: "/equipos/equipo/advanced" },
-  { name: "BABYLISS PRO - MMR", logo: "/logos/losprimos.png", link: "/equipos/equipo/losprimos" },
-  { name: "FMV", logo: "/logos/fmv.png", link: "/equipos/equipo/fmv" },
-  { name: "MH KARTING", logo: "/logos/mhkarting.png", link: "/equipos/equipo/mhkarting" },
-  { name: "VALERIO RACING SYSTEM", logo: "/logos/valerio.png", link: "/equipos/equipo/valerio" },
-];
-
-const PilotosPage = () => {
+const TeamsPage = () => {
   return (
-    <div className="container mx-auto p-4">
-      
-      <h1 className="text-3xl font-bold text-center mb-6">Equipos</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {teams.map((team) => (
-          <Link key={team.name} href={team.link} className="group">
-            <div className="bg-black p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-              <div className="flex justify-center mb-4">
-                <Image
-                  src={team.logo}
-                  alt={team.name}
-                  width={200}
-                  height={200}
-                  className="rounded"
-                />
-              </div>
-              <h2 className="text-xl font-semibold text-center group-hover:text-gray-600">
-                {team.name}
-              </h2>
+    <div className="max-w-6xl mx-auto px-4 pt-24 pb-16">
+      <Breadcrumb />
+      <h1 className="class-title my-4 text-4xl md:text-5xl">Equipos</h1>
+      <p className="season-eyebrow">
+        Costa Rica Kart Championship · <strong>{TEAMS.length} equipos</strong>
+      </p>
 
-              <h2 className="text-xl font-semibold text-center group-hover:text-gray-600">
-                {Drivers.filter(i => i.teamName == team.name).length} Pilotos
-              </h2>
-            </div>
-          </Link>
-        ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-10">
+        {TEAMS.map((team) => {
+          const count = getTeamRoster(team.slug).length;
+          return (
+            <Link key={team.slug} href={`/equipos/equipo/${team.slug}`} className="team-card">
+              <div className="team-card-logo">
+                <Image src={team.logo} alt={team.name} width={140} height={140} />
+              </div>
+              <h2 className="team-card-name">{team.name}</h2>
+              <p className="team-card-count">
+                <strong>{count}</strong> {count === 1 ? "piloto" : "pilotos"}
+              </p>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
 };
 
-export default PilotosPage;
+export default TeamsPage;

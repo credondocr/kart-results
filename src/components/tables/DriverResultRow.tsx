@@ -1,8 +1,10 @@
 'use client';
 
+import Link from "next/link";
 import { TableRow, TableCell } from '@/components/ui/Table';
 import CountryFlag from '@/app/components/CountryFlag';
 import TeamLogo from '@/app/components/TeamLogo';
+import { findPilotProfile, pilotLinkHref } from '@/app/utils/pilotLinks';
 
 interface DriverResultRowProps {
   rank: number;
@@ -11,6 +13,7 @@ interface DriverResultRowProps {
   country: string;
   team: string;
   points: number;
+  rowIndex?: number;
 }
 
 export function DriverResultRow({
@@ -19,20 +22,33 @@ export function DriverResultRow({
   driver,
   country,
   team,
-  points
+  points,
+  rowIndex
 }: DriverResultRowProps) {
+  const podiumClass = rank <= 3 ? `podium-${rank}` : "";
+  const profile = findPilotProfile(driver, number, team);
+
   return (
-    <TableRow>
-      <TableCell className="px-2">{rank}</TableCell>
-      <TableCell className="px-2">{number}</TableCell>
-      <TableCell>
-        <div className="flex items-center gap-2">
-          <CountryFlag countryCode={country} alt={country} />
-          <TeamLogo team={team} altText={team} />
-          <span className="whitespace-nowrap">{driver}</span>
-        </div>
+    <TableRow
+      className={podiumClass}
+      style={{ "--row": rowIndex ?? 0 } as React.CSSProperties}
+    >
+      <TableCell className="position">
+        <span className="rank-chip">{rank}</span>
       </TableCell>
-      <TableCell align="right">{points}</TableCell>
+      <TableCell className="race-number">{number}</TableCell>
+      <TableCell className="driver-info" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        <CountryFlag countryCode={country} alt={country} />
+        <TeamLogo team={team} altText={team} />
+        {profile ? (
+          <Link href={pilotLinkHref(profile)} className="driver-link">
+            {driver}
+          </Link>
+        ) : (
+          <span className="driver-name">{driver}</span>
+        )}
+      </TableCell>
+      <TableCell align="right" className="points-cell">{points}</TableCell>
     </TableRow>
   );
 }

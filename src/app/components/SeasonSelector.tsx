@@ -1,106 +1,110 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Championships } from '@/data/history';
 
 const SeasonSelector: React.FC = () => {
-  const [isSeasonMenuOpen, setSeasonMenuOpen] = useState(false);
-  const [selectedYear, setSelectedYear] = useState<string | null>(null);
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const toggleSeasonMenu = () => setSeasonMenuOpen(!isSeasonMenuOpen);
+  const match = pathname?.match(/^\/Campeonato\/(\d{4})\/(\w+)/);
+  const currentYear = match?.[1] ?? null;
+  const currentSeason = match?.[2] ?? null;
+  const [activeYear, setActiveYear] = useState<string>(currentYear ?? Championships.years[Championships.years.length - 1].year);
 
-  const closeMenu = () => {
-    setSeasonMenuOpen(false);
-    setSelectedYear(null);
+  useEffect(() => {
+    if (match) setActiveYear(match[1]);
+  }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+    document.addEventListener('mousedown', onPointerDown);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', onPointerDown);
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [open]);
+
+  const yearData = Championships.years.find((y) => y.year === activeYear);
+  const label = currentYear
+    ? `${currentSeason === 'general' ? 'General' : currentSeason} ${currentYear}`
+    : 'Temporada';
+
+  const seasonLink = (season: string, text: string) => {
+    const isCurrent = currentYear === activeYear && currentSeason === season;
+    return (
+      <li key={season}>
+        <Link
+          href={`/Campeonato/${activeYear}/${season}`}
+          className={`season-option ${isCurrent ? 'active' : ''}`}
+          onClick={() => setOpen(false)}
+        >
+          <span>{text}</span>
+          {isCurrent && <span className="season-option-dot" />}
+        </Link>
+      </li>
+    );
   };
 
-  const handleYearSelect = (year: string) =>
-    setSelectedYear(year === selectedYear ? null : year);
-
   return (
-    <div className="relative">
+    <div className="relative" ref={containerRef}>
       <button
-        onClick={toggleSeasonMenu}
-        className="px-4 py-2 text-gray-200 bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-200 flex items-center space-x-2 shadow-lg"
+        type="button"
+        className="season-trigger"
+        aria-haspopup="true"
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
       >
-        <span>Temporada</span>
+        <span className="season-trigger-dot" />
+        <span className="season-trigger-label">{label}</span>
         <svg
-          className={`h-4 w-4 transform transition-transform duration-200 ${isSeasonMenuOpen ? 'rotate-180' : ''}`}
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
+          className={`season-trigger-chevron ${open ? 'open' : ''}`}
+          width="12"
+          height="12"
           viewBox="0 0 24 24"
+          fill="none"
           stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
+          <path d="M19 9l-7 7-7-7" />
         </svg>
       </button>
-      {isSeasonMenuOpen && (
-        <div className="absolute left-0 bg-gray-700 rounded-lg shadow-xl mt-2 min-w-[200px] border border-gray-600 z-50">
-          <ul className="py-2">
+
+      {open && (
+        <div className="season-panel" role="menu" aria-label="Seleccionar temporada">
+          <div className="season-panel-header">Temporadas</div>
+
+          <div className="season-years" role="none">
             {Championships.years.map((year) => (
-              <li key={year.year} className="px-4">
-                <button
-                  onClick={() => handleYearSelect(year.year)}
-                  className="w-full text-left flex justify-between items-center hover:bg-gray-600 px-3 py-2 rounded-md"
-                >
-                  <span className="font-medium">{year.year}</span>
-                  <svg
-                    className={`h-4 w-4 transform transition-transform duration-200 ${selectedYear === year.year ? 'rotate-180' : ''}`}
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </button>
-                {selectedYear === year.year && (
-                  <ul className="mt-1 ml-4 border-l border-gray-600 space-y-1">
-                    <li>
-                      <Link
-                        href={`/Campeonato/${year.year}/general`}
-                        className="block hover:bg-gray-600 px-3 py-2 rounded-md transition-colors duration-150"
-                        onClick={closeMenu}
-                      >
-                        General
-                      </Link>
-                    </li>
-                    {year.invierno && (
-                      <li>
-                        <Link
-                          href={`/Campeonato/${year.year}/invierno`}
-                          className="block hover:bg-gray-600 px-3 py-2 rounded-md transition-colors duration-150"
-                          onClick={closeMenu}
-                        >
-                          Invierno
-                        </Link>
-                      </li>
-                    )}
-                    {year.verano && (
-                      <li>
-                        <Link
-                          href={`/Campeonato/${year.year}/verano`}
-                          className="block hover:bg-gray-600 px-3 py-2 rounded-md transition-colors duration-150"
-                          onClick={closeMenu}
-                        >
-                          Verano
-                        </Link>
-                      </li>
-                    )}
-                  </ul>
-                )}
-              </li>
+              <button
+                key={year.year}
+                type="button"
+                className={`season-year-chip ${activeYear === year.year ? 'active' : ''}`}
+                onClick={() => setActiveYear(year.year)}
+              >
+                {year.year}
+              </button>
             ))}
+          </div>
+
+          <ul className="season-list" role="menu">
+            {seasonLink('general', 'General')}
+            {yearData?.invierno && seasonLink('invierno', 'Invierno')}
+            {yearData?.verano && seasonLink('verano', 'Verano')}
           </ul>
         </div>
       )}

@@ -10,6 +10,7 @@
  *   --season <name>    Override target season: invierno | verano
  *   --class <folder>   Override class folder (default: matched against known class titles)
  *   --category <name>  Override category name inside the class
+ *   --fechas <n>       Pad scores to n fechas (season length; existing arrays are never shortened)
  *   --allow-unknown    Keep pilots missing from src/data/pilots.json with empty team/country
  */
 import { existsSync, mkdirSync, writeFileSync } from "fs";
@@ -39,6 +40,7 @@ interface Args {
   season?: string;
   classFolder?: string;
   category?: string;
+  fechas?: number;
 }
 
 const VALID_SEASONS = ["invierno", "verano"];
@@ -53,13 +55,14 @@ function usage(): string {
     "  --season <nombre>  Temporada destino: invierno | verano",
     "  --class <folder>   Carpeta de la clase (default: match por título)",
     "  --category <name>  Categoría dentro de la clase",
+    "  --fechas <n>       Rellena scores hasta n fechas (no acorta arrays existentes)",
     "  --allow-unknown    Deja pilotos sin ficha en pilots.json con team/country vacíos",
   ].join("\n");
 }
 
 function parseArgs(argv: string[]): Args {
   const args: Partial<Args> & { pdf?: string } = {};
-  const takesValue = ["--year", "--season", "--class", "--category"];
+  const takesValue = ["--year", "--season", "--class", "--category", "--fechas"];
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
     if (arg === "--dry-run") {
@@ -76,6 +79,11 @@ function parseArgs(argv: string[]): Args {
       if (arg === "--season") args.season = value;
       if (arg === "--class") args.classFolder = value;
       if (arg === "--category") args.category = value;
+      if (arg === "--fechas") {
+        const n = parseInt(value, 10);
+        if (!Number.isInteger(n) || n < 1) throw new ParseError(`--fechas inválido: ${value}`);
+        args.fechas = n;
+      }
     } else if (arg.startsWith("--")) {
       throw new ParseError(`Opción desconocida: ${arg}`);
     } else if (!args.pdf) {
@@ -326,6 +334,19 @@ async function main(): Promise<void> {
 
   const previous = category.results;
   const results = buildResults(standings.rows, registry, year, args.allowUnknown, previous);
+
+  // Rellenar scores hasta la longitud de la temporada (máx. entre PDF, datos existentes y --fechas)
+  const targetLen = Math.max(
+    args.fechas ?? 0,
+    results[0]?.scores.length ?? 0,
+    previous[0]?.scores.length ?? 0
+  );
+  for (const result of results) {
+    while (result.scores.length < targetLen) result.scores.push(0);
+  }
+  for (const row of standings.rows) {
+    while (row.scores.length < targetLen) row.scores.push(0);
+  }
   cls.categories = cls.categories.filter((c) => c !== category);
   cls.categories.push({ ...category, results });
 
