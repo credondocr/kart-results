@@ -19,6 +19,7 @@ import DriverAvatar from "@/app/components/DriverAvatar";
 import CountryFlag from "@/app/components/CountryFlag";
 import TeamLogo from "@/app/components/TeamLogo";
 import WhatsAppShare from "@/app/components/WhatsAppShare";
+import { lookupRegistry, getTeamSegments } from "@/app/utils/pilotRegistry";
 
 interface PageProps {
   params: Promise<{ team: string; id: string }>;
@@ -113,6 +114,13 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
   if (!kartNumbers.includes(profileNumber)) kartNumbers.push(profileNumber);
   const racedCategories = getPilotRacedCategories(pilot.name, pilot.kartNumber);
   const career = getPilotCareerStats(pilot.name, pilot.kartNumber);
+
+  // Fuente de verdad: src/data/pilots.json (registro actualizado a mano).
+  const registryEntry = lookupRegistry(pilot.name);
+  const country = registryEntry?.country || pilot.country;
+  const currentTeam = registryEntry?.team || pilot.teamLogo || teamSlug;
+  const currentTeamName = getTeam(currentTeam)?.name ?? prettifyTeam(currentTeam);
+  const teamSegments = getTeamSegments(registryEntry);
   const categories: CategoryStat[] =
     racedCategories.length > 0
       ? racedCategories
@@ -143,15 +151,15 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
             <div className="stat">
               <span className="stat-label">País</span>
               <span className="stat-value with-media">
-                <CountryFlag countryCode={pilot.country} alt={pilot.country} />
-                {pilot.country || "—"}
+                <CountryFlag countryCode={country} alt={country} />
+                {country || "—"}
               </span>
             </div>
             <div className="stat">
-              <span className="stat-label">Equipo</span>
+              <span className="stat-label">Equipo actual</span>
               <span className="stat-value with-media">
-                <TeamLogo team={pilot.teamLogo} altText={meta.name} />
-                {meta.name}
+                <TeamLogo team={currentTeam} altText={currentTeamName} />
+                {currentTeamName}
               </span>
             </div>
             {career.seasons > 0 && (
@@ -179,6 +187,28 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
               </>
             )}
           </div>
+
+          {teamSegments.length > 1 && (
+            <div className="pilot-profile-teams">
+              <span className="stat-label">Trayectoria de equipos</span>
+              <div className="team-timeline">
+                {teamSegments.map((segment, index) => (
+                  <span key={`${segment.team}-${segment.years}`} className="team-timeline-group">
+                    {index > 0 && (
+                      <span className="timeline-sep" aria-hidden="true">→</span>
+                    )}
+                    <span className="team-timeline-item">
+                      <TeamLogo team={segment.team} altText={segment.team} />
+                      <span className="team-timeline-name">
+                        {getTeam(segment.team)?.name ?? prettifyTeam(segment.team)}
+                      </span>
+                      <span className="tag-years">{segment.years}</span>
+                    </span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="pilot-profile-categories">
             <span className="stat-label">Categorías corridas</span>

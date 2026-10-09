@@ -1050,6 +1050,60 @@
     margin-top: 1.5rem;
   }
 
+  /* Trayectoria de equipos (timeline) */
+  .pilot-profile-teams {
+    margin-top: 1.5rem;
+  }
+
+  .team-timeline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .team-timeline-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .team-timeline-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.45rem 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--line);
+    border-radius: 0.6rem;
+    transition: border-color 0.15s ease;
+  }
+
+  .team-timeline-item:hover {
+    border-color: rgba(76, 141, 255, 0.4);
+  }
+
+  .team-timeline-item .team-logo {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .team-timeline-name {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  .timeline-sep {
+    color: var(--signal);
+    font-weight: 700;
+    font-size: 13px;
+  }
+
   .pilot-profile-bio {
     margin-top: 1.5rem;
     max-width: 60ch;

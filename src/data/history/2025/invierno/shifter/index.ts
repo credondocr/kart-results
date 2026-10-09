@@ -170,7 +170,7 @@ export const shifter: Class = {
           number: 600,
           driver: 'Marjin Kremers',
           team: 'fsa',
-          country: 'CR',
+          country: 'NL',
           scores: [0, 0, 0, 0, 0],
           points: 96,
           worst: 0

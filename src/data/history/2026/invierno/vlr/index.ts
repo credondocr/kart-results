@@ -389,7 +389,7 @@ export const vlr: Class = {
           number: 300,
           driver: 'Marjin Kremers',
           team: 'fsa',
-          country: 'CR',
+          country: 'NL',
           scores: [5, 0, 0, 0, 0, 0],
           points: 5,
           worst: 0,
