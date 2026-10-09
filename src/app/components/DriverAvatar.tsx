@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Pilot } from "@/data/types";
+import { findPilotPhoto } from "@/app/utils/pilotPhotos";
 
 interface DriverAvatarProps {
   pilot: Pilot;
@@ -7,19 +8,23 @@ interface DriverAvatarProps {
 }
 
 /**
- * Muestra la foto del piloto si existe; si no (placeholders de placehold.co),
- * renderiza una chapa de número estilo pit-board en vez de una imagen rota.
+ * Foto del piloto: primero la imagen normalizada (public/pilotos), luego
+ * profileUrl si no es placeholder; si no hay foto, chapa de número
+ * estilo pit-board.
  */
 const DriverAvatar: React.FC<DriverAvatarProps> = ({ pilot, large = false }) => {
-  const hasPhoto = Boolean(pilot.profileUrl) && !pilot.profileUrl.includes("placehold.co");
+  const normalizedPhoto = findPilotPhoto(pilot.name);
+  const hasProfilePhoto =
+    Boolean(pilot.profileUrl) && !pilot.profileUrl.includes("placehold.co");
+  const photo = normalizedPhoto ?? (hasProfilePhoto ? pilot.profileUrl : null);
 
-  if (hasPhoto) {
+  if (photo) {
     return (
       <Image
-        src={pilot.profileUrl}
+        src={photo}
         alt={pilot.name}
-        width={large ? 300 : 200}
-        height={large ? 400 : 266}
+        width={400}
+        height={520}
         className={large ? "driver-photo large" : "driver-photo"}
       />
     );

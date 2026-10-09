@@ -46,3 +46,6 @@ next-env.d.ts
 # skills CLI artifacts
 .claude/
 skills-lock.json
+
+# fotos originales de pilotos (fuente; el normalizado va a public/pilotos)
+/pilotos/
