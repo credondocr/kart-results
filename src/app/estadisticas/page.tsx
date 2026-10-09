@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getChampionshipStats } from "@/app/utils/pilotHistory";
+import { getChampionshipStats, type PilotsStatsEntry } from "@/app/utils/pilotHistory";
 import { findPilotProfile, pilotLinkHref } from "@/app/utils/pilotLinks";
 import Breadcrumb from "@/app/components/Breadcrumb";
+import DriverAvatar from "@/app/components/DriverAvatar";
 import TeamLogo from "@/app/components/TeamLogo";
+import type { Pilot } from "@/data/types";
 
 export const metadata: Metadata = {
   title: "Estadísticas | Costa Rica Kart Championship",
@@ -11,12 +13,33 @@ export const metadata: Metadata = {
     "Títulos, victorias y récords del Costa Rica Kart Championship.",
 };
 
-const pilotLink = (name: string, number: number | string, team: string, fallback: string) => {
-  const profile = findPilotProfile(name, number, team);
-  return profile ? (
-    <Link href={pilotLinkHref(profile)} className="driver-link">{fallback}</Link>
-  ) : (
-    <span>{fallback}</span>
+const personToPilot = (person: PilotsStatsEntry): Pilot => ({
+  name: person.name,
+  kartNumber: person.number,
+  categories: [],
+  biography: "",
+  country: "",
+  teamName: person.team,
+  profileUrl: "",
+  teamLogo: person.team,
+});
+
+const PlayerCell = ({ person, subline }: { person: PilotsStatsEntry; subline?: string }) => {
+  const profile = findPilotProfile(person.name, person.number, person.team);
+  return (
+    <td className="player-cell">
+      <DriverAvatar pilot={personToPilot(person)} small />
+      <span className="player-cell-text">
+        {profile ? (
+          <Link href={pilotLinkHref(profile)} className="driver-link">
+            {person.name}
+          </Link>
+        ) : (
+          <span>{person.name}</span>
+        )}
+        {subline && <span className="player-subline">{subline}</span>}
+      </span>
+    </td>
   );
 };
 
@@ -27,6 +50,8 @@ export default function EstadisticasPage() {
     .filter((person) => person.raceWins > 0)
     .sort((a, b) => b.raceWins - a.raceWins || b.racePodiums - a.racePodiums)
     .slice(0, 15);
+  const teamRows = stats.teams.filter((team) => team.titles > 0 || team.wins > 0);
+  const maxTeamTitles = Math.max(1, ...teamRows.map((team) => team.titles));
   const record = stats.seasonRecord;
 
   return (
@@ -68,17 +93,20 @@ export default function EstadisticasPage() {
         )}
       </div>
 
-      {/* Títulos */}
-      <section className="stats-section" aria-label="Títulos">
-        <h2 className="category-label">Títulos de temporada</h2>
+      {/* Títulos de temporada */}
+      <section className="stats-section" aria-label="Títulos de temporada">
+        <h2 className="stats-heading">
+          Títulos de temporada
+          <span className="heading-count">{champions.length}</span>
+        </h2>
         <div className="table-container">
           <div className="table-wrapper">
             <table>
               <thead>
                 <tr>
                   <th className="position">#</th>
-                  <th className="text-left driver-info">Piloto</th>
-                  <th className="points-cell">Títulos</th>
+                  <th className="player-cell">Piloto</th>
+                  <th className="text-right">Títulos</th>
                   <th>Subcampeonatos</th>
                   <th>Equipo actual</th>
                 </tr>
@@ -93,10 +121,10 @@ export default function EstadisticasPage() {
                     <td className="position">
                       <span className="rank-chip">{index + 1}</span>
                     </td>
-                    <td className="driver-info" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                      {pilotLink(person.name, person.number, person.team, person.name)}
+                    <PlayerCell person={person} subline={person.titleYears.join(" · ")} />
+                    <td className="text-right">
+                      <span className="big-metric gold">{person.titles}</span>
                     </td>
-                    <td className="points-cell">{person.titles}</td>
                     <td className="race-points">{person.subs}</td>
                     <td>
                       <TeamLogo team={person.team} altText={person.team} />
@@ -111,41 +139,48 @@ export default function EstadisticasPage() {
 
       {/* Victorias en carrera */}
       <section className="stats-section" aria-label="Victorias en carrera">
-        <h2 className="category-label">Victorias en carrera</h2>
+        <h2 className="stats-heading">
+          Victorias en carrera
+          <span className="heading-count">{raceWinners.length}</span>
+        </h2>
         <div className="table-container">
           <div className="table-wrapper">
             <table>
               <thead>
                 <tr>
                   <th className="position">#</th>
-                  <th className="text-left driver-info">Piloto</th>
-                  <th className="points-cell">Victorias</th>
+                  <th className="player-cell">Piloto</th>
+                  <th className="text-right">Victorias</th>
                   <th>Podios</th>
                   <th>Carreras</th>
                   <th>% Victoria</th>
                 </tr>
               </thead>
               <tbody>
-                {raceWinners.map((person, index) => (
-                  <tr
-                    key={person.name}
-                    className={index < 3 ? `podium-${index + 1}` : ""}
-                    style={{ "--row": index } as React.CSSProperties}
-                  >
-                    <td className="position">
-                      <span className="rank-chip">{index + 1}</span>
-                    </td>
-                    <td className="driver-info" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                      {pilotLink(person.name, person.number, person.team, person.name)}
-                    </td>
-                    <td className="points-cell">{person.raceWins}</td>
-                    <td className="race-points">{person.racePodiums}</td>
-                    <td className="race-points">{person.races}</td>
-                    <td className="race-points">
-                      {Math.round((person.raceWins / person.races) * 100)}%
-                    </td>
-                  </tr>
-                ))}
+                {raceWinners.map((person, index) => {
+                  const pct = Math.round((person.raceWins / person.races) * 100);
+                  return (
+                    <tr
+                      key={person.name}
+                      className={index < 3 ? `podium-${index + 1}` : ""}
+                      style={{ "--row": index } as React.CSSProperties}
+                    >
+                      <td className="position">
+                        <span className="rank-chip">{index + 1}</span>
+                      </td>
+                      <PlayerCell person={person} subline={person.team.replace(/-/g, " ")} />
+                      <td className="text-right">
+                        <span className="big-metric signal">{person.raceWins}</span>
+                      </td>
+                      <td className="race-points">{person.racePodiums}</td>
+                      <td className="race-points">{person.races}</td>
+                      <td className="pct-cell">
+                        <span className="pct-value">{pct}%</span>
+                        <span className="metric-bar" style={{ "--w": `${pct}%` } as React.CSSProperties} />
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -154,40 +189,49 @@ export default function EstadisticasPage() {
 
       {/* Títulos por equipo */}
       <section className="stats-section" aria-label="Títulos por equipo">
-        <h2 className="category-label">Títulos por equipo</h2>
+        <h2 className="stats-heading">
+          Títulos por equipo
+          <span className="heading-count">{teamRows.length}</span>
+        </h2>
         <div className="table-container">
           <div className="table-wrapper">
             <table>
               <thead>
                 <tr>
                   <th className="position">#</th>
-                  <th className="text-left driver-info">Equipo</th>
-                  <th className="points-cell">Títulos</th>
+                  <th className="player-cell">Equipo</th>
+                  <th className="text-right">Títulos</th>
                   <th>Victorias</th>
                 </tr>
               </thead>
               <tbody>
-                {stats.teams
-                  .filter((team) => team.titles > 0 || team.wins > 0)
-                  .map((team, index) => (
-                    <tr
-                      key={team.team}
-                      className={index < 3 ? `podium-${index + 1}` : ""}
-                      style={{ "--row": index } as React.CSSProperties}
-                    >
-                      <td className="position">
-                        <span className="rank-chip">{index + 1}</span>
-                      </td>
-                      <td className="driver-info" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                        <TeamLogo team={team.team} altText={team.team} />
+                {teamRows.map((team, index) => (
+                  <tr
+                    key={team.team}
+                    className={index < 3 ? `podium-${index + 1}` : ""}
+                    style={{ "--row": index } as React.CSSProperties}
+                  >
+                    <td className="position">
+                      <span className="rank-chip">{index + 1}</span>
+                    </td>
+                    <td className="player-cell">
+                      <TeamLogo team={team.team} altText={team.team} />
+                      <span className="player-cell-text">
                         <Link href={`/equipos/equipo/${team.team}`} className="driver-link">
                           {team.team.replace(/-/g, " ")}
                         </Link>
-                      </td>
-                      <td className="points-cell">{team.titles}</td>
-                      <td className="race-points">{team.wins}</td>
-                    </tr>
-                  ))}
+                      </span>
+                    </td>
+                    <td className="text-right">
+                      <span className="big-metric gold">{team.titles}</span>
+                      <span
+                        className="metric-bar"
+                        style={{ "--w": `${Math.round((team.titles / maxTeamTitles) * 100)}%` } as React.CSSProperties}
+                      />
+                    </td>
+                    <td className="race-points">{team.wins}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

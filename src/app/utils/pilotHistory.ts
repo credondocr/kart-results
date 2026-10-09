@@ -398,6 +398,8 @@ export interface PilotsStatsEntry {
   team: string;
   number: number | string;
   titles: number;
+  /** Etiquetas de años con título: "2024", "2025", "2024×2" si ganó ambas temporadas. */
+  titleYears: string[];
   subs: number;
   raceWins: number;
   racePodiums: number;
@@ -447,6 +449,7 @@ export function getChampionshipStats(): ChampionshipStats {
       team: "",
       number: "",
       titles: 0,
+      titleYears: [],
       subs: 0,
       raceWins: 0,
       racePodiums: 0,
@@ -471,6 +474,16 @@ export function getChampionshipStats(): ChampionshipStats {
     person.points += entry.points;
     if (entry.rank === 1) {
       person.titles += 1;
+      const index = person.titleYears.findIndex(
+        (label) => label === entry.year || label.startsWith(`${entry.year}×`)
+      );
+      if (index >= 0) {
+        const match = person.titleYears[index].match(/^\d{4}(?:×(\d+))?$/);
+        const count = match && match[1] ? parseInt(match[1], 10) + 1 : 2;
+        person.titleYears[index] = `${entry.year}×${count}`;
+      } else {
+        person.titleYears.push(entry.year);
+      }
       const team = teamTitles.get(entry.team) ?? { team: entry.team, titles: 0, wins: 0 };
       team.titles += 1;
       teamTitles.set(entry.team, team);
