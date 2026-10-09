@@ -728,6 +728,10 @@
     color: var(--text);
   }
 
+  .stat-value.gold {
+    color: var(--gold);
+  }
+
   .stat-value .team-logo {
     width: 28px !important;
     height: 28px !important;
@@ -950,6 +954,33 @@
 
   .race-points.zero {
     color: rgba(155, 163, 189, 0.35);
+  }
+
+  .race-points.active:not(.zero) {
+    color: var(--text);
+    font-weight: 700;
+    background: rgba(76, 141, 255, 0.12);
+  }
+
+  th.race-points.active {
+    color: var(--signal);
+    background: rgba(76, 141, 255, 0.1);
+  }
+
+  /* Driver name links to profile */
+  .driver-link {
+    color: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    transition: color 0.15s ease;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .driver-link:hover {
+    color: var(--signal);
   }
 
   .total-points {

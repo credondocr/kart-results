@@ -1,8 +1,10 @@
 'use client';
 
+import Link from "next/link";
 import { TableRow, TableCell } from '@/components/ui/Table';
 import CountryFlag from '@/app/components/CountryFlag';
 import TeamLogo from '@/app/components/TeamLogo';
+import { findPilotProfile } from '@/app/utils/pilotLinks';
 
 interface DriverResultRowProps {
   rank: number;
@@ -24,6 +26,7 @@ export function DriverResultRow({
   rowIndex
 }: DriverResultRowProps) {
   const podiumClass = rank <= 3 ? `podium-${rank}` : "";
+  const profile = findPilotProfile(driver, number, team);
 
   return (
     <TableRow
@@ -37,7 +40,13 @@ export function DriverResultRow({
       <TableCell className="driver-info" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <CountryFlag countryCode={country} alt={country} />
         <TeamLogo team={team} altText={team} />
-        <span className="driver-name">{driver}</span>
+        {profile ? (
+          <Link href={`/equipos/equipo/${profile.slug}/${profile.id}`} className="driver-link">
+            {driver}
+          </Link>
+        ) : (
+          <span className="driver-name">{driver}</span>
+        )}
       </TableCell>
       <TableCell align="right" className="points-cell">{points}</TableCell>
     </TableRow>

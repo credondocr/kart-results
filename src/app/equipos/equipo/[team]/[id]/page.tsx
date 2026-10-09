@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Drivers } from "@/data/drivers/data";
 import { getTeam } from "@/data/drivers/teams";
-import { getPilotHistory, getPilotRacedCategories, formatYears, type CategoryStat } from "@/app/utils/pilotHistory";
+import { getPilotHistory, getPilotRacedCategories, getPilotCareerStats, formatYears, type CategoryStat } from "@/app/utils/pilotHistory";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import DriverAvatar from "@/app/components/DriverAvatar";
 import CountryFlag from "@/app/components/CountryFlag";
@@ -42,6 +42,7 @@ export default async function PilotPage({ params }: PageProps) {
 
   const history = getPilotHistory(pilot.name, pilot.kartNumber);
   const racedCategories = getPilotRacedCategories(pilot.name, pilot.kartNumber);
+  const career = getPilotCareerStats(pilot.name, pilot.kartNumber);
   const categories: CategoryStat[] =
     racedCategories.length > 0
       ? racedCategories
@@ -83,6 +84,26 @@ export default async function PilotPage({ params }: PageProps) {
                 {meta.name}
               </span>
             </div>
+            {career.seasons > 0 && (
+              <>
+                <div className="stat">
+                  <span className="stat-label">Victorias</span>
+                  <span className="stat-value gold">{career.wins}</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-label">Podios</span>
+                  <span className="stat-value">{career.podiums}</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-label">Temporadas</span>
+                  <span className="stat-value">{career.seasons}</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-label">Puntos carrera</span>
+                  <span className="stat-value">{career.points}</span>
+                </div>
+              </>
+            )}
           </div>
 
           <div className="pilot-profile-categories">

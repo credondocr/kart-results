@@ -11,6 +11,7 @@ import { calculatePointsAndSort } from "@/app/utils/common";
 import { addTeamsCategory, generateGeneralLeaderboard } from "@/app/utils/common";
 import GeneralTable from "@/app/components/GeneralTable";
 import SeasonSkeleton from "@/app/components/SeasonSkeleton";
+import FechaToggle from "@/app/components/FechaToggle";
 interface Params {
     [key: string]: string | undefined;
     year?: string;
@@ -28,21 +29,35 @@ const SeasonLeaderboard = () => {
     const searchParams = useSearchParams();
     const router = useRouter();
     const selectedTab = searchParams.get("tab") ?? "ALL";
+    const fechaParam = searchParams.get("fecha");
+    const fecha =
+        fechaParam && /^\d+$/.test(fechaParam) ? parseInt(fechaParam, 10) : null;
+
+    const updateQuery = (updates: Record<string, string | null>) => {
+        const query = new URLSearchParams(searchParams.toString());
+        for (const [key, value] of Object.entries(updates)) {
+            if (value === null) query.delete(key);
+            else query.set(key, value);
+        }
+        const qs = query.toString();
+        router.replace(`/Campeonato/${year}/${season}${qs ? `?${qs}` : ""}`, { scroll: false });
+    };
 
     const handleTabSelect = (tab: string) => {
-        const query = tab && tab !== "ALL" ? `?tab=${encodeURIComponent(tab)}` : "";
-        router.replace(`/Campeonato/${year}/${season}${query}`, { scroll: false });
+        updateQuery({ tab: tab && tab !== "ALL" ? tab : null });
+    };
+
+    const handleFechaChange = (value: number | null) => {
+        updateQuery({ fecha: value === null ? null : String(value) });
     };
 
     useEffect(() => {
         if (season == "invierno" || season == "verano") {
-            console.log("here")
             const filteredData = Championships.years
                 .find((championship) => championship.year === year)?.[season as keyof Championship] as Leaderboard;
 
             if (filteredData) {
                 calculatePointsAndSort(filteredData.classes);
-                console.log(addTeamsCategory(filteredData))
                 setLeaderboard(addTeamsCategory(filteredData));
             }
         } else if (season == "general") {
@@ -81,6 +96,7 @@ const SeasonLeaderboard = () => {
         return Math.max(max, catMax);
     }, 0);
     const seasonLabel = season === "general" ? `General ${year}` : `${season} ${year}`;
+    const activeFecha = fecha && fecha >= 1 && fecha <= fechas ? fecha : null;
 
     return (
         <div className="mt-20">
@@ -122,13 +138,21 @@ const SeasonLeaderboard = () => {
                             <HeaderTabs onTabSelect={handleTabSelect} showTeamTab={true} activeTab={selectedTab} />
                         </div>
                     </div>
+                    <div className="flex justify-center px-1 pb-3">
+                        <FechaToggle fechas={fechas} value={activeFecha} onChange={handleFechaChange} />
+                    </div>
                     {filteredClasses.map((classItem: Class, index: number) => (
                         <div key={`${selectedTab}-${classItem.title}-${index}`} className="class-block p-2">
                             <h2 className="class-title my-4 text-4xl md:text-5xl">{classItem.title}</h2>
                             {classItem.categories.map((category: Category, i: number) => (
                                 <div key={i} className="flex items-center px-2 py-2  md:justify-center">
                                     <div className="flex md:justify-center w-full max-w-6xl" style={{ overflowX: "auto" }}>
-                                        <LeaderboardTable category={category} season={season} leaderboard={leaderboard} />
+                                        <LeaderboardTable
+                                            category={category}
+                                            season={season}
+                                            leaderboard={leaderboard}
+                                            fecha={activeFecha}
+                                        />
                                     </div>
                                 </div>
                             ))}

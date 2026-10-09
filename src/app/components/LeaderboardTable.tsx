@@ -1,9 +1,28 @@
-import { Category, Leaderboard } from "@/data/types";
+import Link from "next/link";
+import { Category, Leaderboard, RaceResult } from "@/data/types";
 import CountryFlag from "@/app/components/CountryFlag"
 import TeamLogo from "@/app/components/TeamLogo";
 import LeaderboardTeamTable from "./table/LeaderboardTeamTable";
+import { findPilotProfile } from "@/app/utils/pilotLinks";
 
-const LeaderboardTable: React.FC<{ category: Category, season: string, leaderboard: Leaderboard }> = ({ category, leaderboard }) => {
+function driverName(result: RaceResult) {
+  const link = findPilotProfile(result.driver, result.number, result.team);
+  if (link) {
+    return (
+      <Link href={`/equipos/equipo/${link.slug}/${link.id}`} className="driver-link">
+        {result.driver}
+      </Link>
+    );
+  }
+  return <span className="driver-name">{result.driver}</span>;
+}
+
+const LeaderboardTable: React.FC<{
+  category: Category;
+  season: string;
+  leaderboard: Leaderboard;
+  fecha?: number | null;
+}> = ({ category, leaderboard, fecha }) => {
 
   const races = category.results.reduce((max, result) => Math.max(max, result.scores.length), 0);
 
@@ -12,6 +31,17 @@ const LeaderboardTable: React.FC<{ category: Category, season: string, leaderboa
       <LeaderboardTeamTable leaderboard={leaderboard} category={category} />
     )
   }
+
+  const inFechaMode = Boolean(fecha && fecha >= 1 && fecha <= races);
+  const activeIndex = inFechaMode ? fecha! - 1 : -1;
+
+  const displayResults = inFechaMode
+    ? [...category.results].sort((a, b) => {
+        const scoreDiff = (b.scores[activeIndex] ?? 0) - (a.scores[activeIndex] ?? 0);
+        if (scoreDiff !== 0) return scoreDiff;
+        return (b.points ?? 0) - (a.points ?? 0);
+      })
+    : category.results;
 
   return (
     <div>
@@ -32,36 +62,46 @@ const LeaderboardTable: React.FC<{ category: Category, season: string, leaderboa
                 <th className="sticky-col race-number">No</th>
                 <th className="driver-info">Piloto</th>
                 {[...Array(races).keys()].map((r, index) => (
-                  <th key={index} className="race-points">R{index + 1}</th>
+                  <th
+                    key={index}
+                    className={index === activeIndex ? "race-points active" : "race-points"}
+                  >
+                    R{index + 1}
+                  </th>
                 ))}
                 <th className="total-points">Total</th>
                 <th className="best-4-column">Best 4</th>
               </tr>
             </thead>
             <tbody>
-              {category.results.map((result, index) => {
-                const podiumClass = result.rank && result.rank <= 3 ? ` podium-${result.rank}` : "";
+              {displayResults.map((result, index) => {
+                const displayRank = inFechaMode ? index + 1 : result.rank;
+                const podiumClass = displayRank && displayRank <= 3 ? ` podium-${displayRank}` : "";
 
                 return (
                   <tr
-                    key={result.rank}
+                    key={`${result.number}-${result.driver}`}
                     className={podiumClass.trim()}
                     style={{ "--row": index } as React.CSSProperties}
                   >
                     <td className="position">
-                      <span className="rank-chip">{result.rank}</span>
+                      <span className="rank-chip">{displayRank}</span>
                     </td>
                     <td data-label="Nombre del Piloto" className="sticky-col race-number">{result.number}</td>
                     <td className="driver-info" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                       <CountryFlag countryCode={result.country} alt={result.country} />
                       <TeamLogo team={result.team} altText={result.team} />
-                      <span className="driver-name">{result.driver}</span>
+                      {driverName(result)}
                     </td>
                     {result.scores.map((score, index) => (
                       <td
                         data-label={`R${index + 1}`}
                         key={index}
-                        className={score === 0 ? "race-points zero" : "race-points"}
+                        className={[
+                          "race-points",
+                          score === 0 ? "zero" : "",
+                          index === activeIndex ? "active" : "",
+                        ].filter(Boolean).join(" ")}
                       >
                         {score}
                       </td>

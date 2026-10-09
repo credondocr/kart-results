@@ -146,3 +146,27 @@ export function formatYears(years: string[]): string {
   if (contiguous) return `${years[0]}–${years[years.length - 1]}`;
   return years.join(", ");
 }
+
+export interface CareerStats {
+  wins: number;
+  podiums: number;
+  points: number;
+  seasons: number;
+}
+
+/** Estadísticas de carrera agregadas del historial de un piloto. */
+export function getPilotCareerStats(pilotName: string, kartNumber?: number): CareerStats {
+  const history = getPilotHistory(pilotName, kartNumber);
+  const seasons = new Set(history.map((entry) => `${entry.year}-${entry.season}`));
+  return {
+    wins: history.filter((entry) => entry.rank === 1).length,
+    podiums: history.filter((entry) => entry.rank <= 3).length,
+    points: history.reduce((sum, entry) => sum + entry.points, 0),
+    seasons: seasons.size,
+  };
+}
+
+/** Primeros lugares de cada clase/categoría por temporada (orden cronológico inverso). */
+export function getChampions(): HistoryEntry[] {
+  return sortEntries(getIndex().filter((entry) => entry.rank === 1));
+}
