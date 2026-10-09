@@ -151,19 +151,130 @@ export function formatYears(years: string[]): string {
 }
 
 export interface CareerStats {
+  /** Victorias en carreras individuales (posición 1 en una fecha). */
   wins: number;
+  /** Podios (top 3) en carreras individuales. */
   podiums: number;
+  /** Títulos de temporada (rank 1 al final del campeonato). */
+  titles: number;
   points: number;
   seasons: number;
+}
+
+/** Índice de resultados por carrera (fecha) de todos los pilotos. */
+export interface RaceResultEntry {
+  driver: string;
+  number: number | string;
+  team: string;
+  year: string;
+  season: string;
+  classTitle: string;
+  categoryName: string;
+  /** Número de fecha (1-based). */
+  fecha: number;
+  /** Posición en esa carrera (empates comparten posición). */
+  position: number;
+  /** Puntos que marcó en esa carrera. */
+  points: number;
+}
+
+let raceIndexCache: RaceResultEntry[] | null = null;
+
+function buildRaceIndex(): RaceResultEntry[] {
+  const entries: RaceResultEntry[] = [];
+
+  for (const championship of Championships.years) {
+    const year = String(championship.year);
+    for (const season of ["invierno", "verano"] as const) {
+      const leaderboard = championship[season];
+      if (!leaderboard) continue;
+
+      for (const cls of leaderboard.classes) {
+        for (const category of cls.categories) {
+          const width = category.results.reduce(
+            (max, result) => Math.max(max, result.scores.length),
+            0
+          );
+
+          for (let i = 0; i < width; i++) {
+            const field = category.results.map((result) => ({
+              result,
+              score: result.scores[i] ?? 0,
+            }));
+            // Fecha no disputada (nadie puntúa) o sin puntajes.
+            if (!field.some((row) => row.score > 0)) continue;
+
+            for (const row of field) {
+              // Solo carreras con puntaje: ausencias y DNFs quedan fuera.
+              if (row.score <= 0) continue;
+              const position =
+                1 + field.filter((other) => other.score > row.score).length;
+              entries.push({
+                driver: row.result.driver,
+                number: row.result.number,
+                team: row.result.team,
+                year,
+                season,
+                classTitle: cls.title,
+                categoryName: category.name,
+                fecha: i + 1,
+                position,
+                points: row.score,
+              });
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return entries;
+}
+
+function getRaceIndex(): RaceResultEntry[] {
+  if (!raceIndexCache) raceIndexCache = buildRaceIndex();
+  return raceIndexCache;
+}
+
+function sortRaceResults(entries: RaceResultEntry[]): RaceResultEntry[] {
+  return [...entries].sort(
+    (a, b) =>
+      Number(b.year) - Number(a.year) ||
+      (SEASON_ORDER[a.season] ?? 9) - (SEASON_ORDER[b.season] ?? 9) ||
+      b.fecha - a.fecha ||
+      a.position - b.position
+  );
+}
+
+/** Carrera a carrera de un piloto, más reciente primero. */
+export function getPilotRaceResults(
+  pilotName: string,
+  kartNumber?: number | string
+): RaceResultEntry[] {
+  const index = getRaceIndex();
+
+  const byName = index.filter((entry) => nameMatches(pilotName, entry.driver));
+  if (byName.length > 0) return sortRaceResults(byName);
+
+  if (kartNumber !== undefined && kartNumber !== "") {
+    const byNumber = index.filter(
+      (entry) => String(entry.number) === String(kartNumber)
+    );
+    if (byNumber.length > 0) return sortRaceResults(byNumber);
+  }
+
+  return [];
 }
 
 /** Estadísticas de carrera agregadas del historial de un piloto. */
 export function getPilotCareerStats(pilotName: string, kartNumber?: number | string): CareerStats {
   const history = getPilotHistory(pilotName, kartNumber);
+  const races = getPilotRaceResults(pilotName, kartNumber);
   const seasons = new Set(history.map((entry) => `${entry.year}-${entry.season}`));
   return {
-    wins: history.filter((entry) => entry.rank === 1).length,
-    podiums: history.filter((entry) => entry.rank <= 3).length,
+    wins: races.filter((entry) => entry.position === 1).length,
+    podiums: races.filter((entry) => entry.position <= 3).length,
+    titles: history.filter((entry) => entry.rank === 1).length,
     points: history.reduce((sum, entry) => sum + entry.points, 0),
     seasons: seasons.size,
   };

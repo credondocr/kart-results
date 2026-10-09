@@ -8,6 +8,7 @@ import {
   getPilotHistory,
   getPilotRacedCategories,
   getPilotCareerStats,
+  getPilotRaceResults,
   findHistoryEntry,
   formatYears,
   type CategoryStat,
@@ -87,6 +88,7 @@ export default async function PilotPage({ params }: PageProps) {
   };
 
   const history = getPilotHistory(pilot.name, pilot.kartNumber);
+  const raceResults = getPilotRaceResults(pilot.name, pilot.kartNumber);
   const racedCategories = getPilotRacedCategories(pilot.name, pilot.kartNumber);
   const career = getPilotCareerStats(pilot.name, pilot.kartNumber);
   const categories: CategoryStat[] =
@@ -139,6 +141,10 @@ export default async function PilotPage({ params }: PageProps) {
                 <div className="stat">
                   <span className="stat-label">Podios</span>
                   <span className="stat-value">{career.podiums}</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-label">Títulos</span>
+                  <span className="stat-value">{career.titles}</span>
                 </div>
                 <div className="stat">
                   <span className="stat-label">Temporadas</span>
@@ -230,6 +236,58 @@ export default async function PilotPage({ params }: PageProps) {
           </div>
         ) : (
           <p className="empty-state">Sin carreras en el historial todavía.</p>
+        )}
+      </section>
+
+      <section className="pilot-history" aria-label="Resultados por carrera">
+        <h2 className="category-label">Resultados por carrera</h2>
+
+        {raceResults.length > 0 ? (
+          <div className="table-container">
+            <div className="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th className="text-left">Temporada</th>
+                    <th className="text-left">Clase / Categoría</th>
+                    <th>Fecha</th>
+                    <th className="position">Pos</th>
+                    <th className="points-cell">Puntos</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {raceResults.map((race, index) => (
+                    <tr
+                      key={`${race.year}-${race.season}-${race.classTitle}-${race.fecha}-${index}`}
+                      className={race.position <= 3 ? `podium-${race.position}` : ""}
+                      style={{ "--row": index } as React.CSSProperties}
+                    >
+                      <td className="text-left">
+                        <span className="history-year">{race.year}</span>
+                        {" · "}
+                        {seasonLabel(race.season)}
+                      </td>
+                      <td className="text-left">
+                        <span className="history-class">{race.classTitle}</span>
+                        {race.categoryName && (
+                          <span className="history-cat"> · {race.categoryName}</span>
+                        )}
+                      </td>
+                      <td>
+                        <span className="tag-chip">R{race.fecha}</span>
+                      </td>
+                      <td className="position">
+                        <span className="rank-chip">{race.position}</span>
+                      </td>
+                      <td className="points-cell">{race.points}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ) : (
+          <p className="empty-state">Sin carreras con puntaje todavía.</p>
         )}
       </section>
     </div>
