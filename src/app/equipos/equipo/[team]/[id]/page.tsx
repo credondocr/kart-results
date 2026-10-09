@@ -11,6 +11,7 @@ import {
   getPilotRaceResults,
   findHistoryEntry,
   formatYears,
+  type HistoryEntry,
   type CategoryStat,
 } from "@/app/utils/pilotHistory";
 import Breadcrumb from "@/app/components/Breadcrumb";
@@ -38,14 +39,14 @@ function findDriverPilot(teamSlug: string, id: string): Pilot | undefined {
 }
 
 /** Ficha sintética para pilotos que solo existen en el historial de posiciones. */
-function synthesizePilot(teamSlug: string, id: string, name: string): Pilot {
-  const raced = getPilotRacedCategories(name, id);
+function synthesizePilot(teamSlug: string, id: string, entry: HistoryEntry): Pilot {
+  const raced = getPilotRacedCategories(entry.driver, id);
   return {
-    name,
+    name: entry.driver,
     kartNumber: id,
     categories: raced.length > 0 ? raced.map((category) => category.label) : [],
     biography: "",
-    country: "",
+    country: entry.country,
     teamName: prettifyTeam(teamSlug),
     profileUrl: "",
     teamLogo: teamSlug,
@@ -57,14 +58,14 @@ function resolvePilot(teamSlug: string, id: string, nameHint?: string): Pilot | 
   // temporadas y podrían pertenecer a otra persona.
   if (nameHint) {
     const hinted = findHistoryEntry(teamSlug, id, nameHint);
-    if (hinted) return synthesizePilot(teamSlug, id, hinted.driver);
+    if (hinted) return synthesizePilot(teamSlug, id, hinted);
   }
 
   const driver = findDriverPilot(teamSlug, id);
   if (driver) return driver;
 
   const entry = findHistoryEntry(teamSlug, id, nameHint);
-  if (entry) return synthesizePilot(teamSlug, id, entry.driver);
+  if (entry) return synthesizePilot(teamSlug, id, entry);
 
   return undefined;
 }
