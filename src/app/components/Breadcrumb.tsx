@@ -1,4 +1,5 @@
 "use client";
+import { Suspense } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { getTeam } from "@/data/drivers/teams";
@@ -83,7 +84,7 @@ function buildCrumbs(pathname: string, nameHint?: string): Crumb[] {
   return crumbs;
 }
 
-const Breadcrumb: React.FC = () => {
+const BreadcrumbInner: React.FC = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const nameHint = searchParams.get("p") ?? undefined;
@@ -115,5 +116,12 @@ const Breadcrumb: React.FC = () => {
     </nav>
   );
 };
+
+// useSearchParams() exige un límite Suspense en páginas estáticas (prerender).
+const Breadcrumb: React.FC = () => (
+  <Suspense fallback={<div className="text-sm py-4" />}>
+    <BreadcrumbInner />
+  </Suspense>
+);
 
 export default Breadcrumb;

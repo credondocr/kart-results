@@ -159,7 +159,7 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({ onClose }) => {
     return order
       .map((name) => ({ name, items: results.filter((result) => result.group === name) }))
       .filter((group) => group.items.length > 0);
-  }, [results]);
+  }, [query, results]);
 
   return (
     <div
