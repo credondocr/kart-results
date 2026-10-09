@@ -587,26 +587,13 @@
     background-color: rgba(255, 255, 255, 0.015);
   }
 
-  /* Hover: signal bar on the left edge of the row */
-  tbody tr::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 0;
-    z-index: 3;
-    background: var(--signal);
-    transition: width 0.15s ease;
-    pointer-events: none;
-  }
-
-  tbody tr:hover::before {
-    width: 3px;
-  }
-
   tbody tr:hover {
     background-color: var(--signal-dim) !important;
+  }
+
+  /* Hover: signal bar on the position cell (no pseudos on tr — they create anonymous cells) */
+  tbody tr:hover .position {
+    box-shadow: inset 3px 0 0 var(--signal);
   }
 
   /* Podium */
@@ -709,39 +696,6 @@
     font-variant-numeric: tabular-nums;
     background: rgba(76, 141, 255, 0.06);
     border-left: 1px solid rgba(76, 141, 255, 0.25);
-  }
-
-  /* Gap — signature column */
-  .gap-cell {
-    width: 110px;
-    padding: 0.6rem 1rem !important;
-    text-align: right;
-  }
-
-  .gap-value {
-    display: block;
-    font-family: var(--font-mono);
-    font-variant-numeric: tabular-nums;
-    font-size: 12px;
-    color: var(--text-dim);
-    line-height: 1.2;
-  }
-
-  .gap-value.leader {
-    color: var(--gold);
-    font-weight: 700;
-  }
-
-  .gap-bar {
-    display: block;
-    height: 3px;
-    border-radius: 2px;
-    margin-top: 5px;
-    margin-left: auto;
-    width: var(--gap, 0%);
-    min-width: 2px;
-    background: linear-gradient(90deg, rgba(76, 141, 255, 0.75), rgba(76, 141, 255, 0.2));
-    transition: width 0.6s ease;
   }
 
   .sticky-col {
@@ -849,11 +803,6 @@
     width: 72px;
     margin-left: 0.35rem;
     padding-right: 0.75rem !important;
-  }
-
-  .gap-cell {
-    width: 84px;
-    padding: 0.5rem 0.5rem !important;
   }
 
   .rank-chip {

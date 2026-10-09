@@ -5,6 +5,13 @@ export function calculatePointsAndSort(classes: Class[]) {
     classItem.categories.forEach((category: Category) => {
       category.results.forEach((result: RaceResult) => {
         result.points = result.scores.reduce((sum, score) => sum + score, 0);
+        // Best 4: las 4 mejores fechas (si aún no hay 4, suma todas).
+        // worst = puntos descontados = total - mejores 4.
+        const top4 = [...result.scores]
+          .sort((a, b) => b - a)
+          .slice(0, 4)
+          .reduce((sum, score) => sum + score, 0);
+        result.worst = result.points - top4;
       });
 
       category.results.sort(

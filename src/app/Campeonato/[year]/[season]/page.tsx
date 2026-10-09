@@ -69,14 +69,17 @@ const SeasonLeaderboard = () => {
             ? leaderboard?.classes.filter((cls) => cls.title === selectedTab)
             : leaderboard?.classes || [];
 
-    const fechas = leaderboard.classes.reduce(
-        (max, cls) =>
-            cls.categories.reduce(
-                (catMax, cat) => cat.results.reduce((rowMax, r) => Math.max(rowMax, r.scores.length), catMax),
-                max
-            ),
-        0
-    );
+    // Fechas realmente disputadas: columnas con al menos un puntaje > 0
+    const fechas = leaderboard.classes.reduce((max, cls) => {
+        const catMax = cls.categories.reduce((inner, cat) => {
+            const width = cat.results.reduce((w, r) => Math.max(w, r.scores.length), 0);
+            const done = Array.from({ length: width }, (_, i) =>
+                cat.results.some((r) => (r.scores[i] ?? 0) !== 0)
+            ).filter(Boolean).length;
+            return Math.max(inner, done);
+        }, 0);
+        return Math.max(max, catMax);
+    }, 0);
     const seasonLabel = season === "general" ? `General ${year}` : `${season} ${year}`;
 
     return (
