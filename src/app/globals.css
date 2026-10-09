@@ -751,6 +751,28 @@
     color: var(--text);
   }
 
+  /* Pilot history */
+  .pilot-history {
+    margin-top: 3rem;
+  }
+
+  .history-year {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    color: var(--text-dim);
+  }
+
+  .history-class {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .history-cat {
+    color: var(--text-dim);
+    font-size: 0.9em;
+  }
+
   .table-container {
     @apply relative mx-auto rounded-xl;
     max-width: 1400px;

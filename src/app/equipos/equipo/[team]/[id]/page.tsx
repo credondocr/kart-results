@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Drivers } from "@/data/drivers/data";
 import { getTeam } from "@/data/drivers/teams";
+import { getPilotHistory, getPilotRacedCategories } from "@/app/utils/pilotHistory";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import DriverAvatar from "@/app/components/DriverAvatar";
 import CountryFlag from "@/app/components/CountryFlag";
@@ -30,11 +31,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
+const seasonLabel = (season: string) =>
+  season.charAt(0).toUpperCase() + season.slice(1);
+
 export default async function PilotPage({ params }: PageProps) {
   const { team, id } = await params;
   const meta = getTeam(team);
   const pilot = findPilot((team ?? "").toLowerCase(), id);
   if (!meta || !pilot) notFound();
+
+  const history = getPilotHistory(pilot.name, pilot.kartNumber);
+  const racedCategories = getPilotRacedCategories(pilot.name, pilot.kartNumber);
+  const categories = racedCategories.length > 0 ? racedCategories : pilot.categories;
 
   return (
     <div className="max-w-6xl mx-auto px-4 pt-24 pb-16">
@@ -75,9 +83,9 @@ export default async function PilotPage({ params }: PageProps) {
           </div>
 
           <div className="pilot-profile-categories">
-            <span className="stat-label">Categorías</span>
+            <span className="stat-label">Categorías corridas</span>
             <div className="flex flex-wrap gap-2 mt-2">
-              {pilot.categories.map((category) => (
+              {categories.map((category) => (
                 <span key={category} className="tag-chip">{category}</span>
               ))}
             </div>
@@ -90,6 +98,58 @@ export default async function PilotPage({ params }: PageProps) {
           </Link>
         </div>
       </div>
+
+      <section className="pilot-history" aria-label="Historial de temporadas">
+        <h2 className="category-label">Historial de temporadas</h2>
+
+        {history.length > 0 ? (
+          <div className="table-container">
+            <div className="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th className="text-left">Temporada</th>
+                    <th className="text-left">Clase / Categoría</th>
+                    <th>Equipo</th>
+                    <th className="position">Pos</th>
+                    <th className="points-cell">Puntos</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {history.map((entry, index) => (
+                    <tr
+                      key={`${entry.year}-${entry.season}-${entry.classTitle}-${entry.categoryName}-${index}`}
+                      className={entry.rank <= 3 ? `podium-${entry.rank}` : ""}
+                      style={{ "--row": index } as React.CSSProperties}
+                    >
+                      <td className="text-left">
+                        <span className="history-year">{entry.year}</span>
+                        {" · "}
+                        {seasonLabel(entry.season)}
+                      </td>
+                      <td className="text-left">
+                        <span className="history-class">{entry.classTitle}</span>
+                        {entry.categoryName && (
+                          <span className="history-cat"> · {entry.categoryName}</span>
+                        )}
+                      </td>
+                      <td>
+                        <TeamLogo team={entry.team} altText={entry.team} />
+                      </td>
+                      <td className="position">
+                        <span className="rank-chip">{entry.rank}</span>
+                      </td>
+                      <td className="points-cell">{entry.points}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ) : (
+          <p className="empty-state">Sin carreras en el historial todavía.</p>
+        )}
+      </section>
     </div>
   );
 }

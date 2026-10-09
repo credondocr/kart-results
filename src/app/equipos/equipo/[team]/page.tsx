@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Drivers } from "@/data/drivers/data";
 import { getTeam } from "@/data/drivers/teams";
+import { getPilotRacedCategories } from "@/app/utils/pilotHistory";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import DriverAvatar from "@/app/components/DriverAvatar";
 import CountryFlag from "@/app/components/CountryFlag";
@@ -50,28 +51,32 @@ export default async function TeamPage({ params }: PageProps) {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
-        {teamPilots.map((pilot) => (
-          <Link
-            key={`${pilot.teamLogo}-${pilot.kartNumber}`}
-            href={`/equipos/equipo/${meta.slug}/${pilot.kartNumber}`}
-            className="pilot-card"
-          >
-            <DriverAvatar pilot={pilot} />
-            <h2 className="pilot-card-name">{pilot.name}</h2>
-            <p className="pilot-card-number">
-              Kart <strong>#{pilot.kartNumber}</strong>
-            </p>
-            <div className="pilot-card-tags">
-              <CountryFlag countryCode={pilot.country} alt={pilot.country} />
-              {pilot.categories.slice(0, 2).map((category) => (
-                <span key={category} className="tag-chip">{category}</span>
-              ))}
-              {pilot.categories.length > 2 && (
-                <span className="tag-chip">+{pilot.categories.length - 2}</span>
-              )}
-            </div>
-          </Link>
-        ))}
+        {teamPilots.map((pilot) => {
+          const raced = getPilotRacedCategories(pilot.name, pilot.kartNumber);
+          const categories = raced.length > 0 ? raced : pilot.categories;
+          return (
+            <Link
+              key={`${pilot.teamLogo}-${pilot.kartNumber}`}
+              href={`/equipos/equipo/${meta.slug}/${pilot.kartNumber}`}
+              className="pilot-card"
+            >
+              <DriverAvatar pilot={pilot} />
+              <h2 className="pilot-card-name">{pilot.name}</h2>
+              <p className="pilot-card-number">
+                Kart <strong>#{pilot.kartNumber}</strong>
+              </p>
+              <div className="pilot-card-tags">
+                <CountryFlag countryCode={pilot.country} alt={pilot.country} />
+                {categories.slice(0, 2).map((category) => (
+                  <span key={category} className="tag-chip">{category}</span>
+                ))}
+                {categories.length > 2 && (
+                  <span className="tag-chip">+{categories.length - 2}</span>
+                )}
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
