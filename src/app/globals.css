@@ -680,7 +680,19 @@
   }
 
   @media (min-width: 768px) {
-    .pilot-profile {
+  .rank-chip.gold {
+    background: linear-gradient(160deg, #f6d98a, var(--gold));
+    border-color: var(--gold);
+    color: #241b04;
+  }
+
+  .champion-cell {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .pilot-profile {
       grid-template-columns: 300px 1fr;
       align-items: start;
     }

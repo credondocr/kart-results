@@ -22,9 +22,10 @@ const Footer = () => {
           </Link>
           <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#9BA3BD]">
             <Link href="/" className="hover:text-white transition-colors">Campeonato</Link>
+            <Link href="/equipos" className="hover:text-white transition-colors">Equipos</Link>
+            <Link href="/palmares" className="hover:text-white transition-colors">Palmarés</Link>
             <Link href="/faq" className="hover:text-white transition-colors">FAQ</Link>
             <Link href="/reglamento" className="hover:text-white transition-colors">Reglamento</Link>
-            <Link href="/equipos" className="hover:text-white transition-colors">Equipos</Link>
           </nav>
         </div>
         <div className="mt-8 pt-6 border-t border-white/10 text-center sm:text-left text-xs text-[#9BA3BD]">
