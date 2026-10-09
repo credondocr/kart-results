@@ -1,15 +1,15 @@
 import { Drivers } from "@/data/drivers/data";
-import { normalizeName } from "./pilotHistory";
+import { normalizeName, findHistoryEntry } from "./pilotHistory";
 
 export interface PilotLink {
   slug: string;
-  id: number;
+  id: number | string;
 }
 
 /**
  * Resuelve la ficha de un piloto mostrado en las tablas de posiciones.
  * Prioridad: nombre exacto + equipo → nombre exacto → nombre parcial +
- * equipo → nombre parcial → equipo + número de kart.
+ * equipo → nombre parcial → equipo + número → historial (ficha sintética).
  */
 export function findPilotProfile(
   driver: string,
@@ -33,13 +33,22 @@ export function findPilotProfile(
     hit = partial.length > 0 ? pick(partial) : undefined;
   }
 
-  if (!hit) {
-    hit =
-      Drivers.find(
-        (candidate) =>
-          candidate.teamLogo === team && String(candidate.kartNumber) === String(number)
-      ) ?? undefined;
+  if (!hit && team) {
+    hit = Drivers.find(
+      (candidate) =>
+        candidate.teamLogo === team && String(candidate.kartNumber) === String(number)
+    );
   }
 
-  return hit ? { slug: hit.teamLogo, id: hit.kartNumber } : null;
+  if (hit) return { slug: hit.teamLogo, id: hit.kartNumber };
+
+  // Pilotos que solo existen en el historial de posiciones (ficha sintética).
+  if (team) {
+    const entry = findHistoryEntry(team, String(number));
+    if (entry && normalizeName(entry.driver) === target) {
+      return { slug: entry.team, id: entry.number };
+    }
+  }
+
+  return null;
 }

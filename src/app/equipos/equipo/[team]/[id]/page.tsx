@@ -3,7 +3,15 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Drivers } from "@/data/drivers/data";
 import { getTeam } from "@/data/drivers/teams";
-import { getPilotHistory, getPilotRacedCategories, getPilotCareerStats, formatYears, type CategoryStat } from "@/app/utils/pilotHistory";
+import type { Pilot } from "@/data/types";
+import {
+  getPilotHistory,
+  getPilotRacedCategories,
+  getPilotCareerStats,
+  findHistoryEntry,
+  formatYears,
+  type CategoryStat,
+} from "@/app/utils/pilotHistory";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import DriverAvatar from "@/app/components/DriverAvatar";
 import CountryFlag from "@/app/components/CountryFlag";
@@ -13,7 +21,12 @@ interface PageProps {
   params: Promise<{ team: string; id: string }>;
 }
 
-function findPilot(teamSlug: string, id: string) {
+const prettifyTeam = (slug: string) =>
+  slug
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+
+function findDriverPilot(teamSlug: string, id: string): Pilot | undefined {
   const number = Number(id);
   if (!Number.isInteger(number)) return undefined;
   return Drivers.find(
@@ -21,9 +34,34 @@ function findPilot(teamSlug: string, id: string) {
   );
 }
 
+/** Ficha sintética para pilotos que solo existen en el historial de posiciones. */
+function synthesizePilot(teamSlug: string, id: string, name: string): Pilot {
+  const raced = getPilotRacedCategories(name, id);
+  return {
+    name,
+    kartNumber: id,
+    categories: raced.length > 0 ? raced.map((category) => category.label) : [],
+    biography: "",
+    country: "",
+    teamName: prettifyTeam(teamSlug),
+    profileUrl: "",
+    teamLogo: teamSlug,
+  };
+}
+
+function resolvePilot(teamSlug: string, id: string): Pilot | undefined {
+  const driver = findDriverPilot(teamSlug, id);
+  if (driver) return driver;
+
+  const entry = findHistoryEntry(teamSlug, id);
+  if (entry) return synthesizePilot(teamSlug, id, entry.driver);
+
+  return undefined;
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { team, id } = await params;
-  const pilot = findPilot(team.toLowerCase(), id);
+  const pilot = resolvePilot((team ?? "").toLowerCase(), id);
   if (!pilot) return { title: "Piloto | Costa Rica Kart Championship" };
   return {
     title: `${pilot.name} | Costa Rica Kart Championship`,
@@ -36,9 +74,16 @@ const seasonLabel = (season: string) =>
 
 export default async function PilotPage({ params }: PageProps) {
   const { team, id } = await params;
-  const meta = getTeam(team);
-  const pilot = findPilot((team ?? "").toLowerCase(), id);
-  if (!meta || !pilot) notFound();
+  const teamSlug = (team ?? "").toLowerCase();
+  const knownTeam = getTeam(team);
+  const pilot = resolvePilot(teamSlug, id);
+  if (!pilot) notFound();
+
+  const meta = knownTeam ?? {
+    slug: teamSlug,
+    name: prettifyTeam(teamSlug),
+    logo: "",
+  };
 
   const history = getPilotHistory(pilot.name, pilot.kartNumber);
   const racedCategories = getPilotRacedCategories(pilot.name, pilot.kartNumber);
@@ -74,7 +119,7 @@ export default async function PilotPage({ params }: PageProps) {
               <span className="stat-label">País</span>
               <span className="stat-value with-media">
                 <CountryFlag countryCode={pilot.country} alt={pilot.country} />
-                {pilot.country}
+                {pilot.country || "—"}
               </span>
             </div>
             <div className="stat">
@@ -109,14 +154,18 @@ export default async function PilotPage({ params }: PageProps) {
           <div className="pilot-profile-categories">
             <span className="stat-label">Categorías corridas</span>
             <div className="flex flex-wrap gap-2 mt-2">
-              {categories.map((category) => (
-                <span key={category.label} className="tag-chip">
-                  {category.label}
-                  {category.years.length > 0 && (
-                    <span className="tag-years"> · {formatYears(category.years)}</span>
-                  )}
-                </span>
-              ))}
+              {categories.length > 0 ? (
+                categories.map((category) => (
+                  <span key={category.label} className="tag-chip">
+                    {category.label}
+                    {category.years.length > 0 && (
+                      <span className="tag-years"> · {formatYears(category.years)}</span>
+                    )}
+                  </span>
+                ))
+              ) : (
+                <span className="tag-chip">Sin categorías registradas</span>
+              )}
             </div>
           </div>
 

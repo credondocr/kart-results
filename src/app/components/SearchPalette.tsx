@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Drivers } from "@/data/drivers/data";
 import { TEAMS } from "@/data/drivers/teams";
 import { Championships } from "@/data/history";
-import { normalizeName } from "@/app/utils/pilotHistory";
+import { normalizeName, getHistoryPilots, nameMatches } from "@/app/utils/pilotHistory";
 
 interface SearchPaletteProps {
   onClose: () => void;
@@ -15,7 +15,24 @@ interface Result {
   label: string;
   meta?: string;
   href: string;
-  group: "Pilotos" | "Equipos" | "Temporadas";
+  group: "Pilotos" | "Clases" | "Equipos" | "Temporadas";
+}
+
+function classResults(): Result[] {
+  const titles = new Set<string>();
+  for (const championship of Championships.years) {
+    for (const season of [championship.invierno, championship.verano]) {
+      if (!season) continue;
+      for (const cls of season.classes) titles.add(cls.title);
+    }
+  }
+  const latest = String(Championships.years[Championships.years.length - 1].year);
+  return [...titles].map((title) => ({
+    key: `c-${title}`,
+    label: title,
+    href: `/Campeonato/${latest}/general?tab=${encodeURIComponent(title)}`,
+    group: "Clases",
+  }));
 }
 
 function seasonResults(): Result[] {
@@ -68,12 +85,12 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({ onClose }) => {
     const nq = normalizeName(raw);
     const digits = /^\d+$/.test(raw);
 
-    const pilots: Result[] = Drivers.filter((driver) =>
+    const profilePilots: Result[] = Drivers.filter((driver) =>
       digits
         ? String(driver.kartNumber).includes(raw) || normalizeName(driver.name).includes(nq)
         : normalizeName(driver.name).includes(nq)
     )
-      .slice(0, 8)
+      .slice(0, 6)
       .map((driver) => ({
         key: `p-${driver.teamLogo}-${driver.kartNumber}`,
         label: driver.name,
@@ -81,6 +98,25 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({ onClose }) => {
         href: `/equipos/equipo/${driver.teamLogo}/${driver.kartNumber}`,
         group: "Pilotos",
       }));
+
+    // Pilotos que solo existen en el historial de posiciones (sin perfil en drivers).
+    const historyPilots: Result[] = getHistoryPilots()
+      .filter((pilot) =>
+        digits
+          ? String(pilot.number).includes(raw) || normalizeName(pilot.name).includes(nq)
+          : normalizeName(pilot.name).includes(nq)
+      )
+      .filter((pilot) => !Drivers.some((driver) => nameMatches(driver.name, pilot.name)))
+      .slice(0, 8 - profilePilots.length)
+      .map((pilot) => ({
+        key: `h-${pilot.team}-${pilot.number}`,
+        label: pilot.name,
+        meta: `#${pilot.number}`,
+        href: `/equipos/equipo/${pilot.team}/${pilot.number}`,
+        group: "Pilotos",
+      }));
+
+    const pilots = [...profilePilots, ...historyPilots];
 
     const teams: Result[] = TEAMS.filter(
       (team) => normalizeName(team.name).includes(nq) || team.slug.includes(nq)
@@ -93,15 +129,22 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({ onClose }) => {
         group: "Equipos",
       }));
 
+    const classes: Result[] = classResults()
+      .filter((cls) => normalizeName(cls.label).includes(nq) || cls.label.includes(raw))
+      .slice(0, 4);
+
     const seasons: Result[] = seasonResults()
       .filter((season) => normalizeName(season.label).includes(nq) || season.label.includes(raw))
       .slice(0, 4);
 
-    return [...pilots, ...teams, ...seasons];
+    return [...pilots, ...classes, ...teams, ...seasons];
   }, [query]);
 
   const groups = useMemo(() => {
-    const order: Result["group"][] = ["Pilotos", "Equipos", "Temporadas"];
+    if (!query.trim()) {
+      return [{ name: "Accesos rápidos", items: results }];
+    }
+    const order: Result["group"][] = ["Pilotos", "Clases", "Equipos", "Temporadas"];
     return order
       .map((name) => ({ name, items: results.filter((result) => result.group === name) }))
       .filter((group) => group.items.length > 0);

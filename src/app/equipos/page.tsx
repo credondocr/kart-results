@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Drivers } from "@/data/drivers/data";
 import { TEAMS } from "@/data/drivers/teams";
+import { getTeamRoster } from "@/app/utils/teamRoster";
 import Breadcrumb from "@/app/components/Breadcrumb";
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ const TeamsPage = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-10">
         {TEAMS.map((team) => {
-          const count = Drivers.filter((driver) => driver.teamLogo === team.slug).length;
+          const count = getTeamRoster(team.slug).length;
           return (
             <Link key={team.slug} href={`/equipos/equipo/${team.slug}`} className="team-card">
               <div className="team-card-logo">

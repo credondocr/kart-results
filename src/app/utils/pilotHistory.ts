@@ -1,7 +1,9 @@
 import { Championships } from "@/data/history";
+import type { Pilot } from "@/data/types";
 
 export interface HistoryEntry {
   driver: string;
+  country: string;
   year: string;
   season: string;
   classTitle: string;
@@ -22,7 +24,7 @@ export function normalizeName(name: string): string {
     .toLowerCase();
 }
 
-function nameMatches(pilotName: string, resultName: string): boolean {
+export function nameMatches(pilotName: string, resultName: string): boolean {
   const a = normalizeName(pilotName);
   const b = normalizeName(resultName);
   return a === b || a.startsWith(b + " ") || b.startsWith(a + " ");
@@ -68,6 +70,7 @@ function buildIndex(): HistoryEntry[] {
           ranked.forEach((row, index) => {
             entries.push({
               driver: row.result.driver,
+              country: row.result.country,
               year,
               season,
               classTitle: cls.title,
@@ -100,7 +103,7 @@ function sortEntries(entries: HistoryEntry[]): HistoryEntry[] {
 }
 
 /** Historial de un piloto: por nombre (parcial, con acentos) y, si no, por número. */
-export function getPilotHistory(pilotName: string, kartNumber?: number): HistoryEntry[] {
+export function getPilotHistory(pilotName: string, kartNumber?: number | string): HistoryEntry[] {
   const index = getIndex();
 
   const byName = index.filter((entry) => nameMatches(pilotName, entry.driver));
@@ -120,7 +123,7 @@ export interface CategoryStat {
   years: string[];
 }
 
-export function getPilotRacedCategories(pilotName: string, kartNumber?: number): CategoryStat[] {
+export function getPilotRacedCategories(pilotName: string, kartNumber?: number | string): CategoryStat[] {
   const byCategory = new Map<string, Set<string>>();
 
   for (const entry of getPilotHistory(pilotName, kartNumber)) {
@@ -155,7 +158,7 @@ export interface CareerStats {
 }
 
 /** Estadísticas de carrera agregadas del historial de un piloto. */
-export function getPilotCareerStats(pilotName: string, kartNumber?: number): CareerStats {
+export function getPilotCareerStats(pilotName: string, kartNumber?: number | string): CareerStats {
   const history = getPilotHistory(pilotName, kartNumber);
   const seasons = new Set(history.map((entry) => `${entry.year}-${entry.season}`));
   return {
@@ -169,4 +172,53 @@ export function getPilotCareerStats(pilotName: string, kartNumber?: number): Car
 /** Primeros lugares de cada clase/categoría por temporada (orden cronológico inverso). */
 export function getChampions(): HistoryEntry[] {
   return sortEntries(getIndex().filter((entry) => entry.rank === 1));
+}
+
+export interface HistoryPilot {
+  name: string;
+  country: string;
+  number: number | string;
+  team: string;
+}
+
+/** Pilotos únicos que han corridado (orden cronológico inverso: equipo actual primero). */
+export function getHistoryPilots(): HistoryPilot[] {
+  const seen = new Map<string, HistoryPilot>();
+  for (const entry of sortEntries(getIndex())) {
+    const key = normalizeName(entry.driver);
+    if (!seen.has(key)) {
+      seen.set(key, {
+        name: entry.driver,
+        country: entry.country,
+        number: entry.number,
+        team: entry.team,
+      });
+    }
+  }
+  return [...seen.values()];
+}
+
+/** Entrada más reciente de un piloto por equipo + número (para fichas sintéticas). */
+export function findHistoryEntry(teamSlug: string, id: string): HistoryEntry | undefined {
+  const slug = teamSlug.toLowerCase();
+  return sortEntries(getIndex()).find(
+    (entry) =>
+      entry.team.toLowerCase() === slug &&
+      String(entry.number).toLowerCase() === id.toLowerCase()
+  );
+}
+
+/** Convierte un piloto del historial en forma Pilot para fichas/rosters. */
+export function toPilotShape(pilot: HistoryPilot): Pilot {
+  const raced = getPilotRacedCategories(pilot.name, pilot.number);
+  return {
+    name: pilot.name,
+    kartNumber: pilot.number,
+    categories: raced.length > 0 ? raced.map((category) => category.label) : [],
+    biography: "",
+    country: pilot.country,
+    teamName: pilot.team.replace(/-/g, " "),
+    profileUrl: "",
+    teamLogo: pilot.team,
+  };
 }

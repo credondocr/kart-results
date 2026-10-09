@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { Drivers } from "@/data/drivers/data";
 import { getTeam } from "@/data/drivers/teams";
 import { getPilotRacedCategories } from "@/app/utils/pilotHistory";
+import { getTeamRoster } from "@/app/utils/teamRoster";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import DriverAvatar from "@/app/components/DriverAvatar";
 import CountryFlag from "@/app/components/CountryFlag";
@@ -13,33 +13,41 @@ interface PageProps {
   params: Promise<{ team: string }>;
 }
 
+const prettifyTeam = (slug: string) =>
+  slug
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { team } = await params;
-  const meta = getTeam(team);
-  if (!meta) return { title: "Equipo | Costa Rica Kart Championship" };
+  const known = getTeam(team);
+  const name = known?.name ?? prettifyTeam((team ?? "").toLowerCase());
   return {
-    title: `${meta.name} | Costa Rica Kart Championship`,
-    description: `Pilotos del equipo ${meta.name} en el Costa Rica Kart Championship.`,
+    title: `${name} | Costa Rica Kart Championship`,
+    description: `Pilotos del equipo ${name} en el Costa Rica Kart Championship.`,
   };
 }
 
 export default async function TeamPage({ params }: PageProps) {
   const { team } = await params;
-  const meta = getTeam(team);
-  if (!meta) notFound();
-
-  const teamPilots = Drivers.filter((driver) => driver.teamLogo === meta.slug);
+  const slug = (team ?? "").toLowerCase();
+  const known = getTeam(slug);
+  const teamPilots = getTeamRoster(slug);
 
   if (!teamPilots.length) notFound();
+
+  const meta = known ?? { slug, name: prettifyTeam(slug), logo: "" };
 
   return (
     <div className="max-w-6xl mx-auto px-4 pt-24 pb-16">
       <Breadcrumb />
 
       <div className="flex flex-col items-center gap-4 my-6">
-        <div className="team-card-logo lg">
-          <Image src={meta.logo} alt={meta.name} width={180} height={180} />
-        </div>
+        {meta.logo && (
+          <div className="team-card-logo lg">
+            <Image src={meta.logo} alt={meta.name} width={180} height={180} />
+          </div>
+        )}
         <div className="text-center">
           <p className="season-eyebrow" style={{ marginBottom: "0.4rem" }}>
             <Link href="/equipos" className="crumb">Equipos</Link>

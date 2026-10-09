@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { getTeam } from "@/data/drivers/teams";
 import { Drivers } from "@/data/drivers/data";
+import { findHistoryEntry } from "@/app/utils/pilotHistory";
 
 interface Crumb {
   label: string;
@@ -48,7 +49,8 @@ function buildCrumbs(pathname: string): Crumb[] {
           driver.teamLogo.toLowerCase() === slug.toLowerCase() &&
           driver.kartNumber === Number(part)
       );
-      crumbs.push({ label: pilot?.name ?? `#${part}`, href: null });
+      const fromHistory = pilot?.name ?? findHistoryEntry(slug, part)?.driver;
+      crumbs.push({ label: fromHistory ?? `#${part}`, href: null });
       continue;
     }
 
