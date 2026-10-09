@@ -18,6 +18,7 @@ const TeamLogo: React.FC<TeamLogoProps> = ({ team, altText }) => {
       width={50}
       height={50}
       alt={altText || (formattedTeamName ? `${team} Logo` : "Sin equipo")}
+      className="team-logo"
       style={{ width: 50, height: 50, objectFit: "contain" }}
       onError={(e) => {
         (e.target as HTMLImageElement).src = PLACEHOLDER_LOGO;

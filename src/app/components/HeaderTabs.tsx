@@ -1,32 +1,24 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 
 interface HeaderTabsProps {
   onTabSelect: (category: string) => void;
-  showTeamTab: boolean
+  showTeamTab: boolean;
+  activeTab: string;
 }
 
-const HeaderTabs: React.FC<HeaderTabsProps> = ({ onTabSelect, showTeamTab = false }) => {
-  const tabs = [
-    "ALL",
-    "KID KART",
-    "MICRO ROK",
-    "MINI ROK",
-    "ROK SHIFTER",
-    "STARS OF TOMORROW",
-    "TILLOTSON",
-    "VLR"
-  ];
+const BASE_TABS = [
+  { id: "ALL", label: "Todo" },
+  { id: "KID KART", label: "Kid Kart" },
+  { id: "MICRO ROK", label: "Micro Rok" },
+  { id: "MINI ROK", label: "Mini Rok" },
+  { id: "ROK SHIFTER", label: "Rok Shifter" },
+  { id: "STARS OF TOMORROW", label: "Stars of Tomorrow" },
+  { id: "TILLOTSON", label: "Tillotson" },
+  { id: "VLR", label: "VLR" },
+];
 
-  if (showTeamTab) {
-    tabs.push("Equipos")
-  }
-
-  const [selectedTab, setSelectedTab] = useState<string>(tabs[0]);
-
-  const handleTabClick = (tab: string) => {
-    setSelectedTab(tab);
-    onTabSelect(tab);
-  };
+const HeaderTabs: React.FC<HeaderTabsProps> = ({ onTabSelect, showTeamTab = false, activeTab }) => {
+  const tabs = showTeamTab ? [...BASE_TABS, { id: "Equipos", label: "Equipos" }] : BASE_TABS;
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -63,14 +55,18 @@ const HeaderTabs: React.FC<HeaderTabsProps> = ({ onTabSelect, showTeamTab = fals
     <div
       ref={containerRef}
       className="tabs-container"
+      role="group"
+      aria-label="Filtrar por clase"
     >
       {tabs.map((tab) => (
         <button
-          key={tab}
-          onClick={() => handleTabClick(tab)}
-          className={`tab-button ${selectedTab === tab ? 'active' : ''}`}
+          key={tab.id}
+          type="button"
+          onClick={() => onTabSelect(tab.id)}
+          aria-pressed={activeTab === tab.id}
+          className={`tab-button ${activeTab === tab.id ? 'active' : ''}`}
         >
-          {tab}
+          {tab.label}
         </button>
       ))}
     </div>

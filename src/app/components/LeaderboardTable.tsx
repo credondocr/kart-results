@@ -25,6 +25,9 @@ const LeaderboardTable: React.FC<{ category: Category, season: string, leaderboa
         </h3>
       )}
       <div className="table-container">
+        {category.results.length === 0 ? (
+          <p className="empty-state">Aún no hay resultados en esta categoría.</p>
+        ) : (
         <div className="table-wrapper">
           <table>
             <thead>
@@ -85,6 +88,7 @@ const LeaderboardTable: React.FC<{ category: Category, season: string, leaderboa
             </tbody>
           </table>
         </div>
+        )}
       </div>
     </div>
 

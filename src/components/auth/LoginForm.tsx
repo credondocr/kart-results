@@ -66,7 +66,7 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
         disabled={loading}
         className="w-full"
       >
-        {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+        {loading ? 'Iniciando sesión…' : 'Iniciar Sesión'}
       </Button>
     </form>
   );

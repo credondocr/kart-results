@@ -55,6 +55,34 @@
     background: rgba(76, 141, 255, 0.35);
   }
 
+  /* Skip link — visible only on keyboard focus */
+  .skip-link {
+    position: fixed;
+    top: -100%;
+    left: 1rem;
+    z-index: 100;
+    padding: 0.6rem 1rem;
+    background: var(--signal);
+    color: var(--ink-950);
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 0 0 0.5rem 0.5rem;
+    transition: top 0.15s ease;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: rgba(76, 141, 255, 0.25);
+  }
+
+  button {
+    touch-action: manipulation;
+  }
+
   :focus-visible {
     outline: 2px solid var(--signal);
     outline-offset: 2px;
@@ -116,7 +144,7 @@
   }
 
   .tab-button {
-    @apply whitespace-nowrap transition-all duration-200;
+    @apply whitespace-nowrap;
     padding: 0.5rem 1.1rem;
     border-radius: 999px;
     font-size: 11px;
@@ -127,6 +155,7 @@
     background: transparent;
     border: 1px solid transparent;
     font-family: var(--font-sans);
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
   }
 
   .tab-button:hover {
@@ -166,6 +195,7 @@
     letter-spacing: -0.02em;
     color: var(--text);
     line-height: 1;
+    text-wrap: balance;
   }
 
   .class-title::after {
@@ -372,6 +402,119 @@
     box-shadow: 0 0 8px rgba(76, 141, 255, 0.9);
   }
 
+  /* Skeleton loading */
+  .skeleton-bar {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.04) 25%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.04) 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.4s ease-in-out infinite;
+    border-radius: 0.375rem;
+  }
+
+  @keyframes skeleton-shimmer {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skeleton-bar {
+      animation: none;
+    }
+  }
+
+  /* Class block — crossfade when switching tabs */
+  .class-block {
+    animation: block-in 0.35s ease both;
+  }
+
+  @keyframes block-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .class-block {
+      animation: none;
+    }
+  }
+
+  /* Category eyebrow (general view) */
+  .category-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.75rem;
+  }
+
+  /* Points cell (general view) */
+  .points-cell {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    color: var(--signal);
+    text-align: right;
+  }
+
+  /* Truncating driver names */
+  .driver-name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Logos in tables */
+  .table-container .team-logo {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  /* Breadcrumbs */
+  .crumb {
+    color: var(--text-dim);
+    font-weight: 500;
+    transition: color 0.15s ease;
+  }
+
+  .crumb:hover {
+    color: var(--text);
+  }
+
+  .crumb.current {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .crumb-sep {
+    margin: 0 0.5rem;
+    color: rgba(76, 141, 255, 0.5);
+    font-weight: 700;
+  }
+
+  /* Empty state */
+  .empty-state {
+    padding: 2.5rem 1rem;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
   .table-container {
     @apply relative mx-auto rounded-xl;
     max-width: 1400px;
@@ -442,6 +585,24 @@
 
   tbody tr:nth-child(even) {
     background-color: rgba(255, 255, 255, 0.015);
+  }
+
+  /* Hover: signal bar on the left edge of the row */
+  tbody tr::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    z-index: 3;
+    background: var(--signal);
+    transition: width 0.15s ease;
+    pointer-events: none;
+  }
+
+  tbody tr:hover::before {
+    width: 3px;
   }
 
   tbody tr:hover {
@@ -615,10 +776,6 @@
     background-color: var(--signal-dim);
   }
 
-  nav {
-    @apply transition-all duration-300 ease-in-out;
-  }
-
   ul {
     @apply list-none p-0 m-0;
   }
@@ -656,4 +813,57 @@
 
 .center {
   @apply text-center;
+}
+
+/* Mobile: tighter tables */
+@media (max-width: 640px) {
+  th,
+  td {
+    padding: 0.6rem 0.55rem;
+  }
+
+  .table-container {
+    padding: 1rem 0.5rem;
+    border-radius: 0.75rem;
+  }
+
+  .driver-info {
+    width: 200px;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  .race-number {
+    width: 56px;
+    padding-right: 0.75rem !important;
+  }
+
+  .race-points {
+    width: 48px;
+    padding: 0.6rem 0.25rem !important;
+    font-size: 12px;
+  }
+
+  .total-points,
+  .best-4-column {
+    width: 72px;
+    margin-left: 0.35rem;
+    padding-right: 0.75rem !important;
+  }
+
+  .gap-cell {
+    width: 84px;
+    padding: 0.5rem 0.5rem !important;
+  }
+
+  .rank-chip {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+  }
+
+  .table-container .team-logo {
+    width: 24px !important;
+    height: 24px !important;
+  }
 }

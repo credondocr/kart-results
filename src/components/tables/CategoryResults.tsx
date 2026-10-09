@@ -12,12 +12,12 @@ interface CategoryResultsProps {
 export function CategoryResults({ name, results }: CategoryResultsProps) {
   return (
     <div className="my-4">
-      <h3 className="text-xl font-semibold mb-2">{name}</h3>
+      {name && <h3 className="category-label">{name}</h3>}
       <Table>
         <TableHeader>
           <tr>
-            <TableHeaderCell className="px-2">Pos.</TableHeaderCell>
-            <TableHeaderCell className="px-2">Num.</TableHeaderCell>
+            <TableHeaderCell className="px-2">Po</TableHeaderCell>
+            <TableHeaderCell className="px-2">No</TableHeaderCell>
             <TableHeaderCell>Piloto</TableHeaderCell>
             <TableHeaderCell align="right">Puntos</TableHeaderCell>
           </tr>
@@ -32,6 +32,7 @@ export function CategoryResults({ name, results }: CategoryResultsProps) {
               country={result.country}
               team={result.team}
               points={result.points ?? 0}
+              rowIndex={index}
             />
           ))}
         </TableBody>

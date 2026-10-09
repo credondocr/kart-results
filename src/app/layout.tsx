@@ -42,11 +42,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="dark">
+      <head>
+        <meta name="theme-color" content="#070A14" />
+      </head>
       <body className={`${archivo.variable} ${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased min-h-screen flex flex-col`}>
         <GoogleAnalytics />
         <AuthProvider>
+          <a href="#main-content" className="skip-link">Saltar al contenido</a>
           <Navbar />
-          <main className="flex-grow">{children}</main>
+          <main id="main-content" className="flex-grow">{children}</main>
           <Footer />
         </AuthProvider>
       </body>

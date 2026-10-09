@@ -49,7 +49,9 @@ const Navbar: React.FC = () => {
           <div className="flex items-center sm:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-white hover:text-[#4C8DFF] focus:outline-none"
+              className="text-white hover:text-[#4C8DFF]"
+              aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+              aria-expanded={isMenuOpen}
             >
               <svg
                 className="h-6 w-6"

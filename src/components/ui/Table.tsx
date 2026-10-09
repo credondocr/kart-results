@@ -1,17 +1,18 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { ReactNode, CSSProperties } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 interface TableProps {
   children: ReactNode;
   className?: string;
+  style?: CSSProperties;
 }
 
-export function Table({ children, className }: TableProps) {
+export function Table({ children, className, style }: TableProps) {
   return (
     <div className="table-container overflow-x-auto">
-      <table className={twMerge("table bg-gray-800 text-white rounded-lg w-full", className)}>
+      <table className={twMerge("w-full", className)} style={style}>
         {children}
       </table>
     </div>
@@ -20,7 +21,7 @@ export function Table({ children, className }: TableProps) {
 
 export function TableHeader({ children, className }: TableProps) {
   return (
-    <thead className={twMerge("bg-gray-700", className)}>
+    <thead className={className}>
       {children}
     </thead>
   );
@@ -34,9 +35,9 @@ export function TableBody({ children, className }: TableProps) {
   );
 }
 
-export function TableRow({ children, className }: TableProps) {
+export function TableRow({ children, className, style }: TableProps) {
   return (
-    <tr className={twMerge("hover:bg-gray-600", className)}>
+    <tr className={twMerge(className)} style={style}>
       {children}
     </tr>
   );
@@ -49,7 +50,6 @@ interface TableCellProps extends TableProps {
 export function TableCell({ children, className, align = 'left' }: TableCellProps) {
   return (
     <td className={twMerge(
-      "px-4 py-2",
       align === 'right' && "text-right",
       align === 'center' && "text-center",
       className
@@ -62,7 +62,6 @@ export function TableCell({ children, className, align = 'left' }: TableCellProp
 export function TableHeaderCell({ children, className, align = 'left' }: TableCellProps) {
   return (
     <th className={twMerge(
-      "px-4 py-2",
       align === 'right' && "text-right",
       align === 'center' && "text-center",
       className
