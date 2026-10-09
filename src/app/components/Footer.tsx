@@ -24,6 +24,7 @@ const Footer = () => {
             <Link href="/" className="hover:text-white transition-colors">Campeonato</Link>
             <Link href="/equipos" className="hover:text-white transition-colors">Equipos</Link>
             <Link href="/campeones" className="hover:text-white transition-colors">Campeones</Link>
+            <Link href="/estadisticas" className="hover:text-white transition-colors">Estadísticas</Link>
             <Link href="/faq" className="hover:text-white transition-colors">FAQ</Link>
             <Link href="/reglamento" className="hover:text-white transition-colors">Reglamento</Link>
           </nav>

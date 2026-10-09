@@ -56,6 +56,7 @@ const QUICK_LINKS: Result[] = [
   { key: "q-general", label: "General 2026", href: "/Campeonato/2026/general", group: "Temporadas" },
   { key: "q-equipos", label: "Equipos", href: "/equipos", group: "Equipos" },
   { key: "q-campeones", label: "Campeones por temporada", href: "/campeones", group: "Temporadas" },
+  { key: "q-estadisticas", label: "Estadísticas", href: "/estadisticas", group: "Temporadas" },
 ];
 
 const SearchPalette: React.FC<SearchPaletteProps> = ({ onClose }) => {

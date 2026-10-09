@@ -389,3 +389,169 @@ export function toPilotShape(pilot: HistoryPilot): Pilot {
     teamLogo: pilot.team,
   };
 }
+
+/* ==================== Estadísticas generales del campeonato ==================== */
+
+export interface PilotsStatsEntry {
+  /** Nombre canónico (primera grafía vista; las variantes se fusionan con samePerson). */
+  name: string;
+  team: string;
+  number: number | string;
+  titles: number;
+  subs: number;
+  raceWins: number;
+  racePodiums: number;
+  races: number;
+  seasons: number;
+  points: number;
+}
+
+export interface TeamStatsEntry {
+  team: string;
+  titles: number;
+  wins: number;
+}
+
+export interface SeasonRecord {
+  points: number;
+  driver: string;
+  number: number | string;
+  team: string;
+  year: string;
+  season: string;
+  classTitle: string;
+  categoryName: string;
+}
+
+export interface ChampionshipStats {
+  totals: { races: number; pilots: number; titles: number; wins: number };
+  /** Ordenados por títulos → victorias de carrera → podios. */
+  people: PilotsStatsEntry[];
+  teams: TeamStatsEntry[];
+  seasonRecord: SeasonRecord | null;
+}
+
+let statsCache: ChampionshipStats | null = null;
+
+/** Estadísticas agregadas de todo el histórico (cacheada). */
+export function getChampionshipStats(): ChampionshipStats {
+  if (statsCache) return statsCache;
+
+  const people = new Map<string, PilotsStatsEntry>();
+  const findOrCreate = (driver: string): PilotsStatsEntry => {
+    for (const [key, entry] of people) {
+      if (samePerson(key, driver)) return entry;
+    }
+    const created: PilotsStatsEntry = {
+      name: driver,
+      team: "",
+      number: "",
+      titles: 0,
+      subs: 0,
+      raceWins: 0,
+      racePodiums: 0,
+      races: 0,
+      seasons: 0,
+      points: 0,
+    };
+    people.set(driver, created);
+    return created;
+  };
+
+  // Títulos, subcampeonatos y puntos por temporada (orden cronológico inverso
+  // para que el equipo/nombre más reciente gane).
+  const teamTitles = new Map<string, TeamStatsEntry>();
+  for (const entry of sortEntries(getIndex())) {
+    const person = findOrCreate(entry.driver);
+    if (!person.team) {
+      person.team = entry.team;
+      person.number = entry.number;
+    }
+    person.seasons += 1;
+    person.points += entry.points;
+    if (entry.rank === 1) {
+      person.titles += 1;
+      const team = teamTitles.get(entry.team) ?? { team: entry.team, titles: 0, wins: 0 };
+      team.titles += 1;
+      teamTitles.set(entry.team, team);
+    } else if (entry.rank === 2) {
+      person.subs += 1;
+    }
+  }
+
+  // Victorias/podios por carrera.
+  for (const race of getRaceIndex()) {
+    const person = findOrCreate(race.driver);
+    person.races += 1;
+    if (race.position === 1) {
+      person.raceWins += 1;
+      const team = teamTitles.get(race.team) ?? { team: race.team, titles: 0, wins: 0 };
+      team.wins += 1;
+      teamTitles.set(race.team, team);
+    } else if (race.position <= 3) {
+      person.racePodiums += 1;
+    }
+  }
+
+  // Carreras disputadas (temporada·categoría·fecha con puntaje) + récord.
+  let races = 0;
+  let seasonRecord: SeasonRecord | null = null;
+  for (const championship of Championships.years) {
+    const year = String(championship.year);
+    for (const season of ["invierno", "verano"] as const) {
+      const leaderboard = championship[season];
+      if (!leaderboard) continue;
+      for (const cls of leaderboard.classes) {
+        for (const category of cls.categories) {
+          const width = category.results.reduce(
+            (max, result) => Math.max(max, result.scores.length),
+            0
+          );
+          for (let i = 0; i < width; i++) {
+            if (!category.results.some((result) => (result.scores[i] ?? 0) > 0)) continue;
+            races += 1;
+          }
+          for (const result of category.results) {
+            const points = result.scores.reduce((sum, score) => sum + score, 0);
+            if (!seasonRecord || points > seasonRecord.points) {
+              seasonRecord = {
+                points,
+                driver: result.driver,
+                number: result.number,
+                team: result.team,
+                year,
+                season,
+                classTitle: cls.title,
+                categoryName: category.name,
+              };
+            }
+          }
+        }
+      }
+    }
+  }
+
+  const sortedPeople = [...people.values()].sort(
+    (a, b) =>
+      b.titles - a.titles ||
+      b.raceWins - a.raceWins ||
+      b.racePodiums - a.racePodiums ||
+      a.name.localeCompare(b.name)
+  );
+
+  statsCache = {
+    totals: {
+      races,
+      pilots: sortedPeople.length,
+      titles: sortedPeople.reduce((sum, person) => sum + person.titles, 0),
+      wins: sortedPeople.reduce((sum, person) => sum + person.raceWins, 0),
+    },
+    people: sortedPeople,
+    teams: [...teamTitles.values()].sort(
+      (a, b) => b.titles - a.titles || b.wins - a.wins || a.team.localeCompare(b.team)
+    ),
+    seasonRecord,
+  };
+
+  return statsCache;
+}

@@ -70,7 +70,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile menu buttons */}
-          <div className="flex items-center gap-4 sm:hidden">
+          <div className="flex items-center gap-4 lg:hidden">
             <button
               type="button"
               onClick={() => setSearchOpen(true)}
@@ -104,7 +104,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden sm:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             <Link href="/" className={linkClass("/")}>
               Campeonato
               {isActive("/") && (
@@ -120,6 +120,12 @@ const Navbar: React.FC = () => {
             <Link href="/campeones" className={linkClass("/campeones")}>
               Campeones
               {isActive("/campeones") && (
+                <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
+              )}
+            </Link>
+            <Link href="/estadisticas" className={linkClass("/estadisticas")}>
+              Estadísticas
+              {isActive("/estadisticas") && (
                 <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
               )}
             </Link>
@@ -144,7 +150,7 @@ const Navbar: React.FC = () => {
         {/* Mobile Navigation Menu */}
         <div
           className={`${isMenuOpen ? 'block' : 'hidden'
-            } sm:hidden pb-4 space-y-2`}
+            } lg:hidden pb-4 space-y-2`}
         >
           <Link
             href="/"
@@ -169,6 +175,14 @@ const Navbar: React.FC = () => {
             onClick={() => setIsMenuOpen(false)}
           >
             Campeones
+          </Link>
+          <Link
+            href="/estadisticas"
+            className={`block px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-colors text-white hover:bg-white/5 ${isActive('/estadisticas') ? 'bg-white/10' : ''
+              }`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Estadísticas
           </Link>
           <Link
             href="/faq"
