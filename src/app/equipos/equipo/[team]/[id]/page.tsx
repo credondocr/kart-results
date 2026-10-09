@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Drivers } from "@/data/drivers/data";
 import { getTeam } from "@/data/drivers/teams";
-import { getPilotHistory, getPilotRacedCategories } from "@/app/utils/pilotHistory";
+import { getPilotHistory, getPilotRacedCategories, formatYears, type CategoryStat } from "@/app/utils/pilotHistory";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import DriverAvatar from "@/app/components/DriverAvatar";
 import CountryFlag from "@/app/components/CountryFlag";
@@ -42,7 +42,10 @@ export default async function PilotPage({ params }: PageProps) {
 
   const history = getPilotHistory(pilot.name, pilot.kartNumber);
   const racedCategories = getPilotRacedCategories(pilot.name, pilot.kartNumber);
-  const categories = racedCategories.length > 0 ? racedCategories : pilot.categories;
+  const categories: CategoryStat[] =
+    racedCategories.length > 0
+      ? racedCategories
+      : pilot.categories.map((label) => ({ label, years: [] as string[] }));
 
   return (
     <div className="max-w-6xl mx-auto px-4 pt-24 pb-16">
@@ -86,7 +89,12 @@ export default async function PilotPage({ params }: PageProps) {
             <span className="stat-label">Categorías corridas</span>
             <div className="flex flex-wrap gap-2 mt-2">
               {categories.map((category) => (
-                <span key={category} className="tag-chip">{category}</span>
+                <span key={category.label} className="tag-chip">
+                  {category.label}
+                  {category.years.length > 0 && (
+                    <span className="tag-years"> · {formatYears(category.years)}</span>
+                  )}
+                </span>
               ))}
             </div>
           </div>

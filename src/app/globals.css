@@ -618,6 +618,14 @@
     white-space: nowrap;
   }
 
+  .tag-years {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: rgba(155, 163, 189, 0.65);
+  }
+
   /* Pit-board number plate (avatar placeholder) */
   .number-plate {
     display: flex;

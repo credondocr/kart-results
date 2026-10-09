@@ -114,12 +114,35 @@ export function getPilotHistory(pilotName: string, kartNumber?: number): History
   return [];
 }
 
-/** Categorías únicas en las que ha corrido, según el historial (más recientes primero). */
-export function getPilotRacedCategories(pilotName: string, kartNumber?: number): string[] {
-  const labels: string[] = [];
+/** Categorías únicas en las que ha corrido, con sus años, más recientes primero. */
+export interface CategoryStat {
+  label: string;
+  years: string[];
+}
+
+export function getPilotRacedCategories(pilotName: string, kartNumber?: number): CategoryStat[] {
+  const byCategory = new Map<string, Set<string>>();
+
   for (const entry of getPilotHistory(pilotName, kartNumber)) {
     const label = entry.categoryName || entry.classTitle;
-    if (label && !labels.includes(label)) labels.push(label);
+    if (!label) continue;
+    const years = byCategory.get(label) ?? new Set<string>();
+    years.add(entry.year);
+    byCategory.set(label, years);
   }
-  return labels;
+
+  // Map preserva el orden de inserción = categorías más recientes primero.
+  return [...byCategory.entries()].map(([label, years]) => ({
+    label,
+    years: [...years].sort(),
+  }));
+}
+
+/** "2026" · "2024–2026" (contiguas) · "2024, 2026" (discontinuas) */
+export function formatYears(years: string[]): string {
+  if (years.length === 1) return years[0];
+  const numbers = years.map(Number);
+  const contiguous = numbers.every((n, i) => i === 0 || n === numbers[i - 1] + 1);
+  if (contiguous) return `${years[0]}–${years[years.length - 1]}`;
+  return years.join(", ");
 }

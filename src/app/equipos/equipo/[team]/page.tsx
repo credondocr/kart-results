@@ -53,7 +53,10 @@ export default async function TeamPage({ params }: PageProps) {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
         {teamPilots.map((pilot) => {
           const raced = getPilotRacedCategories(pilot.name, pilot.kartNumber);
-          const categories = raced.length > 0 ? raced : pilot.categories;
+          const categories =
+            raced.length > 0
+              ? raced
+              : pilot.categories.map((label) => ({ label, years: [] as string[] }));
           return (
             <Link
               key={`${pilot.teamLogo}-${pilot.kartNumber}`}
@@ -68,7 +71,7 @@ export default async function TeamPage({ params }: PageProps) {
               <div className="pilot-card-tags">
                 <CountryFlag countryCode={pilot.country} alt={pilot.country} />
                 {categories.slice(0, 2).map((category) => (
-                  <span key={category} className="tag-chip">{category}</span>
+                  <span key={category.label} className="tag-chip">{category.label}</span>
                 ))}
                 {categories.length > 2 && (
                   <span className="tag-chip">+{categories.length - 2}</span>
