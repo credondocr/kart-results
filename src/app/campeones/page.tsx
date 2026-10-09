@@ -6,9 +6,9 @@ import Breadcrumb from "@/app/components/Breadcrumb";
 import TeamLogo from "@/app/components/TeamLogo";
 
 export const metadata: Metadata = {
-  title: "Palmarés | Costa Rica Kart Championship",
+  title: "Campeones por temporada | Costa Rica Kart Championship",
   description:
-    "Primeros lugares de cada temporada y categoría del Costa Rica Kart Championship.",
+    "Campeones de cada temporada y categoría del Costa Rica Kart Championship.",
 };
 
 const seasonLabel = (season: string) =>
@@ -27,7 +27,7 @@ export default function PalmaresPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 pt-24 pb-16">
       <Breadcrumb />
-      <h1 className="class-title my-4 text-4xl md:text-5xl">Palmarés</h1>
+      <h1 className="class-title my-4 text-4xl md:text-5xl">Campeones por temporada</h1>
       <p className="season-eyebrow">
         Primeros lugares por temporada · <strong>a la fecha</strong>
       </p>

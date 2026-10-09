@@ -117,9 +117,9 @@ const Navbar: React.FC = () => {
                 <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
               )}
             </Link>
-            <Link href="/palmares" className={linkClass("/palmares")}>
-              Palmarés
-              {isActive("/palmares") && (
+            <Link href="/campeones" className={linkClass("/campeones")}>
+              Campeones
+              {isActive("/campeones") && (
                 <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
               )}
             </Link>
@@ -163,12 +163,12 @@ const Navbar: React.FC = () => {
             Equipos
           </Link>
           <Link
-            href="/palmares"
-            className={`block px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-colors text-white hover:bg-white/5 ${isActive('/palmares') ? 'bg-white/10' : ''
+            href="/campeones"
+            className={`block px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-colors text-white hover:bg-white/5 ${isActive('/campeones') ? 'bg-white/10' : ''
               }`}
             onClick={() => setIsMenuOpen(false)}
           >
-            Palmarés
+            Campeones
           </Link>
           <Link
             href="/faq"
