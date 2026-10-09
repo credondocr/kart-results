@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { getTeam } from "@/data/drivers/teams";
-import { getPilotRacedCategories } from "@/app/utils/pilotHistory";
+import { getPilotRacedCategories, normalizeName } from "@/app/utils/pilotHistory";
 import { getTeamRoster } from "@/app/utils/teamRoster";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import DriverAvatar from "@/app/components/DriverAvatar";
@@ -65,10 +65,12 @@ export default async function TeamPage({ params }: PageProps) {
             raced.length > 0
               ? raced
               : pilot.categories.map((label) => ({ label, years: [] as string[] }));
+          const isSynthetic = !pilot.profileUrl;
+          const hint = isSynthetic ? `?p=${encodeURIComponent(normalizeName(pilot.name))}` : "";
           return (
             <Link
-              key={`${pilot.teamLogo}-${pilot.kartNumber}`}
-              href={`/equipos/equipo/${meta.slug}/${pilot.kartNumber}`}
+              key={`${meta.slug}-${pilot.kartNumber}-${pilot.name}`}
+              href={`/equipos/equipo/${meta.slug}/${pilot.kartNumber}${hint}`}
               className="pilot-card"
             >
               <DriverAvatar pilot={pilot} />

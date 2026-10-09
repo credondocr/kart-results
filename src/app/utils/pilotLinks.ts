@@ -4,6 +4,14 @@ import { normalizeName, findHistoryEntry } from "./pilotHistory";
 export interface PilotLink {
   slug: string;
   id: number | string;
+  /** Nombre del piloto como hint (?p=) cuando la ficha es sintética:
+   *  los números de kart se reutilizan entre temporadas. */
+  hint?: string;
+}
+
+export function pilotLinkHref(link: PilotLink): string {
+  const hint = link.hint ? `?p=${encodeURIComponent(link.hint)}` : "";
+  return `/equipos/equipo/${link.slug}/${link.id}${hint}`;
 }
 
 /**
@@ -43,11 +51,10 @@ export function findPilotProfile(
   if (hit) return { slug: hit.teamLogo, id: hit.kartNumber };
 
   // Pilotos que solo existen en el historial de posiciones (ficha sintética).
+  // El nombre hace de hint: los números se reutilizan entre temporadas.
   if (team) {
-    const entry = findHistoryEntry(team, String(number));
-    if (entry && normalizeName(entry.driver) === target) {
-      return { slug: entry.team, id: entry.number };
-    }
+    const entry = findHistoryEntry(team, String(number), driver);
+    if (entry) return { slug: entry.team, id: entry.number, hint: normalizeName(driver) };
   }
 
   return null;

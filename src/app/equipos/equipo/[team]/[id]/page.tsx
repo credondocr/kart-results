@@ -21,6 +21,7 @@ import WhatsAppShare from "@/app/components/WhatsAppShare";
 
 interface PageProps {
   params: Promise<{ team: string; id: string }>;
+  searchParams?: Promise<{ p?: string | string[] }>;
 }
 
 const prettifyTeam = (slug: string) =>
@@ -51,19 +52,28 @@ function synthesizePilot(teamSlug: string, id: string, name: string): Pilot {
   };
 }
 
-function resolvePilot(teamSlug: string, id: string): Pilot | undefined {
+function resolvePilot(teamSlug: string, id: string, nameHint?: string): Pilot | undefined {
+  // Con hint (?p=) resolvemos por nombre: los números se reutilizan entre
+  // temporadas y podrían pertenecer a otra persona.
+  if (nameHint) {
+    const hinted = findHistoryEntry(teamSlug, id, nameHint);
+    if (hinted) return synthesizePilot(teamSlug, id, hinted.driver);
+  }
+
   const driver = findDriverPilot(teamSlug, id);
   if (driver) return driver;
 
-  const entry = findHistoryEntry(teamSlug, id);
+  const entry = findHistoryEntry(teamSlug, id, nameHint);
   if (entry) return synthesizePilot(teamSlug, id, entry.driver);
 
   return undefined;
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
   const { team, id } = await params;
-  const pilot = resolvePilot((team ?? "").toLowerCase(), id);
+  const { p } = (await searchParams) ?? {};
+  const hint = Array.isArray(p) ? p[0] : p;
+  const pilot = resolvePilot((team ?? "").toLowerCase(), id, hint);
   if (!pilot) return { title: "Piloto | Costa Rica Kart Championship" };
   return {
     title: `${pilot.name} | Costa Rica Kart Championship`,
@@ -74,11 +84,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 const seasonLabel = (season: string) =>
   season.charAt(0).toUpperCase() + season.slice(1);
 
-export default async function PilotPage({ params }: PageProps) {
+export default async function PilotPage({ params, searchParams }: PageProps) {
   const { team, id } = await params;
+  const { p } = (await searchParams) ?? {};
+  const hint = Array.isArray(p) ? p[0] : p;
   const teamSlug = (team ?? "").toLowerCase();
   const knownTeam = getTeam(team);
-  const pilot = resolvePilot(teamSlug, id);
+  const pilot = resolvePilot(teamSlug, id, hint);
   if (!pilot) notFound();
 
   const meta = knownTeam ?? {

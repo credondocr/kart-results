@@ -4,7 +4,8 @@ import Link from "next/link";
 import { Drivers } from "@/data/drivers/data";
 import { TEAMS } from "@/data/drivers/teams";
 import { Championships } from "@/data/history";
-import { normalizeName, getHistoryPilots, nameMatches } from "@/app/utils/pilotHistory";
+import { normalizeName, getHistoryPilots, samePerson } from "@/app/utils/pilotHistory";
+import { uniqueHistoryPilots } from "@/app/utils/teamRoster";
 
 interface SearchPaletteProps {
   onClose: () => void;
@@ -85,14 +86,21 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({ onClose }) => {
     const nq = normalizeName(raw);
     const digits = /^\d+$/.test(raw);
 
+    const seenProfileHrefs = new Set<string>();
     const profilePilots: Result[] = Drivers.filter((driver) =>
       digits
         ? String(driver.kartNumber).includes(raw) || normalizeName(driver.name).includes(nq)
         : normalizeName(driver.name).includes(nq)
     )
-      .slice(0, 6)
+      .slice(0, 8)
+      .filter((driver) => {
+        const href = `/equipos/equipo/${driver.teamLogo}/${driver.kartNumber}`;
+        if (seenProfileHrefs.has(href)) return false; // dup en drivers/data
+        seenProfileHrefs.add(href);
+        return true;
+      })
       .map((driver) => ({
-        key: `p-${driver.teamLogo}-${driver.kartNumber}`,
+        key: `p-${driver.teamLogo}-${driver.kartNumber}-${normalizeName(driver.name)}`,
         label: driver.name,
         meta: `#${driver.kartNumber}`,
         href: `/equipos/equipo/${driver.teamLogo}/${driver.kartNumber}`,
@@ -100,19 +108,21 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({ onClose }) => {
       }));
 
     // Pilotos que solo existen en el historial de posiciones (sin perfil en drivers).
-    const historyPilots: Result[] = getHistoryPilots()
-      .filter((pilot) =>
-        digits
-          ? String(pilot.number).includes(raw) || normalizeName(pilot.name).includes(nq)
-          : normalizeName(pilot.name).includes(nq)
-      )
-      .filter((pilot) => !Drivers.some((driver) => nameMatches(driver.name, pilot.name)))
+    const historyPilots: Result[] = uniqueHistoryPilots(
+      getHistoryPilots()
+        .filter((pilot) =>
+          digits
+            ? String(pilot.number).includes(raw) || normalizeName(pilot.name).includes(nq)
+            : normalizeName(pilot.name).includes(nq)
+        )
+        .filter((pilot) => !Drivers.some((driver) => samePerson(driver.name, pilot.name)))
+    )
       .slice(0, 8 - profilePilots.length)
       .map((pilot) => ({
-        key: `h-${pilot.team}-${pilot.number}`,
+        key: `h-${pilot.team}-${pilot.number}-${normalizeName(pilot.name)}`,
         label: pilot.name,
         meta: `#${pilot.number}`,
-        href: `/equipos/equipo/${pilot.team}/${pilot.number}`,
+        href: `/equipos/equipo/${pilot.team}/${pilot.number}?p=${encodeURIComponent(normalizeName(pilot.name))}`,
         group: "Pilotos",
       }));
 

@@ -1,5 +1,5 @@
 "use client";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { getTeam } from "@/data/drivers/teams";
 import { Drivers } from "@/data/drivers/data";
@@ -15,7 +15,7 @@ const formatPart = (part: string) => {
          part.slice(1).toLowerCase().replace(/-/g, " ");
 };
 
-function buildCrumbs(pathname: string): Crumb[] {
+function buildCrumbs(pathname: string, nameHint?: string): Crumb[] {
   const parts = pathname.split("/").filter((part) => part);
   const crumbs: Crumb[] = [];
 
@@ -49,7 +49,8 @@ function buildCrumbs(pathname: string): Crumb[] {
           driver.teamLogo.toLowerCase() === slug.toLowerCase() &&
           driver.kartNumber === Number(part)
       );
-      const fromHistory = pilot?.name ?? findHistoryEntry(slug, part)?.driver;
+      const hinted = nameHint ? findHistoryEntry(slug, part, nameHint)?.driver : undefined;
+      const fromHistory = hinted ?? pilot?.name ?? findHistoryEntry(slug, part)?.driver;
       crumbs.push({ label: fromHistory ?? `#${part}`, href: null });
       continue;
     }
@@ -84,7 +85,9 @@ function buildCrumbs(pathname: string): Crumb[] {
 
 const Breadcrumb: React.FC = () => {
   const pathname = usePathname();
-  const crumbs = buildCrumbs(pathname ?? "/");
+  const searchParams = useSearchParams();
+  const nameHint = searchParams.get("p") ?? undefined;
+  const crumbs = buildCrumbs(pathname ?? "/", nameHint);
 
   if (crumbs.length <= 1) return null;
 

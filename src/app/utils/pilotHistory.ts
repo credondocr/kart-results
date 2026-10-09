@@ -30,6 +30,50 @@ export function nameMatches(pilotName: string, resultName: string): boolean {
   return a === b || a.startsWith(b + " ") || b.startsWith(a + " ");
 }
 
+function levenshtein(a: string, b: string): number {
+  if (a === b) return 0;
+  if (!a.length) return b.length;
+  if (!b.length) return a.length;
+  let prev = Array.from({ length: b.length + 1 }, (_, i) => i);
+  for (let i = 1; i <= a.length; i++) {
+    const current = [i];
+    for (let j = 1; j <= b.length; j++) {
+      current[j] = Math.min(
+        prev[j] + 1,
+        current[j - 1] + 1,
+        prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)
+      );
+    }
+    prev = current;
+  }
+  return prev[b.length];
+}
+
+/**
+ * ¿Son la misma persona con grafías distintas? (nombre parcial, typo
+ * leve o nombre+apellido idénticos). NO fusiona por número de kart:
+ * los números se reutilizan entre temporadas y pueden ser personas
+ * distintas.
+ */
+export function samePerson(a: string, b: string): boolean {
+  if (nameMatches(a, b)) return true;
+
+  const na = normalizeName(a).replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
+  const nb = normalizeName(b).replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
+  if (na === nb) return true;
+
+  if (Math.min(na.length, nb.length) >= 6 && levenshtein(na, nb) <= 2) return true;
+
+  const wordsA = na.split(" ");
+  const wordsB = nb.split(" ");
+  return (
+    wordsA.length >= 2 &&
+    wordsB.length >= 2 &&
+    wordsA[0] === wordsB[0] &&
+    wordsA[wordsA.length - 1] === wordsB[wordsB.length - 1]
+  );
+}
+
 const pointsOf = (scores: number[]) => scores.reduce((sum, value) => sum + value, 0);
 
 const best4Of = (scores: number[]) =>
@@ -309,14 +353,26 @@ export function getHistoryPilots(): HistoryPilot[] {
   return [...seen.values()];
 }
 
-/** Entrada más reciente de un piloto por equipo + número (para fichas sintéticas). */
-export function findHistoryEntry(teamSlug: string, id: string): HistoryEntry | undefined {
+/** Entrada más reciente de un piloto por equipo + número (para fichas sintéticas).
+ *  Con `nameHint`, prioriza entradas cuyo nombre coincida: los números se
+ *  reutilizan entre temporadas y podrían ser personas distintas. */
+export function findHistoryEntry(
+  teamSlug: string,
+  id: string,
+  nameHint?: string
+): HistoryEntry | undefined {
   const slug = teamSlug.toLowerCase();
-  return sortEntries(getIndex()).find(
+  const candidates = sortEntries(getIndex()).filter(
     (entry) =>
       entry.team.toLowerCase() === slug &&
       String(entry.number).toLowerCase() === id.toLowerCase()
   );
+  if (candidates.length === 0) return undefined;
+  if (nameHint) {
+    const hinted = candidates.find((entry) => nameMatches(nameHint, entry.driver));
+    if (hinted) return hinted;
+  }
+  return candidates[0];
 }
 
 /** Convierte un piloto del historial en forma Pilot para fichas/rosters. */

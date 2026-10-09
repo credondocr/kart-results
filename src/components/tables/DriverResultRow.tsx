@@ -4,7 +4,7 @@ import Link from "next/link";
 import { TableRow, TableCell } from '@/components/ui/Table';
 import CountryFlag from '@/app/components/CountryFlag';
 import TeamLogo from '@/app/components/TeamLogo';
-import { findPilotProfile } from '@/app/utils/pilotLinks';
+import { findPilotProfile, pilotLinkHref } from '@/app/utils/pilotLinks';
 
 interface DriverResultRowProps {
   rank: number;
@@ -41,7 +41,7 @@ export function DriverResultRow({
         <CountryFlag countryCode={country} alt={country} />
         <TeamLogo team={team} altText={team} />
         {profile ? (
-          <Link href={`/equipos/equipo/${profile.slug}/${profile.id}`} className="driver-link">
+          <Link href={pilotLinkHref(profile)} className="driver-link">
             {driver}
           </Link>
         ) : (

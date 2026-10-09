@@ -3,13 +3,13 @@ import { Category, Leaderboard, RaceResult } from "@/data/types";
 import CountryFlag from "@/app/components/CountryFlag"
 import TeamLogo from "@/app/components/TeamLogo";
 import LeaderboardTeamTable from "./table/LeaderboardTeamTable";
-import { findPilotProfile } from "@/app/utils/pilotLinks";
+import { findPilotProfile, pilotLinkHref } from "@/app/utils/pilotLinks";
 
 function driverName(result: RaceResult) {
   const link = findPilotProfile(result.driver, result.number, result.team);
   if (link) {
     return (
-      <Link href={`/equipos/equipo/${link.slug}/${link.id}`} className="driver-link">
+      <Link href={pilotLinkHref(link)} className="driver-link">
         {result.driver}
       </Link>
     );

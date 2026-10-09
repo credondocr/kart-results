@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getChampions } from "@/app/utils/pilotHistory";
-import { findPilotProfile } from "@/app/utils/pilotLinks";
+import { findPilotProfile, pilotLinkHref } from "@/app/utils/pilotLinks";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import TeamLogo from "@/app/components/TeamLogo";
 
@@ -69,7 +69,7 @@ export default function PalmaresPage() {
                               <span className="rank-chip gold">1</span>
                               {profile ? (
                                 <Link
-                                  href={`/equipos/equipo/${profile.slug}/${profile.id}`}
+                                  href={pilotLinkHref(profile)}
                                   className="driver-link"
                                 >
                                   {entry.driver}
