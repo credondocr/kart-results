@@ -65,6 +65,16 @@ const SeasonLeaderboard = () => {
             ? leaderboard?.classes.filter((cls) => cls.title === selectedTab)
             : leaderboard?.classes || [];
 
+    const fechas = leaderboard.classes.reduce(
+        (max, cls) =>
+            cls.categories.reduce(
+                (catMax, cat) => cat.results.reduce((rowMax, r) => Math.max(rowMax, r.scores.length), catMax),
+                max
+            ),
+        0
+    );
+    const seasonLabel = season === "general" ? `General ${year}` : `${season} ${year}`;
+
     return (
         <div className="mt-20">
             <div className="flex flex-col items-center px-4 py-4 space-y-4">
@@ -74,6 +84,10 @@ const SeasonLeaderboard = () => {
                 <div className="w-full max-w-6xl flex justify-center">
                     <Breadcrumb />
                 </div>
+                <p className="season-eyebrow">
+                    CRKC · <strong>{seasonLabel}</strong>
+                    {season !== "general" && fechas > 0 && <> · A la fecha {fechas}</>}
+                </p>
             </div>
 
             {season === "general" ? (
@@ -103,7 +117,7 @@ const SeasonLeaderboard = () => {
                     </div>
                     {filteredClasses.map((classItem: Class, index: number) => (
                         <div key={index} className="p-2">
-                            <h1 className="text-center my-4 text-4xl font-extrabold dark:text-white">{classItem.title}</h1>
+                            <h1 className="class-title my-4 text-4xl md:text-5xl">{classItem.title}</h1>
                             {classItem.categories.map((category: Category, i: number) => (
                                 <div key={i} className="flex items-center px-2 py-2  md:justify-center">
                                     <div className="flex md:justify-center w-full max-w-6xl" style={{ overflowX: "auto" }}>

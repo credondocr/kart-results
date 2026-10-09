@@ -40,3 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .vscode
+# agent skills (instalados con npx skills)
+.agents/
+
+# skills CLI artifacts
+.claude/
+skills-lock.json

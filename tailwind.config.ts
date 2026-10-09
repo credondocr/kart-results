@@ -12,6 +12,15 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        ink: "var(--ink-950)",
+        surface: "var(--surface)",
+        signal: "var(--signal)",
+        gold: "var(--gold)",
+        silver: "var(--silver)",
+        bronze: "var(--bronze)",
+      },
+      fontFamily: {
+        display: ["var(--font-archivo)", "var(--font-inter)", "sans-serif"],
       },
     },
   },
