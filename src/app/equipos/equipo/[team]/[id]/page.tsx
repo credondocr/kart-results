@@ -16,6 +16,7 @@ import Breadcrumb from "@/app/components/Breadcrumb";
 import DriverAvatar from "@/app/components/DriverAvatar";
 import CountryFlag from "@/app/components/CountryFlag";
 import TeamLogo from "@/app/components/TeamLogo";
+import WhatsAppShare from "@/app/components/WhatsAppShare";
 
 interface PageProps {
   params: Promise<{ team: string; id: string }>;
@@ -171,9 +172,12 @@ export default async function PilotPage({ params }: PageProps) {
 
           {pilot.biography && <p className="pilot-profile-bio">{pilot.biography}</p>}
 
-          <Link href={`/equipos/equipo/${meta.slug}`} className="back-link">
-            ← Volver a {meta.name}
-          </Link>
+          <div className="pilot-profile-actions">
+            <Link href={`/equipos/equipo/${meta.slug}`} className="back-link">
+              ← Volver a {meta.name}
+            </Link>
+            <WhatsAppShare text={`${pilot.name} #${pilot.kartNumber} — ${meta.name} | CRKC`} />
+          </div>
         </div>
       </div>
 

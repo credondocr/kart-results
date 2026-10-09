@@ -12,6 +12,7 @@ import { addTeamsCategory, generateGeneralLeaderboard } from "@/app/utils/common
 import GeneralTable from "@/app/components/GeneralTable";
 import SeasonSkeleton from "@/app/components/SeasonSkeleton";
 import FechaToggle from "@/app/components/FechaToggle";
+import WhatsAppShare from "@/app/components/WhatsAppShare";
 interface Params {
     [key: string]: string | undefined;
     year?: string;
@@ -111,6 +112,7 @@ const SeasonLeaderboard = () => {
                     CRKC · <strong>{seasonLabel}</strong>
                     {season !== "general" && fechas > 0 && <> · A la fecha {fechas}</>}
                 </h1>
+                <WhatsAppShare text={`Posiciones ${seasonLabel} — Costa Rica Kart Championship`} />
             </div>
 
             {season === "general" ? (
