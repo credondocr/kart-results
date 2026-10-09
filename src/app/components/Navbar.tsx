@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -8,12 +8,36 @@ import { usePathname } from 'next/navigation';
 // import { Button } from '@/components/ui/Button';
 import { Modal } from '@/components/ui/Modal';
 import { LoginForm } from '@/components/auth/LoginForm';
+import SearchPalette from './SearchPalette';
+
+const SearchIcon = () => (
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    aria-hidden="true"
+  >
+    <circle cx="11" cy="11" r="7" />
+    <path d="m21 21-4.3-4.3" />
+  </svg>
+);
 
 const Navbar: React.FC = () => {
   // const { user, logout } = useAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const searchButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
+
+  const closeSearch = () => {
+    setSearchOpen(false);
+    searchButtonRef.current?.focus();
+  };
 
   const isActive = (path: string) =>
     path === "/"
@@ -45,8 +69,16 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="flex items-center sm:hidden">
+          {/* Mobile menu buttons */}
+          <div className="flex items-center gap-4 sm:hidden">
+            <button
+              type="button"
+              onClick={() => setSearchOpen(true)}
+              className="text-[#9BA3BD] hover:text-white"
+              aria-label="Buscar"
+            >
+              <SearchIcon />
+            </button>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-white hover:text-[#4C8DFF]"
@@ -97,6 +129,15 @@ const Navbar: React.FC = () => {
                 <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
               )}
             </Link>
+            <button
+              ref={searchButtonRef}
+              type="button"
+              onClick={() => setSearchOpen(true)}
+              className="search-trigger"
+              aria-label="Buscar"
+            >
+              <SearchIcon />
+            </button>
           </div>
         </div>
 
@@ -148,6 +189,8 @@ const Navbar: React.FC = () => {
       >
         <LoginForm onSuccess={() => setShowLoginModal(false)} />
       </Modal>
+
+      {searchOpen && <SearchPalette onClose={closeSearch} />}
     </nav>
   );
 };
