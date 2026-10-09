@@ -47,25 +47,27 @@ interface TableCellProps extends TableProps {
   align?: 'left' | 'right' | 'center';
 }
 
-export function TableCell({ children, className, align = 'left' }: TableCellProps) {
+export function TableCell({ children, className, align = 'left', style }: TableCellProps) {
   return (
     <td className={twMerge(
       align === 'right' && "text-right",
       align === 'center' && "text-center",
       className
-    )}>
+    )}
+    style={style}>
       {children}
     </td>
   );
 }
 
-export function TableHeaderCell({ children, className, align = 'left' }: TableCellProps) {
+export function TableHeaderCell({ children, className, align = 'left', style }: TableCellProps) {
   return (
     <th className={twMerge(
       align === 'right' && "text-right",
       align === 'center' && "text-center",
       className
-    )}>
+    )}
+    style={style}>
       {children}
     </th>
   );
