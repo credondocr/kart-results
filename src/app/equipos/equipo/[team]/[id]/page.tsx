@@ -19,6 +19,7 @@ import { lookupRegistry, getTeamSegments } from "@/app/utils/pilotRegistry";
 import { prettifyTeam, resolvePilot } from "@/app/utils/pilotProfile";
 import { samePerson } from "@/app/utils/pilotHistory";
 import eventsManifest from "@/data/events/manifest.json";
+import { loadAllEvents, aggregateComebacks } from "@/app/utils/eventData";
 
 interface PageProps {
   params: Promise<{ team: string; id: string }>;
@@ -80,6 +81,9 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
     (total, event) =>
       total + event.poles.filter((pole) => samePerson(pole.driver, pilot.name)).length,
     0
+  );
+  const bestComeback = aggregateComebacks(loadAllEvents()).find((record) =>
+    samePerson(record.name, pilot.name)
   );
 
   // Progresión: una columna por participación (año · temporada · categoría).
@@ -158,6 +162,12 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
                   <div className="stat">
                     <span className="stat-label">Poles</span>
                     <span className="stat-value">{polesCount}</span>
+                  </div>
+                )}
+                {bestComeback && bestComeback.gained > 0 && (
+                  <div className="stat" title={`En ${bestComeback.eventName} (${bestComeback.cls})`}>
+                    <span className="stat-label">Mejor remontada</span>
+                    <span className="stat-value">+{bestComeback.gained}</span>
                   </div>
                 )}
                 <div className="stat">

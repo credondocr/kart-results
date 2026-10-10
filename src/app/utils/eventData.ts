@@ -288,3 +288,72 @@ export function toSeconds(time: string): number {
   const parts = time.split(":");
   return parts.length === 2 ? Number(parts[0]) * 60 + Number(parts[1]) : Number(parts);
 }
+
+/* ============ Agregados para estadísticas ============ */
+
+export interface FinalsAggregate {
+  /** Finales ganadas (posInClass 1). */
+  wins: number;
+  /** Podios en finales. */
+  podiums: number;
+  /** Finales disputadas. */
+  finals: number;
+}
+
+/**
+ * Victorias/podios reales por nombre de piloto (finales de cada evento),
+ * agregados con normalización para unir grafías distintas.
+ */
+export function aggregateFinalsByName(events: EventData[]): Map<string, FinalsAggregate> {
+  const map = new Map<string, FinalsAggregate>();
+  for (const event of events) {
+    for (const day of event.days) {
+      for (const session of day.sessions) {
+        if (session.type !== "race" || sessionLabel(session) !== "Final") continue;
+        for (const row of session.classification?.rows ?? []) {
+          if (row.posInClass < 1) continue;
+          const key = normalizeLoose(row.name);
+          if (!key) continue;
+          const agg = map.get(key) ?? { wins: 0, podiums: 0, finals: 0 };
+          agg.finals += 1;
+          if (row.posInClass === 1) agg.wins += 1;
+          else if (row.posInClass <= 3) agg.podiums += 1;
+          map.set(key, agg);
+        }
+      }
+    }
+  }
+  return map;
+}
+
+export interface ComebackRecord {
+  name: string;
+  gained: number;
+  eventName: string;
+  eventId: number;
+  cls: string;
+  fromSession: string;
+}
+
+/** Mejor remontada individual de cada piloto en todas las finales. */
+export function aggregateComebacks(events: EventData[]): ComebackRecord[] {
+  const best = new Map<string, ComebackRecord>();
+  for (const event of events) {
+    for (const row of eventComebacks(event)) {
+      if (row.gained <= 0) continue;
+      const key = normalizeLoose(row.name);
+      const current = best.get(key);
+      if (!current || row.gained > current.gained) {
+        best.set(key, {
+          name: row.name,
+          gained: row.gained,
+          eventName: event.name,
+          eventId: event.id,
+          cls: row.cls,
+          fromSession: row.fromSession,
+        });
+      }
+    }
+  }
+  return [...best.values()].sort((a, b) => b.gained - a.gained);
+}

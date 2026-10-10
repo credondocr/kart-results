@@ -2,6 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getChampionshipStats, samePerson, type PilotsStatsEntry } from "@/app/utils/pilotHistory";
 import eventsManifest from "@/data/events/manifest.json";
+import {
+  loadAllEvents,
+  aggregateFinalsByName,
+  aggregateComebacks,
+  computeTrackRecords,
+  slugify,
+} from "@/app/utils/eventData";
+import type { ComebackRecord, TrackRecord } from "@/app/utils/eventData";
 import { findPilotProfile, pilotLinkHref } from "@/app/utils/pilotLinks";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import DriverAvatar from "@/app/components/DriverAvatar";
@@ -47,10 +55,6 @@ const PlayerCell = ({ person, subline }: { person: PilotsStatsEntry; subline?: s
 export default function EstadisticasPage() {
   const stats = getChampionshipStats();
   const champions = stats.people.filter((person) => person.titles > 0);
-  const raceWinners = [...stats.people]
-    .filter((person) => person.raceWins > 0)
-    .sort((a, b) => b.raceWins - a.raceWins || b.racePodiums - a.racePodiums)
-    .slice(0, 15);
   const teamRows = stats.teams.filter((team) => team.titles > 0 || team.wins > 0);
   const maxTeamTitles = Math.max(1, ...teamRows.map((team) => team.titles));
   const record = stats.seasonRecord;
@@ -65,6 +69,80 @@ export default function EstadisticasPage() {
     }
   }
   const showPoles = [...poleCounts.values()].some((count) => count > 0);
+
+  // Finales reales y remontadas desde los eventos de SpeedHive.
+  const events = loadAllEvents();
+  const finalsByName = aggregateFinalsByName(events);
+  const comebackRecords = aggregateComebacks(events);
+  const trackRecords = computeTrackRecords(events);
+
+  interface EffectiveStats {
+    wins: number;
+    podiums: number;
+    races: number;
+    pct: number;
+    fromEvents: boolean;
+  }
+
+  const finalsByPerson = new Map<PilotsStatsEntry, { wins: number; podiums: number; finals: number }>();
+  for (const [key, value] of finalsByName) {
+    const person = stats.people.find((entry) => samePerson(entry.name, key));
+    if (!person) continue;
+    const agg = finalsByPerson.get(person) ?? { wins: 0, podiums: 0, finals: 0 };
+    agg.wins += value.wins;
+    agg.podiums += value.podiums;
+    agg.finals += value.finals;
+    finalsByPerson.set(person, agg);
+  }
+
+  const effective = (person: PilotsStatsEntry): EffectiveStats => {
+    const finals = finalsByPerson.get(person);
+    if (finals && finals.finals > 0) {
+      return {
+        wins: finals.wins,
+        podiums: finals.podiums,
+        races: finals.finals,
+        pct: Math.round((finals.wins / finals.finals) * 100),
+        fromEvents: true,
+      };
+    }
+    return {
+      wins: person.raceWins,
+      podiums: person.racePodiums,
+      races: person.races,
+      pct: person.races > 0 ? Math.round((person.raceWins / person.races) * 100) : 0,
+      fromEvents: false,
+    };
+  };
+
+  // Récords de vuelta de los circuitos con eventos en el año en curso.
+  const currentCircuits = new Set(
+    events
+      .filter((event) => event.startDate.startsWith("2026") && event.location)
+      .map((event) => slugify(event.location!.name))
+  );
+  const circuitNames = new Map<string, string>();
+  for (const event of events) {
+    if (event.location) circuitNames.set(slugify(event.location.name), event.location.name);
+  }
+  const recordRows = [...trackRecords.entries()]
+    .filter(([key]) => currentCircuits.has(key.split("|")[0]))
+    .map(([key, record]) => ({ track: key.split("|")[0], record }))
+    .sort((a, b) => a.track.localeCompare(b.track) || a.record.cls.localeCompare(b.record.cls));
+
+  const raceWinners = [...stats.people]
+    .filter((person) => {
+      const finals = finalsByPerson.get(person);
+      return finals ? finals.wins > 0 : person.raceWins > 0;
+    })
+    .sort((a, b) => {
+      const ea = finalsByPerson.get(a);
+      const eb = finalsByPerson.get(b);
+      const winsA = ea ? ea.wins : a.raceWins;
+      const winsB = eb ? eb.wins : b.raceWins;
+      return winsB - winsA || b.racePodiums - a.racePodiums;
+    })
+    .slice(0, 15);
 
   return (
     <div className="max-w-6xl mx-auto px-4 pt-24 pb-16">
@@ -171,7 +249,8 @@ export default function EstadisticasPage() {
               </thead>
               <tbody>
                 {raceWinners.map((person, index) => {
-                  const pct = Math.round((person.raceWins / person.races) * 100);
+                  const statsNow = effective(person);
+                  const pct = statsNow.pct;
                   return (
                     <tr
                       key={person.name}
@@ -183,7 +262,7 @@ export default function EstadisticasPage() {
                       </td>
                       <PlayerCell person={person} subline={person.team.replace(/-/g, " ")} />
                       <td className="text-right">
-                        <span className="big-metric signal">{person.raceWins}</span>
+                        <span className="big-metric signal">{statsNow.wins}</span>
                       </td>
                       {showPoles && (
                         <td className="race-points">
@@ -192,8 +271,8 @@ export default function EstadisticasPage() {
                           </span>
                         </td>
                       )}
-                      <td className="race-points">{person.racePodiums}</td>
-                      <td className="race-points">{person.races}</td>
+                      <td className="race-points">{statsNow.podiums}</td>
+                      <td className="race-points">{statsNow.races}</td>
                       <td className="pct-cell">
                         <span className="pct-value">{pct}%</span>
                         <span className="metric-bar" style={{ "--w": `${pct}%` } as React.CSSProperties} />
@@ -206,6 +285,129 @@ export default function EstadisticasPage() {
           </div>
         </div>
       </section>
+
+      {/* Mejores remontadas */}
+      <section className="stats-section" aria-label="Mejores remontadas">
+        <h2 className="stats-heading">
+          Mejores remontadas
+          <span className="heading-count">{Math.min(10, comebackRecords.length)}</span>
+        </h2>
+        <div className="table-container">
+          <div className="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th className="position">#</th>
+                  <th className="player-cell">Piloto</th>
+                  <th className="text-right">Posiciones ganadas</th>
+                  <th>Categoría</th>
+                  <th>Evento</th>
+                </tr>
+              </thead>
+              <tbody>
+                {comebackRecords.slice(0, 10).map((record, index) => {
+                  const person = stats.people.find((entry) => samePerson(entry.name, record.name));
+                  const profile = person
+                    ? findPilotProfile(person.name, person.number, person.team)
+                    : null;
+                  return (
+                    <tr
+                      key={`${record.name}-${index}`}
+                      className={index < 3 ? `podium-${index + 1}` : ""}
+                      style={{ "--row": index } as React.CSSProperties}
+                    >
+                      <td className="position">
+                        <span className="rank-chip">{index + 1}</span>
+                      </td>
+                      <td className="player-cell">
+                        <span className="player-cell-text">
+                          {profile ? (
+                            <Link href={pilotLinkHref(profile)} className="driver-link">
+                              {record.name}
+                            </Link>
+                          ) : (
+                            record.name
+                          )}
+                        </span>
+                      </td>
+                      <td className="text-right">
+                        <span className="big-metric signal">+{record.gained}</span>
+                      </td>
+                      <td className="race-points">{record.cls}</td>
+                      <td className="race-points">
+                        <Link href={`/eventos/${record.eventId}`} className="driver-link">
+                          {record.eventName}
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Récords de vuelta */}
+      {recordRows.length > 0 && (
+        <section className="stats-section" aria-label="Récords de vuelta">
+          <h2 className="stats-heading">
+            Récords de vuelta
+            <span className="heading-count">2026</span>
+          </h2>
+          <div className="table-container">
+            <div className="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th className="text-left">Circuito</th>
+                    <th className="text-left">Categoría</th>
+                    <th className="text-right">Récord</th>
+                    <th className="player-cell">Piloto</th>
+                    <th>Evento</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {recordRows.map(({ track, record }, index) => {
+                    const person = stats.people.find((entry) => samePerson(entry.name, record.driver));
+                    const profile = person
+                      ? findPilotProfile(person.name, person.number, person.team)
+                      : null;
+                    return (
+                      <tr
+                        key={`${track}-${record.cls}`}
+                        style={{ "--row": index } as React.CSSProperties}
+                      >
+                        <td className="text-left race-points" title={circuitNames.get(track) ?? track}>
+                          {circuitNames.get(track) ?? track}
+                        </td>
+                        <td className="text-left race-points">{record.cls}</td>
+                        <td className="text-right points-cell">{record.time}</td>
+                        <td className="player-cell">
+                          <span className="player-cell-text">
+                            {profile ? (
+                              <Link href={pilotLinkHref(profile)} className="driver-link">
+                                {record.driver}
+                              </Link>
+                            ) : (
+                              record.driver
+                            )}
+                          </span>
+                        </td>
+                        <td className="race-points">
+                          <Link href={`/eventos/${record.eventId}`} className="driver-link">
+                            {record.eventName}
+                          </Link>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Títulos por equipo */}
       <section className="stats-section" aria-label="Títulos por equipo">
