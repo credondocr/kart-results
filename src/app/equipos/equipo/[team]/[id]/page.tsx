@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Drivers } from "@/data/drivers/data";
 import { getTeam } from "@/data/drivers/teams";
-import type { Pilot } from "@/data/types";
 import {
   getPilotHistory,
   getPilotRacedCategories,
   getPilotCareerStats,
   getPilotRaceResults,
-  findHistoryEntry,
   formatYears,
-  type HistoryEntry,
   type CategoryStat,
 } from "@/app/utils/pilotHistory";
 import Breadcrumb from "@/app/components/Breadcrumb";
@@ -20,55 +16,11 @@ import CountryFlag from "@/app/components/CountryFlag";
 import TeamLogo from "@/app/components/TeamLogo";
 import WhatsAppShare from "@/app/components/WhatsAppShare";
 import { lookupRegistry, getTeamSegments } from "@/app/utils/pilotRegistry";
+import { prettifyTeam, resolvePilot } from "@/app/utils/pilotProfile";
 
 interface PageProps {
   params: Promise<{ team: string; id: string }>;
   searchParams?: Promise<{ p?: string | string[] }>;
-}
-
-const prettifyTeam = (slug: string) =>
-  slug
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, (letter) => letter.toUpperCase());
-
-function findDriverPilot(teamSlug: string, id: string): Pilot | undefined {
-  const number = Number(id);
-  if (!Number.isInteger(number)) return undefined;
-  return Drivers.find(
-    (driver) => driver.teamLogo.toLowerCase() === teamSlug && driver.kartNumber === number
-  );
-}
-
-/** Ficha sintética para pilotos que solo existen en el historial de posiciones. */
-function synthesizePilot(teamSlug: string, id: string, entry: HistoryEntry): Pilot {
-  const raced = getPilotRacedCategories(entry.driver, id);
-  return {
-    name: entry.driver,
-    kartNumber: id,
-    categories: raced.length > 0 ? raced.map((category) => category.label) : [],
-    biography: "",
-    country: entry.country,
-    teamName: prettifyTeam(teamSlug),
-    profileUrl: "",
-    teamLogo: teamSlug,
-  };
-}
-
-function resolvePilot(teamSlug: string, id: string, nameHint?: string): Pilot | undefined {
-  // Con hint (?p=) resolvemos por nombre: los números se reutilizan entre
-  // temporadas y podrían pertenecer a otra persona.
-  if (nameHint) {
-    const hinted = findHistoryEntry(teamSlug, id, nameHint);
-    if (hinted) return synthesizePilot(teamSlug, id, hinted);
-  }
-
-  const driver = findDriverPilot(teamSlug, id);
-  if (driver) return driver;
-
-  const entry = findHistoryEntry(teamSlug, id, nameHint);
-  if (entry) return synthesizePilot(teamSlug, id, entry);
-
-  return undefined;
 }
 
 export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
@@ -121,6 +73,24 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
   const currentTeam = registryEntry?.team || pilot.teamLogo || teamSlug;
   const currentTeamName = getTeam(currentTeam)?.name ?? prettifyTeam(currentTeam);
   const teamSegments = getTeamSegments(registryEntry);
+
+  // Progresión: una columna por participación (año · temporada · categoría).
+  const progression = history
+    .map((entry) => ({
+      key: `${entry.year}-${entry.season}-${entry.classTitle}-${entry.categoryName}`,
+      year: entry.year,
+      season: entry.season,
+      label: `${entry.season === "verano" ? "VER" : "INV"}${entry.year.slice(2)}`,
+      category: entry.categoryName || entry.classTitle,
+      points: entry.points,
+      rank: entry.rank,
+    }))
+    .sort(
+      (a, b) =>
+        Number(a.year) - Number(b.year) ||
+        (a.season === "verano" ? 0 : 1) - (b.season === "verano" ? 0 : 1)
+    );
+  const maxPoints = Math.max(1, ...progression.map((item) => item.points));
   const categories: CategoryStat[] =
     racedCategories.length > 0
       ? racedCategories
@@ -238,6 +208,36 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
           </div>
         </div>
       </div>
+
+      {progression.length > 0 && (
+        <section className="pilot-history" aria-label="Progresión por temporada">
+          <h2 className="category-label">Progresión por temporada</h2>
+          <div className="table-container">
+            <div className="progression-chart">
+              {progression.map((item) => (
+                <div
+                  key={item.key}
+                  className="prog-column"
+                  title={`${item.year} ${item.season} · ${item.category} · ${item.points} pts · ${item.rank}º lugar`}
+                >
+                  <span className="prog-points">{item.points}</span>
+                  <div
+                    className={item.rank <= 3 ? `prog-bar rank-${item.rank}` : "prog-bar"}
+                    style={{ "--h": `${Math.max(8, Math.round((item.points / maxPoints) * 120))}px` } as React.CSSProperties}
+                  />
+                  <span className="prog-label">
+                    {item.label}
+                    <span className={item.rank === 1 ? "prog-rank gold" : "prog-rank"}>
+                      {item.rank}º
+                    </span>
+                  </span>
+                  <span className="prog-cat">{item.category}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="pilot-history" aria-label="Historial de temporadas">
         <h2 className="category-label">Historial de temporadas</h2>

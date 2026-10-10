@@ -1167,6 +1167,82 @@
     margin-top: 3rem;
   }
 
+  /* Progresión por temporada (barras) */
+  .progression-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding: 0.5rem 0.25rem;
+  }
+
+  .prog-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 76px;
+    flex-shrink: 0;
+  }
+
+  .prog-points {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .prog-bar {
+    width: 46px;
+    height: var(--h, 8px);
+    border-radius: 5px 5px 2px 2px;
+    background: linear-gradient(180deg, rgba(76, 141, 255, 0.95), rgba(76, 141, 255, 0.3));
+  }
+
+  .prog-bar.rank-1 {
+    background: linear-gradient(180deg, #f6d98a, rgba(232, 184, 75, 0.35));
+  }
+
+  .prog-bar.rank-2 {
+    background: linear-gradient(180deg, #eef0f4, rgba(201, 205, 214, 0.3));
+  }
+
+  .prog-bar.rank-3 {
+    background: linear-gradient(180deg, #e2ab77, rgba(201, 138, 75, 0.3));
+  }
+
+  .prog-label {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 11px;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  .prog-rank {
+    font-weight: 700;
+  }
+
+  .prog-rank.gold {
+    color: var(--gold);
+  }
+
+  .prog-cat {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(155, 163, 189, 0.7);
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   .history-year {
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;

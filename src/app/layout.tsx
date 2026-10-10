@@ -33,6 +33,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Inicio | Costa Rica Kart Championship',
   description: 'Costa Rica Kart Championship.',
+  twitter: {
+    card: 'summary_large_image',
+  },
 };
 
 export default function RootLayout({
