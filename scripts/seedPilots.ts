@@ -1,15 +1,27 @@
 /**
- * Seeds/merges src/data/pilots.json from the championship history.
- * Each pilot gets `teams: { <year>: <team> }` so imports for a past season use
- * the team they drove for back then; `team`/`country` keep the latest values.
- * Manual entries and aliases are preserved (history years win on conflict).
+ * Sembra/actualiza src/data/pilots.json:
+ *  1) desde el histórico del campeonato (team/country por año)
+ *  2) agrega pilotos faltantes que solo aparecen en eventos SpeedHive
+ *     (con team/country vacíos, para completarlos a mano)
+ *
+ * Los aliases y ediciones manuales se preservan.
  *
  * Run: npm run seed:pilots
  */
-import { mergeIntoRegistry } from "./lib/pilots";
+import { mergeIntoRegistry, mergeFromEvents } from "./lib/pilots";
 import { PILOTS_PATH } from "./lib/paths";
 
 const { added, updated, total } = mergeIntoRegistry();
-console.log(
-  `✓ Registro actualizado: ${added} nuevos, ${updated} actualizados, ${total} en total → ${PILOTS_PATH.replace(process.cwd(), ".")}`
-);
+console.log(`✓ histórico: ${added} nuevos, ${updated} actualizados, ${total} en total`);
+
+const fromEvents = mergeFromEvents();
+if (fromEvents.added > 0) {
+  console.log(`✓ eventos SpeedHive: ${fromEvents.added} pilotos agregados (team/country vacíos):`);
+  fromEvents.names.slice(0, 15).forEach((name) => console.log(`   - ${name}`));
+  if (fromEvents.names.length > 15) {
+    console.log(`   … y ${fromEvents.names.length - 15} más`);
+  }
+} else {
+  console.log("✓ eventos SpeedHive: sin pilotos faltantes");
+}
+console.log(`Registro final: ${PILOTS_PATH.replace(process.cwd(), ".")}`);
