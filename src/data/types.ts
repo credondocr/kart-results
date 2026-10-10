@@ -15,9 +15,11 @@ export interface History {
 }
 
 export interface Championship {
-  year: string;
-  verano?: Leaderboard;
-  invierno?: Leaderboard;
+    year: string;
+    verano?: Leaderboard;
+    invierno?: Leaderboard;
+    /** false = generado desde SpeedHive sin penales oficiales (histórico). */
+    pointsOfficial?: boolean;
 }
 
 export interface Class {

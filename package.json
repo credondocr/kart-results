@@ -16,10 +16,11 @@
     "analyze:points": "tsx -r tsconfig-paths/register scripts/analyze-points.ts",
     "validate:points": "tsx -r tsconfig-paths/register scripts/validate-points.ts",
     "points-table": "tsx -r tsconfig-paths/register scripts/points-table.ts",
-    "prebuild": "tsx -r tsconfig-paths/register scripts/dbExportPilots.ts && tsx -r tsconfig-paths/register scripts/dbExportTeams.ts",
+    "prebuild": "tsx -r tsconfig-paths/register scripts/dbExportPilots.ts && tsx -r tsconfig-paths/register scripts/dbExportTeams.ts && tsx -r tsconfig-paths/register scripts/dbExportPenalties.ts && tsx -r tsconfig-paths/register scripts/build-history.ts",
     "db:migrate": "tsx -r tsconfig-paths/register scripts/dbMigrate.ts",
     "db:seed": "tsx -r tsconfig-paths/register scripts/dbSeedPilots.ts && tsx -r tsconfig-paths/register scripts/dbSeedTeams.ts",
-    "db:export": "tsx -r tsconfig-paths/register scripts/dbExportPilots.ts --force && tsx -r tsconfig-paths/register scripts/dbExportTeams.ts --force"
+    "db:export": "tsx -r tsconfig-paths/register scripts/dbExportPilots.ts --force && tsx -r tsconfig-paths/register scripts/dbExportTeams.ts --force && tsx -r tsconfig-paths/register scripts/dbExportPenalties.ts --force",
+    "history:build": "tsx -r tsconfig-paths/register scripts/build-history.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",

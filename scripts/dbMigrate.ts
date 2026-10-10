@@ -31,7 +31,20 @@ async function main() {
       updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
     )
   `;
-  console.log("Migración OK: tablas pilots + teams.");
+  await sql`
+    CREATE TABLE IF NOT EXISTS penalties (
+      id SERIAL PRIMARY KEY,
+      year TEXT NOT NULL,
+      season TEXT NOT NULL,
+      fecha INT NOT NULL,
+      cls TEXT NOT NULL,
+      driver TEXT NOT NULL,
+      delta DOUBLE PRECISION NOT NULL,
+      note TEXT,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `;
+  console.log("Migración OK: tablas pilots + teams + penalties.");
 }
 
 main().catch((err) => {
