@@ -96,6 +96,24 @@ function fechaOf(sessionName: string): number | null {
   return Number.isFinite(n) && n >= 1 && n <= 20 ? n : null;
 }
 
+/**
+ * Fecha de una sesión. Los eventos F1-F3 de 2023 no escriben el número en
+ * los nombres ("Kid Kart - Clasificacion"): si el evento del manifiesto es
+ * de una sola fecha, se usa esa; en eventos dobles (4ta y 5ta) las sesiones
+ * sin número van a la primera fecha del evento (p.ej. clasificación del
+ * fin de semana doble).
+ */
+function fechaForSession(
+  sessionName: string,
+  eventFechas: number[]
+): number | null {
+  const fromName = fechaOf(sessionName);
+  if (fromName) return fromName;
+  if (eventFechas.length === 1) return eventFechas[0];
+  if (eventFechas.length > 1) return Math.min(...eventFechas);
+  return null;
+}
+
 function scaleFor(kind: Kind, posInClass: number): number {
   if (posInClass <= 0) return 0;
   const table = kind === "quali" ? QUALI : kind === "prefinal" ? PREFINAL : FINAL;
@@ -183,13 +201,16 @@ function buildSeason(
   for (const entry of entries) {
     const event = loadEvent(String(entry.id));
     if (!event) continue;
+    const eventFechas = Array.isArray(entry.fechas)
+      ? (entry.fechas as number[]).filter((n) => Number.isInteger(n) && n > 0)
+      : [];
     for (const day of event.days) {
       for (const session of day.sessions) {
         const kind = kindOf(session);
         if (!kind) continue;
         const rows = session.classification?.rows ?? [];
         if (!rows.length) continue;
-        const fecha = fechaOf(session.name);
+        const fecha = fechaForSession(session.name, eventFechas);
         if (!fecha) continue;
         maxFecha = Math.max(maxFecha, fecha);
 
