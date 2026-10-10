@@ -2021,3 +2021,56 @@
     vertical-align: middle;
   }
 }
+
+/* ============ Lista de eventos (página de circuito) ============ */
+@layer components {
+  .events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .event-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--line);
+    border-radius: 0.6rem;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .event-row:hover {
+    border-color: rgba(76, 141, 255, 0.45);
+    background: rgba(76, 141, 255, 0.06);
+  }
+
+  .event-row-date {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-dim);
+    white-space: nowrap;
+    min-width: 92px;
+  }
+
+  .event-row-name {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .event-row-count {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+}

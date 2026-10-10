@@ -38,6 +38,12 @@ function buildCrumbs(pathname: string, nameHint?: string): Crumb[] {
       continue;
     }
 
+    // Sin índice de circuitos: el segmento queda como ubicación.
+    if (part === "circuito") {
+      crumbs.push({ label: "Circuito", href: null });
+      continue;
+    }
+
     if (prev === "equipo") {
       const team = getTeam(part);
       crumbs.push({
