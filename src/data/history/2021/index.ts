@@ -27,7 +27,8 @@ export const championship2021: Championship = {
                   40,
                   37.5,
                   0,
-                  80
+                  42.5,
+                  37.5
                 ],
                 "points": 157.5,
                 "worst": 0
@@ -42,7 +43,8 @@ export const championship2021: Championship = {
                   32.5,
                   27,
                   0,
-                  51
+                  27,
+                  24
                 ],
                 "points": 110.5,
                 "worst": 0
@@ -57,7 +59,8 @@ export const championship2021: Championship = {
                   0,
                   39,
                   0,
-                  64
+                  34,
+                  30
                 ],
                 "points": 103,
                 "worst": 0
@@ -72,7 +75,8 @@ export const championship2021: Championship = {
                   31,
                   21.5,
                   0,
-                  41
+                  21.5,
+                  19.5
                 ],
                 "points": 93.5,
                 "worst": 0
@@ -100,7 +104,8 @@ export const championship2021: Championship = {
                   11,
                   42.5,
                   0,
-                  75.5
+                  42.5,
+                  33
                 ],
                 "points": 129,
                 "worst": 0
@@ -115,7 +120,8 @@ export const championship2021: Championship = {
                   35,
                   22.5,
                   0,
-                  52
+                  29.5,
+                  22.5
                 ],
                 "points": 109.5,
                 "worst": 0
@@ -130,7 +136,8 @@ export const championship2021: Championship = {
                   21.5,
                   34,
                   0,
-                  47.5
+                  21,
+                  26.5
                 ],
                 "points": 103,
                 "worst": 0
@@ -145,7 +152,8 @@ export const championship2021: Championship = {
                   31,
                   13,
                   0,
-                  36.5
+                  17.5,
+                  19
                 ],
                 "points": 80.5,
                 "worst": 0
@@ -160,7 +168,8 @@ export const championship2021: Championship = {
                   15.5,
                   14,
                   0,
-                  45
+                  24,
+                  21
                 ],
                 "points": 74.5,
                 "worst": 0
@@ -175,7 +184,8 @@ export const championship2021: Championship = {
                   13.5,
                   12,
                   0,
-                  36.5
+                  18,
+                  18.5
                 ],
                 "points": 62,
                 "worst": 0
@@ -190,7 +200,8 @@ export const championship2021: Championship = {
                   12.5,
                   10.5,
                   0,
-                  33
+                  17.5,
+                  15.5
                 ],
                 "points": 56,
                 "worst": 0
@@ -204,6 +215,7 @@ export const championship2021: Championship = {
                 "scores": [
                   30.5,
                   10.5,
+                  0,
                   0,
                   0
                 ],
@@ -220,6 +232,7 @@ export const championship2021: Championship = {
                   15.5,
                   13.5,
                   0,
+                  0,
                   0
                 ],
                 "points": 29,
@@ -235,7 +248,8 @@ export const championship2021: Championship = {
                   9.5,
                   6,
                   0,
-                  13
+                  13,
+                  0
                 ],
                 "points": 28.5,
                 "worst": 0
@@ -249,6 +263,7 @@ export const championship2021: Championship = {
                 "scores": [
                   10,
                   14,
+                  0,
                   0,
                   0
                 ],
@@ -265,6 +280,7 @@ export const championship2021: Championship = {
                   0,
                   23,
                   0,
+                  0,
                   0
                 ],
                 "points": 23,
@@ -279,6 +295,7 @@ export const championship2021: Championship = {
                 "scores": [
                   12,
                   8,
+                  0,
                   0,
                   0
                 ],
@@ -300,17 +317,18 @@ export const championship2021: Championship = {
             "results": [
               {
                 "rank": 1,
-                "number": "505",
-                "driver": "Anouk Valerio",
-                "team": "valerio",
+                "number": "523",
+                "driver": "Diego Ardiles",
+                "team": "independiente",
                 "country": "CR",
                 "scores": [
-                  35,
+                  16.5,
+                  42.5,
                   0,
-                  0,
-                  0
+                  42.5,
+                  30
                 ],
-                "points": 35,
+                "points": 131.5,
                 "worst": 0
               },
               {
@@ -321,26 +339,28 @@ export const championship2021: Championship = {
                 "country": "CR",
                 "scores": [
                   33,
+                  24.5,
                   0,
-                  0,
-                  0
+                  26,
+                  37.5
                 ],
-                "points": 33,
+                "points": 121,
                 "worst": 0
               },
               {
                 "rank": 3,
-                "number": "528",
-                "driver": "Nico Salazar",
+                "number": "505",
+                "driver": "Anouk Valerio",
                 "team": "valerio",
                 "country": "CR",
                 "scores": [
-                  25.5,
+                  35,
+                  34,
                   0,
-                  0,
-                  0
+                  24.5,
+                  24
                 ],
-                "points": 25.5,
+                "points": 117.5,
                 "worst": 0
               },
               {
@@ -351,114 +371,12 @@ export const championship2021: Championship = {
                 "country": "CR",
                 "scores": [
                   19.5,
-                  0,
-                  0,
-                  0
-                ],
-                "points": 19.5,
-                "worst": 0
-              },
-              {
-                "rank": 5,
-                "number": "523",
-                "driver": "Diego Ardiles",
-                "team": "independiente",
-                "country": "CR",
-                "scores": [
-                  16.5,
-                  0,
-                  0,
-                  0
-                ],
-                "points": 16.5,
-                "worst": 0
-              },
-              {
-                "rank": 6,
-                "number": "521",
-                "driver": "Saul Cespedes",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  7,
-                  0,
-                  0,
-                  0
-                ],
-                "points": 7,
-                "worst": 0
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "title": "MINI ROK",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
-          {
-            "name": "",
-            "results": [
-              {
-                "rank": 1,
-                "number": "523",
-                "driver": "Diego Ardiles",
-                "team": "independiente",
-                "country": "CR",
-                "scores": [
-                  0,
-                  42.5,
-                  0,
-                  72.5
-                ],
-                "points": 115,
-                "worst": 0
-              },
-              {
-                "rank": 2,
-                "number": "526",
-                "driver": "Gerardo Moreno",
-                "team": "mhkarting",
-                "country": "CR",
-                "scores": [
-                  0,
-                  24.5,
-                  0,
-                  63.5
-                ],
-                "points": 88,
-                "worst": 0
-              },
-              {
-                "rank": 3,
-                "number": "505",
-                "driver": "Anouk Valerio",
-                "team": "valerio",
-                "country": "CR",
-                "scores": [
-                  0,
-                  34,
-                  0,
-                  48.5
-                ],
-                "points": 82.5,
-                "worst": 0
-              },
-              {
-                "rank": 4,
-                "number": "518",
-                "driver": "Luciana Morales Wolff",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  0,
                   21,
                   0,
-                  47.5
+                  32,
+                  15.5
                 ],
-                "points": 68.5,
+                "points": 88,
                 "worst": 0
               },
               {
@@ -471,39 +389,42 @@ export const championship2021: Championship = {
                   0,
                   19.5,
                   0,
-                  35.5
+                  17.5,
+                  18
                 ],
                 "points": 55,
                 "worst": 0
               },
               {
                 "rank": 6,
-                "number": "521",
-                "driver": "Saúl Céspedes",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  0,
-                  16,
-                  0,
-                  28
-                ],
-                "points": 44,
-                "worst": 0
-              },
-              {
-                "rank": 7,
                 "number": "528",
                 "driver": "Nico Salazar",
                 "team": "valerio",
                 "country": "CR",
                 "scores": [
+                  25.5,
                   0,
                   0,
-                  0,
-                  26.5
+                  10,
+                  16.5
                 ],
-                "points": 26.5,
+                "points": 52,
+                "worst": 0
+              },
+              {
+                "rank": 7,
+                "number": "521",
+                "driver": "Saul Cespedes",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  7,
+                  16,
+                  0,
+                  13.5,
+                  14.5
+                ],
+                "points": 51,
                 "worst": 0
               },
               {
@@ -516,7 +437,8 @@ export const championship2021: Championship = {
                   0,
                   13.5,
                   0,
-                  5
+                  5,
+                  0
                 ],
                 "points": 18.5,
                 "worst": 0
@@ -526,275 +448,130 @@ export const championship2021: Championship = {
         ]
       },
       {
-        "title": "SSK HEAVY",
+        "title": "STARS OF TOMORROW",
         "ageGroup": "",
         "details": [],
         "img": "",
         "categories": [
           {
-            "name": "",
+            "name": "STARS OF TOMORROW B",
             "results": [
               {
                 "rank": 1,
-                "number": "248",
-                "driver": "Luis Alvarado",
+                "number": "122",
+                "driver": "Tomas Arias",
                 "team": "valerio",
                 "country": "CR",
                 "scores": [
                   42.5,
-                  0,
-                  0,
-                  0
-                ],
-                "points": 42.5,
-                "worst": 0
-              },
-              {
-                "rank": 2,
-                "number": "250",
-                "driver": "Mark Sandoval",
-                "team": "",
-                "country": "",
-                "scores": [
-                  31,
-                  0,
-                  0,
-                  0
-                ],
-                "points": 31,
-                "worst": 0
-              },
-              {
-                "rank": 3,
-                "number": "279",
-                "driver": "Jose Pablo Perez",
-                "team": "",
-                "country": "",
-                "scores": [
-                  30,
-                  0,
-                  0,
-                  0
-                ],
-                "points": 30,
-                "worst": 0
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "title": "SSK LIGHT",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
-          {
-            "name": "",
-            "results": [
-              {
-                "rank": 1,
-                "number": "206",
-                "driver": "Ronald Sandoval",
-                "team": "",
-                "country": "",
-                "scores": [
                   42.5,
                   0,
-                  0,
-                  0
+                  42.5,
+                  37.5
                 ],
-                "points": 42.5,
+                "points": 165,
                 "worst": 0
               },
               {
                 "rank": 2,
-                "number": "214",
-                "driver": "Lineth Valerio",
-                "team": "valerio",
+                "number": "106",
+                "driver": "Emil Brautigam",
+                "team": "fmv",
                 "country": "CR",
                 "scores": [
-                  31,
+                  18.5,
+                  34,
                   0,
-                  0,
-                  0
+                  25.5,
+                  28
                 ],
-                "points": 31,
+                "points": 106,
                 "worst": 0
               },
               {
                 "rank": 3,
-                "number": "294",
-                "driver": "Braulio Calderon",
-                "team": "",
-                "country": "",
+                "number": "117",
+                "driver": "Sofia Calderon",
+                "team": "fmv",
+                "country": "CR",
                 "scores": [
-                  28,
+                  34,
+                  19.5,
                   0,
-                  0,
-                  0
+                  24,
+                  26
                 ],
-                "points": 28,
+                "points": 103.5,
                 "worst": 0
               },
               {
                 "rank": 4,
-                "number": "277",
-                "driver": "Gabriel Trejos",
+                "number": "131",
+                "driver": "Mathias Rojas",
                 "team": "",
                 "country": "",
                 "scores": [
                   23.5,
-                  0,
-                  0,
-                  0
-                ],
-                "points": 23.5,
-                "worst": 0
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "title": "SSK MASTER",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
-          {
-            "name": "",
-            "results": [
-              {
-                "rank": 1,
-                "number": "248",
-                "driver": "Luis Alvarado",
-                "team": "valerio",
-                "country": "CR",
-                "scores": [
-                  0,
-                  42.5,
-                  0,
-                  80
-                ],
-                "points": 122.5,
-                "worst": 0
-              },
-              {
-                "rank": 2,
-                "number": "250",
-                "driver": "Mark Sandoval",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  29,
-                  0,
-                  64
-                ],
-                "points": 93,
-                "worst": 0
-              },
-              {
-                "rank": 3,
-                "number": "281",
-                "driver": "Daniel Bonilla",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  24,
-                  0,
-                  0
-                ],
-                "points": 24,
-                "worst": 0
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "title": "SSK SENIOR",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
-          {
-            "name": "",
-            "results": [
-              {
-                "rank": 1,
-                "number": "214",
-                "driver": "Lineth Valerio",
-                "team": "valerio",
-                "country": "CR",
-                "scores": [
-                  0,
-                  42.5,
-                  0,
-                  64
-                ],
-                "points": 106.5,
-                "worst": 0
-              },
-              {
-                "rank": 2,
-                "number": "206",
-                "driver": "Ronald Sandoval",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  34,
-                  0,
-                  51
-                ],
-                "points": 85,
-                "worst": 0
-              },
-              {
-                "rank": 3,
-                "number": "299",
-                "driver": "Andres Vallderperas",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  80
-                ],
-                "points": 80,
-                "worst": 0
-              },
-              {
-                "rank": 4,
-                "number": "294",
-                "driver": "Braulio Calderon",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
                   27,
                   0,
+                  23.5,
+                  18
+                ],
+                "points": 92,
+                "worst": 0
+              },
+              {
+                "rank": 5,
+                "number": "120",
+                "driver": "Alejandro Vargas",
+                "team": "",
+                "country": "",
+                "scores": [
+                  12,
+                  18.5,
+                  0,
+                  22,
+                  16.5
+                ],
+                "points": 69,
+                "worst": 0
+              },
+              {
+                "rank": 6,
+                "number": "101",
+                "driver": "Gabriel Contreras",
+                "team": "",
+                "country": "",
+                "scores": [
+                  22,
+                  16,
+                  0,
+                  0,
                   0
                 ],
-                "points": 27,
+                "points": 38,
+                "worst": 0
+              },
+              {
+                "rank": 7,
+                "number": "177",
+                "driver": "Isaac Alvarado",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  0,
+                  0,
+                  10,
+                  16.5
+                ],
+                "points": 26.5,
                 "worst": 0
               }
             ]
-          }
-        ]
-      },
-      {
-        "title": "STARS OF TOMORROW A",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
+          },
           {
-            "name": "",
+            "name": "STARS OF TOMORROW A",
             "results": [
               {
                 "rank": 1,
@@ -806,7 +583,8 @@ export const championship2021: Championship = {
                   42.5,
                   42.5,
                   0,
-                  80
+                  42.5,
+                  37.5
                 ],
                 "points": 165,
                 "worst": 0
@@ -821,7 +599,8 @@ export const championship2021: Championship = {
                   18.5,
                   31,
                   0,
-                  50
+                  20,
+                  30
                 ],
                 "points": 99.5,
                 "worst": 0
@@ -836,7 +615,8 @@ export const championship2021: Championship = {
                   31,
                   10,
                   0,
-                  45.5
+                  32,
+                  13.5
                 ],
                 "points": 86.5,
                 "worst": 0
@@ -851,7 +631,8 @@ export const championship2021: Championship = {
                   22,
                   23.5,
                   0,
-                  38
+                  14,
+                  24
                 ],
                 "points": 83.5,
                 "worst": 0
@@ -866,7 +647,8 @@ export const championship2021: Championship = {
                   24,
                   11,
                   0,
-                  35.5
+                  19.5,
+                  16
                 ],
                 "points": 70.5,
                 "worst": 0
@@ -881,7 +663,8 @@ export const championship2021: Championship = {
                   10,
                   9.5,
                   0,
-                  29
+                  16,
+                  13
                 ],
                 "points": 48.5,
                 "worst": 0
@@ -896,7 +679,8 @@ export const championship2021: Championship = {
                   11.5,
                   8,
                   0,
-                  26
+                  11.5,
+                  14.5
                 ],
                 "points": 45.5,
                 "worst": 0
@@ -910,6 +694,7 @@ export const championship2021: Championship = {
                 "scores": [
                   19.5,
                   24,
+                  0,
                   0,
                   0
                 ],
@@ -926,7 +711,8 @@ export const championship2021: Championship = {
                   7,
                   0,
                   0,
-                  33.5
+                  15,
+                  18.5
                 ],
                 "points": 40.5,
                 "worst": 0
@@ -941,7 +727,8 @@ export const championship2021: Championship = {
                   0,
                   14.5,
                   0,
-                  21.5
+                  12,
+                  9.5
                 ],
                 "points": 36,
                 "worst": 0
@@ -956,7 +743,8 @@ export const championship2021: Championship = {
                   0,
                   10,
                   0,
-                  24.5
+                  13.5,
+                  11
                 ],
                 "points": 34.5,
                 "worst": 0
@@ -970,6 +758,7 @@ export const championship2021: Championship = {
                 "scores": [
                   0,
                   20.5,
+                  0,
                   0,
                   0
                 ],
@@ -986,6 +775,7 @@ export const championship2021: Championship = {
                   0,
                   13,
                   0,
+                  0,
                   0
                 ],
                 "points": 13,
@@ -999,6 +789,7 @@ export const championship2021: Championship = {
                 "country": "",
                 "scores": [
                   12.5,
+                  0,
                   0,
                   0,
                   0
@@ -1016,6 +807,7 @@ export const championship2021: Championship = {
                   10,
                   0,
                   0,
+                  0,
                   0
                 ],
                 "points": 10,
@@ -1029,6 +821,7 @@ export const championship2021: Championship = {
                 "country": "",
                 "scores": [
                   9,
+                  0,
                   0,
                   0,
                   0
@@ -1046,6 +839,7 @@ export const championship2021: Championship = {
                   0,
                   0,
                   0,
+                  0,
                   0
                 ],
                 "points": 0,
@@ -1056,117 +850,246 @@ export const championship2021: Championship = {
         ]
       },
       {
-        "title": "STARS OF TOMORROW B",
+        "title": "SUPER SPORT",
         "ageGroup": "",
         "details": [],
         "img": "",
         "categories": [
           {
-            "name": "",
+            "name": "SSK",
             "results": [
               {
                 "rank": 1,
-                "number": "122",
-                "driver": "Tomas Arias",
+                "number": "248",
+                "driver": "Luis Alvarado",
                 "team": "valerio",
                 "country": "CR",
                 "scores": [
                   42.5,
-                  42.5,
                   0,
-                  80
+                  0,
+                  0,
+                  0
                 ],
-                "points": 165,
+                "points": 42.5,
                 "worst": 0
               },
               {
                 "rank": 2,
-                "number": "106",
-                "driver": "Emil Brautigam",
-                "team": "fmv",
-                "country": "CR",
+                "number": "206",
+                "driver": "Ronald Sandoval",
+                "team": "",
+                "country": "",
                 "scores": [
-                  18.5,
-                  34,
+                  42.5,
                   0,
-                  53.5
+                  0,
+                  0,
+                  0
                 ],
-                "points": 106,
+                "points": 42.5,
                 "worst": 0
               },
               {
                 "rank": 3,
-                "number": "117",
-                "driver": "Sofia Calderon",
-                "team": "fmv",
+                "number": "214",
+                "driver": "Lineth Valerio",
+                "team": "valerio",
                 "country": "CR",
                 "scores": [
-                  34,
-                  19.5,
+                  31,
                   0,
-                  50
+                  0,
+                  0,
+                  0
                 ],
-                "points": 103.5,
+                "points": 31,
                 "worst": 0
               },
               {
                 "rank": 4,
-                "number": "131",
-                "driver": "Mathias Rojas",
+                "number": "250",
+                "driver": "Mark Sandoval",
                 "team": "",
                 "country": "",
                 "scores": [
-                  23.5,
-                  27,
+                  31,
                   0,
-                  41.5
+                  0,
+                  0,
+                  0
                 ],
-                "points": 92,
+                "points": 31,
                 "worst": 0
               },
               {
                 "rank": 5,
-                "number": "120",
-                "driver": "Alejandro Vargas",
+                "number": "279",
+                "driver": "Jose Pablo Perez",
                 "team": "",
                 "country": "",
                 "scores": [
-                  12,
-                  18.5,
+                  30,
                   0,
-                  38.5
+                  0,
+                  0,
+                  0
                 ],
-                "points": 69,
+                "points": 30,
                 "worst": 0
               },
               {
                 "rank": 6,
-                "number": "101",
-                "driver": "Gabriel Contreras",
+                "number": "294",
+                "driver": "Braulio Calderon",
                 "team": "",
                 "country": "",
                 "scores": [
-                  22,
-                  16,
+                  28,
+                  0,
+                  0,
                   0,
                   0
                 ],
-                "points": 38,
+                "points": 28,
                 "worst": 0
               },
               {
                 "rank": 7,
-                "number": "177",
-                "driver": "Isaac Alvarado",
+                "number": "277",
+                "driver": "Gabriel Trejos",
+                "team": "",
+                "country": "",
+                "scores": [
+                  23.5,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "points": 23.5,
+                "worst": 0
+              }
+            ]
+          },
+          {
+            "name": "SSK SENIOR",
+            "results": [
+              {
+                "rank": 1,
+                "number": "214",
+                "driver": "Lineth Valerio",
+                "team": "valerio",
+                "country": "CR",
+                "scores": [
+                  0,
+                  42.5,
+                  0,
+                  34,
+                  30
+                ],
+                "points": 106.5,
+                "worst": 0
+              },
+              {
+                "rank": 2,
+                "number": "206",
+                "driver": "Ronald Sandoval",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  34,
+                  0,
+                  27,
+                  24
+                ],
+                "points": 85,
+                "worst": 0
+              },
+              {
+                "rank": 3,
+                "number": "299",
+                "driver": "Andres Vallderperas",
                 "team": "",
                 "country": "",
                 "scores": [
                   0,
                   0,
                   0,
-                  26.5
+                  42.5,
+                  37.5
                 ],
-                "points": 26.5,
+                "points": 80,
+                "worst": 0
+              },
+              {
+                "rank": 4,
+                "number": "294",
+                "driver": "Braulio Calderon",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  27,
+                  0,
+                  0,
+                  0
+                ],
+                "points": 27,
+                "worst": 0
+              }
+            ]
+          },
+          {
+            "name": "SSK MASTER",
+            "results": [
+              {
+                "rank": 1,
+                "number": "248",
+                "driver": "Luis Alvarado",
+                "team": "valerio",
+                "country": "CR",
+                "scores": [
+                  0,
+                  42.5,
+                  0,
+                  42.5,
+                  37.5
+                ],
+                "points": 122.5,
+                "worst": 0
+              },
+              {
+                "rank": 2,
+                "number": "250",
+                "driver": "Mark Sandoval",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  29,
+                  0,
+                  34,
+                  30
+                ],
+                "points": 93,
+                "worst": 0
+              },
+              {
+                "rank": 3,
+                "number": "281",
+                "driver": "Daniel Bonilla",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  24,
+                  0,
+                  0,
+                  0
+                ],
+                "points": 24,
                 "worst": 0
               }
             ]
@@ -1192,7 +1115,8 @@ export const championship2021: Championship = {
                   0,
                   42.5,
                   0,
-                  80
+                  42.5,
+                  37.5
                 ],
                 "points": 122.5,
                 "worst": 0
@@ -1207,7 +1131,8 @@ export const championship2021: Championship = {
                   23,
                   24.5,
                   0,
-                  52
+                  34,
+                  18
                 ],
                 "points": 99.5,
                 "worst": 0
@@ -1222,7 +1147,8 @@ export const championship2021: Championship = {
                   18,
                   30.5,
                   0,
-                  50.5
+                  22.5,
+                  28
                 ],
                 "points": 99,
                 "worst": 0
@@ -1237,7 +1163,8 @@ export const championship2021: Championship = {
                   40.5,
                   20,
                   0,
-                  26
+                  13,
+                  13
                 ],
                 "points": 86.5,
                 "worst": 0
@@ -1252,7 +1179,8 @@ export const championship2021: Championship = {
                   11,
                   16,
                   0,
-                  33
+                  14.5,
+                  18.5
                 ],
                 "points": 60,
                 "worst": 0
@@ -1267,7 +1195,8 @@ export const championship2021: Championship = {
                   7.5,
                   10.5,
                   0,
-                  41
+                  20.5,
+                  20.5
                 ],
                 "points": 59,
                 "worst": 0
@@ -1282,7 +1211,8 @@ export const championship2021: Championship = {
                   20.5,
                   0,
                   0,
-                  28.5
+                  13.5,
+                  15
                 ],
                 "points": 49,
                 "worst": 0
@@ -1297,7 +1227,8 @@ export const championship2021: Championship = {
                   0,
                   0,
                   0,
-                  39.5
+                  22,
+                  17.5
                 ],
                 "points": 39.5,
                 "worst": 0
@@ -1311,6 +1242,7 @@ export const championship2021: Championship = {
                 "scores": [
                   11,
                   23,
+                  0,
                   0,
                   0
                 ],
@@ -1327,6 +1259,7 @@ export const championship2021: Championship = {
                   15,
                   12,
                   0,
+                  0,
                   0
                 ],
                 "points": 27,
@@ -1340,6 +1273,7 @@ export const championship2021: Championship = {
                 "country": "CR",
                 "scores": [
                   25,
+                  0,
                   0,
                   0,
                   0
@@ -1357,6 +1291,7 @@ export const championship2021: Championship = {
                   10.5,
                   14.5,
                   0,
+                  0,
                   0
                 ],
                 "points": 25,
@@ -1372,7 +1307,8 @@ export const championship2021: Championship = {
                   0,
                   0,
                   0,
-                  21.5
+                  11,
+                  10.5
                 ],
                 "points": 21.5,
                 "worst": 0
@@ -1385,6 +1321,7 @@ export const championship2021: Championship = {
                 "country": "",
                 "scores": [
                   20.5,
+                  0,
                   0,
                   0,
                   0
@@ -1402,6 +1339,7 @@ export const championship2021: Championship = {
                   13,
                   0,
                   0,
+                  0,
                   0
                 ],
                 "points": 13,
@@ -1414,6 +1352,7 @@ export const championship2021: Championship = {
                 "team": "mhkarting",
                 "country": "CR",
                 "scores": [
+                  0,
                   0,
                   0,
                   0,
@@ -1437,7 +1376,8 @@ export const championship2021: Championship = {
                   30.5,
                   42.5,
                   0,
-                  66
+                  42.5,
+                  23.5
                 ],
                 "points": 139,
                 "worst": 0
@@ -1452,7 +1392,8 @@ export const championship2021: Championship = {
                   29,
                   32,
                   0,
-                  52.5
+                  34,
+                  18.5
                 ],
                 "points": 113.5,
                 "worst": 0
@@ -1467,7 +1408,8 @@ export const championship2021: Championship = {
                   30,
                   15,
                   0,
-                  49.5
+                  21.5,
+                  28
                 ],
                 "points": 94.5,
                 "worst": 0
@@ -1482,7 +1424,8 @@ export const championship2021: Championship = {
                   0,
                   27,
                   0,
-                  62
+                  27,
+                  35
                 ],
                 "points": 89,
                 "worst": 0
@@ -1497,7 +1440,8 @@ export const championship2021: Championship = {
                   0,
                   0,
                   0,
-                  40
+                  17.5,
+                  22.5
                 ],
                 "points": 40,
                 "worst": 0
@@ -1511,6 +1455,7 @@ export const championship2021: Championship = {
                 "scores": [
                   19,
                   20.5,
+                  0,
                   0,
                   0
                 ],
@@ -1532,6 +1477,7 @@ export const championship2021: Championship = {
                   38,
                   0,
                   0,
+                  0,
                   0
                 ],
                 "points": 38,
@@ -1545,6 +1491,7 @@ export const championship2021: Championship = {
                 "country": "CR",
                 "scores": [
                   37.5,
+                  0,
                   0,
                   0,
                   0
@@ -1562,6 +1509,7 @@ export const championship2021: Championship = {
                   22,
                   0,
                   0,
+                  0,
                   0
                 ],
                 "points": 22,
@@ -1577,6 +1525,7 @@ export const championship2021: Championship = {
                   21.5,
                   0,
                   0,
+                  0,
                   0
                 ],
                 "points": 21.5,
@@ -1590,6 +1539,7 @@ export const championship2021: Championship = {
                 "country": "",
                 "scores": [
                   18,
+                  0,
                   0,
                   0,
                   0
@@ -1612,7 +1562,8 @@ export const championship2021: Championship = {
                   0,
                   41.5,
                   0,
-                  59.5
+                  36.5,
+                  23
                 ],
                 "points": 101,
                 "worst": 0
@@ -1627,7 +1578,8 @@ export const championship2021: Championship = {
                   0,
                   33,
                   0,
-                  47
+                  29,
+                  18
                 ],
                 "points": 80,
                 "worst": 0
@@ -1642,7 +1594,8 @@ export const championship2021: Championship = {
                   0,
                   0,
                   0,
-                  73
+                  35.5,
+                  37.5
                 ],
                 "points": 73,
                 "worst": 0
@@ -1657,7 +1610,8 @@ export const championship2021: Championship = {
                   0,
                   29,
                   0,
-                  38.5
+                  13,
+                  25.5
                 ],
                 "points": 67.5,
                 "worst": 0
@@ -1672,7 +1626,8 @@ export const championship2021: Championship = {
                   0,
                   15,
                   0,
-                  32.5
+                  16.5,
+                  16
                 ],
                 "points": 47.5,
                 "worst": 0
@@ -1687,7 +1642,8 @@ export const championship2021: Championship = {
                   0,
                   0,
                   0,
-                  44.5
+                  22,
+                  22.5
                 ],
                 "points": 44.5,
                 "worst": 0
@@ -1967,193 +1923,116 @@ export const championship2021: Championship = {
         ]
       },
       {
-        "title": "SSK HEAVY",
+        "title": "STARS OF TOMORROW",
         "ageGroup": "",
         "details": [],
         "img": "",
         "categories": [
           {
-            "name": "",
+            "name": "STARS OF TOMORROW B",
             "results": [
               {
                 "rank": 1,
-                "number": "229",
-                "driver": "Pedro Huguet",
-                "team": "valerio",
-                "country": "CR",
+                "number": "199",
+                "driver": "Santiago Aguero",
+                "team": "",
+                "country": "",
                 "scores": [
+                  41.5,
                   42.5,
-                  39,
                   42.5
                 ],
-                "points": 124,
+                "points": 126.5,
                 "worst": 0
               },
               {
                 "rank": 2,
-                "number": "210",
-                "driver": "Esteban Sibaja",
+                "number": "111",
+                "driver": "Sebastian Lopez",
                 "team": "",
                 "country": "",
                 "scores": [
-                  30.5,
-                  37.5,
-                  17
+                  35,
+                  27.5,
+                  34
                 ],
-                "points": 85,
+                "points": 96.5,
                 "worst": 0
               },
               {
                 "rank": 3,
-                "number": "248",
-                "driver": "Luis Alvarado",
-                "team": "valerio",
+                "number": "115",
+                "driver": "Julian Regueyra",
+                "team": "fmv",
                 "country": "CR",
                 "scores": [
                   26,
-                  26,
-                  31
+                  28,
+                  27
                 ],
-                "points": 83,
+                "points": 81,
                 "worst": 0
               },
               {
                 "rank": 4,
-                "number": "281",
-                "driver": "Daniel Bonilla",
-                "team": "",
-                "country": "",
+                "number": "122",
+                "driver": "Tomas Arias",
+                "team": "valerio",
+                "country": "CR",
                 "scores": [
-                  26,
-                  20.5,
-                  20.5
+                  22.5,
+                  23,
+                  21.5
                 ],
                 "points": 67,
                 "worst": 0
               },
               {
                 "rank": 5,
-                "number": "250",
-                "driver": "Mark Sandoval",
-                "team": "",
-                "country": "",
+                "number": "117",
+                "driver": "Sofia Calderon",
+                "team": "fmv",
+                "country": "CR",
                 "scores": [
                   17.5,
-                  16.5,
-                  16.5
+                  18.5,
+                  17
                 ],
-                "points": 50.5,
+                "points": 53,
                 "worst": 0
               },
               {
                 "rank": 6,
-                "number": "206",
-                "driver": "Ronald Sandoval",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  18,
-                  30
-                ],
-                "points": 48,
-                "worst": 0
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "title": "SSK LIGHT",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
-          {
-            "name": "",
-            "results": [
-              {
-                "rank": 1,
-                "number": "212",
-                "driver": "Ricardo Vargas",
+                "number": "106",
+                "driver": "Emil Brautigam",
                 "team": "fmv",
                 "country": "CR",
                 "scores": [
-                  42.5,
-                  42.5,
-                  42.5
-                ],
-                "points": 127.5,
-                "worst": 0
-              },
-              {
-                "rank": 2,
-                "number": "276",
-                "driver": "Peppe Sgarlata",
-                "team": "",
-                "country": "",
-                "scores": [
-                  34,
-                  34,
-                  33
-                ],
-                "points": 101,
-                "worst": 0
-              },
-              {
-                "rank": 3,
-                "number": "214",
-                "driver": "Lineth Valerio",
-                "team": "valerio",
-                "country": "CR",
-                "scores": [
-                  27,
-                  27,
-                  28
-                ],
-                "points": 82,
-                "worst": 0
-              },
-              {
-                "rank": 4,
-                "number": "294",
-                "driver": "Alexa Araya",
-                "team": "",
-                "country": "",
-                "scores": [
+                  15,
                   17.5,
-                  21.5,
-                  6.5
+                  15.5
                 ],
-                "points": 45.5,
+                "points": 48,
                 "worst": 0
               },
               {
-                "rank": 5,
-                "number": "206",
-                "driver": "Ronald Sandoval",
+                "rank": 7,
+                "number": "107",
+                "driver": "Eithzan Aguilar",
                 "team": "",
                 "country": "",
                 "scores": [
-                  21.5,
-                  0,
+                  13.5,
+                  14,
                   0
                 ],
-                "points": 21.5,
+                "points": 27.5,
                 "worst": 0
               }
             ]
-          }
-        ]
-      },
-      {
-        "title": "STARS OF TOMORROW A",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
+          },
           {
-            "name": "",
+            "name": "STARS OF TOMORROW A",
             "results": [
               {
                 "rank": 1,
@@ -2342,110 +2221,152 @@ export const championship2021: Championship = {
         ]
       },
       {
-        "title": "STARS OF TOMORROW B",
+        "title": "SUPER SPORT",
         "ageGroup": "",
         "details": [],
         "img": "",
         "categories": [
           {
-            "name": "",
+            "name": "SSK",
             "results": [
               {
                 "rank": 1,
-                "number": "199",
-                "driver": "Santiago Aguero",
-                "team": "",
-                "country": "",
+                "number": "212",
+                "driver": "Ricardo Vargas",
+                "team": "fmv",
+                "country": "CR",
                 "scores": [
-                  41.5,
+                  42.5,
                   42.5,
                   42.5
                 ],
-                "points": 126.5,
+                "points": 127.5,
                 "worst": 0
               },
               {
                 "rank": 2,
-                "number": "111",
-                "driver": "Sebastian Lopez",
-                "team": "",
-                "country": "",
+                "number": "229",
+                "driver": "Pedro Huguet",
+                "team": "valerio",
+                "country": "CR",
                 "scores": [
-                  35,
-                  27.5,
-                  34
+                  42.5,
+                  39,
+                  42.5
                 ],
-                "points": 96.5,
+                "points": 124,
                 "worst": 0
               },
               {
                 "rank": 3,
-                "number": "115",
-                "driver": "Julian Regueyra",
-                "team": "fmv",
-                "country": "CR",
+                "number": "276",
+                "driver": "Peppe Sgarlata",
+                "team": "",
+                "country": "",
                 "scores": [
-                  26,
-                  28,
-                  27
+                  34,
+                  34,
+                  33
                 ],
-                "points": 81,
+                "points": 101,
                 "worst": 0
               },
               {
                 "rank": 4,
-                "number": "122",
-                "driver": "Tomas Arias",
+                "number": "210",
+                "driver": "Esteban Sibaja",
+                "team": "",
+                "country": "",
+                "scores": [
+                  30.5,
+                  37.5,
+                  17
+                ],
+                "points": 85,
+                "worst": 0
+              },
+              {
+                "rank": 5,
+                "number": "248",
+                "driver": "Luis Alvarado",
                 "team": "valerio",
                 "country": "CR",
                 "scores": [
-                  22.5,
-                  23,
-                  21.5
+                  26,
+                  26,
+                  31
+                ],
+                "points": 83,
+                "worst": 0
+              },
+              {
+                "rank": 6,
+                "number": "214",
+                "driver": "Lineth Valerio",
+                "team": "valerio",
+                "country": "CR",
+                "scores": [
+                  27,
+                  27,
+                  28
+                ],
+                "points": 82,
+                "worst": 0
+              },
+              {
+                "rank": 7,
+                "number": "206",
+                "driver": "Ronald Sandoval",
+                "team": "",
+                "country": "",
+                "scores": [
+                  21.5,
+                  18,
+                  30
+                ],
+                "points": 69.5,
+                "worst": 0
+              },
+              {
+                "rank": 8,
+                "number": "281",
+                "driver": "Daniel Bonilla",
+                "team": "",
+                "country": "",
+                "scores": [
+                  26,
+                  20.5,
+                  20.5
                 ],
                 "points": 67,
                 "worst": 0
               },
               {
-                "rank": 5,
-                "number": "117",
-                "driver": "Sofia Calderon",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  17.5,
-                  18.5,
-                  17
-                ],
-                "points": 53,
-                "worst": 0
-              },
-              {
-                "rank": 6,
-                "number": "106",
-                "driver": "Emil Brautigam",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  15,
-                  17.5,
-                  15.5
-                ],
-                "points": 48,
-                "worst": 0
-              },
-              {
-                "rank": 7,
-                "number": "107",
-                "driver": "Eithzan Aguilar",
+                "rank": 9,
+                "number": "250",
+                "driver": "Mark Sandoval",
                 "team": "",
                 "country": "",
                 "scores": [
-                  13.5,
-                  14,
-                  0
+                  17.5,
+                  16.5,
+                  16.5
                 ],
-                "points": 27.5,
+                "points": 50.5,
+                "worst": 0
+              },
+              {
+                "rank": 10,
+                "number": "294",
+                "driver": "Alexa Araya",
+                "team": "",
+                "country": "",
+                "scores": [
+                  17.5,
+                  21.5,
+                  6.5
+                ],
+                "points": 45.5,
                 "worst": 0
               }
             ]

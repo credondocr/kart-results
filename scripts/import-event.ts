@@ -411,6 +411,15 @@ function rebuildManifest(): void {
       return Number.isFinite(n) && n >= 1 && n <= 20 ? n : null;
     };
 
+    /** "Final 1"/"Final 2" en eventos dobles: índice (1-based) en eventFechas. */
+    const fechaByRaceIndex = (name: string): number | null => {
+      const idx = name.match(/(?:final|prefinal)\s*(\d+)\s*$/i);
+      if (!idx || mapping.fechas.length === 0) return null;
+      const i = Number(idx[1]);
+      if (i >= 1 && i <= mapping.fechas.length) return mapping.fechas[i - 1];
+      return null;
+    };
+
     /** ¿Es final (no prefinal)? Acepta "Final", "Final 4ta fecha", typos. */
     const isFinalSession = (name: string): boolean => {
       const label = sessionLabelOf(name).trim().toLowerCase();
@@ -429,7 +438,7 @@ function rebuildManifest(): void {
           }
         }
         if (session.type === "race" && isFinalSession(session.name)) {
-          const namedFecha = fechaInName(session.name);
+          const namedFecha = fechaInName(session.name) ?? fechaByRaceIndex(session.name);
           const fecha =
             namedFecha ??
             (mapping.fechas.length === 1
@@ -439,6 +448,8 @@ function rebuildManifest(): void {
                 : undefined);
           if (fecha === undefined) continue;
           for (const row of cls.rows) {
+            // DQ/DNS con posInClass 0 no debe ganar ★ aunque tenga bestTime.
+            if ((row.posInClass ?? 0) <= 0) continue;
             const time = toSeconds(row.bestTime);
             if (time <= 0) continue; // '00.000' = sin tiempo real
             const key = `${row.cls}|${fecha}`;

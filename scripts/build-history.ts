@@ -100,8 +100,8 @@ function fechaOf(sessionName: string): number | null {
  * Fecha de una sesión. Los eventos F1-F3 de 2023 no escriben el número en
  * los nombres ("Kid Kart - Clasificacion"): si el evento del manifiesto es
  * de una sola fecha, se usa esa; en eventos dobles (4ta y 5ta) las sesiones
- * sin número van a la primera fecha del evento (p.ej. clasificación del
- * fin de semana doble).
+ * sin número van a la primera fecha del evento. Los eventos dobles de
+ * 2021-2022 usan "Final 1"/"Final 2" (carrera 1 y 2 del fin de semana).
  */
 function fechaForSession(
   sessionName: string,
@@ -109,6 +109,12 @@ function fechaForSession(
 ): number | null {
   const fromName = fechaOf(sessionName);
   if (fromName) return fromName;
+  // "… - Final 1" / "… - Prefinal 2": índice (1-based) dentro del evento.
+  const idx = sessionName.match(/(?:final|prefinal)\s*(\d+)\s*$/i);
+  if (idx && eventFechas.length > 0) {
+    const i = Number(idx[1]);
+    if (i >= 1 && i <= eventFechas.length) return eventFechas[i - 1];
+  }
   if (eventFechas.length === 1) return eventFechas[0];
   if (eventFechas.length > 1) return Math.min(...eventFechas);
   return null;
@@ -127,27 +133,58 @@ function matchesCls(a: string, b: string): boolean {
   return x === y || x.startsWith(y + " ") || y.startsWith(x + " ");
 }
 
-/** Agrupa categorías de SpeedHive en clases del sitio (VLR, TILLOTSON…). */
+/**
+ * Agrupa categorías de SpeedHive en clases del sitio. Normaliza variantes
+ * de nombre entre fechas ("Mini Rok" vs "Mini Rok 60cc", "Stars A/B", SSK)
+ * para no duplicar clases ni partir pilotos en filas separadas.
+ */
 function groupOf(clsRaw: string): { classTitle: string; categoryName: string } {
   const clean = clsRaw.trim().replace(/\s+/g, " ");
   const key = loose(clean);
+  if (!key) return { classTitle: clean.toUpperCase(), categoryName: "" };
+
   if (key.startsWith("tillotson")) {
     return { classTitle: "TILLOTSON", categoryName: clean.toUpperCase() };
   }
   if (key.startsWith("vlr")) {
     return { classTitle: "VLR", categoryName: clean.toUpperCase() };
   }
-  const title = clean.toUpperCase();
-  return { classTitle: title, categoryName: "" };
-}
-
-function prettyClassTitle(title: string): string {
-  if (title === "MICRO ROK") return "MICRO ROK";
-  if (title === "MINI ROK 60CC" || title === "MINI ROK") return "MINI ROK";
-  if (title === "SHIFTER ROK" || title === "ROK SHIFTER") return "ROK SHIFTER";
-  if (title === "STARS OF TOMORROW" || title === "STARS OF TOMORROW ") return "STARS OF TOMORROW";
-  if (title === "LO 206" || title === "LO206") return "LO 206";
-  return title;
+  if (key.includes("stars")) {
+    const letter = clean.match(/\b([ab])\b\s*$/i)?.[1];
+    return {
+      classTitle: "STARS OF TOMORROW",
+      categoryName: letter ? `STARS OF TOMORROW ${letter.toUpperCase()}` : "",
+    };
+  }
+  if (key.includes("super sport") || key === "ssk" || key.startsWith("ssk ")) {
+    const sub = clean.match(/(junior|senior|master)/i)?.[1];
+    return {
+      classTitle: "SUPER SPORT",
+      categoryName: sub ? `SSK ${sub.toUpperCase()}` : "SSK",
+    };
+  }
+  if (key.includes("mini") && key.includes("rok")) {
+    return { classTitle: "MINI ROK", categoryName: "" };
+  }
+  if (key.includes("micro")) {
+    return { classTitle: "MICRO ROK", categoryName: "" };
+  }
+  if (key.includes("kid")) {
+    return { classTitle: "KID KART", categoryName: "" };
+  }
+  if (key.includes("shifter")) {
+    return { classTitle: "ROK SHIFTER", categoryName: "" };
+  }
+  if (key.includes("206")) {
+    return { classTitle: "LO 206", categoryName: "" };
+  }
+  if (key.includes("dd2")) {
+    return { classTitle: "DD2", categoryName: "" };
+  }
+  if (key.includes("rok") && key.includes("senior")) {
+    return { classTitle: "ROK SENIOR", categoryName: "" };
+  }
+  return { classTitle: clean.toUpperCase(), categoryName: "" };
 }
 
 function loadPenalties(): Penalty[] {
@@ -298,6 +335,36 @@ function buildSeason(
     }
   }
 
+  // Stars: fechas sin letra ("Stars Of Tomorrow") se fusionan con la
+  // categoría A cuando existe (mismo piloto en fichas distintas partía la tabla).
+  {
+    const stars = classMap.get("STARS OF TOMORROW");
+    if (stars?.has("") && stars.has("STARS OF TOMORROW A")) {
+      const unlettered = stars.get("")!;
+      const catA = stars.get("STARS OF TOMORROW A")!;
+      for (const [key, acc] of unlettered) {
+        const existing = catA.get(key);
+        if (!existing) {
+          catA.set(key, acc);
+          continue;
+        }
+        for (let i = 0; i < maxFecha; i++) {
+          existing.scores[i] = (existing.scores[i] ?? 0) + (acc.scores[i] ?? 0);
+        }
+        for (const [num, count] of acc.numCounts) {
+          existing.numCounts.set(num, (existing.numCounts.get(num) ?? 0) + count);
+        }
+      }
+      stars.delete("");
+      if (stars.size === 1 && stars.has("STARS OF TOMORROW A")) {
+        // Solo queda A: aplanar a categoría vacía como las demás clases simples.
+        const only = stars.get("STARS OF TOMORROW A")!;
+        stars.clear();
+        stars.set("", only);
+      }
+    }
+  }
+
   const classes = [...classMap.entries()]    .map(([classTitle, cats]) => {
       const categories = [...cats.entries()].map(([catName, pilots]) => {
         const results = [...pilots.values()]
@@ -334,7 +401,7 @@ function buildSeason(
         return { name: catName, results };
       });
       return {
-        title: prettyClassTitle(classTitle),
+        title: classTitle,
         ageGroup: "",
         details: [],
         img: "",

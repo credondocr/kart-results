@@ -356,13 +356,115 @@ export const championship2022: Championship = {
         ]
       },
       {
-        "title": "SSK",
+        "title": "STARS OF TOMORROW",
         "ageGroup": "",
         "details": [],
         "img": "",
         "categories": [
           {
-            "name": "",
+            "name": "STARS OF TOMORROW A",
+            "results": [
+              {
+                "rank": 1,
+                "number": "117",
+                "driver": "Sofia Calderon",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  42.5,
+                  16.5,
+                  68.5
+                ],
+                "points": 127.5,
+                "worst": 0
+              },
+              {
+                "rank": 2,
+                "number": "180",
+                "driver": "Ariadna Calderon",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  0,
+                  38,
+                  65
+                ],
+                "points": 103,
+                "worst": 0
+              },
+              {
+                "rank": 3,
+                "number": "122",
+                "driver": "Fabian Mendez",
+                "team": "",
+                "country": "",
+                "scores": [
+                  34,
+                  26,
+                  28
+                ],
+                "points": 88,
+                "worst": 0
+              },
+              {
+                "rank": 4,
+                "number": "106",
+                "driver": "Emil Brautigam",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  0,
+                  5,
+                  61.5
+                ],
+                "points": 66.5,
+                "worst": 0
+              },
+              {
+                "rank": 5,
+                "number": "101x",
+                "driver": "Leandro Ramirez",
+                "team": "formula",
+                "country": "CR",
+                "scores": [
+                  0,
+                  27.5,
+                  36
+                ],
+                "points": 63.5,
+                "worst": 0
+              }
+            ]
+          },
+          {
+            "name": "STARS OF TOMORROW B",
+            "results": [
+              {
+                "rank": 1,
+                "number": "101",
+                "driver": "Julian Vargas",
+                "team": "",
+                "country": "",
+                "scores": [
+                  42.5,
+                  0,
+                  0
+                ],
+                "points": 42.5,
+                "worst": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "SUPER SPORT",
+        "ageGroup": "",
+        "details": [],
+        "img": "",
+        "categories": [
+          {
+            "name": "SSK",
             "results": [
               {
                 "rank": 1,
@@ -474,157 +576,6 @@ export const championship2022: Championship = {
                   26
                 ],
                 "points": 26,
-                "worst": 0
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "title": "STARS OF TOMORROW",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
-          {
-            "name": "",
-            "results": [
-              {
-                "rank": 1,
-                "number": "180",
-                "driver": "Ariadna Calderon",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  0,
-                  38,
-                  65
-                ],
-                "points": 103,
-                "worst": 0
-              },
-              {
-                "rank": 2,
-                "number": "117",
-                "driver": "Sofia Calderon",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  0,
-                  16.5,
-                  68.5
-                ],
-                "points": 85,
-                "worst": 0
-              },
-              {
-                "rank": 3,
-                "number": "106",
-                "driver": "Emil Brautigam",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  0,
-                  5,
-                  61.5
-                ],
-                "points": 66.5,
-                "worst": 0
-              },
-              {
-                "rank": 4,
-                "number": "101x",
-                "driver": "Leandro Ramirez",
-                "team": "formula",
-                "country": "CR",
-                "scores": [
-                  0,
-                  27.5,
-                  36
-                ],
-                "points": 63.5,
-                "worst": 0
-              },
-              {
-                "rank": 5,
-                "number": "122",
-                "driver": "Fabian Mendez",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  26,
-                  28
-                ],
-                "points": 54,
-                "worst": 0
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "title": "STARS OF TOMORROW A",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
-          {
-            "name": "",
-            "results": [
-              {
-                "rank": 1,
-                "number": "117",
-                "driver": "Sofia Calderon",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  42.5,
-                  0,
-                  0
-                ],
-                "points": 42.5,
-                "worst": 0
-              },
-              {
-                "rank": 2,
-                "number": "122",
-                "driver": "Fabian Mendez",
-                "team": "",
-                "country": "",
-                "scores": [
-                  34,
-                  0,
-                  0
-                ],
-                "points": 34,
-                "worst": 0
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "title": "STARS OF TOMORROW B",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
-          {
-            "name": "",
-            "results": [
-              {
-                "rank": 1,
-                "number": "101",
-                "driver": "Julian Vargas",
-                "team": "",
-                "country": "",
-                "scores": [
-                  42.5,
-                  0,
-                  0
-                ],
-                "points": 42.5,
                 "worst": 0
               }
             ]
@@ -1736,13 +1687,241 @@ export const championship2022: Championship = {
         ]
       },
       {
-        "title": "SSK",
+        "title": "STARS OF TOMORROW",
         "ageGroup": "",
         "details": [],
         "img": "",
         "categories": [
           {
-            "name": "",
+            "name": "STARS OF TOMORROW A",
+            "results": [
+              {
+                "rank": 1,
+                "number": "112",
+                "driver": "Gabriel Sandoval",
+                "team": "",
+                "country": "",
+                "scores": [
+                  33.5,
+                  42.5,
+                  41.5,
+                  55
+                ],
+                "points": 172.5,
+                "worst": 0
+              },
+              {
+                "rank": 2,
+                "number": "137",
+                "driver": "Alessandro Carboni",
+                "team": "advanced",
+                "country": "CR",
+                "scores": [
+                  34.5,
+                  29,
+                  29,
+                  40.5
+                ],
+                "points": 133,
+                "worst": 0
+              },
+              {
+                "rank": 3,
+                "number": "129",
+                "driver": "Luis Fernando Cedeño",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  34,
+                  17.5,
+                  33,
+                  37
+                ],
+                "points": 121.5,
+                "worst": 0
+              },
+              {
+                "rank": 4,
+                "number": "118",
+                "driver": "Junxi Liu",
+                "team": "",
+                "country": "",
+                "scores": [
+                  15,
+                  32,
+                  17.5,
+                  29.5
+                ],
+                "points": 94,
+                "worst": 0
+              },
+              {
+                "rank": 5,
+                "number": "119",
+                "driver": "Andre Gardella",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  10.5,
+                  17.5,
+                  23
+                ],
+                "points": 51,
+                "worst": 0
+              },
+              {
+                "rank": 6,
+                "number": "106",
+                "driver": "Emil Brautigam",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  13.5,
+                  17.5,
+                  16,
+                  0
+                ],
+                "points": 47,
+                "worst": 0
+              },
+              {
+                "rank": 7,
+                "number": "109",
+                "driver": "Gabriel Valverde",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  23,
+                  12,
+                  12,
+                  0
+                ],
+                "points": 47,
+                "worst": 0
+              },
+              {
+                "rank": 8,
+                "number": "103",
+                "driver": "Isacc Cruz",
+                "team": "",
+                "country": "",
+                "scores": [
+                  12,
+                  18.5,
+                  16.5,
+                  0
+                ],
+                "points": 47,
+                "worst": 0
+              },
+              {
+                "rank": 9,
+                "number": "180",
+                "driver": "Ariadna Calderon",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  17.5,
+                  14,
+                  0,
+                  0
+                ],
+                "points": 31.5,
+                "worst": 0
+              }
+            ]
+          },
+          {
+            "name": "STARS OF TOMORROW B",
+            "results": [
+              {
+                "rank": 1,
+                "number": "122",
+                "driver": "Tomas Arias",
+                "team": "valerio",
+                "country": "CR",
+                "scores": [
+                  42.5,
+                  42.5,
+                  42.5,
+                  55
+                ],
+                "points": 182.5,
+                "worst": 0
+              },
+              {
+                "rank": 2,
+                "number": "117",
+                "driver": "Sofia Calderon",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  33,
+                  27,
+                  34,
+                  44
+                ],
+                "points": 138,
+                "worst": 0
+              },
+              {
+                "rank": 3,
+                "number": "107",
+                "driver": "Isaac Alvarado",
+                "team": "",
+                "country": "",
+                "scores": [
+                  20,
+                  19.5,
+                  21.5,
+                  0
+                ],
+                "points": 61,
+                "worst": 0
+              },
+              {
+                "rank": 4,
+                "number": "184",
+                "driver": "Luciano Dajles",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  0,
+                  34,
+                  27,
+                  0
+                ],
+                "points": 61,
+                "worst": 0
+              },
+              {
+                "rank": 5,
+                "number": "121",
+                "driver": "Andres Dumith",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  0,
+                  0,
+                  0,
+                  35
+                ],
+                "points": 35,
+                "worst": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "SUPER SPORT",
+        "ageGroup": "",
+        "details": [],
+        "img": "",
+        "categories": [
+          {
+            "name": "SSK",
             "results": [
               {
                 "rank": 1,
@@ -1907,242 +2086,6 @@ export const championship2022: Championship = {
                   0
                 ],
                 "points": 14,
-                "worst": 0
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "title": "STARS OF TOMORROW A",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
-          {
-            "name": "",
-            "results": [
-              {
-                "rank": 1,
-                "number": "112",
-                "driver": "Gabriel Sandoval",
-                "team": "",
-                "country": "",
-                "scores": [
-                  33.5,
-                  42.5,
-                  41.5,
-                  55
-                ],
-                "points": 172.5,
-                "worst": 0
-              },
-              {
-                "rank": 2,
-                "number": "137",
-                "driver": "Alessandro Carboni",
-                "team": "advanced",
-                "country": "CR",
-                "scores": [
-                  34.5,
-                  29,
-                  29,
-                  40.5
-                ],
-                "points": 133,
-                "worst": 0
-              },
-              {
-                "rank": 3,
-                "number": "129",
-                "driver": "Luis Fernando Cedeño",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  34,
-                  17.5,
-                  33,
-                  37
-                ],
-                "points": 121.5,
-                "worst": 0
-              },
-              {
-                "rank": 4,
-                "number": "118",
-                "driver": "Junxi Liu",
-                "team": "",
-                "country": "",
-                "scores": [
-                  15,
-                  32,
-                  17.5,
-                  29.5
-                ],
-                "points": 94,
-                "worst": 0
-              },
-              {
-                "rank": 5,
-                "number": "119",
-                "driver": "Andre Gardella",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  10.5,
-                  17.5,
-                  23
-                ],
-                "points": 51,
-                "worst": 0
-              },
-              {
-                "rank": 6,
-                "number": "106",
-                "driver": "Emil Brautigam",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  13.5,
-                  17.5,
-                  16,
-                  0
-                ],
-                "points": 47,
-                "worst": 0
-              },
-              {
-                "rank": 7,
-                "number": "109",
-                "driver": "Gabriel Valverde",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  23,
-                  12,
-                  12,
-                  0
-                ],
-                "points": 47,
-                "worst": 0
-              },
-              {
-                "rank": 8,
-                "number": "103",
-                "driver": "Isacc Cruz",
-                "team": "",
-                "country": "",
-                "scores": [
-                  12,
-                  18.5,
-                  16.5,
-                  0
-                ],
-                "points": 47,
-                "worst": 0
-              },
-              {
-                "rank": 9,
-                "number": "180",
-                "driver": "Ariadna Calderon",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  17.5,
-                  14,
-                  0,
-                  0
-                ],
-                "points": 31.5,
-                "worst": 0
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "title": "STARS OF TOMORROW B",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
-          {
-            "name": "",
-            "results": [
-              {
-                "rank": 1,
-                "number": "122",
-                "driver": "Tomas Arias",
-                "team": "valerio",
-                "country": "CR",
-                "scores": [
-                  42.5,
-                  42.5,
-                  42.5,
-                  55
-                ],
-                "points": 182.5,
-                "worst": 0
-              },
-              {
-                "rank": 2,
-                "number": "117",
-                "driver": "Sofia Calderon",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  33,
-                  27,
-                  34,
-                  44
-                ],
-                "points": 138,
-                "worst": 0
-              },
-              {
-                "rank": 3,
-                "number": "107",
-                "driver": "Isaac Alvarado",
-                "team": "",
-                "country": "",
-                "scores": [
-                  20,
-                  19.5,
-                  21.5,
-                  0
-                ],
-                "points": 61,
-                "worst": 0
-              },
-              {
-                "rank": 4,
-                "number": "184",
-                "driver": "Luciano Dajles",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  0,
-                  34,
-                  27,
-                  0
-                ],
-                "points": 61,
-                "worst": 0
-              },
-              {
-                "rank": 5,
-                "number": "121",
-                "driver": "Andres Dumith",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  35
-                ],
-                "points": 35,
                 "worst": 0
               }
             ]

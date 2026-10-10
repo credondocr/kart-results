@@ -9,190 +9,6 @@ export const championship2019: Championship = {
     "season": "invierno",
     "classes": [
       {
-        "title": "206",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
-          {
-            "name": "",
-            "results": [
-              {
-                "rank": 1,
-                "number": "415",
-                "driver": "Luis Felipe Aguilar",
-                "team": "formula",
-                "country": "CR",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  29,
-                  0,
-                  0,
-                  0,
-                  0
-                ],
-                "points": 29,
-                "worst": 0
-              },
-              {
-                "rank": 2,
-                "number": "407",
-                "driver": "Frederick Lund",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  23,
-                  0,
-                  0,
-                  0,
-                  0
-                ],
-                "points": 23,
-                "worst": 0
-              },
-              {
-                "rank": 3,
-                "number": "489",
-                "driver": "Daniel Mendez",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  18,
-                  0,
-                  0,
-                  0,
-                  0
-                ],
-                "points": 18,
-                "worst": 0
-              },
-              {
-                "rank": 4,
-                "number": "499",
-                "driver": "Isabella Valldeperas",
-                "team": "advanced",
-                "country": "CR",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  14,
-                  0,
-                  0,
-                  0,
-                  0
-                ],
-                "points": 14,
-                "worst": 0
-              },
-              {
-                "rank": 5,
-                "number": "425",
-                "driver": "Paulo Sequeira",
-                "team": "losprimos",
-                "country": "CR",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  13,
-                  0,
-                  0,
-                  0,
-                  0
-                ],
-                "points": 13,
-                "worst": 0
-              },
-              {
-                "rank": 6,
-                "number": "477",
-                "driver": "Jocsan Castro",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  11,
-                  0,
-                  0,
-                  0,
-                  0
-                ],
-                "points": 11,
-                "worst": 0
-              },
-              {
-                "rank": 7,
-                "number": "470",
-                "driver": "Paulina Valenciano",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  10,
-                  0,
-                  0,
-                  0,
-                  0
-                ],
-                "points": 10,
-                "worst": 0
-              },
-              {
-                "rank": 8,
-                "number": "406",
-                "driver": "Natalia Brautingam",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  9,
-                  0,
-                  0,
-                  0,
-                  0
-                ],
-                "points": 9,
-                "worst": 0
-              },
-              {
-                "rank": 9,
-                "number": "475",
-                "driver": "Agustin Buck",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  7,
-                  0,
-                  0,
-                  0,
-                  0
-                ],
-                "points": 7,
-                "worst": 0
-              }
-            ]
-          }
-        ]
-      },
-      {
         "title": "DD2",
         "ageGroup": "",
         "details": [],
@@ -560,13 +376,13 @@ export const championship2019: Championship = {
                   0,
                   0,
                   0,
-                  0,
+                  29,
                   29,
                   53.5,
                   0,
                   37.5
                 ],
-                "points": 120,
+                "points": 149,
                 "worst": 0
               },
               {
@@ -579,13 +395,13 @@ export const championship2019: Championship = {
                   0,
                   0,
                   0,
-                  0,
+                  14,
                   21,
                   46,
                   0,
                   35
                 ],
-                "points": 102,
+                "points": 116,
                 "worst": 0
               },
               {
@@ -617,17 +433,36 @@ export const championship2019: Championship = {
                   0,
                   0,
                   0,
-                  0,
+                  18,
                   14,
                   33.5,
                   0,
                   10.5
                 ],
-                "points": 58,
+                "points": 76,
                 "worst": 0
               },
               {
                 "rank": 5,
+                "number": "425",
+                "driver": "Paulo Sequeira",
+                "team": "losprimos",
+                "country": "CR",
+                "scores": [
+                  0,
+                  0,
+                  0,
+                  13,
+                  9,
+                  24,
+                  0,
+                  8
+                ],
+                "points": 54,
+                "worst": 0
+              },
+              {
+                "rank": 6,
                 "number": "430",
                 "driver": "Mariela Carvajal",
                 "team": "",
@@ -646,7 +481,7 @@ export const championship2019: Championship = {
                 "worst": 0
               },
               {
-                "rank": 6,
+                "rank": 7,
                 "number": "406",
                 "driver": "Natalia Brautigam",
                 "team": "fmv",
@@ -665,7 +500,26 @@ export const championship2019: Championship = {
                 "worst": 0
               },
               {
-                "rank": 7,
+                "rank": 8,
+                "number": "475",
+                "driver": "Agustin Buck",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  0,
+                  0,
+                  7,
+                  22,
+                  0,
+                  0,
+                  14.5
+                ],
+                "points": 43.5,
+                "worst": 0
+              },
+              {
+                "rank": 9,
                 "number": "414",
                 "driver": "Konrad Fischel",
                 "team": "",
@@ -681,44 +535,6 @@ export const championship2019: Championship = {
                   11
                 ],
                 "points": 42.5,
-                "worst": 0
-              },
-              {
-                "rank": 8,
-                "number": "425",
-                "driver": "Paulo Sequeira",
-                "team": "losprimos",
-                "country": "CR",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  0,
-                  9,
-                  24,
-                  0,
-                  8
-                ],
-                "points": 41,
-                "worst": 0
-              },
-              {
-                "rank": 9,
-                "number": "475",
-                "driver": "Agustin Buck",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  0,
-                  22,
-                  0,
-                  0,
-                  14.5
-                ],
-                "points": 36.5,
                 "worst": 0
               },
               {
@@ -742,6 +558,25 @@ export const championship2019: Championship = {
               },
               {
                 "rank": 11,
+                "number": "407",
+                "driver": "Frederick Lund",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  0,
+                  0,
+                  23,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "points": 23,
+                "worst": 0
+              },
+              {
+                "rank": 12,
                 "number": "477",
                 "driver": "Arturo Navarro",
                 "team": "",
@@ -760,7 +595,26 @@ export const championship2019: Championship = {
                 "worst": 0
               },
               {
-                "rank": 12,
+                "rank": 13,
+                "number": "470",
+                "driver": "Paulina Valenciano",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  0,
+                  0,
+                  10,
+                  11,
+                  0,
+                  0,
+                  0
+                ],
+                "points": 21,
+                "worst": 0
+              },
+              {
+                "rank": 14,
                 "number": "400",
                 "driver": "Mikyle Pike",
                 "team": "",
@@ -779,7 +633,7 @@ export const championship2019: Championship = {
                 "worst": 0
               },
               {
-                "rank": 13,
+                "rank": 15,
                 "number": "477",
                 "driver": "Sebastian Arce",
                 "team": "advanced",
@@ -798,17 +652,17 @@ export const championship2019: Championship = {
                 "worst": 0
               },
               {
-                "rank": 14,
-                "number": "470",
-                "driver": "Paulina Valenciano",
+                "rank": 16,
+                "number": "477",
+                "driver": "Jocsan Castro",
                 "team": "",
                 "country": "",
                 "scores": [
                   0,
                   0,
                   0,
-                  0,
                   11,
+                  0,
                   0,
                   0,
                   0
@@ -817,7 +671,7 @@ export const championship2019: Championship = {
                 "worst": 0
               },
               {
-                "rank": 15,
+                "rank": 17,
                 "number": "470",
                 "driver": "Christian Vogel",
                 "team": "",
@@ -836,7 +690,26 @@ export const championship2019: Championship = {
                 "worst": 0
               },
               {
-                "rank": 16,
+                "rank": 18,
+                "number": "406",
+                "driver": "Natalia Brautingam",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  0,
+                  0,
+                  9,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "points": 9,
+                "worst": 0
+              },
+              {
+                "rank": 19,
                 "number": "450",
                 "driver": "Marco Lemus",
                 "team": "",
@@ -1246,13 +1119,13 @@ export const championship2019: Championship = {
         ]
       },
       {
-        "title": "STARS OF TOMORROW A",
+        "title": "STARS OF TOMORROW",
         "ageGroup": "",
         "details": [],
         "img": "",
         "categories": [
           {
-            "name": "",
+            "name": "STARS OF TOMORROW A",
             "results": [
               {
                 "rank": 1,
@@ -1521,17 +1394,9 @@ export const championship2019: Championship = {
                 "worst": 0
               }
             ]
-          }
-        ]
-      },
-      {
-        "title": "STARS OF TOMORROW B",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
+          },
           {
-            "name": "",
+            "name": "STARS OF TOMORROW B",
             "results": [
               {
                 "rank": 1,
@@ -1823,13 +1688,132 @@ export const championship2019: Championship = {
         ]
       },
       {
-        "title": "SUPER SPORT JUNIOR",
+        "title": "SUPER SPORT",
         "ageGroup": "",
         "details": [],
         "img": "",
         "categories": [
           {
-            "name": "",
+            "name": "SSK SENIOR",
+            "results": [
+              {
+                "rank": 1,
+                "number": "212",
+                "driver": "Ricardo Vargas",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  0,
+                  0,
+                  0,
+                  24,
+                  29,
+                  55,
+                  0,
+                  42.5
+                ],
+                "points": 150.5,
+                "worst": 0
+              },
+              {
+                "rank": 2,
+                "number": "217",
+                "driver": "Mauricio Hernandez",
+                "team": "mhkarting",
+                "country": "CR",
+                "scores": [
+                  0,
+                  0,
+                  0,
+                  30,
+                  25,
+                  62.5,
+                  0,
+                  0
+                ],
+                "points": 117.5,
+                "worst": 0
+              },
+              {
+                "rank": 3,
+                "number": "294",
+                "driver": "Jose Priano",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  0,
+                  0,
+                  16,
+                  19,
+                  34.5,
+                  0,
+                  34
+                ],
+                "points": 103.5,
+                "worst": 0
+              },
+              {
+                "rank": 4,
+                "number": "218",
+                "driver": "Jose Hernandez",
+                "team": "mhkarting",
+                "country": "CR",
+                "scores": [
+                  0,
+                  0,
+                  0,
+                  18,
+                  0,
+                  47,
+                  0,
+                  0
+                ],
+                "points": 65,
+                "worst": 0
+              },
+              {
+                "rank": 5,
+                "number": "257",
+                "driver": "Aldo Vincenti",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  15,
+                  0,
+                  0,
+                  0
+                ],
+                "points": 15,
+                "worst": 0
+              },
+              {
+                "rank": 6,
+                "number": "248",
+                "driver": "Luis Alvarado",
+                "team": "valerio",
+                "country": "CR",
+                "scores": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  12,
+                  0,
+                  0,
+                  0
+                ],
+                "points": 12,
+                "worst": 0
+              }
+            ]
+          },
+          {
+            "name": "SSK JUNIOR",
             "results": [
               {
                 "rank": 1,
@@ -2003,17 +1987,9 @@ export const championship2019: Championship = {
                 "worst": 0
               }
             ]
-          }
-        ]
-      },
-      {
-        "title": "SUPER SPORT MASTER",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
+          },
           {
-            "name": "",
+            "name": "SSK MASTER",
             "results": [
               {
                 "rank": 1,
@@ -2360,133 +2336,6 @@ export const championship2019: Championship = {
             ]
           }
         ]
-      },
-      {
-        "title": "SUPER SPORT SENIOR",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
-          {
-            "name": "",
-            "results": [
-              {
-                "rank": 1,
-                "number": "212",
-                "driver": "Ricardo Vargas",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  24,
-                  29,
-                  55,
-                  0,
-                  42.5
-                ],
-                "points": 150.5,
-                "worst": 0
-              },
-              {
-                "rank": 2,
-                "number": "217",
-                "driver": "Mauricio Hernandez",
-                "team": "mhkarting",
-                "country": "CR",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  30,
-                  25,
-                  62.5,
-                  0,
-                  0
-                ],
-                "points": 117.5,
-                "worst": 0
-              },
-              {
-                "rank": 3,
-                "number": "294",
-                "driver": "Jose Priano",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  16,
-                  19,
-                  34.5,
-                  0,
-                  34
-                ],
-                "points": 103.5,
-                "worst": 0
-              },
-              {
-                "rank": 4,
-                "number": "218",
-                "driver": "Jose Hernandez",
-                "team": "mhkarting",
-                "country": "CR",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  18,
-                  0,
-                  47,
-                  0,
-                  0
-                ],
-                "points": 65,
-                "worst": 0
-              },
-              {
-                "rank": 5,
-                "number": "257",
-                "driver": "Aldo Vincenti",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  0,
-                  15,
-                  0,
-                  0,
-                  0
-                ],
-                "points": 15,
-                "worst": 0
-              },
-              {
-                "rank": 6,
-                "number": "248",
-                "driver": "Luis Alvarado",
-                "team": "valerio",
-                "country": "CR",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  0,
-                  12,
-                  0,
-                  0,
-                  0
-                ],
-                "points": 12,
-                "worst": 0
-              }
-            ]
-          }
-        ]
       }
     ]
   },
@@ -2494,173 +2343,6 @@ export const championship2019: Championship = {
     "year": 2019,
     "season": "verano",
     "classes": [
-      {
-        "title": "206",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
-          {
-            "name": "",
-            "results": [
-              {
-                "rank": 1,
-                "number": "415",
-                "driver": "Luis Felipe Aguilar",
-                "team": "formula",
-                "country": "CR",
-                "scores": [
-                  0,
-                  0,
-                  41.5
-                ],
-                "points": 41.5,
-                "worst": 0
-              },
-              {
-                "rank": 2,
-                "number": "406",
-                "driver": "Natalia Brautigam",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  0,
-                  0,
-                  27
-                ],
-                "points": 27,
-                "worst": 0
-              },
-              {
-                "rank": 3,
-                "number": "499",
-                "driver": "Isabella Valdeperas",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  0,
-                  25
-                ],
-                "points": 25,
-                "worst": 0
-              },
-              {
-                "rank": 4,
-                "number": "489",
-                "driver": "Daniel Mendez",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  0,
-                  0,
-                  24
-                ],
-                "points": 24,
-                "worst": 0
-              },
-              {
-                "rank": 5,
-                "number": "475",
-                "driver": "Agustin Buck",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  0,
-                  16.5
-                ],
-                "points": 16.5,
-                "worst": 0
-              },
-              {
-                "rank": 6,
-                "number": "404",
-                "driver": "Fabricio Ramirez",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  0,
-                  16.5
-                ],
-                "points": 16.5,
-                "worst": 0
-              },
-              {
-                "rank": 7,
-                "number": "477",
-                "driver": "Jocsan Castro",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  0,
-                  13
-                ],
-                "points": 13,
-                "worst": 0
-              },
-              {
-                "rank": 8,
-                "number": "414",
-                "driver": "Oscar Camacho",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  0,
-                  12.5
-                ],
-                "points": 12.5,
-                "worst": 0
-              },
-              {
-                "rank": 9,
-                "number": "450",
-                "driver": "Daniela Salas",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  0,
-                  12
-                ],
-                "points": 12,
-                "worst": 0
-              },
-              {
-                "rank": 10,
-                "number": "430",
-                "driver": "Mariela Carvajal",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  0,
-                  11.5
-                ],
-                "points": 11.5,
-                "worst": 0
-              },
-              {
-                "rank": 11,
-                "number": "470",
-                "driver": "Paulina Valenciano",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  0,
-                  8.5
-                ],
-                "points": 8.5,
-                "worst": 0
-              }
-            ]
-          }
-        ]
-      },
       {
         "title": "DD2",
         "ageGroup": "",
@@ -2842,6 +2524,173 @@ export const championship2019: Championship = {
         ]
       },
       {
+        "title": "LO 206",
+        "ageGroup": "",
+        "details": [],
+        "img": "",
+        "categories": [
+          {
+            "name": "",
+            "results": [
+              {
+                "rank": 1,
+                "number": "415",
+                "driver": "Luis Felipe Aguilar",
+                "team": "formula",
+                "country": "CR",
+                "scores": [
+                  0,
+                  0,
+                  41.5
+                ],
+                "points": 41.5,
+                "worst": 0
+              },
+              {
+                "rank": 2,
+                "number": "406",
+                "driver": "Natalia Brautigam",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  0,
+                  0,
+                  27
+                ],
+                "points": 27,
+                "worst": 0
+              },
+              {
+                "rank": 3,
+                "number": "499",
+                "driver": "Isabella Valdeperas",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  0,
+                  25
+                ],
+                "points": 25,
+                "worst": 0
+              },
+              {
+                "rank": 4,
+                "number": "489",
+                "driver": "Daniel Mendez",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  0,
+                  0,
+                  24
+                ],
+                "points": 24,
+                "worst": 0
+              },
+              {
+                "rank": 5,
+                "number": "475",
+                "driver": "Agustin Buck",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  0,
+                  16.5
+                ],
+                "points": 16.5,
+                "worst": 0
+              },
+              {
+                "rank": 6,
+                "number": "404",
+                "driver": "Fabricio Ramirez",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  0,
+                  16.5
+                ],
+                "points": 16.5,
+                "worst": 0
+              },
+              {
+                "rank": 7,
+                "number": "477",
+                "driver": "Jocsan Castro",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  0,
+                  13
+                ],
+                "points": 13,
+                "worst": 0
+              },
+              {
+                "rank": 8,
+                "number": "414",
+                "driver": "Oscar Camacho",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  0,
+                  12.5
+                ],
+                "points": 12.5,
+                "worst": 0
+              },
+              {
+                "rank": 9,
+                "number": "450",
+                "driver": "Daniela Salas",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  0,
+                  12
+                ],
+                "points": 12,
+                "worst": 0
+              },
+              {
+                "rank": 10,
+                "number": "430",
+                "driver": "Mariela Carvajal",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  0,
+                  11.5
+                ],
+                "points": 11.5,
+                "worst": 0
+              },
+              {
+                "rank": 11,
+                "number": "470",
+                "driver": "Paulina Valenciano",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  0,
+                  8.5
+                ],
+                "points": 8.5,
+                "worst": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
         "title": "ROK SENIOR",
         "ageGroup": "",
         "details": [],
@@ -2994,13 +2843,13 @@ export const championship2019: Championship = {
         ]
       },
       {
-        "title": "STARS OF TOMORROW A",
+        "title": "STARS OF TOMORROW",
         "ageGroup": "",
         "details": [],
         "img": "",
         "categories": [
           {
-            "name": "",
+            "name": "STARS OF TOMORROW A",
             "results": [
               {
                 "rank": 1,
@@ -3143,17 +2992,9 @@ export const championship2019: Championship = {
                 "worst": 0
               }
             ]
-          }
-        ]
-      },
-      {
-        "title": "STARS OF TOMORROW B",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
+          },
           {
-            "name": "",
+            "name": "STARS OF TOMORROW B",
             "results": [
               {
                 "rank": 1,
@@ -3272,13 +3113,88 @@ export const championship2019: Championship = {
         ]
       },
       {
-        "title": "SUPER SPORT JUNIOR",
+        "title": "SUPER SPORT",
         "ageGroup": "",
         "details": [],
         "img": "",
         "categories": [
           {
-            "name": "",
+            "name": "SSK SENIOR",
+            "results": [
+              {
+                "rank": 1,
+                "number": "217",
+                "driver": "Mauricio Hernandez",
+                "team": "mhkarting",
+                "country": "CR",
+                "scores": [
+                  0,
+                  0,
+                  47.5
+                ],
+                "points": 47.5,
+                "worst": 0
+              },
+              {
+                "rank": 2,
+                "number": "212",
+                "driver": "Ricardo Vargas",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  0,
+                  0,
+                  38
+                ],
+                "points": 38,
+                "worst": 0
+              },
+              {
+                "rank": 3,
+                "number": "294",
+                "driver": "Jose Priano",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  0,
+                  28
+                ],
+                "points": 28,
+                "worst": 0
+              },
+              {
+                "rank": 4,
+                "number": "257",
+                "driver": "Aldo Vincenti",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  0,
+                  0,
+                  25.5
+                ],
+                "points": 25.5,
+                "worst": 0
+              },
+              {
+                "rank": 5,
+                "number": "228",
+                "driver": "Felipe Pazos",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  0,
+                  18.5
+                ],
+                "points": 18.5,
+                "worst": 0
+              }
+            ]
+          },
+          {
+            "name": "SSK JUNIOR",
             "results": [
               {
                 "rank": 1,
@@ -3365,17 +3281,9 @@ export const championship2019: Championship = {
                 "worst": 0
               }
             ]
-          }
-        ]
-      },
-      {
-        "title": "SUPER SPORT MASTER",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
+          },
           {
-            "name": "",
+            "name": "SSK MASTER",
             "results": [
               {
                 "rank": 1,
@@ -3473,89 +3381,6 @@ export const championship2019: Championship = {
                   15
                 ],
                 "points": 15,
-                "worst": 0
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "title": "SUPER SPORT SENIOR",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
-          {
-            "name": "",
-            "results": [
-              {
-                "rank": 1,
-                "number": "217",
-                "driver": "Mauricio Hernandez",
-                "team": "mhkarting",
-                "country": "CR",
-                "scores": [
-                  0,
-                  0,
-                  47.5
-                ],
-                "points": 47.5,
-                "worst": 0
-              },
-              {
-                "rank": 2,
-                "number": "212",
-                "driver": "Ricardo Vargas",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  0,
-                  0,
-                  38
-                ],
-                "points": 38,
-                "worst": 0
-              },
-              {
-                "rank": 3,
-                "number": "294",
-                "driver": "Jose Priano",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  0,
-                  28
-                ],
-                "points": 28,
-                "worst": 0
-              },
-              {
-                "rank": 4,
-                "number": "257",
-                "driver": "Aldo Vincenti",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  0,
-                  0,
-                  25.5
-                ],
-                "points": 25.5,
-                "worst": 0
-              },
-              {
-                "rank": 5,
-                "number": "228",
-                "driver": "Felipe Pazos",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  0,
-                  18.5
-                ],
-                "points": 18.5,
                 "worst": 0
               }
             ]

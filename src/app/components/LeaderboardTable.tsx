@@ -147,7 +147,7 @@ const LeaderboardTable: React.FC<{
                           ].filter(Boolean).join(" ")}
                         >
                           {score}
-                          {isFastest && (
+                          {isFastest && score > 0 && (
                             <span
                               className="fastest-star"
                               title="Vuelta rápida: mejor tiempo de la fecha en esta categoría"

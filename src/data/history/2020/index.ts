@@ -446,80 +446,19 @@ export const championship2020: Championship = {
         ]
       },
       {
-        "title": "SSK HEAVY",
+        "title": "STARS OF TOMORROW",
         "ageGroup": "",
         "details": [],
         "img": "",
         "categories": [
           {
-            "name": "",
+            "name": "STARS OF TOMORROW B",
             "results": [
               {
                 "rank": 1,
-                "number": "218",
-                "driver": "David Vallejo",
-                "team": "",
-                "country": "",
-                "scores": [
-                  42.5
-                ],
-                "points": 42.5,
-                "worst": 0
-              },
-              {
-                "rank": 2,
-                "number": "281",
-                "driver": "Daniel Bonilla",
-                "team": "",
-                "country": "",
-                "scores": [
-                  26
-                ],
-                "points": 26,
-                "worst": 0
-              },
-              {
-                "rank": 3,
-                "number": "289",
-                "driver": "Kenneth Aguero",
-                "team": "",
-                "country": "",
-                "scores": [
-                  26
-                ],
-                "points": 26,
-                "worst": 0
-              },
-              {
-                "rank": 4,
-                "number": "210",
-                "driver": "Esteban Sibaja",
-                "team": "",
-                "country": "",
-                "scores": [
-                  24
-                ],
-                "points": 24,
-                "worst": 0
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "title": "SSK LIGHT",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
-          {
-            "name": "",
-            "results": [
-              {
-                "rank": 1,
-                "number": "212",
-                "driver": "Ricardo Vargas",
-                "team": "fmv",
+                "number": "105",
+                "driver": "Anouk Valerio",
+                "team": "valerio",
                 "country": "CR",
                 "scores": [
                   42.5
@@ -529,22 +468,10 @@ export const championship2020: Championship = {
               },
               {
                 "rank": 2,
-                "number": "257",
-                "driver": "Aldo Vincenti",
-                "team": "fmv",
+                "number": "156",
+                "driver": "Jian Luca Pastore",
+                "team": "mhkarting",
                 "country": "CR",
-                "scores": [
-                  31
-                ],
-                "points": 31,
-                "worst": 0
-              },
-              {
-                "rank": 3,
-                "number": "230",
-                "driver": "Mariamalia Carvajal",
-                "team": "",
-                "country": "",
                 "scores": [
                   30
                 ],
@@ -552,114 +479,117 @@ export const championship2020: Championship = {
                 "worst": 0
               },
               {
-                "rank": 4,
-                "number": "228",
-                "driver": "Antonella Quesada",
-                "team": "",
-                "country": "",
-                "scores": [
-                  21.5
-                ],
-                "points": 21.5,
-                "worst": 0
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "title": "SSK MASTER",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
-          {
-            "name": "",
-            "results": [
-              {
-                "rank": 1,
-                "number": "276M",
-                "driver": "Peppe Sgarlata",
-                "team": "",
-                "country": "",
-                "scores": [
-                  39
-                ],
-                "points": 39,
-                "worst": 0
-              },
-              {
-                "rank": 2,
-                "number": "255M",
-                "driver": "Raul Leon",
-                "team": "",
-                "country": "",
-                "scores": [
-                  37.5
-                ],
-                "points": 37.5,
-                "worst": 0
-              },
-              {
                 "rank": 3,
-                "number": "229M",
-                "driver": "Pedro Huguet",
-                "team": "valerio",
+                "number": "126",
+                "driver": "Gerardo Moreno",
+                "team": "mhkarting",
                 "country": "CR",
                 "scores": [
-                  27
+                  29
                 ],
-                "points": 27,
+                "points": 29,
                 "worst": 0
               },
               {
                 "rank": 4,
-                "number": "279M",
-                "driver": "Pablo Perez",
+                "number": "111",
+                "driver": "Sebastian Lopez",
                 "team": "",
                 "country": "",
                 "scores": [
-                  19.5
+                  23.5
                 ],
-                "points": 19.5,
+                "points": 23.5,
                 "worst": 0
               },
               {
                 "rank": 5,
-                "number": "206M",
-                "driver": "Ronald Sandoval",
-                "team": "",
-                "country": "",
+                "number": "115",
+                "driver": "Julian Regueyra",
+                "team": "fmv",
+                "country": "CR",
                 "scores": [
-                  19.5
+                  17.5
                 ],
-                "points": 19.5,
+                "points": 17.5,
                 "worst": 0
               },
               {
                 "rank": 6,
-                "number": "226M",
-                "driver": "Gerardo Moreno",
-                "team": "mhkarting",
+                "number": "122",
+                "driver": "Tomas Arias",
+                "team": "valerio",
                 "country": "CR",
                 "scores": [
                   15
                 ],
                 "points": 15,
                 "worst": 0
+              },
+              {
+                "rank": 7,
+                "number": "117",
+                "driver": "Sofia Calderon",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  13
+                ],
+                "points": 13,
+                "worst": 0
+              },
+              {
+                "rank": 8,
+                "number": "184",
+                "driver": "Saul Cespedes",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  11
+                ],
+                "points": 11,
+                "worst": 0
+              },
+              {
+                "rank": 9,
+                "number": "106",
+                "driver": "Emil Brautigam",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  10.5
+                ],
+                "points": 10.5,
+                "worst": 0
+              },
+              {
+                "rank": 10,
+                "number": "199",
+                "driver": "Santiago Aguero",
+                "team": "",
+                "country": "",
+                "scores": [
+                  10.5
+                ],
+                "points": 10.5,
+                "worst": 0
+              },
+              {
+                "rank": 11,
+                "number": "120",
+                "driver": "Sarah Castañeda",
+                "team": "",
+                "country": "",
+                "scores": [
+                  8
+                ],
+                "points": 8,
+                "worst": 0
               }
             ]
-          }
-        ]
-      },
-      {
-        "title": "STARS OF TOMORROW A",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
+          },
           {
-            "name": "",
+            "name": "STARS OF TOMORROW A",
             "results": [
               {
                 "rank": 1,
@@ -822,20 +752,20 @@ export const championship2020: Championship = {
         ]
       },
       {
-        "title": "STARS OF TOMORROW B",
+        "title": "SUPER SPORT",
         "ageGroup": "",
         "details": [],
         "img": "",
         "categories": [
           {
-            "name": "",
+            "name": "SSK",
             "results": [
               {
                 "rank": 1,
-                "number": "105",
-                "driver": "Anouk Valerio",
-                "team": "valerio",
-                "country": "CR",
+                "number": "218",
+                "driver": "David Vallejo",
+                "team": "",
+                "country": "",
                 "scores": [
                   42.5
                 ],
@@ -844,10 +774,34 @@ export const championship2020: Championship = {
               },
               {
                 "rank": 2,
-                "number": "156",
-                "driver": "Jian Luca Pastore",
-                "team": "mhkarting",
+                "number": "212",
+                "driver": "Ricardo Vargas",
+                "team": "fmv",
                 "country": "CR",
+                "scores": [
+                  42.5
+                ],
+                "points": 42.5,
+                "worst": 0
+              },
+              {
+                "rank": 3,
+                "number": "257",
+                "driver": "Aldo Vincenti",
+                "team": "fmv",
+                "country": "CR",
+                "scores": [
+                  31
+                ],
+                "points": 31,
+                "worst": 0
+              },
+              {
+                "rank": 4,
+                "number": "230",
+                "driver": "Mariamalia Carvajal",
+                "team": "",
+                "country": "",
                 "scores": [
                   30
                 ],
@@ -855,111 +809,128 @@ export const championship2020: Championship = {
                 "worst": 0
               },
               {
-                "rank": 3,
-                "number": "126",
-                "driver": "Gerardo Moreno",
-                "team": "mhkarting",
-                "country": "CR",
-                "scores": [
-                  29
-                ],
-                "points": 29,
-                "worst": 0
-              },
-              {
-                "rank": 4,
-                "number": "111",
-                "driver": "Sebastian Lopez",
+                "rank": 5,
+                "number": "281",
+                "driver": "Daniel Bonilla",
                 "team": "",
                 "country": "",
                 "scores": [
-                  23.5
+                  26
                 ],
-                "points": 23.5,
-                "worst": 0
-              },
-              {
-                "rank": 5,
-                "number": "115",
-                "driver": "Julian Regueyra",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  17.5
-                ],
-                "points": 17.5,
+                "points": 26,
                 "worst": 0
               },
               {
                 "rank": 6,
-                "number": "122",
-                "driver": "Tomas Arias",
+                "number": "289",
+                "driver": "Kenneth Aguero",
+                "team": "",
+                "country": "",
+                "scores": [
+                  26
+                ],
+                "points": 26,
+                "worst": 0
+              },
+              {
+                "rank": 7,
+                "number": "210",
+                "driver": "Esteban Sibaja",
+                "team": "",
+                "country": "",
+                "scores": [
+                  24
+                ],
+                "points": 24,
+                "worst": 0
+              },
+              {
+                "rank": 8,
+                "number": "228",
+                "driver": "Antonella Quesada",
+                "team": "",
+                "country": "",
+                "scores": [
+                  21.5
+                ],
+                "points": 21.5,
+                "worst": 0
+              }
+            ]
+          },
+          {
+            "name": "SSK MASTER",
+            "results": [
+              {
+                "rank": 1,
+                "number": "276M",
+                "driver": "Peppe Sgarlata",
+                "team": "",
+                "country": "",
+                "scores": [
+                  39
+                ],
+                "points": 39,
+                "worst": 0
+              },
+              {
+                "rank": 2,
+                "number": "255M",
+                "driver": "Raul Leon",
+                "team": "",
+                "country": "",
+                "scores": [
+                  37.5
+                ],
+                "points": 37.5,
+                "worst": 0
+              },
+              {
+                "rank": 3,
+                "number": "229M",
+                "driver": "Pedro Huguet",
                 "team": "valerio",
+                "country": "CR",
+                "scores": [
+                  27
+                ],
+                "points": 27,
+                "worst": 0
+              },
+              {
+                "rank": 4,
+                "number": "279M",
+                "driver": "Pablo Perez",
+                "team": "",
+                "country": "",
+                "scores": [
+                  19.5
+                ],
+                "points": 19.5,
+                "worst": 0
+              },
+              {
+                "rank": 5,
+                "number": "206M",
+                "driver": "Ronald Sandoval",
+                "team": "",
+                "country": "",
+                "scores": [
+                  19.5
+                ],
+                "points": 19.5,
+                "worst": 0
+              },
+              {
+                "rank": 6,
+                "number": "226M",
+                "driver": "Gerardo Moreno",
+                "team": "mhkarting",
                 "country": "CR",
                 "scores": [
                   15
                 ],
                 "points": 15,
-                "worst": 0
-              },
-              {
-                "rank": 7,
-                "number": "117",
-                "driver": "Sofia Calderon",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  13
-                ],
-                "points": 13,
-                "worst": 0
-              },
-              {
-                "rank": 8,
-                "number": "184",
-                "driver": "Saul Cespedes",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  11
-                ],
-                "points": 11,
-                "worst": 0
-              },
-              {
-                "rank": 9,
-                "number": "106",
-                "driver": "Emil Brautigam",
-                "team": "fmv",
-                "country": "CR",
-                "scores": [
-                  10.5
-                ],
-                "points": 10.5,
-                "worst": 0
-              },
-              {
-                "rank": 10,
-                "number": "199",
-                "driver": "Santiago Aguero",
-                "team": "",
-                "country": "",
-                "scores": [
-                  10.5
-                ],
-                "points": 10.5,
-                "worst": 0
-              },
-              {
-                "rank": 11,
-                "number": "120",
-                "driver": "Sarah Castañeda",
-                "team": "",
-                "country": "",
-                "scores": [
-                  8
-                ],
-                "points": 8,
                 "worst": 0
               }
             ]

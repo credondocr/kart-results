@@ -2317,179 +2317,6 @@ export const championship2023: Championship = {
         ]
       },
       {
-        "title": "SSK",
-        "ageGroup": "",
-        "details": [],
-        "img": "",
-        "categories": [
-          {
-            "name": "",
-            "results": [
-              {
-                "rank": 1,
-                "number": "248",
-                "driver": "Luis Alvarado",
-                "team": "valerio",
-                "country": "CR",
-                "scores": [
-                  30.5,
-                  13.5,
-                  29.5,
-                  28,
-                  28
-                ],
-                "points": 129.5,
-                "worst": 13.5
-              },
-              {
-                "rank": 2,
-                "number": "210",
-                "driver": "Felipe Hernandez",
-                "team": "fsa",
-                "country": "CR",
-                "scores": [
-                  0,
-                  32.5,
-                  16,
-                  30.5,
-                  28.5
-                ],
-                "points": 107.5,
-                "worst": 0
-              },
-              {
-                "rank": 3,
-                "number": "229",
-                "driver": "Pedro Huguet",
-                "team": "valerio",
-                "country": "CR",
-                "scores": [
-                  38,
-                  21.5,
-                  35,
-                  0,
-                  0
-                ],
-                "points": 94.5,
-                "worst": 0
-              },
-              {
-                "rank": 4,
-                "number": "207",
-                "driver": "Rolando Carvajal Jr",
-                "team": "",
-                "country": "",
-                "scores": [
-                  33.5,
-                  31,
-                  27,
-                  0,
-                  0
-                ],
-                "points": 91.5,
-                "worst": 0
-              },
-              {
-                "rank": 5,
-                "number": "207",
-                "driver": "Rolando Carvajal Muñoz",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  35,
-                  35
-                ],
-                "points": 70,
-                "worst": 0
-              },
-              {
-                "rank": 6,
-                "number": "299",
-                "driver": "Andres Vallderperas",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  40,
-                  28.5,
-                  0,
-                  0
-                ],
-                "points": 68.5,
-                "worst": 0
-              },
-              {
-                "rank": 7,
-                "number": "210",
-                "driver": "Michael Calderon",
-                "team": "",
-                "country": "",
-                "scores": [
-                  23,
-                  17.5,
-                  0,
-                  0,
-                  0
-                ],
-                "points": 40.5,
-                "worst": 0
-              },
-              {
-                "rank": 8,
-                "number": "299",
-                "driver": "Felipe Pandolfi",
-                "team": "",
-                "country": "",
-                "scores": [
-                  0,
-                  0,
-                  0,
-                  20,
-                  19.5
-                ],
-                "points": 39.5,
-                "worst": 0
-              },
-              {
-                "rank": 9,
-                "number": "295",
-                "driver": "Tulio Monestel",
-                "team": "",
-                "country": "",
-                "scores": [
-                  1,
-                  12,
-                  16.5,
-                  0,
-                  0
-                ],
-                "points": 29.5,
-                "worst": 0
-              },
-              {
-                "rank": 10,
-                "number": "214",
-                "driver": "Lineth Valerio",
-                "team": "valerio",
-                "country": "CR",
-                "scores": [
-                  0,
-                  15,
-                  0,
-                  0,
-                  0
-                ],
-                "points": 15,
-                "worst": 0
-              }
-            ]
-          }
-        ]
-      },
-      {
         "title": "STARS OF TOMORROW",
         "ageGroup": "",
         "details": [],
@@ -2704,6 +2531,179 @@ export const championship2023: Championship = {
                   0
                 ],
                 "points": 13.5,
+                "worst": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "SUPER SPORT",
+        "ageGroup": "",
+        "details": [],
+        "img": "",
+        "categories": [
+          {
+            "name": "SSK",
+            "results": [
+              {
+                "rank": 1,
+                "number": "248",
+                "driver": "Luis Alvarado",
+                "team": "valerio",
+                "country": "CR",
+                "scores": [
+                  30.5,
+                  13.5,
+                  29.5,
+                  28,
+                  28
+                ],
+                "points": 129.5,
+                "worst": 13.5
+              },
+              {
+                "rank": 2,
+                "number": "210",
+                "driver": "Felipe Hernandez",
+                "team": "fsa",
+                "country": "CR",
+                "scores": [
+                  0,
+                  32.5,
+                  16,
+                  30.5,
+                  28.5
+                ],
+                "points": 107.5,
+                "worst": 0
+              },
+              {
+                "rank": 3,
+                "number": "229",
+                "driver": "Pedro Huguet",
+                "team": "valerio",
+                "country": "CR",
+                "scores": [
+                  38,
+                  21.5,
+                  35,
+                  0,
+                  0
+                ],
+                "points": 94.5,
+                "worst": 0
+              },
+              {
+                "rank": 4,
+                "number": "207",
+                "driver": "Rolando Carvajal Jr",
+                "team": "",
+                "country": "",
+                "scores": [
+                  33.5,
+                  31,
+                  27,
+                  0,
+                  0
+                ],
+                "points": 91.5,
+                "worst": 0
+              },
+              {
+                "rank": 5,
+                "number": "207",
+                "driver": "Rolando Carvajal Muñoz",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  0,
+                  0,
+                  35,
+                  35
+                ],
+                "points": 70,
+                "worst": 0
+              },
+              {
+                "rank": 6,
+                "number": "299",
+                "driver": "Andres Vallderperas",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  40,
+                  28.5,
+                  0,
+                  0
+                ],
+                "points": 68.5,
+                "worst": 0
+              },
+              {
+                "rank": 7,
+                "number": "210",
+                "driver": "Michael Calderon",
+                "team": "",
+                "country": "",
+                "scores": [
+                  23,
+                  17.5,
+                  0,
+                  0,
+                  0
+                ],
+                "points": 40.5,
+                "worst": 0
+              },
+              {
+                "rank": 8,
+                "number": "299",
+                "driver": "Felipe Pandolfi",
+                "team": "",
+                "country": "",
+                "scores": [
+                  0,
+                  0,
+                  0,
+                  20,
+                  19.5
+                ],
+                "points": 39.5,
+                "worst": 0
+              },
+              {
+                "rank": 9,
+                "number": "295",
+                "driver": "Tulio Monestel",
+                "team": "",
+                "country": "",
+                "scores": [
+                  1,
+                  12,
+                  16.5,
+                  0,
+                  0
+                ],
+                "points": 29.5,
+                "worst": 0
+              },
+              {
+                "rank": 10,
+                "number": "214",
+                "driver": "Lineth Valerio",
+                "team": "valerio",
+                "country": "CR",
+                "scores": [
+                  0,
+                  15,
+                  0,
+                  0,
+                  0
+                ],
+                "points": 15,
                 "worst": 0
               }
             ]
