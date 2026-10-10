@@ -105,8 +105,9 @@ export interface ManifestEventEntry {
   fechas: number[];
   /** Pole (posInClass 1 de la quali) por categoría. */
   poles: Array<{ cls: string; driver: string }>;
-  /** Mejor vuelta de la final por categoría (★ en las posiciones). */
-  fastestLaps: Array<{ cls: string; driver: string }>;
+  /** Mejor vuelta de la final por categoría (★ en las posiciones).
+   *  `fecha` distingue eventos dobles (F4 y F5 en el mismo fin de semana). */
+  fastestLaps: Array<{ cls: string; driver: string; fecha?: number }>;
 }
 
 async function getJson<T>(url: string, allow404 = false): Promise<T | null> {
@@ -387,11 +388,12 @@ function rebuildManifest(): void {
     const mapping = parseEventMapping(data);
 
     // Poles: posInClass 1 de cada quali (dedupe por categoría).
-    // Mejor vuelta: menor bestTime de cada final, por categoría.
+    // Mejor vuelta: menor bestTime de cada final, por categoría (y fecha).
     const poles: ManifestEventEntry["poles"] = [];
     const fastestLaps: ManifestEventEntry["fastestLaps"] = [];
     const poleClasses = new Set<string>();
-    const bestByClass = new Map<string, { driver: string; time: number }>();
+    // key: cls|fecha → mejor vuelta
+    const bestByClassFecha = new Map<string, { cls: string; driver: string; fecha: number; time: number }>();
 
     const toSeconds = (time?: string): number => {
       if (!time) return Infinity;
@@ -399,6 +401,20 @@ function rebuildManifest(): void {
       return parts.length === 2
         ? Number(parts[0]) * 60 + Number(parts[1])
         : Number(parts[0]);
+    };
+
+    /** Fecha escrita en el nombre ("4ta", "3era"…) o null. */
+    const fechaInName = (name: string): number | null => {
+      const m = name.match(/(\d{1,2})\s*(?:era|ra|ta|to|a|er)?\s*fe/i);
+      if (!m) return null;
+      const n = Number(m[1]);
+      return Number.isFinite(n) && n >= 1 && n <= 20 ? n : null;
+    };
+
+    /** ¿Es final (no prefinal)? Acepta "Final", "Final 4ta fecha", typos. */
+    const isFinalSession = (name: string): boolean => {
+      const label = sessionLabelOf(name).trim().toLowerCase();
+      return /^final\b/.test(label) || label === "final";
     };
 
     for (const day of data.days) {
@@ -412,20 +428,30 @@ function rebuildManifest(): void {
             poles.push({ cls: row.cls, driver: row.name });
           }
         }
-        if (session.type === "race" && sessionLabelOf(session.name) === "Final") {
+        if (session.type === "race" && isFinalSession(session.name)) {
+          const namedFecha = fechaInName(session.name);
+          const fecha =
+            namedFecha ??
+            (mapping.fechas.length === 1
+              ? mapping.fechas[0]
+              : mapping.fechas.length > 1
+                ? Math.min(...mapping.fechas)
+                : undefined);
+          if (fecha === undefined) continue;
           for (const row of cls.rows) {
             const time = toSeconds(row.bestTime);
             if (time <= 0) continue; // '00.000' = sin tiempo real
-            const current = bestByClass.get(row.cls);
+            const key = `${row.cls}|${fecha}`;
+            const current = bestByClassFecha.get(key);
             if (!current || time < current.time) {
-              bestByClass.set(row.cls, { driver: row.name, time });
+              bestByClassFecha.set(key, { cls: row.cls, driver: row.name, fecha, time });
             }
           }
         }
       }
     }
-    for (const [cls, best] of bestByClass) {
-      fastestLaps.push({ cls, driver: best.driver });
+    for (const best of bestByClassFecha.values()) {
+      fastestLaps.push({ cls: best.cls, driver: best.driver, fecha: best.fecha });
     }
 
     entries.push({

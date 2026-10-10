@@ -104,12 +104,16 @@ const SeasonLeaderboard = () => {
     const activeFecha = fecha && fecha >= 1 && fecha <= fechas ? fecha : null;
 
     // Eventos de SpeedHive por número de fecha (para linkear R1..Rn y ★).
-    const eventsByFecha: Record<number, { id?: number; fastest: Array<{ cls: string; driver: string }> }> = {};
+    const eventsByFecha: Record<number, { id?: number; fastest: Array<{ cls: string; driver: string; fecha?: number }> }> = {};
     if (season !== "general") {
         for (const event of eventsManifest.events) {
             if (String(event.year) === String(year) && event.season === season) {
                 for (const n of event.fechas) {
-                    eventsByFecha[n] = { id: event.id, fastest: event.fastestLaps };
+                    // Eventos dobles: la ★ de cada fecha sale de su propia final.
+                    const fastest = (event.fastestLaps ?? []).filter(
+                        (fl) => fl.fecha == null || fl.fecha === n
+                    );
+                    eventsByFecha[n] = { id: event.id, fastest };
                 }
             }
         }
