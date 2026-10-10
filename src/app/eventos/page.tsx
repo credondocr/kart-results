@@ -3,6 +3,11 @@ import Link from "next/link";
 import { loadEvent, formatDate } from "@/app/utils/eventData";
 import eventsManifest from "@/data/events/manifest.json";
 import Breadcrumb from "@/app/components/Breadcrumb";
+import {
+  fetchLiveFeed,
+  isCrRelevant,
+  type LiveEventSummary,
+} from "@/app/utils/liveTiming";
 
 export const metadata: Metadata = {
   title: "Eventos | Costa Rica Kart Championship",
@@ -21,7 +26,16 @@ interface EventCard {
   raceSessions: number;
 }
 
-export default function EventosPage() {
+export const revalidate = 60;
+
+export default async function EventosPage() {
+  let liveCr: LiveEventSummary[] = [];
+  try {
+    const feed = await fetchLiveFeed();
+    liveCr = feed.filter(isCrRelevant);
+  } catch {
+    liveCr = [];
+  }
   const entries = [...eventsManifest.events].sort((a, b) =>
     b.startDate.localeCompare(a.startDate)
   );
@@ -65,6 +79,38 @@ export default function EventosPage() {
       <p className="season-eyebrow">
         Fines de semana de carrera · <strong>{cards.length} importados</strong>
       </p>
+
+      {liveCr.length > 0 && (
+        <section
+          className="mt-6 rounded-xl border border-red-500/40 bg-red-500/[0.06] p-4"
+          aria-label="Carreras en vivo"
+        >
+          <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-red-400">
+            <span className="relative inline-flex h-2 w-2" aria-hidden="true">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
+            </span>
+            En vivo ahora
+          </p>
+          <ul className="mt-2 space-y-1">
+            {liveCr.map((event) => (
+              <li key={event.id}>
+                <Link
+                  href={`/en-vivo/${event.id}`}
+                  className="font-semibold text-white underline-offset-2 hover:text-[#4C8DFF] hover:underline"
+                >
+                  {event.n?.trim() || "Ver tiempos en vivo"}
+                </Link>
+                {event.t?.n || event.l?.c ? (
+                  <span className="ml-2 text-sm text-[var(--text-dim)]">
+                    {[event.t?.n, event.l?.c].filter(Boolean).join(" · ")}
+                  </span>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <div className="events-index">
         {[...byYear.entries()].map(([year, seasons]) => {

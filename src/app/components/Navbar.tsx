@@ -117,6 +117,18 @@ const Navbar: React.FC = () => {
                 <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
               )}
             </Link>
+            <Link
+              href="/en-vivo"
+              className={`relative flex items-center gap-1.5 text-xs xl:text-sm font-semibold uppercase tracking-[0.1em] transition-colors ${
+                isActive("/en-vivo") ? "text-white" : "text-[#9BA3BD] hover:text-white"
+              }`}
+            >
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-red-500" aria-hidden="true" />
+              En Vivo
+              {isActive("/en-vivo") && (
+                <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
+              )}
+            </Link>
             <Link href="/equipos" className={linkClass("/equipos")}>
               Equipos
               {isActive("/equipos") && (
@@ -173,6 +185,15 @@ const Navbar: React.FC = () => {
             onClick={() => setIsMenuOpen(false)}
           >
             Eventos
+          </Link>
+          <Link
+            href="/en-vivo"
+            className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-colors text-white hover:bg-white/5 ${isActive('/en-vivo') ? 'bg-white/10' : ''
+              }`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-red-500" aria-hidden="true" />
+            En Vivo
           </Link>
           <Link
             href="/equipos"
