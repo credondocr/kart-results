@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import AdminNav from "../AdminNav";
+import CountryCombobox from "./CountryCombobox";
 
 interface PilotRow {
   key: string;
@@ -32,7 +33,7 @@ function toEditState(p: PilotRow): EditState {
   return {
     name: p.name,
     team: p.team ?? "",
-    country: p.country ?? "CR",
+    country: p.country ?? "",
     teams: Object.entries(p.teams ?? {}).map(([year, team]) => ({ year, team })),
     aliases: (p.aliases ?? []).join(", "),
   };
@@ -318,12 +319,13 @@ export default function PilotsAdmin() {
                     </select>
                   </div>
                   <div>
-                    <label className="admin-label">País</label>
-                    <input
+                    <label className="admin-label" htmlFor="pilot-country">
+                      País
+                    </label>
+                    <CountryCombobox
+                      id="pilot-country"
                       value={edit.country}
-                      onChange={(e) => setEdit({ ...edit, country: e.target.value })}
-                      placeholder="CR"
-                      className="admin-input"
+                      onChange={(code) => setEdit({ ...edit, country: code })}
                     />
                   </div>
                 </div>
