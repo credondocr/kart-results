@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getChampionshipStats, type PilotsStatsEntry } from "@/app/utils/pilotHistory";
+import { getChampionshipStats, samePerson, type PilotsStatsEntry } from "@/app/utils/pilotHistory";
+import eventsManifest from "@/data/events/manifest.json";
 import { findPilotProfile, pilotLinkHref } from "@/app/utils/pilotLinks";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import DriverAvatar from "@/app/components/DriverAvatar";
@@ -53,6 +54,17 @@ export default function EstadisticasPage() {
   const teamRows = stats.teams.filter((team) => team.titles > 0 || team.wins > 0);
   const maxTeamTitles = Math.max(1, ...teamRows.map((team) => team.titles));
   const record = stats.seasonRecord;
+
+  // Poles por piloto (events importados de SpeedHive), sin mutar el cache.
+  const poleCounts = new Map<string, number>();
+  for (const event of eventsManifest.events) {
+    for (const pole of event.poles) {
+      const person = stats.people.find((entry) => samePerson(entry.name, pole.driver));
+      if (!person) continue;
+      poleCounts.set(person.name, (poleCounts.get(person.name) ?? 0) + 1);
+    }
+  }
+  const showPoles = [...poleCounts.values()].some((count) => count > 0);
 
   return (
     <div className="max-w-6xl mx-auto px-4 pt-24 pb-16">
@@ -151,6 +163,7 @@ export default function EstadisticasPage() {
                   <th className="position">#</th>
                   <th className="player-cell">Piloto</th>
                   <th className="text-right">Victorias</th>
+                  {showPoles && <th>Poles</th>}
                   <th>Podios</th>
                   <th>Carreras</th>
                   <th>% Victoria</th>
@@ -172,6 +185,13 @@ export default function EstadisticasPage() {
                       <td className="text-right">
                         <span className="big-metric signal">{person.raceWins}</span>
                       </td>
+                      {showPoles && (
+                        <td className="race-points">
+                          <span className={poleCounts.get(person.name) ? "pole-count" : undefined}>
+                            {poleCounts.get(person.name) ?? 0}
+                          </span>
+                        </td>
+                      )}
                       <td className="race-points">{person.racePodiums}</td>
                       <td className="race-points">{person.races}</td>
                       <td className="pct-cell">

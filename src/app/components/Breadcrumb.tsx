@@ -33,9 +33,8 @@ function buildCrumbs(pathname: string, nameHint?: string): Crumb[] {
       continue;
     }
 
-    // Sin página índice de eventos: el primer segmento queda como ubicación.
     if (part === "eventos") {
-      crumbs.push({ label: "Eventos", href: null });
+      crumbs.push({ label: "Eventos", href: isLast ? null : "/eventos" });
       continue;
     }
 

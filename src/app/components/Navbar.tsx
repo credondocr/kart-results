@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
       : pathname.startsWith(path);
 
   const linkClass = (path: string) =>
-    `relative text-sm font-semibold uppercase tracking-[0.12em] transition-colors ${
+    `relative text-xs xl:text-sm font-semibold uppercase tracking-[0.1em] transition-colors ${
       isActive(path) ? "text-white" : "text-[#9BA3BD] hover:text-white"
     }`;
 
@@ -104,10 +104,16 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-7">
             <Link href="/" className={linkClass("/")}>
               Campeonato
               {isActive("/") && (
+                <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
+              )}
+            </Link>
+            <Link href="/eventos" className={linkClass("/eventos")}>
+              Eventos
+              {isActive("/eventos") && (
                 <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
               )}
             </Link>
@@ -159,6 +165,14 @@ const Navbar: React.FC = () => {
             onClick={() => setIsMenuOpen(false)}
           >
             Campeonato
+          </Link>
+          <Link
+            href="/eventos"
+            className={`block px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-colors text-white hover:bg-white/5 ${isActive('/eventos') ? 'bg-white/10' : ''
+              }`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Eventos
           </Link>
           <Link
             href="/equipos"

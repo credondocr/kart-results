@@ -9,7 +9,7 @@
  * Uso:  npm run import:event -- 3636519
  * Salida: src/data/events/<id>.json
  */
-import { mkdirSync, writeFileSync } from "fs";
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "fs";
 import { join } from "path";
 import { REPO_ROOT } from "./lib/paths";
 
@@ -152,6 +152,20 @@ function collectSessions(group: NonNullable<RawSessions["groups"]>[number], out:
   }
 }
 
+export interface ManifestEventEntry {
+  id: number;
+  name: string;
+  startDate: string;
+  year: string;
+  season: string | null;
+  /** Números de fecha que cubre el evento (un evento puede cubrir 2: "3-4"). */
+  fechas: number[];
+  /** Pole (mejor vuelta de la quali) por categoría. */
+  poles: Array<{ cls: string; driver: string }>;
+  /** Mejor vuelta de la final por categoría (badge en las posiciones). */
+  fastestLaps: Array<{ cls: string; driver: string }>;
+}
+
 interface RawEvent {
   id: number;
   name: string;
@@ -162,8 +176,102 @@ interface RawEvent {
   uploadSoftware?: { name?: string; version?: string };
 }
 
+function parseEventMapping(event: { name: string; startDate: string }): {
+  year: string;
+  season: string | null;
+  fechas: number[];
+} {
+  const year = event.startDate.slice(0, 4);
+  const season = event.name.match(/(invierno|verano)/i)?.[1].toLowerCase() ?? null;
+  const withoutYear = event.name.replace(year, " ");
+  const fechas = [...new Set(
+    [...withoutYear.matchAll(/\d+/g)]
+      .map((match) => parseInt(match[0], 10))
+      .filter((n) => n >= 1 && n <= 12)
+  )].sort((a, b) => a - b);
+  return { year, season, fechas };
+}
+
+/** Construye/actualiza src/data/events/manifest.json desde los JSON importados (sin red). */
+function rebuildManifest(): void {
+  const eventsDir = join(REPO_ROOT, "src", "data", "events");
+  const manifestPath = join(eventsDir, "manifest.json");
+  const entries: ManifestEventEntry[] = [];
+
+  for (const file of readdirSync(eventsDir)) {
+    if (!/^\d+\.json$/.test(file)) continue;
+    const data = JSON.parse(readFileSync(join(eventsDir, file), "utf8")) as EventData;
+    const mapping = parseEventMapping(data);
+
+    // Poles: posInClass 1 de cada quali (dedupe por categoría).
+    // Mejor vuelta: fila con menor bestTime de cada final, por categoría.
+    const poles: ManifestEventEntry["poles"] = [];
+    const fastestLaps: ManifestEventEntry["fastestLaps"] = [];
+    const poleClasses = new Set<string>();
+    const bestByClass = new Map<string, { driver: string; time: number }>();
+
+    const toSeconds = (time?: string): number => {
+      if (!time) return Infinity;
+      const parts = time.split(":");
+      return parts.length === 2
+        ? Number(parts[0]) * 60 + Number(parts[1])
+        : Number(parts[0]);
+    };
+
+    for (const day of data.days) {
+      for (const session of day.sessions) {
+        const cls = session.classification;
+        if (!cls) continue;
+        if (session.type === "qualify") {
+          for (const row of cls.rows) {
+            if (row.posInClass !== 1 || poleClasses.has(row.cls)) continue;
+            poleClasses.add(row.cls);
+            poles.push({ cls: row.cls, driver: row.name });
+          }
+        }
+        if (session.type === "race" && sessionLabelOf(session.name) === "Final") {
+          for (const row of cls.rows) {
+            const time = toSeconds(row.bestTime);
+            const current = bestByClass.get(row.cls);
+            if (!current || time < current.time) {
+              bestByClass.set(row.cls, { driver: row.name, time });
+            }
+          }
+        }
+      }
+    }
+    for (const [cls, best] of bestByClass) {
+      fastestLaps.push({ cls, driver: best.driver });
+    }
+
+    entries.push({
+      id: data.id,
+      name: data.name,
+      startDate: data.startDate,
+      ...mapping,
+      poles,
+      fastestLaps,
+    });
+  }
+
+  entries.sort((a, b) => a.startDate.localeCompare(b.startDate) || a.id - b.id);
+  mkdirSync(eventsDir, { recursive: true });
+  writeFileSync(manifestPath, JSON.stringify({ events: entries }) + "\n", "utf8");
+  console.log(`✓ manifest: ${entries.length} eventos → src/data/events/manifest.json`);
+}
+
+function sessionLabelOf(name: string): string {
+  const index = name.lastIndexOf(" - ");
+  return index >= 0 ? name.slice(index + 3) : name;
+}
+
 async function main(): Promise<void> {
-  const arg = process.argv.slice(2).find((a) => !a.startsWith("--"));
+  const args = process.argv.slice(2);
+  if (args.includes("--manifest")) {
+    rebuildManifest();
+    return;
+  }
+  const arg = args.find((a) => !a.startsWith("--"));
   if (!arg || !/^\d+$/.test(arg)) {
     console.error("Uso: npm run import:event -- <speedhive-event-id>");
     console.error("  (el id está en la URL: speedhive.mylaps.com/events/<id>)");
@@ -242,6 +350,7 @@ async function main(): Promise<void> {
 
   const kb = (Buffer.byteLength(JSON.stringify(data)) / 1024).toFixed(0);
   console.log(`✓ ${withResults}/${total} sesiones con resultados → src/data/events/${id}.json (${kb} KB)`);
+  rebuildManifest();
 }
 
 main().catch((error) => {
