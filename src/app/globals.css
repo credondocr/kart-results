@@ -1597,3 +1597,161 @@
     height: 24px !important;
   }
 }
+
+/* ============ Evento (SpeedHive) ============ */
+@layer components {
+  .event-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .event-schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .schedule-day-name {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-family: var(--font-archivo);
+    font-weight: 800;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+  }
+
+  .schedule-day-name span {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dim);
+    letter-spacing: 0.02em;
+  }
+
+  .schedule-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .schedule-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--line);
+    border-radius: 0.6rem;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+    max-width: 100%;
+  }
+
+  .schedule-chip:hover {
+    border-color: rgba(76, 141, 255, 0.45);
+    background: rgba(76, 141, 255, 0.06);
+  }
+
+  .schedule-chip.active {
+    border-color: var(--signal);
+    background: var(--signal-dim);
+  }
+
+  .chip-time {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .chip-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-dim);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 38vw;
+  }
+
+  .session-badge {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.18rem 0.45rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .session-badge.type-practice {
+    color: var(--text-dim);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--line);
+  }
+
+  .session-badge.type-qualify {
+    color: var(--signal);
+    background: rgba(76, 141, 255, 0.12);
+    border: 1px solid rgba(76, 141, 255, 0.4);
+  }
+
+  .session-badge.type-race {
+    color: var(--gold);
+    background: rgba(232, 184, 75, 0.1);
+    border: 1px solid rgba(232, 184, 75, 0.4);
+  }
+
+  .session-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.25rem 0 2rem;
+  }
+
+  .session-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.5rem 0.8rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .session-pill:hover {
+    border-color: rgba(76, 141, 255, 0.45);
+  }
+
+  .session-pill.active {
+    border-color: var(--signal);
+    background: var(--signal-dim);
+  }
+
+  .session-pill-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  .best-lap-star {
+    color: var(--gold);
+  }
+
+  .status-bad {
+    color: #f87171;
+    font-weight: 700;
+  }
+}
