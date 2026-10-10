@@ -62,7 +62,18 @@ export default async function EventPage({ params, searchParams }: PageProps) {
   const href = (cls: string, sessionId?: number) =>
     `?c=${encodeURIComponent(cls)}${sessionId ? `&s=${sessionId}` : ""}`;
 
-  const schedule = event.days
+  // Línea de tiempo de la categoría: sus sesiones en orden, con separador de día.
+  const timeline: Array<{ kind: "day"; label: string; key: string } | { kind: "session"; session: EventSession; key: string }> = [];
+  let lastDay = "";
+  for (const session of classSessions) {
+    if (session.groupName !== lastDay) {
+      timeline.push({ kind: "day", label: session.groupName, key: `day-${session.groupName}` });
+      lastDay = session.groupName;
+    }
+    timeline.push({ kind: "session", session, key: `s-${session.id}` });
+  }
+
+  const fullSchedule = event.days
     .map((day) => ({
       ...day,
       sessions: day.sessions.filter((session) => session.type !== "practice"),
@@ -105,36 +116,6 @@ export default async function EventPage({ params, searchParams }: PageProps) {
         </a>
       </div>
 
-      {/* Cronograma de carreras (prácticas excluidas) */}
-      <section className="event-schedule" aria-label="Cronograma">
-        {schedule.map((day) => (
-          <div key={`${day.name}-${day.date}`} className="schedule-day">
-            <div className="schedule-day-name">
-              {day.name} <span>{formatDate(day.date)}</span>
-            </div>
-            <div className="schedule-chips">
-              {day.sessions.map((session) => {
-                const sessionClass = session.classification?.classes[0] ?? activeClass;
-                const isActive = activeSession?.id === session.id;
-                return (
-                  <a
-                    key={session.id}
-                    className={isActive ? "schedule-chip active" : "schedule-chip"}
-                    href={href(sessionClass, session.id)}
-                  >
-                    <span className="chip-time">{sessionTime(session)}</span>
-                    <span className="chip-name">{session.name}</span>
-                    <span className={`session-badge type-${session.type}`}>
-                      {TYPE_LABELS[session.type] ?? session.type}
-                    </span>
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-        ))}
-      </section>
-
       {/* Selector de categoría */}
       <div className="tabs-container" role="group" aria-label="Categorías">
         {classes.map((cls) => (
@@ -149,26 +130,34 @@ export default async function EventPage({ params, searchParams }: PageProps) {
         ))}
       </div>
 
-      {/* Sesiones de la categoría */}
-      <div className="session-strip" role="group" aria-label="Sesiones">
-        {classSessions.map((session) => {
-          const isActive = activeSession?.id === session.id;
-          return (
+      {/* Línea de tiempo de la categoría (su fin de semana) */}
+      <div className="event-timeline" role="group" aria-label={`Sesiones de ${activeClass}`}>
+        {timeline.map((step) =>
+          step.kind === "day" ? (
+            <div key={step.key} className="timeline-day">
+              {step.label}
+            </div>
+          ) : (
             <a
-              key={session.id}
-              className={isActive ? "session-pill active" : "session-pill"}
-              href={href(activeClass, session.id)}
+              key={step.key}
+              href={href(activeClass, step.session.id)}
+              className={
+                activeSession?.id === step.session.id
+                  ? "timeline-step active"
+                  : "timeline-step"
+              }
+              aria-current={activeSession?.id === step.session.id ? "true" : undefined}
             >
-              <span className={`session-badge type-${session.type}`}>
-                {TYPE_LABELS[session.type] ?? session.type}
+              <span className="step-when">
+                {step.session.groupName.slice(0, 3)} {sessionTime(step.session)}
               </span>
-              <span className="session-pill-label">{sessionLabel(session)}</span>
-              <span className="chip-time">
-                {session.groupName.slice(0, 3)} {sessionTime(session)}
+              <span className={`session-badge type-${step.session.type}`}>
+                {TYPE_LABELS[step.session.type] ?? step.session.type}
               </span>
+              <span className="step-name">{sessionLabel(step.session)}</span>
             </a>
-          );
-        })}
+          )
+        )}
       </div>
 
       {/* Resultados */}
@@ -265,6 +254,42 @@ export default async function EventPage({ params, searchParams }: PageProps) {
         </>
       ) : (
         <p className="empty-state">Esta categoría no tiene sesiones en el evento.</p>
+      )}
+
+      {/* Cronograma completo (colapsado) */}
+      {fullSchedule.length > 0 && (
+        <details className="event-details">
+          <summary>Cronograma completo del fin de semana</summary>
+          <div className="event-schedule">
+            {fullSchedule.map((day) => (
+              <div key={`${day.name}-${day.date}`} className="schedule-day">
+                <div className="schedule-day-name">
+                  {day.name} <span>{formatDate(day.date)}</span>
+                </div>
+                <div className="schedule-chips">
+                  {day.sessions.map((session) => {
+                    const sessionClass = session.classification?.classes[0] ?? activeClass;
+                    return (
+                      <a
+                        key={session.id}
+                        className={
+                          activeSession?.id === session.id ? "schedule-chip active" : "schedule-chip"
+                        }
+                        href={href(sessionClass, session.id)}
+                      >
+                        <span className="chip-time">{sessionTime(session)}</span>
+                        <span className="chip-name">{session.name}</span>
+                        <span className={`session-badge type-${session.type}`}>
+                          {TYPE_LABELS[session.type] ?? session.type}
+                        </span>
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        </details>
       )}
     </div>
   );

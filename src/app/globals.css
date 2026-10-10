@@ -1746,6 +1746,123 @@
     white-space: nowrap;
   }
 
+  /* Índice de eventos: años → temporadas */
+  .events-index {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-top: 2rem;
+  }
+
+  .event-season {
+    margin-top: 1.25rem;
+  }
+
+  /* Línea de tiempo de la categoría */
+  .event-timeline {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.25rem 0 2rem;
+  }
+
+  .timeline-day {
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    font-family: var(--font-archivo);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--signal);
+    border-left: 2px solid rgba(76, 141, 255, 0.5);
+    margin-left: 0.35rem;
+  }
+
+  .timeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    padding: 0.6rem 0.85rem;
+    min-width: 132px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--line);
+    border-radius: 0.6rem;
+    transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .timeline-step:hover {
+    border-color: rgba(76, 141, 255, 0.45);
+    background: rgba(76, 141, 255, 0.06);
+    transform: translateY(-1px);
+  }
+
+  .timeline-step.active {
+    border-color: var(--signal);
+    background: var(--signal-dim);
+    box-shadow: inset 3px 0 0 var(--signal);
+  }
+
+  .step-when {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-dim);
+  }
+
+  .step-name {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+
+  /* Cronograma completo colapsado */
+  .event-details {
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--line);
+    padding-top: 1.25rem;
+  }
+
+  .event-details > summary {
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.15s ease;
+  }
+
+  .event-details > summary::before {
+    content: "+";
+    font-family: var(--font-mono);
+    color: var(--signal);
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .event-details[open] > summary::before {
+    content: "−";
+  }
+
+  .event-details > summary:hover {
+    color: var(--text);
+  }
+
+  .event-details .event-schedule {
+    margin-top: 1.25rem;
+  }
+
   .best-lap-star {
     color: var(--gold);
   }
