@@ -19,6 +19,7 @@ import {
   type EventSession,
 } from "@/app/utils/eventData";
 import { findPilotProfile, pilotLinkHref } from "@/app/utils/pilotLinks";
+import { findPilotPhoto } from "@/app/utils/pilotPhotos";
 import Breadcrumb from "@/app/components/Breadcrumb";
 
 interface PageProps {
@@ -215,17 +216,12 @@ export default async function EventPage({ params, searchParams }: PageProps) {
                         <>
                           <th className="text-right">Total</th>
                           <th className="text-right">Diferencia</th>
-                          <th className="text-right" title="Posiciones ganadas en la final vs la prefinal">Δ Pre→Fin</th>
+                          <th className="text-right" title="Posiciones ganadas en la final vs la prefinal">Δ</th>
                         </>
                       ) : (
-                        <>
-                          <th className="text-right">Gap</th>
-                        </>
+                        <th className="text-right">Gap</th>
                       )}
                       <th className="text-right">Mejor vuelta</th>
-                      <th>Vuelta</th>
-                      <th className="text-right">Vel (km/h)</th>
-                      <th>Vueltas</th>
                       {hasStatusColumn && <th>Estado</th>}
                     </tr>
                   </thead>
@@ -257,17 +253,36 @@ export default async function EventPage({ params, searchParams }: PageProps) {
                           </td>
                           <td className="race-number sticky-col sticky-num">{row.num}</td>
                           <td className="driver-info" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                            {profile ? (
-                              <Link href={pilotLinkHref(profile)} className="driver-link">
-                                {row.name}
-                              </Link>
-                            ) : (
-                              <span className="driver-name">{row.name}</span>
-                            )}
+                            {(() => {
+                              const photo = findPilotPhoto(row.name);
+                              const nameNode = profile ? (
+                                <Link href={pilotLinkHref(profile)} className="driver-link">
+                                  {row.name}
+                                </Link>
+                              ) : (
+                                <span className="driver-name">{row.name}</span>
+                              );
+                              return photo ? (
+                                <span
+                                  className="pilot-peek"
+                                  style={{ "--photo": `url(${photo})` } as React.CSSProperties}
+                                >
+                                  {nameNode}
+                                </span>
+                              ) : (
+                                nameNode
+                              );
+                            })()}
                           </td>
                           {isRace ? (
                             <>
-                              <td className="text-right points-cell">{row.total ?? "—"}</td>
+                              <td
+                                className="text-right points-cell cell-tooltip"
+                                data-tooltip={row.laps ? `${row.laps} vueltas` : undefined}
+                                aria-label={row.laps ? `${row.total ?? ""} — ${row.laps} vueltas` : undefined}
+                              >
+                                {row.total ?? "—"}
+                              </td>
                               <td className="text-right race-points">{row.diff ?? "—"}</td>
                               <td className="text-right race-points">
                                 {comeback ? (
@@ -291,14 +306,29 @@ export default async function EventPage({ params, searchParams }: PageProps) {
                           ) : (
                             <td className="text-right race-points">{row.gap ?? "—"}</td>
                           )}
-                          <td className={isSessionBest || isRecord ? "text-right points-cell" : "text-right race-points"}>
+                          <td
+                            className={
+                              (isSessionBest || isRecord
+                                ? "text-right points-cell"
+                                : "text-right race-points") + " cell-tooltip edge-right"
+                            }
+                            data-tooltip={[
+                              row.bestLap ? `Vuelta ${row.bestLap}` : null,
+                              row.bestSpeed ? `${row.bestSpeed} km/h` : null,
+                              row.laps ? `${row.laps} vueltas` : null,
+                            ]
+                              .filter(Boolean)
+                              .join(" · ") || undefined}
+                            aria-label={
+                              row.bestTime
+                                ? `${row.bestTime} — ${[row.bestLap ? `vuelta ${row.bestLap}` : null, row.bestSpeed ? `${row.bestSpeed} km/h` : null, row.laps ? `${row.laps} vueltas` : null].filter(Boolean).join(", ")}`
+                                : undefined
+                            }
+                          >
                             {row.bestTime ?? "—"}
                             {isRecord && <span className="record-badge" title="Récord histórico del circuito">Récord</span>}
                             {isSessionBest && <span className="best-lap-star"> ★</span>}
                           </td>
-                          <td className="race-points">{row.bestLap ?? "—"}</td>
-                          <td className="text-right race-points">{row.bestSpeed ?? "—"}</td>
-                          <td className="race-points">{row.laps ?? "—"}</td>
                           {hasStatusColumn && (
                             <td className={row.status === "Normal" ? "race-points" : "race-points status-bad"}>
                               {row.status === "Normal" ? "OK" : row.status}

@@ -2086,3 +2086,81 @@
     line-height: 1.5;
   }
 }
+
+/* ============ Eventos: tooltips de celda + foto al hover ============ */
+@layer components {
+  .cell-tooltip {
+    position: relative;
+    cursor: help;
+  }
+
+  .pilot-peek {
+    position: relative;
+  }
+}
+
+/* Solo donde hay hover real (la skill avisa: no depender de hover en touch) */
+@media (hover: hover) {
+  .cell-tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 6px);
+    transform: translateX(-50%) translateY(4px);
+    padding: 5px 9px;
+    background: rgba(22, 27, 51, 0.98);
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 11px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 40;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+
+  .cell-tooltip.edge-right::after {
+    left: auto;
+    right: 0;
+    transform: translateX(0) translateY(4px);
+  }
+
+  .cell-tooltip:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .cell-tooltip.edge-right:hover::after {
+    transform: translateX(0) translateY(0);
+  }
+
+  .pilot-peek::before {
+    content: "";
+    position: absolute;
+    left: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%) scale(0.96);
+    width: 120px;
+    height: 150px;
+    background-image: var(--photo);
+    background-size: cover;
+    background-position: top center;
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 35;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+
+  .pilot-peek:hover::before,
+  .pilot-peek:focus-within::before {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
