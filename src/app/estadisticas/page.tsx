@@ -9,7 +9,6 @@ import {
   computeTrackRecords,
   slugify,
 } from "@/app/utils/eventData";
-import type { ComebackRecord, TrackRecord } from "@/app/utils/eventData";
 import { findPilotProfile, pilotLinkHref } from "@/app/utils/pilotLinks";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import DriverAvatar from "@/app/components/DriverAvatar";
