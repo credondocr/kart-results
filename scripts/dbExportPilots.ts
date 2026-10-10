@@ -53,17 +53,23 @@ async function main() {
     }
   > = {};
   for (const r of rows) {
-    const entry: (typeof out)[string] = { name: r.name };
-    if (r.team) entry.team = r.team;
+    // Orden de claves igual al pilots.json original (name, team, teams,
+    // country, aliases) y team/country siempre presentes (string vacío si
+    // no hay dato): pilotRegistry hace `as Record<string, RegistryEntry>`
+    // con esos campos requeridos y el cast rompe si las claves faltan.
+    const entry: (typeof out)[string] = {
+      name: r.name,
+      team: r.team ?? "",
+    };
     if (r.teams && Object.keys(r.teams).length) entry.teams = r.teams;
-    if (r.country) entry.country = r.country;
+    entry.country = r.country ?? "";
     if (r.aliases?.length) entry.aliases = r.aliases;
     out[r.key] = entry;
   }
 
   const file = path.join(process.cwd(), "src/data/pilots.json");
   const prev = readFileSync(file, "utf-8");
-  const next = JSON.stringify(out, null, 1) + "\n";
+  const next = JSON.stringify(out, null, 2) + "\n";
   if (prev === next) {
     console.log(`Export OK: pilots.json sin cambios (${rows.length} pilotos).`);
     return;
