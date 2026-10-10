@@ -333,7 +333,7 @@ export default function PilotsAdmin() {
                 <div>
                   <label className="admin-label">Equipos por temporada</label>
                   {edit.teams.map((row, i) => (
-                    <div key={i} className="mt-2 flex gap-2">
+                    <div key={i} className="mt-2 flex items-stretch gap-2">
                       <input
                         value={row.year}
                         onChange={(e) => {
@@ -342,7 +342,8 @@ export default function PilotsAdmin() {
                           setEdit({ ...edit, teams });
                         }}
                         placeholder="2026"
-                        className="admin-input w-24"
+                        aria-label="Año"
+                        className="admin-input admin-input-year"
                       />
                       <select
                         value={row.team}
@@ -351,7 +352,8 @@ export default function PilotsAdmin() {
                           teams[i] = { ...row, team: e.target.value };
                           setEdit({ ...edit, teams });
                         }}
-                        className="admin-input flex-1"
+                        aria-label="Equipo de la temporada"
+                        className="admin-input min-w-0 flex-1"
                       >
                         <option value="">(sin equipo)</option>
                         {teamOptions.map((t) => (
@@ -365,7 +367,7 @@ export default function PilotsAdmin() {
                         onClick={() =>
                           setEdit({ ...edit, teams: edit.teams.filter((_, j) => j !== i) })
                         }
-                        className="rounded-lg border border-[var(--line)] px-2 text-[var(--text-dim)] hover:text-red-400"
+                        className="shrink-0 rounded-lg border border-[var(--line)] px-3 text-[var(--text-dim)] hover:text-red-400"
                         aria-label="Quitar temporada"
                       >
                         ×

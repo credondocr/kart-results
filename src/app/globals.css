@@ -2180,6 +2180,7 @@
 
 .admin-input {
   width: 100%;
+  min-width: 0;
   border-radius: 0.5rem;
   border: 1px solid var(--line-strong);
   background: rgba(255, 255, 255, 0.03);
@@ -2191,4 +2192,13 @@
 
 .admin-input:focus {
   border-color: #4c8dff;
+}
+
+/* Año en filas (temporada → equipo): ancho fijo sin pelear con width:100%. */
+.admin-input-year {
+  width: 4.75rem;
+  flex-shrink: 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
 }
