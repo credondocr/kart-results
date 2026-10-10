@@ -1,21 +1,21 @@
+import teamsJson from "@/data/teams.json";
+
 export interface TeamMeta {
   slug: string;
   name: string;
   logo: string;
+  visible?: boolean;
 }
 
-/** Catálogo maestro de equipos (slug = teamLogo en los datos de pilotos). */
-export const TEAMS: TeamMeta[] = [
-  { slug: "fsa", name: "FIK Sport Academy", logo: "/logos/fsa.png" },
-  { slug: "formula", name: "Formula Kart", logo: "/logos/formula.png" },
-  { slug: "advanced", name: "Advanced Karting", logo: "/logos/advanced.png" },
-  { slug: "losprimos", name: "Babyliss Pro - MMR", logo: "/logos/losprimos.png" },
-  { slug: "fmv", name: "FMV Racing", logo: "/logos/fmv.png" },
-  { slug: "mhkarting", name: "MH Karting", logo: "/logos/mhkarting.png" },
-  { slug: "valerio", name: "Valerio Racing System", logo: "/logos/valerio.png" },
-];
+/** Catálogo maestro de equipos (slug = team en los datos de pilotos).
+ *  Fuente de verdad: DB Neon → export a teams.json en cada deploy. */
+const ALL_TEAMS: TeamMeta[] = teamsJson;
+
+/** Equipos públicos (oculta los marcados como no visibles, ej. "unknown"). */
+export const TEAMS: TeamMeta[] = ALL_TEAMS.filter((team) => team.visible !== false);
 
 export function getTeam(slug: string | undefined | string[]): TeamMeta | undefined {
   if (!slug || Array.isArray(slug)) return undefined;
-  return TEAMS.find((team) => team.slug === slug.toLowerCase());
+  const key = slug.toLowerCase();
+  return ALL_TEAMS.find((team) => team.slug === key);
 }

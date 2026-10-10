@@ -22,7 +22,16 @@ async function main() {
   await sql`
     CREATE INDEX IF NOT EXISTS pilots_name_idx ON pilots (lower(name))
   `;
-  console.log("Migración OK: tabla pilots.");
+  await sql`
+    CREATE TABLE IF NOT EXISTS teams (
+      slug TEXT PRIMARY KEY,
+      name TEXT NOT NULL,
+      logo_png BYTEA,
+      visible BOOLEAN NOT NULL DEFAULT true,
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `;
+  console.log("Migración OK: tablas pilots + teams.");
 }
 
 main().catch((err) => {

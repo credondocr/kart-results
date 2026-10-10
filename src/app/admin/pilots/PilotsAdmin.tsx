@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import AdminNav from "../AdminNav";
 
 interface PilotRow {
   key: string;
@@ -11,6 +12,12 @@ interface PilotRow {
   country: string | null;
   aliases: string[] | null;
   updated_at?: string;
+}
+
+interface TeamOption {
+  slug: string;
+  name: string;
+  visible: boolean;
 }
 
 interface EditState {
@@ -34,6 +41,7 @@ function toEditState(p: PilotRow): EditState {
 export default function PilotsAdmin() {
   const router = useRouter();
   const [pilots, setPilots] = useState<PilotRow[]>([]);
+  const [teamOptions, setTeamOptions] = useState<TeamOption[]>([]);
   const [total, setTotal] = useState(0);
   const [offset, setOffset] = useState(0);
   const [q, setQ] = useState("");
@@ -72,6 +80,13 @@ export default function PilotsAdmin() {
     }, 250);
     return () => clearTimeout(t);
   }, [q, load]);
+
+  useEffect(() => {
+    fetch("/api/admin/teams")
+      .then((res) => (res.ok ? res.json() : { teams: [] }))
+      .then((data) => setTeamOptions(data.teams ?? []))
+      .catch(() => setTeamOptions([]));
+  }, []);
 
   const openEdit = (p: PilotRow) => {
     setSelectedKey(p.key);
@@ -147,6 +162,10 @@ export default function PilotsAdmin() {
           </button>
         </div>
 
+        <div className="mt-4">
+          <AdminNav />
+        </div>
+
         <div className="mt-6 flex flex-wrap items-center gap-3">
           <input
             value={q}
@@ -162,7 +181,8 @@ export default function PilotsAdmin() {
         <p className="mt-3 text-xs text-[var(--text-dim)]">
           La DB Neon es la fuente de verdad. Al hacer deploy, los cambios se
           exportan a <code className="text-[#4C8DFF]">pilots.json</code> y el
-          sitio estático los usa.
+          sitio estático los usa. Los equipos se crean/editan en la pestaña
+          Equipos; aquí solo se asignan.
         </p>
 
         <div className="mt-4 overflow-hidden rounded-xl border border-[var(--line)]">
@@ -200,7 +220,11 @@ export default function PilotsAdmin() {
                       onClick={() => openEdit(p)}
                     >
                       <td className="px-4 py-2.5 font-semibold text-white">{p.name}</td>
-                      <td className="px-3 py-2.5 text-[var(--text-dim)]">{p.team ?? "—"}</td>
+                      <td className="px-3 py-2.5 text-[var(--text-dim)]">
+                        {p.team
+                          ? teamOptions.find((t) => t.slug === p.team)?.name ?? p.team
+                          : "—"}
+                      </td>
                       <td className="px-3 py-2.5 font-mono text-xs text-[var(--text-dim)]">
                         {p.country ?? "—"}
                       </td>
@@ -279,12 +303,19 @@ export default function PilotsAdmin() {
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <label className="admin-label">Equipo actual</label>
-                    <input
+                    <select
                       value={edit.team}
                       onChange={(e) => setEdit({ ...edit, team: e.target.value })}
-                      placeholder="ej. fmv"
                       className="admin-input"
-                    />
+                    >
+                      <option value="">(sin equipo)</option>
+                      {teamOptions.map((t) => (
+                        <option key={t.slug} value={t.slug}>
+                          {t.name}
+                          {!t.visible ? " (oculto)" : ""}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                   <div>
                     <label className="admin-label">País</label>
@@ -311,16 +342,22 @@ export default function PilotsAdmin() {
                         placeholder="2026"
                         className="admin-input w-24"
                       />
-                      <input
+                      <select
                         value={row.team}
                         onChange={(e) => {
                           const teams = [...edit.teams];
                           teams[i] = { ...row, team: e.target.value };
                           setEdit({ ...edit, teams });
                         }}
-                        placeholder="equipo"
                         className="admin-input flex-1"
-                      />
+                      >
+                        <option value="">(sin equipo)</option>
+                        {teamOptions.map((t) => (
+                          <option key={t.slug} value={t.slug}>
+                            {t.name}
+                          </option>
+                        ))}
+                      </select>
                       <button
                         type="button"
                         onClick={() =>
