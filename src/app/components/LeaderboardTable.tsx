@@ -148,7 +148,11 @@ const LeaderboardTable: React.FC<{
                         >
                           {score}
                           {isFastest && (
-                            <span className="fastest-star" title="Mejor vuelta de la fecha">
+                            <span
+                              className="fastest-star"
+                              title="Vuelta rápida: mejor tiempo de la fecha en esta categoría"
+                              aria-label="Vuelta rápida de la fecha"
+                            >
                               ★
                             </span>
                           )}

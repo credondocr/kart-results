@@ -156,6 +156,10 @@ const SeasonLeaderboard = () => {
                     <div className="flex justify-center px-1 pb-3">
                         <FechaToggle fechas={fechas} value={activeFecha} onChange={handleFechaChange} />
                     </div>
+                    <p className="-mt-1 pb-2 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--text-dim)]">
+                        <span className="fastest-star" style={{ marginLeft: 0, marginRight: 4, verticalAlign: "baseline" }}>★</span>
+                        Mejor vuelta (vuelta rápida) de la fecha
+                    </p>
                     {filteredClasses.map((classItem: Class, index: number) => (
                         <div key={`${selectedTab}-${classItem.title}-${index}`} className="class-block p-2">
                             <h2 className="class-title my-4 text-4xl md:text-5xl">{classItem.title}</h2>
