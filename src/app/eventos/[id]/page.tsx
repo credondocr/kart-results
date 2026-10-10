@@ -20,6 +20,9 @@ import {
 } from "@/app/utils/eventData";
 import { findPilotProfile, pilotLinkHref } from "@/app/utils/pilotLinks";
 import { findPilotPhoto } from "@/app/utils/pilotPhotos";
+import { lookupRegistry } from "@/app/utils/pilotRegistry";
+import CountryFlag from "@/app/components/CountryFlag";
+import TeamLogo from "@/app/components/TeamLogo";
 import Breadcrumb from "@/app/components/Breadcrumb";
 
 interface PageProps {
@@ -228,6 +231,7 @@ export default async function EventPage({ params, searchParams }: PageProps) {
                   <tbody>
                     {rows.map((row, index) => {
                       const profile = findPilotProfile(row.name, row.num, "");
+                      const registry = lookupRegistry(row.name);
                       const isSessionBest =
                         sessionBest &&
                         row.name === sessionBest.name &&
@@ -253,6 +257,12 @@ export default async function EventPage({ params, searchParams }: PageProps) {
                           </td>
                           <td className="race-number sticky-col sticky-num">{row.num}</td>
                           <td className="driver-info" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                            {registry?.country && (
+                              <CountryFlag countryCode={registry.country} alt={registry.country} />
+                            )}
+                            {registry?.team && (
+                              <TeamLogo team={registry.team} altText={registry.team} />
+                            )}
                             {(() => {
                               const photo = findPilotPhoto(row.name);
                               const nameNode = profile ? (
