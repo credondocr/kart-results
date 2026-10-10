@@ -105,18 +105,18 @@ function main(): void {
                   ev.season === season &&
                   ev.fechas.includes(fechaIndex + 1)
               );
-              if (!entry) { (globalThis as any).__g = ((globalThis as any).__g ?? {}); (globalThis as any).__g.noEntry = ((globalThis as any).__g.noEntry ?? 0) + 1; return; }
-              if (entry.fechas.length > 1) { (globalThis as any).__g = ((globalThis as any).__g ?? {}); (globalThis as any).__g.combined = ((globalThis as any).__g.combined ?? 0) + 1; return; }
+              if (!entry) return;
+              if (entry.fechas.length > 1) return;
               const event = loadEvent(String(entry.id));
               if (!event) return;
 
               const targetClass = eventClassesFor(event).find((name) =>
                 matchesClass(name, categoryKey)
               );
-              if (!targetClass) { (globalThis as any).__g = ((globalThis as any).__g ?? {}); (globalThis as any).__g.noClass = ((globalThis as any).__g.noClass ?? 0) + 1; return; }
+              if (!targetClass) return;
 
               const official = officialOrder(event, targetClass);
-              if (official.length === 0) { (globalThis as any).__g = ((globalThis as any).__g ?? {}); (globalThis as any).__g.noOfficial = ((globalThis as any).__g.noOfficial ?? 0) + 1; return; }
+              if (official.length === 0) return;
 
               const repoOrder = [...category.results]
                 .sort((a, b) => (b.scores[fechaIndex] ?? 0) - (a.scores[fechaIndex] ?? 0))
@@ -171,14 +171,14 @@ function main(): void {
     }
   }
 
-  console.log("trazas:", JSON.stringify((globalThis as any).__g ?? {}));
-
   // ---- Reporte de inconsistencias ----
   const bad = groups.filter((g) => g.agreement < 0.95);
   const total = groups.length;
   console.log(`Grupos (año·temporada·categoría·fecha): ${total}`);
-  console.log(`Consistentes con el oficial: ${total - bad.length} (${(((total - bad.length) / total) * 100).toFixed(1)}%)`);
-  console.log(`Inconsistentes: ${bad.length}\n`);
+  console.log(`Coinciden con SpeedHive: ${total - bad.length} (${(((total - bad.length) / total) * 100).toFixed(1)}%)`);
+  console.log(`Difieren: ${bad.length}`);
+  console.log(`Nota: SpeedHive publica las posiciones SIN penalizaciones; el campeonato`);
+  console.log(`aplica las penalizaciones en los puntos — una diferencia puede ser una\npenalización real y no un error de datos.\n`);
 
   const byKey = new Map<string, GroupReport[]>();
   for (const group of bad) {
@@ -186,7 +186,7 @@ function main(): void {
     byKey.set(key, [...(byKey.get(key) ?? []), group]);
   }
   for (const [key, list] of [...byKey.entries()].sort()) {
-    console.log(`✗ ${key}`);
+    console.log(`⚠ ${key} (¿penalización aplicada en el campeonato?)`);
     for (const group of list) {
       console.log(`    R${group.fecha} (agree ${(group.agreement * 100).toFixed(0)}%) — oficial: ${group.officialTop.join(" / ")} | repo: ${group.repoTop.join(" / ")}`);
     }

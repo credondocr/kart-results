@@ -2074,3 +2074,15 @@
     white-space: nowrap;
   }
 }
+
+/* Nota de resultados (SpeedHive sin penalizaciones) */
+@layer components {
+  .table-note {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin: -0.5rem 0 1.25rem;
+    padding-left: 0.25rem;
+    max-width: 70ch;
+    line-height: 1.5;
+  }
+}

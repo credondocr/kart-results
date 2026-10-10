@@ -195,6 +195,11 @@ export default async function EventPage({ params, searchParams }: PageProps) {
             <span className="heading-count">{rows.length} pilotos</span>
           </h2>
 
+          <p className="table-note">
+            Posiciones de SpeedHive sin penalizaciones — en la tabla del campeonato
+            los puntos ya incluyen las penalizaciones aplicadas.
+          </p>
+
           {rows.length === 0 ? (
             <p className="empty-state">Sin resultados para esta sesión.</p>
           ) : (
