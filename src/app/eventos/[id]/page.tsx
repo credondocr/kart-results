@@ -10,6 +10,12 @@ import {
   formatDate,
   TYPE_LABELS,
   seasonLinkFromEvent,
+  loadAllEvents,
+  computeTrackRecords,
+  isTrackRecord,
+  eventComebacks,
+  normalizeLoose,
+  slugify,
   type EventSession,
 } from "@/app/utils/eventData";
 import { findPilotProfile, pilotLinkHref } from "@/app/utils/pilotLinks";
@@ -59,6 +65,16 @@ export default async function EventPage({ params, searchParams }: PageProps) {
   const seasonLink = seasonLinkFromEvent(event);
   const sessionBest = activeSession?.classification?.bestLap;
 
+  // Récords del circuito (todas las temporadas) y remontadas de este evento.
+  const trackRecords = computeTrackRecords(loadAllEvents());
+  const comebacks = new Map<string, { from: number; gained: number }>();
+  for (const row of eventComebacks(event)) {
+    comebacks.set(`${normalizeLoose(row.name)}|${normalizeLoose(row.cls)}`, {
+      from: row.fromPos,
+      gained: row.gained,
+    });
+  }
+
   const href = (cls: string, sessionId?: number) =>
     `?c=${encodeURIComponent(cls)}${sessionId ? `&s=${sessionId}` : ""}`;
 
@@ -98,10 +114,12 @@ export default async function EventPage({ params, searchParams }: PageProps) {
         {event.location && (
           <>
             {" · "}
-            <strong>
-              {event.location.name}
-              {event.location.lengthLabel ? ` · ${event.location.lengthLabel}` : ""}
-            </strong>
+            <Link href={`/circuito/${slugify(event.location.name)}`} className="crumb">
+              <strong>
+                {event.location.name}
+                {event.location.lengthLabel ? ` · ${event.location.lengthLabel}` : ""}
+              </strong>
+            </Link>
           </>
         )}
         {" · "}
@@ -192,6 +210,7 @@ export default async function EventPage({ params, searchParams }: PageProps) {
                         <>
                           <th className="text-right">Total</th>
                           <th className="text-right">Diferencia</th>
+                          <th className="text-right" title="Posiciones ganadas en la final vs la prefinal">Δ Pre→Fin</th>
                         </>
                       ) : (
                         <>
@@ -212,6 +231,15 @@ export default async function EventPage({ params, searchParams }: PageProps) {
                         sessionBest &&
                         row.name === sessionBest.name &&
                         row.bestTime === sessionBest.lapTime;
+                      const isRecord = isTrackRecord(
+                        trackRecords,
+                        event.location?.name,
+                        row.cls,
+                        row.bestTime
+                      );
+                      const comeback = comebacks.get(
+                        `${normalizeLoose(row.name)}|${normalizeLoose(row.cls)}`
+                      );
                       const podium = index < 3 && row.posInClass <= 3 ? ` podium-${row.posInClass}` : "";
                       return (
                         <tr
@@ -236,12 +264,31 @@ export default async function EventPage({ params, searchParams }: PageProps) {
                             <>
                               <td className="text-right points-cell">{row.total ?? "—"}</td>
                               <td className="text-right race-points">{row.diff ?? "—"}</td>
+                              <td className="text-right race-points">
+                                {comeback ? (
+                                  <span
+                                    className={
+                                      comeback.gained > 0
+                                        ? "delta-up"
+                                        : comeback.gained < 0
+                                          ? "delta-down"
+                                          : "delta-flat"
+                                    }
+                                    title={`Desde ${comeback.from}º en la prefinal`}
+                                  >
+                                    {comeback.gained > 0 ? `+${comeback.gained}` : comeback.gained < 0 ? `−${Math.abs(comeback.gained)}` : "—"}
+                                  </span>
+                                ) : (
+                                  "—"
+                                )}
+                              </td>
                             </>
                           ) : (
                             <td className="text-right race-points">{row.gap ?? "—"}</td>
                           )}
-                          <td className={isSessionBest ? "text-right points-cell" : "text-right race-points"}>
+                          <td className={isSessionBest || isRecord ? "text-right points-cell" : "text-right race-points"}>
                             {row.bestTime ?? "—"}
+                            {isRecord && <span className="record-badge" title="Récord histórico del circuito">Récord</span>}
                             {isSessionBest && <span className="best-lap-star"> ★</span>}
                           </td>
                           <td className="race-points">{row.bestLap ?? "—"}</td>

@@ -351,6 +351,7 @@ function rebuildManifest(): void {
         if (session.type === "race" && sessionLabelOf(session.name) === "Final") {
           for (const row of cls.rows) {
             const time = toSeconds(row.bestTime);
+            if (time <= 0) continue; // '00.000' = sin tiempo real
             const current = bestByClass.get(row.cls);
             if (!current || time < current.time) {
               bestByClass.set(row.cls, { driver: row.name, time });

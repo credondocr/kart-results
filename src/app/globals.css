@@ -1989,3 +1989,35 @@
     justify-content: center;
   }
 }
+
+/* ============ Eventos: remontadas y récords ============ */
+@layer components {
+  .delta-up {
+    color: #4ade80;
+    font-weight: 700;
+  }
+
+  .delta-down {
+    color: #f87171;
+    font-weight: 600;
+  }
+
+  .delta-flat {
+    color: var(--text-dim);
+  }
+
+  .record-badge {
+    display: inline-block;
+    margin-left: 5px;
+    padding: 1px 6px;
+    border-radius: 999px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(232, 184, 75, 0.12);
+    border: 1px solid rgba(232, 184, 75, 0.45);
+    vertical-align: middle;
+  }
+}
