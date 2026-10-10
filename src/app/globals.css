@@ -1597,3 +1597,570 @@
     height: 24px !important;
   }
 }
+
+/* ============ Evento (SpeedHive) ============ */
+@layer components {
+  .event-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .event-schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .schedule-day-name {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-family: var(--font-archivo);
+    font-weight: 800;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+  }
+
+  .schedule-day-name span {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dim);
+    letter-spacing: 0.02em;
+  }
+
+  .schedule-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .schedule-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--line);
+    border-radius: 0.6rem;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+    max-width: 100%;
+  }
+
+  .schedule-chip:hover {
+    border-color: rgba(76, 141, 255, 0.45);
+    background: rgba(76, 141, 255, 0.06);
+  }
+
+  .schedule-chip.active {
+    border-color: var(--signal);
+    background: var(--signal-dim);
+  }
+
+  .chip-time {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .chip-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-dim);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 38vw;
+  }
+
+  .session-badge {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.18rem 0.45rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .session-badge.type-practice {
+    color: var(--text-dim);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--line);
+  }
+
+  .session-badge.type-qualify {
+    color: var(--signal);
+    background: rgba(76, 141, 255, 0.12);
+    border: 1px solid rgba(76, 141, 255, 0.4);
+  }
+
+  .session-badge.type-race {
+    color: var(--gold);
+    background: rgba(232, 184, 75, 0.1);
+    border: 1px solid rgba(232, 184, 75, 0.4);
+  }
+
+  .session-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.25rem 0 2rem;
+  }
+
+  .session-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.5rem 0.8rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .session-pill:hover {
+    border-color: rgba(76, 141, 255, 0.45);
+  }
+
+  .session-pill.active {
+    border-color: var(--signal);
+    background: var(--signal-dim);
+  }
+
+  .session-pill-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  /* Índice de eventos: años → temporadas */
+  .events-index {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-top: 2rem;
+  }
+
+  .event-season {
+    margin-top: 1.25rem;
+  }
+
+  /* Línea de tiempo de la categoría */
+  .event-timeline {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.25rem 0 2rem;
+  }
+
+  .timeline-day {
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    font-family: var(--font-archivo);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--signal);
+    border-left: 2px solid rgba(76, 141, 255, 0.5);
+    margin-left: 0.35rem;
+  }
+
+  .timeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    padding: 0.6rem 0.85rem;
+    min-width: 132px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--line);
+    border-radius: 0.6rem;
+    transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .timeline-step:hover {
+    border-color: rgba(76, 141, 255, 0.45);
+    background: rgba(76, 141, 255, 0.06);
+    transform: translateY(-1px);
+  }
+
+  .timeline-step.active {
+    border-color: var(--signal);
+    background: var(--signal-dim);
+    box-shadow: inset 3px 0 0 var(--signal);
+  }
+
+  .step-when {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-dim);
+  }
+
+  .step-name {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+
+  /* Cronograma completo colapsado */
+  .event-details {
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--line);
+    padding-top: 1.25rem;
+  }
+
+  .event-details > summary {
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.15s ease;
+  }
+
+  .event-details > summary::before {
+    content: "+";
+    font-family: var(--font-mono);
+    color: var(--signal);
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .event-details[open] > summary::before {
+    content: "−";
+  }
+
+  .event-details > summary:hover {
+    color: var(--text);
+  }
+
+  .event-details .event-schedule {
+    margin-top: 1.25rem;
+  }
+
+  .best-lap-star {
+    color: var(--gold);
+  }
+
+  .status-bad {
+    color: #f87171;
+    font-weight: 700;
+  }
+}
+
+/* Links de fecha y★ mejor vuelta en posiciones */
+@layer components {
+  .race-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .race-link:hover {
+    color: var(--signal);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .fastest-star {
+    color: var(--gold);
+    font-size: 10px;
+    margin-left: 3px;
+    vertical-align: super;
+  }
+
+  .pole-count {
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* Card de evento (índice) */
+  .event-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .event-card-name {
+    text-align: left;
+    font-size: 16px;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .event-card-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 0.35rem;
+    text-align: left;
+  }
+}
+
+/* ============ Evento: sticky en móvil + timeline vertical ============ */
+@layer components {
+  /* Po+Nº pegajosos al hacer scroll horizontal (con fondo sólido) */
+  .event-results-table td.sticky-col,
+  .event-results-table th.sticky-col {
+    background-color: #0c1020 !important;
+  }
+
+  .event-results-table .sticky-num {
+    left: 70px !important;
+  }
+
+  .event-results-table td.position {
+    box-shadow: 1px 0 0 var(--line);
+  }
+}
+
+@media (max-width: 640px) {
+  /* Timeline vertical: legible en pantalla chica */
+  .event-timeline {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.4rem;
+    margin-left: 0.25rem;
+  }
+
+  .timeline-day {
+    margin-left: 0;
+    padding: 0.6rem 0 0.15rem 0.6rem;
+    border-left: none;
+    border-bottom: none;
+  }
+
+  .timeline-step {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    min-width: 0;
+    padding: 0.7rem 0.85rem;
+  }
+
+  .step-name {
+    flex: 1;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .timeline-step:hover {
+    transform: none;
+  }
+
+  /* Chips del cronograma colapsado: nombre sin estrangular tanto */
+  .chip-name {
+    max-width: 55vw;
+  }
+
+  /* Acciones del hero a ancho completo en móvil */
+  .event-actions .share-btn {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+/* ============ Eventos: remontadas y récords ============ */
+@layer components {
+  .delta-up {
+    color: #4ade80;
+    font-weight: 700;
+  }
+
+  .delta-down {
+    color: #f87171;
+    font-weight: 600;
+  }
+
+  .delta-flat {
+    color: var(--text-dim);
+  }
+
+  .record-badge {
+    display: inline-block;
+    margin-left: 5px;
+    padding: 1px 6px;
+    border-radius: 999px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(232, 184, 75, 0.12);
+    border: 1px solid rgba(232, 184, 75, 0.45);
+    vertical-align: middle;
+  }
+}
+
+/* ============ Lista de eventos (página de circuito) ============ */
+@layer components {
+  .events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .event-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--line);
+    border-radius: 0.6rem;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .event-row:hover {
+    border-color: rgba(76, 141, 255, 0.45);
+    background: rgba(76, 141, 255, 0.06);
+  }
+
+  .event-row-date {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-dim);
+    white-space: nowrap;
+    min-width: 92px;
+  }
+
+  .event-row-name {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .event-row-count {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+}
+
+/* Nota de resultados (SpeedHive sin penalizaciones) */
+@layer components {
+  .table-note {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin: -0.5rem 0 1.25rem;
+    padding-left: 0.25rem;
+    max-width: 70ch;
+    line-height: 1.5;
+  }
+}
+
+/* ============ Eventos: tooltips de celda + foto al hover ============ */
+@layer components {
+  .cell-tooltip {
+    position: relative;
+    cursor: help;
+  }
+
+  .pilot-peek {
+    position: relative;
+  }
+}
+
+/* Solo donde hay hover real (la skill avisa: no depender de hover en touch) */
+@media (hover: hover) {
+  .cell-tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 6px);
+    transform: translateX(-50%) translateY(4px);
+    padding: 5px 9px;
+    background: rgba(22, 27, 51, 0.98);
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 11px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 40;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+
+  .cell-tooltip.edge-right::after {
+    left: auto;
+    right: 0;
+    transform: translateX(0) translateY(4px);
+  }
+
+  .cell-tooltip:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .cell-tooltip.edge-right:hover::after {
+    transform: translateX(0) translateY(0);
+  }
+
+  .pilot-peek::before {
+    content: "";
+    position: absolute;
+    left: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%) scale(0.96);
+    width: 120px;
+    height: 150px;
+    background-image: var(--photo);
+    background-size: cover;
+    background-position: top center;
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 35;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+
+  .pilot-peek:hover::before,
+  .pilot-peek:focus-within::before {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}

@@ -1,6 +1,8 @@
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import type { History } from "../../src/data/types";
 import { Championships } from "../../src/data/history";
+import { loadAllEvents } from "../../src/app/utils/eventData";
+import { samePerson } from "../../src/app/utils/pilotHistory";
 import { PILOTS_PATH } from "./paths";
 
 /**
@@ -181,4 +183,65 @@ export function mergeIntoRegistry(history: History = Championships, path: string
   const json = JSON.stringify(sorted, null, 2) + "\n";
   writeFileSync(path, json, "utf8");
   return { added, updated, total: Object.keys(sorted).length };
+}
+
+function titleCase(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/(^|[\s\-.])([a-záéíóúñ])/g, (_, prefix, char) => prefix + char.toUpperCase());
+}
+
+/**
+ * Agrega al registro los pilotos que aparecen en los eventos de SpeedHive
+ * pero aún no están (solo faltantes; team/country quedan vacíos para
+ * completarlos a mano). Los nombres se toman de la forma más reciente.
+ */
+export function mergeFromEvents(): { added: number; names: string[] } {
+  const existing: Record<string, PilotEntry> = existsSync(PILOTS_PATH)
+    ? (JSON.parse(readFileSync(PILOTS_PATH, "utf8")) as Record<string, PilotEntry>)
+    : {};
+  const entries = Object.values(existing);
+
+  // Candidatos: nombre canónico visto (más reciente primero gana).
+  const candidates = new Map<string, string>();
+  const events = loadAllEvents().sort((a, b) => b.startDate.localeCompare(a.startDate));
+  for (const event of events) {
+    for (const day of event.days) {
+      for (const session of day.sessions) {
+        for (const row of session.classification?.rows ?? []) {
+          const raw = row.name.trim();
+          if (!raw) continue;
+          const key = normalizeName(raw);
+          if (!key || candidates.has(key)) continue;
+          candidates.set(key, titleCase(raw));
+        }
+      }
+    }
+  }
+
+  let added = 0;
+  const names: string[] = [];
+  for (const [key, name] of candidates) {
+    if (existing[key]) continue;
+    // Basura del timing: placeholders y apellidos sueltos sin nombre.
+    if (/^-|info|^n\/a$|^tbd$/i.test(name) || !key.includes(" ") || !/[a-záéíóúñ]{3}/.test(key)) {
+      continue;
+    }
+    const isVariant =
+      entries.some((entry) => samePerson(entry.name, name)) ||
+      entries.some((entry) => (entry.aliases ?? []).some((alias) => samePerson(alias, name)));
+    if (isVariant) continue;
+    existing[key] = { name, team: "", country: "" };
+    entries.push(existing[key]);
+    added += 1;
+    names.push(name);
+  }
+
+  if (added > 0) {
+    const sorted = Object.fromEntries(
+      Object.entries(existing).sort(([a], [b]) => a.localeCompare(b))
+    );
+    writeFileSync(PILOTS_PATH, JSON.stringify(sorted, null, 2) + "\n", "utf8");
+  }
+  return { added, names };
 }

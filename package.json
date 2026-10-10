@@ -11,7 +11,11 @@
     "export-pilot-map": "tsx -r tsconfig-paths/register scripts/exportPilotMap.ts",
     "import:standings": "tsx -r tsconfig-paths/register scripts/import-standings.ts",
     "seed:pilots": "tsx -r tsconfig-paths/register scripts/seedPilots.ts",
-    "photos:normalize": "tsx -r tsconfig-paths/register scripts/normalize-pilot-photos.ts"
+    "import:event": "tsx -r tsconfig-paths/register scripts/import-event.ts",
+    "photos:normalize": "tsx -r tsconfig-paths/register scripts/normalize-pilot-photos.ts",
+    "analyze:points": "tsx -r tsconfig-paths/register scripts/analyze-points.ts",
+    "validate:points": "tsx -r tsconfig-paths/register scripts/validate-points.ts",
+    "points-table": "tsx -r tsconfig-paths/register scripts/points-table.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",

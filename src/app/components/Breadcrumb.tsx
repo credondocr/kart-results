@@ -33,6 +33,17 @@ function buildCrumbs(pathname: string, nameHint?: string): Crumb[] {
       continue;
     }
 
+    if (part === "eventos") {
+      crumbs.push({ label: "Eventos", href: isLast ? null : "/eventos" });
+      continue;
+    }
+
+    // Sin índice de circuitos: el segmento queda como ubicación.
+    if (part === "circuito") {
+      crumbs.push({ label: "Circuito", href: null });
+      continue;
+    }
+
     if (prev === "equipo") {
       const team = getTeam(part);
       crumbs.push({

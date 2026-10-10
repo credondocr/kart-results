@@ -22,6 +22,7 @@ const Footer = () => {
           </Link>
           <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#9BA3BD]">
             <Link href="/" className="hover:text-white transition-colors">Campeonato</Link>
+            <Link href="/eventos" className="hover:text-white transition-colors">Eventos</Link>
             <Link href="/equipos" className="hover:text-white transition-colors">Equipos</Link>
             <Link href="/campeones" className="hover:text-white transition-colors">Campeones</Link>
             <Link href="/estadisticas" className="hover:text-white transition-colors">Estadísticas</Link>

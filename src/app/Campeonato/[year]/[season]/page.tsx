@@ -13,6 +13,7 @@ import GeneralTable from "@/app/components/GeneralTable";
 import SeasonSkeleton from "@/app/components/SeasonSkeleton";
 import FechaToggle from "@/app/components/FechaToggle";
 import WhatsAppShare from "@/app/components/WhatsAppShare";
+import eventsManifest from "@/data/events/manifest.json";
 interface Params {
     [key: string]: string | undefined;
     year?: string;
@@ -99,6 +100,18 @@ const SeasonLeaderboard = () => {
     const seasonLabel = season === "general" ? `General ${year}` : `${season} ${year}`;
     const activeFecha = fecha && fecha >= 1 && fecha <= fechas ? fecha : null;
 
+    // Eventos de SpeedHive por número de fecha (para linkear R1..Rn y ★).
+    const eventsByFecha: Record<number, { id?: number; fastest: Array<{ cls: string; driver: string }> }> = {};
+    if (season !== "general") {
+        for (const event of eventsManifest.events) {
+            if (String(event.year) === String(year) && event.season === season) {
+                for (const n of event.fechas) {
+                    eventsByFecha[n] = { id: event.id, fastest: event.fastestLaps };
+                }
+            }
+        }
+    }
+
     return (
         <div className="mt-20">
             <div className="flex flex-col items-center px-4 py-4 space-y-4">
@@ -154,6 +167,8 @@ const SeasonLeaderboard = () => {
                                             season={season}
                                             leaderboard={leaderboard}
                                             fecha={activeFecha}
+                                            classTitle={classItem.title}
+                                            eventsByFecha={eventsByFecha}
                                         />
                                     </div>
                                 </div>
