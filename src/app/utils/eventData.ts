@@ -53,6 +53,12 @@ export interface EventData {
   organization: { name: string; url?: string; country?: string };
   location?: { name: string; lengthLabel?: string; country?: string };
   uploadSoftware?: { name: string; version?: string };
+  /** Clasificaciones oficiales de puntos por fecha (PointMerge). */
+  pointStandings?: Array<{
+    name: string;
+    sessions: string[];
+    rows: Array<{ pos: number; num: string; name: string; cls: string; total: number; perRun: number[] }>;
+  }>;
   days: EventDay[];
 }
 

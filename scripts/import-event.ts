@@ -62,6 +62,24 @@ export interface EventDay {
   sessions: EventSession[];
 }
 
+export interface PointStandingRow {
+  pos: number;
+  num: string;
+  name: string;
+  cls: string;
+  total: number;
+  /** Puntos por sesión: [quali, prefinal, final]. */
+  perRun: number[];
+}
+
+export interface PointStandings {
+  /** Nombre de la sesión PointMerge (ej. "Kid Kart - Fecha 1"). */
+  name: string;
+  /** Sesiones fuente en orden (ej. Clasificacion, Prefinal, Final). */
+  sessions: string[];
+  rows: PointStandingRow[];
+}
+
 export interface EventData {
   id: number;
   name: string;
@@ -72,6 +90,8 @@ export interface EventData {
   organization: { name: string; url?: string; country?: string };
   location?: { name: string; lengthLabel?: string; country?: string };
   uploadSoftware?: { name: string; version?: string };
+  /** Clasificaciones oficiales de puntos por fecha (PointMerge), si las tiene. */
+  pointStandings?: PointStandings[];
   days: EventDay[];
 }
 
@@ -101,6 +121,26 @@ function diffLabel(d?: { lapsBehind?: number; timeDifference?: string }): string
   if (d.lapsBehind && d.lapsBehind > 0) return `${d.lapsBehind}v`;
   if (d.timeDifference && d.timeDifference !== "00.000") return d.timeDifference;
   return d.timeDifference;
+}
+
+interface RawPointRow {
+  position?: number;
+  name?: string;
+  startNumber?: string;
+  resultClass?: string;
+  totalPoints?: number;
+  pointsPerRun?: number[];
+}
+
+function slimPointRow(r: RawPointRow): PointStandingRow {
+  return {
+    pos: r.position ?? 0,
+    num: r.startNumber ?? "",
+    name: r.name ?? "",
+    cls: r.resultClass ?? "",
+    total: r.totalPoints ?? 0,
+    perRun: r.pointsPerRun ?? [],
+  };
 }
 
 interface RawRow {
@@ -209,22 +249,45 @@ async function importEventById(id: string): Promise<EventData> {
 
   let done = 0;
   let withResults = 0;
+  const pointStandings: PointStandings[] = [];
   await mapLimit(allSessions, CONCURRENCY, async (session) => {
     try {
       const cls = await getJson<{
         type?: string;
         classes?: string[];
+        sessionNames?: string[];
         bestLap?: Classification["bestLap"];
-        rows?: RawRow[];
+        rows?: Array<RawRow & Partial<RawPointRow>>;
       }>(`${API}/sessions/${session.id}/classification`, true);
       if (cls && (cls.rows?.length ?? 0) > 0) {
         withResults += 1;
-        session.classification = {
-          type: cls.type ?? session.type,
-          classes: cls.classes ?? [],
-          bestLap: cls.bestLap,
-          rows: (cls.rows ?? []).map(slimRow),
-        };
+        if (cls.type === "PointMerge") {
+          // Clasificación oficial de puntos de la fecha: conservar valores.
+          pointStandings.push({
+            name: session.name,
+            sessions: cls.sessionNames ?? [],
+            rows: (cls.rows as RawPointRow[]).map(slimPointRow),
+          });
+          session.classification = {
+            type: cls.type,
+            classes: cls.classes ?? [],
+            rows: (cls.rows as RawPointRow[]).map((row) => ({
+              pos: row.position ?? 0,
+              posInClass: row.position ?? 0,
+              name: row.name ?? "",
+              num: row.startNumber ?? "",
+              cls: row.resultClass ?? "",
+              status: "Normal",
+            })),
+          };
+        } else {
+          session.classification = {
+            type: cls.type ?? session.type,
+            classes: cls.classes ?? [],
+            bestLap: cls.bestLap,
+            rows: (cls.rows ?? []).map(slimRow),
+          };
+        }
       }
     } catch {
       // Una sesión sin resultados no tumbar la importación completa.
@@ -256,6 +319,7 @@ async function importEventById(id: string): Promise<EventData> {
     uploadSoftware: event.uploadSoftware?.name
       ? { name: event.uploadSoftware.name, version: event.uploadSoftware.version }
       : undefined,
+    pointStandings: pointStandings.length > 0 ? pointStandings : undefined,
     days,
   };
 
@@ -440,8 +504,62 @@ async function importAllCrkc(): Promise<void> {
   rebuildManifest();
 }
 
+/**
+ * Rescata las clasificaciones oficiales de puntos (PointMerge: totalPoints +
+ * pointsPerRun) de los eventos ya importados — el slim original las tiraba.
+ */
+async function refreshPoints(): Promise<void> {
+  const files = readdirSync(EVENTS_DIR()).filter((file) => /^\d+\.json$/.test(file));
+  let updated = 0;
+  let fetched = 0;
+
+  for (const file of files) {
+    const path = join(EVENTS_DIR(), file);
+    const data = JSON.parse(readFileSync(path, "utf8")) as EventData;
+    if (data.pointStandings && data.pointStandings.length > 0) continue;
+    const pointSessions = data.days.flatMap((day) => day.sessions).filter((session) => session.type === "points");
+    if (pointSessions.length === 0) continue;
+
+    const standings: PointStandings[] = [];
+    await mapLimit(pointSessions, CONCURRENCY, async (session) => {
+      try {
+        const cls = await getJson<{
+          type?: string;
+          classes?: string[];
+          sessionNames?: string[];
+          rows?: RawPointRow[];
+        }>(`${API}/sessions/${session.id}/classification`, true);
+        if (cls?.type === "PointMerge" && (cls.rows?.length ?? 0) > 0) {
+          standings.push({
+            name: session.name,
+            sessions: cls.sessionNames ?? [],
+            rows: (cls.rows ?? []).map(slimPointRow),
+          });
+        }
+      } catch {
+        // una sesión puntual no debe tumbar el refresh
+      }
+      fetched += 1;
+    });
+
+    if (standings.length > 0) {
+      standings.sort((a, b) => a.name.localeCompare(b.name));
+      data.pointStandings = standings;
+      writeFileSync(path, JSON.stringify(data) + "\n", "utf8");
+      updated += 1;
+      console.log(`✓ ${file} → ${standings.length} clasificaciones de puntos`);
+    }
+  }
+  console.log(`✓ pointStandings en ${updated} eventos (${fetched} sesiones consultadas)`);
+}
+
 async function main(): Promise<void> {
   const args = process.argv.slice(2);
+  if (args.includes("--refresh-points")) {
+    await refreshPoints();
+    rebuildManifest();
+    return;
+  }
   if (args.includes("--manifest")) {
     rebuildManifest();
     return;
