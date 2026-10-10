@@ -2164,3 +2164,29 @@
     transform: translateY(-50%) scale(1);
   }
 }
+
+/* Admin panel */
+.admin-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.35rem;
+}
+
+.admin-input {
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.55rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--text);
+  outline: none;
+}
+
+.admin-input:focus {
+  border-color: #4c8dff;
+}

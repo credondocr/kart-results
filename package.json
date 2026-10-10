@@ -15,13 +15,18 @@
     "photos:normalize": "tsx -r tsconfig-paths/register scripts/normalize-pilot-photos.ts",
     "analyze:points": "tsx -r tsconfig-paths/register scripts/analyze-points.ts",
     "validate:points": "tsx -r tsconfig-paths/register scripts/validate-points.ts",
-    "points-table": "tsx -r tsconfig-paths/register scripts/points-table.ts"
+    "points-table": "tsx -r tsconfig-paths/register scripts/points-table.ts",
+    "prebuild": "tsx -r tsconfig-paths/register scripts/dbExportPilots.ts",
+    "db:migrate": "tsx -r tsconfig-paths/register scripts/dbMigrate.ts",
+    "db:seed": "tsx -r tsconfig-paths/register scripts/dbSeedPilots.ts",
+    "db:export": "tsx -r tsconfig-paths/register scripts/dbExportPilots.ts --force"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@headlessui/react": "^2.2.0",
+    "@neondatabase/serverless": "^1.2.0",
     "@tailwindcss/typography": "^0.5.16",
     "gray-matter": "^4.0.3",
     "next": "15.1.11",
