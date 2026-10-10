@@ -87,7 +87,9 @@ export function sessionsForClass(event: EventData, className: string): EventSess
       if (session.classification?.classes.includes(className)) sessions.push(session);
     }
   }
-  return sessions;
+  // El orden de los grupos del API no siempre es cronológico
+  // (Sábado → Viernes → Domingo); el startTime sí lo es.
+  return sessions.sort((a, b) => a.startTime.localeCompare(b.startTime));
 }
 
 /** "Kid Kart - Final" → "Final"; "VLR Junior - P1" → "P1". */

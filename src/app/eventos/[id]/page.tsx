@@ -73,12 +73,21 @@ export default async function EventPage({ params, searchParams }: PageProps) {
     timeline.push({ kind: "session", session, key: `s-${session.id}` });
   }
 
+  // Días y sesiones ordenados por startTime real; la fecha del grupo del API
+  // a veces es incorrecta, así que se deriva de la primera sesión del día.
   const fullSchedule = event.days
-    .map((day) => ({
-      ...day,
-      sessions: day.sessions.filter((session) => session.type !== "practice"),
-    }))
-    .filter((day) => day.sessions.length > 0);
+    .map((day) => {
+      const ordered = [...day.sessions].sort((a, b) =>
+        a.startTime.localeCompare(b.startTime)
+      );
+      return {
+        ...day,
+        date: ordered[0]?.startTime.slice(0, 10) || day.date,
+        sessions: ordered,
+      };
+    })
+    .filter((day) => day.sessions.length > 0)
+    .sort((a, b) => a.date.localeCompare(b.date));
 
   return (
     <div className="max-w-6xl mx-auto px-4 pt-24 pb-16">
@@ -173,11 +182,11 @@ export default async function EventPage({ params, searchParams }: PageProps) {
           ) : (
             <div className="table-container">
               <div className="table-wrapper">
-                <table>
+                <table className="event-results-table">
                   <thead>
                     <tr>
-                      <th className="position">Po</th>
-                      <th className="race-number">Nº</th>
+                      <th className="position sticky-col">Po</th>
+                      <th className="race-number sticky-col sticky-num">Nº</th>
                       <th className="text-left driver-info">Piloto</th>
                       {isRace ? (
                         <>
@@ -210,10 +219,10 @@ export default async function EventPage({ params, searchParams }: PageProps) {
                           className={podium.trim()}
                           style={{ "--row": index } as React.CSSProperties}
                         >
-                          <td className="position">
+                          <td className="position sticky-col">
                             <span className="rank-chip">{row.posInClass}</span>
                           </td>
-                          <td className="race-number">{row.num}</td>
+                          <td className="race-number sticky-col sticky-num">{row.num}</td>
                           <td className="driver-info" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                             {profile ? (
                               <Link href={pilotLinkHref(profile)} className="driver-link">

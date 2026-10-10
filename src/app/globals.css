@@ -1923,3 +1923,69 @@
     text-align: left;
   }
 }
+
+/* ============ Evento: sticky en móvil + timeline vertical ============ */
+@layer components {
+  /* Po+Nº pegajosos al hacer scroll horizontal (con fondo sólido) */
+  .event-results-table td.sticky-col,
+  .event-results-table th.sticky-col {
+    background-color: #0c1020 !important;
+  }
+
+  .event-results-table .sticky-num {
+    left: 70px !important;
+  }
+
+  .event-results-table td.position {
+    box-shadow: 1px 0 0 var(--line);
+  }
+}
+
+@media (max-width: 640px) {
+  /* Timeline vertical: legible en pantalla chica */
+  .event-timeline {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.4rem;
+    margin-left: 0.25rem;
+  }
+
+  .timeline-day {
+    margin-left: 0;
+    padding: 0.6rem 0 0.15rem 0.6rem;
+    border-left: none;
+    border-bottom: none;
+  }
+
+  .timeline-step {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    min-width: 0;
+    padding: 0.7rem 0.85rem;
+  }
+
+  .step-name {
+    flex: 1;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .timeline-step:hover {
+    transform: none;
+  }
+
+  /* Chips del cronograma colapsado: nombre sin estrangular tanto */
+  .chip-name {
+    max-width: 55vw;
+  }
+
+  /* Acciones del hero a ancho completo en móvil */
+  .event-actions .share-btn {
+    flex: 1;
+    justify-content: center;
+  }
+}
