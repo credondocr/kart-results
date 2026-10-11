@@ -75,7 +75,8 @@ export function isLiveCheckWindow(raceDateIso: string | null | undefined): boole
   const today = fmt.format(new Date());
   const raceDay = fmt.format(new Date(raceDateIso));
   const tomorrow = fmt.format(new Date(Date.now() + 86_400_000));
-  return today === raceDay || today === tomorrow;
+  // Hoy es la carrera, o es la víspera de la carrera.
+  return raceDay === today || raceDay === tomorrow;
 }
 
 /**
