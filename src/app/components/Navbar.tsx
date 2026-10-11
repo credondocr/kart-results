@@ -9,6 +9,7 @@ import { usePathname } from 'next/navigation';
 import { Modal } from '@/components/ui/Modal';
 import { LoginForm } from '@/components/auth/LoginForm';
 import SearchPalette from './SearchPalette';
+import NavDropdown from './NavDropdown';
 
 const SearchIcon = () => (
   <svg
@@ -113,12 +114,19 @@ const Navbar: React.FC = () => {
                 <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
               )}
             </Link>
-            <Link href="/Campeonato" className={linkClass("/Campeonato")}>
-              Campeonato
-              {isActive("/Campeonato") && (
-                <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
-              )}
-            </Link>
+            <NavDropdown
+              label="Campeonato"
+              active={
+                isActive("/Campeonato") ||
+                isActive("/campeones") ||
+                isActive("/estadisticas")
+              }
+              items={[
+                { href: "/Campeonato", label: "Tablas" },
+                { href: "/campeones", label: "Campeones" },
+                { href: "/estadisticas", label: "Estadísticas" },
+              ]}
+            />
             <Link href="/eventos" className={linkClass("/eventos")}>
               Eventos
               {isActive("/eventos") && (
@@ -140,18 +148,6 @@ const Navbar: React.FC = () => {
             <Link href="/equipos" className={linkClass("/equipos")}>
               Equipos
               {isActive("/equipos") && (
-                <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
-              )}
-            </Link>
-            <Link href="/campeones" className={linkClass("/campeones")}>
-              Campeones
-              {isActive("/campeones") && (
-                <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
-              )}
-            </Link>
-            <Link href="/estadisticas" className={linkClass("/estadisticas")}>
-              Estadísticas
-              {isActive("/estadisticas") && (
                 <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
               )}
             </Link>
