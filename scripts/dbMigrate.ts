@@ -127,6 +127,16 @@ async function main() {
       created_at TIMESTAMPTZ NOT NULL DEFAULT now()
     )
   `;
+  await sql`
+    CREATE TABLE IF NOT EXISTS password_resets (
+      id SERIAL PRIMARY KEY,
+      user_id INT NOT NULL REFERENCES users(id),
+      token_hash TEXT NOT NULL UNIQUE,
+      expires_at TIMESTAMPTZ NOT NULL,
+      used_at TIMESTAMPTZ,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `;
   console.log("Migración OK.");
 }
 

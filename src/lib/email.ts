@@ -162,3 +162,33 @@ export async function sendRegistrationStatus(input: {
     `<p style="font-size:14px;color:#C6CBDB">Tu inscripción a <strong>${input.eventName}</strong> no fue aprobada.${input.note ? `<br><br>Motivo: ${input.note}` : ""}</p>`
   );
 }
+
+/** Email para restablecer contraseña. */
+export async function sendSafeResetEmail(
+  to: string,
+  name: string,
+  resetUrl: string
+): Promise<boolean> {
+  return sendSafe(
+    to,
+    "Restablecer contraseña — Costa Rica Kart Championship",
+    `Hola ${name}`,
+    `
+    <p style="font-size:14px;color:#C6CBDB">
+      Recibimos un pedido para cambiar tu contraseña.
+    </p>
+    <p style="margin:24px 0">
+      <a href="${resetUrl}"
+         style="display:inline-block;background:#4C8DFF;color:#fff;font-weight:700;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;padding:12px 22px;border-radius:8px">
+        Elegir nueva contraseña
+      </a>
+    </p>
+    <p style="font-size:12px;color:#9BA3BD">
+      El link expira en1 hora. Si no fuiste tú, ignora este correo.
+    </p>
+    <p style="font-size:12px;color:#9BA3BD;word-break:break-all">
+      ${resetUrl}
+    </p>
+    `
+  );
+}

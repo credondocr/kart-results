@@ -15,7 +15,7 @@ interface UserRow {
 }
 
 export async function POST(request: Request) {
-  let body: { email?: string; password?: string; remember?: boolean };
+  let body: { email?: string; password?: string };
   try {
     body = await request.json();
   } catch {
@@ -23,7 +23,6 @@ export async function POST(request: Request) {
   }
   const email = String(body.email ?? "").trim().toLowerCase();
   const password = String(body.password ?? "");
-  const remember = Boolean(body.remember);
   if (!email || !password) {
     return NextResponse.json({ error: "email y contraseña requeridos" }, { status: 400 });
   }
@@ -41,12 +40,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "credenciales incorrectas" }, { status: 401 });
   }
 
-  const token = createSessionToken(user.id, user.role, remember);
+  const token = createSessionToken(user.id, user.role);
   return NextResponse.json(
     {
       ok: true,
       user: { id: user.id, email: user.email, role: user.role, name: user.name },
     },
-    { headers: { "Set-Cookie": sessionCookie(token, remember) } }
+    { headers: { "Set-Cookie": sessionCookie(token) } }
   );
 }
