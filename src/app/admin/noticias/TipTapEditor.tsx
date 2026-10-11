@@ -27,6 +27,8 @@ const TOOLBAR = [
 export default function TipTapEditor({ content, onChange }: Props) {
   const fileRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
+  const [showPicker, setShowPicker] = useState(false);
+  const [pickerImages, setPickerImages] = useState<Array<{ url: string; name: string }>>([]);
 
   const editor = useEditor({
     immediatelyRender: false,
@@ -108,6 +110,24 @@ export default function TipTapEditor({ content, onChange }: Props) {
     };
   }, [editor, insertImage]);
 
+  const openPicker = useCallback(async () => {
+    setShowPicker(true);
+    try {
+      const res = await fetch("/api/admin/media");
+      if (res.ok) {
+        const data = await res.json();
+        setPickerImages((data.images ?? []).slice(0, 60));
+      }
+    } catch {
+      /* noop */
+    }
+  }, []);
+
+  const insertFromPicker = (url: string) => {
+    editor?.chain().focus().setImage({ src: url }).run();
+    setShowPicker(false);
+  };
+
   if (!editor) return null;
 
   const run = (cmd: string) => {
@@ -167,6 +187,13 @@ export default function TipTapEditor({ content, onChange }: Props) {
         </button>
         <button
           type="button"
+          onClick={openPicker}
+          className="rounded-md px-3 py-1 text-xs font-semibold text-[var(--text-dim)] transition-colors hover:bg-white/5 hover:text-white"
+        >
+          Media
+        </button>
+        <button
+          type="button"
           onClick={() => {
             const url = prompt("URL del link:");
             if (url) editor.chain().focus().setLink({ href: url }).run();
@@ -196,8 +223,45 @@ export default function TipTapEditor({ content, onChange }: Props) {
 
       {/* Pegar imagen hint */}
       <p className="border-t border-[var(--line)] px-3 py-1.5 text-[10px] text-[var(--text-dim)]">
-        Imágenes: botón &quot;+ Imagen&quot;, pegar con Ctrl+V, o arrastrar al editor
+        Imágenes: botón &quot;+ Imagen&quot;, pegar con Ctrl+V, arrastrar, o elegir de Media
       </p>
+
+      {/* Media picker */}
+      {showPicker ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" onClick={() => setShowPicker(false)}>
+          <div className="w-full max-w-2xl rounded-2xl border border-[var(--line)] bg-[var(--ink-950)] p-5 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between">
+              <h3 className="font-display text-lg font-extrabold uppercase tracking-tight text-white">
+                Biblioteca de media
+              </h3>
+              <button onClick={() => setShowPicker(false)} className="text-2xl text-[var(--text-dim)] hover:text-white">×</button>
+            </div>
+            {pickerImages.length === 0 ? (
+              <p className="mt-6 text-center text-sm text-[var(--text-dim)]">
+                No hay imágenes. Sube una con &quot;+ Imagen&quot;.
+              </p>
+            ) : (
+              <div className="mt-4 grid max-h-80 grid-cols-3 gap-2 overflow-y-auto sm:grid-cols-4">
+                {pickerImages.map((img) => (
+                  <button
+                    key={img.url}
+                    type="button"
+                    onClick={() => insertFromPicker(img.url)}
+                    className="group relative aspect-square overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--surface-2)] transition-colors hover:border-[#4C8DFF]"
+                    title={img.name}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={img.url} alt={img.name} className="h-full w-full object-cover" />
+                    <span className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity group-hover:opacity-100">
+                      <span className="rounded bg-[#4C8DFF] px-2 py-1 text-xs font-bold text-white">Insertar</span>
+                    </span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
