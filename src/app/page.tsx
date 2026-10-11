@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { db, dbUrl } from "@/lib/db";
 import { TEAMS } from "@/data/drivers/teams";
+import pilotPhotos from "@/data/pilotPhotos.json";
 import NextRaceCountdown from "@/app/components/landing/NextRaceCountdown";
 import TaglineReveal from "@/app/components/landing/TaglineReveal";
 import CategoryMarquee from "@/app/components/landing/CategoryMarquee";
@@ -53,14 +54,30 @@ const CATEGORIES = [
   "Rok Shifter",
 ];
 
-const PADDOCK = [
-  { file: "bernal-valverde.webp", name: "Bernal Valverde", num: "305" },
-  { file: "sofia-calderon.webp", name: "Sofia Calderon", num: "517" },
-  { file: "ayrton-hayes.webp", name: "Ayrton Hayes", num: "25" },
-  { file: "luis-fernando-cedeno.webp", name: "Luis F. Cedeño", num: "329" },
-  { file: "samuel-chaverri.webp", name: "Samuel Chaverri", num: "776" },
-  { file: "andres-fonseca.webp", name: "Andres Fonseca", num: "317" },
-];
+interface Face {
+  file: string;
+  name: string;
+  key: string;
+}
+
+/** Muestra aleatoria de pilotos con foto (se re-mezcla en cada ISR ~60s). */
+function sampleFaces(n: number, exclude: Set<string> = new Set()): Face[] {
+  const pool = Object.entries(pilotPhotos as Record<string, string>)
+    .filter(([key]) => !exclude.has(key))
+    .map(([key, file]) => ({
+      file,
+      key,
+      name: key
+        .split("-")
+        .map((w) => (w ? w[0].toUpperCase() + w.slice(1) : w))
+        .join(" "),
+    }));
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  return pool.slice(0, n);
+}
 
 const NEWS = [
   {
@@ -82,6 +99,11 @@ const NEWS = [
 
 export default async function HomePage() {
   const race = await getNextRace();
+  const heroFaces = sampleFaces(7);
+  const avatars = heroFaces.slice(0, 4);
+  const heroCards = heroFaces.slice(4, 7);
+  const used = new Set(heroFaces.map((f) => f.key));
+  const paddockFaces = sampleFaces(6, used);
   const raceDate = race ? new Date(race.race_date) : null;
   const dateLabel = raceDate
     ? raceDate.toLocaleDateString("es-CR", {
@@ -133,7 +155,7 @@ export default async function HomePage() {
             </div>
             <div className="mt-10 flex items-center gap-4">
               <div className="flex -space-x-3">
-                {PADDOCK.slice(0, 4).map((p) => (
+                {avatars.map((p) => (
                   <Image
                     key={p.file}
                     src={`/pilotos/${p.file}`}
@@ -154,7 +176,7 @@ export default async function HomePage() {
           {/* Visual: pilotos + pit board */}
           <div className="relative">
             <div className="mb-4 flex justify-center gap-3 lg:mb-5 lg:justify-end">
-              {PADDOCK.slice(0, 3).map((p, i) => (
+              {heroCards.map((p, i) => (
                 <div
                   key={p.file}
                   className="relative w-[31%] max-w-[130px] overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--surface-2)] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1.5"
@@ -170,9 +192,6 @@ export default async function HomePage() {
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#070A14] via-[#070A14]/80 to-transparent p-2 pt-6">
                     <p className="truncate font-display text-[11px] font-bold uppercase tracking-wide text-white">
                       {p.name}
-                    </p>
-                    <p className="font-mono text-[10px] font-bold text-[#4C8DFF]">
-                      #{p.num}
                     </p>
                   </div>
                 </div>
@@ -257,7 +276,7 @@ export default async function HomePage() {
             </div>
           </Reveal>
           <div className="mt-8 grid grid-cols-3 gap-3 sm:grid-cols-6">
-            {PADDOCK.map((p, i) => (
+            {paddockFaces.map((p, i) => (
               <Reveal key={p.file} delayMs={i * 60}>
                 <Link
                   href="/equipos"
