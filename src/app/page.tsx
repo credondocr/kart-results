@@ -152,7 +152,7 @@ export default async function HomePage() {
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-[var(--line)] pb-14 pt-28 sm:pt-32">
         <div
-          className="pointer-events-none absolute -right-16 top-0 hidden h-full w-20 rotate-12 bg-[repeating-linear-gradient(180deg,#4C8DFF_0_18px,transparent_18px_36px)] opacity-30 lg:block"
+          className="plx-slow pointer-events-none absolute -right-16 top-0 hidden h-full w-20 rotate-12 bg-[repeating-linear-gradient(180deg,#4C8DFF_0_18px,transparent_18px_36px)] opacity-30 lg:block"
           aria-hidden="true"
         />
         <div className="mx-auto grid max-w-7xl items-end gap-10 px-4 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:px-8">
@@ -209,7 +209,7 @@ export default async function HomePage() {
 
           {/* Visual: pilotos + pit board */}
           <div className="relative">
-            <div className="mb-4 flex justify-center gap-3 lg:mb-5 lg:justify-end">
+            <div className="plx-medium mb-4 flex justify-center gap-3 lg:mb-5 lg:justify-end">
               {heroCards.map((p, i) => (
                 <Link
                   key={p.file}
@@ -410,7 +410,7 @@ export default async function HomePage() {
               </Link>
             </div>
           </Reveal>
-          <div className="mt-8 grid grid-cols-3 gap-3 sm:grid-cols-6">
+          <div className="plx-slow mt-8 grid grid-cols-3 gap-3 sm:grid-cols-6">
             {paddockFaces.map((p, i) => (
               <Reveal key={p.file} delayMs={i * 60}>
                 <Link
