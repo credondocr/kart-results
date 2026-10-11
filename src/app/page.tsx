@@ -5,7 +5,7 @@ import { db, dbUrl } from "@/lib/db";
 import { TEAMS } from "@/data/drivers/teams";
 import pilotPhotos from "@/data/pilotPhotos.json";
 import { Championships } from "@/data/history";
-import { fetchTeleredKartVideos, fetchTeleredLiveKart } from "@/app/utils/telered";
+import { fetchTeleredKartVideos, fetchTeleredLiveKart, isLiveCheckWindow } from "@/app/utils/telered";
 import { findPilotProfileByName, pilotLinkHref } from "@/app/utils/pilotLinks";
 import NextRaceCountdown from "@/app/components/landing/NextRaceCountdown";
 import TaglineReveal from "@/app/components/landing/TaglineReveal";
@@ -111,11 +111,9 @@ const NEWS = [
 ];
 
 export default async function HomePage() {
-  const [race, broadcasts, live] = await Promise.all([
-    getNextRace(),
-    fetchTeleredKartVideos(3),
-    fetchTeleredLiveKart(),
-  ]);
+  const race = await getNextRace();
+  const broadcasts = await fetchTeleredKartVideos(3);
+  const live = await fetchTeleredLiveKart(isLiveCheckWindow(race?.race_date));
   const heroFaces = sampleFaces(7);
   const avatars = heroFaces.slice(0, 4);
   const heroCards = heroFaces.slice(4, 7);

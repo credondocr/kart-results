@@ -62,26 +62,33 @@ export async function fetchTeleredKartVideos(
 }
 
 /**
- * ¿Es fin de semana en Costa Rica? (sáb/dom) — solo esos días consultamos
- * la API de YouTube para el stream en vivo; entre semana ni gastamos units.
+ * ¿Activar el chequeo de live? Solo si hay una fecha programada abierta
+ * y hoy (hora CR) es el día de la carrera o el día anterior.
+ * Se enlaza con race_dates (Fase 2): al abrir una fecha en el panel,
+ * el banner live se activa automáticamente ese fin de semana.
  */
-function isWeekendCr(): boolean {
-  const parts = new Intl.DateTimeFormat("en-US", {
+export function isLiveCheckWindow(raceDateIso: string | null | undefined): boolean {
+  if (!raceDateIso) return false;
+  const fmt = new Intl.DateTimeFormat("en-CA", {
     timeZone: "America/Costa_Rica",
-    weekday: "short",
-  }).format(new Date());
-  return parts === "Sat" || parts === "Sun";
+  });
+  const today = fmt.format(new Date());
+  const raceDay = fmt.format(new Date(raceDateIso));
+  const tomorrow = fmt.format(new Date(Date.now() + 86_400_000));
+  return today === raceDay || today === tomorrow;
 }
 
 /**
  * ¿Está Telered transmitiendo kartismo en vivo ahora?
- * Solo consulta la API sábados y domingos (día de carrera).
+ * Solo consulta la API si `enabled` (día de carrera o víspera, vía race_dates).
  * Usa uploads playlist + videos.list (~3 units, no search.list que son100).
  * Requiere YOUTUBE_API_KEY. Sin key o error → null (la sección no se rompe).
  * Cache server-side1h: todos los visitantes comparten la misma respuesta.
  */
-export async function fetchTeleredLiveKart(): Promise<TeleredVideo | null> {
-  if (!isWeekendCr()) return null;
+export async function fetchTeleredLiveKart(
+  enabled: boolean
+): Promise<TeleredVideo | null> {
+  if (!enabled) return null;
   const key = process.env.YOUTUBE_API_KEY;
   if (!key) return null;
   try {
