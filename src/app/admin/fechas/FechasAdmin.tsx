@@ -330,11 +330,12 @@ export default function AdminFechasPage() {
                     id="fd-price"
                     type="number"
                     min="0"
-                    step="500"
+                    step="1"
                     value={priceBase}
                     onChange={(e) => setPriceBase(e.target.value)}
                     placeholder="35"
-                    className="admin-input pl-8 font-mono tabular-nums"
+                    className="admin-input font-mono tabular-nums"
+                    style={{ paddingLeft: "1.75rem" }}
                   />
                 </div>
                 <p className="mt-1 text-[11px] text-[var(--text-dim)]">
