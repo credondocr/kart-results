@@ -18,41 +18,37 @@ function split(ms: number) {
 }
 
 export default function NextRaceCountdown({ targetIso }: Props) {
-  const [left, setLeft] = useState<ReturnType<typeof split>>(() =>
-    split(new Date(targetIso).getTime() - Date.now())
-  );
+  // null en SSR + primer render de cliente → evita hydration mismatch con Date.now()
+  const [left, setLeft] = useState<ReturnType<typeof split>>(null);
 
   useEffect(() => {
-    const t = setInterval(() => {
+    const tick = () =>
       setLeft(split(new Date(targetIso).getTime() - Date.now()));
-    }, 1000);
+    tick();
+    const t = setInterval(tick, 1000);
     return () => clearInterval(t);
   }, [targetIso]);
 
-  if (!left) {
-    return (
-      <p className="font-mono text-sm tabular-nums text-[var(--text-dim)]">
-        La fecha ya comenzó
-      </p>
-    );
-  }
-
-  const cells: Array<[string, number]> = [
-    ["Días", left.d],
-    ["Horas", left.h],
-    ["Min", left.m],
-    ["Seg", left.s],
+  const cells: Array<[string, number | null]> = [
+    ["Días", left?.d ?? null],
+    ["Horas", left?.h ?? null],
+    ["Min", left?.m ?? null],
+    ["Seg", left?.s ?? null],
   ];
 
   return (
-    <div className="grid grid-cols-4 gap-2" role="timer" aria-label="Cuenta regresiva a la próxima fecha">
+    <div
+      className="grid grid-cols-4 gap-2"
+      role="timer"
+      aria-label="Cuenta regresiva a la próxima fecha"
+    >
       {cells.map(([label, value]) => (
         <div
           key={label}
           className="rounded-lg border border-[var(--line)] bg-[var(--ink-950)]/60 px-2 py-2.5 text-center"
         >
           <span className="block font-mono text-xl font-bold tabular-nums text-white sm:text-2xl">
-            {String(value).padStart(2, "0")}
+            {value === null ? "··" : String(value).padStart(2, "0")}
           </span>
           <span className="mt-0.5 block text-[9px] font-bold uppercase tracking-[0.18em] text-[var(--text-dim)]">
             {label}

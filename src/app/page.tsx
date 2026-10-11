@@ -129,16 +129,6 @@ export default async function HomePage() {
     <main className="min-h-screen bg-[var(--ink-950)]">
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-[var(--line)] pb-14 pt-28 sm:pt-32">
-        {/* Watermark del logo: textura de marca, no un logo "pegado" */}
-        <Image
-          src="/logos/acek.png"
-          alt=""
-          aria-hidden="true"
-          width={1176}
-          height={704}
-          priority
-          className="pointer-events-none absolute -right-20 top-4 w-[min(70vw,640px)] select-none opacity-[0.06] mix-blend-screen lg:-right-10 lg:top-8 lg:w-[min(48vw,720px)]"
-        />
         <div
           className="pointer-events-none absolute -right-16 top-0 hidden h-full w-20 rotate-12 bg-[repeating-linear-gradient(180deg,#4C8DFF_0_18px,transparent_18px_36px)] opacity-30 lg:block"
           aria-hidden="true"
@@ -284,9 +274,18 @@ export default async function HomePage() {
 
       <CategoryMarquee items={activeCategories()} />
 
-      {/* Tagline */}
+      {/* Tagline + sello de marca */}
       <section className="border-b border-[var(--line)] py-20 sm:py-28" aria-label="Manifiesto">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <Image
+              src="/logos/acek.png"
+              alt="Costa Rica Kart Championship"
+              width={1176}
+              height={704}
+              className="mb-8 h-auto w-28 opacity-90 sm:w-32"
+            />
+          </Reveal>
           <TaglineReveal text="Cinco fechas un campeonato el mismo reloj para todos" />
         </div>
       </section>
