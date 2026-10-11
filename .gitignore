@@ -49,3 +49,4 @@ skills-lock.json
 
 # fotos originales de pilotos (fuente; el normalizado va a public/pilotos)
 /pilotos/
+acek-*.json

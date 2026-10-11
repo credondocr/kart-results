@@ -17,6 +17,7 @@ const NAV_SECTIONS = [
       { href: "/equipos", label: "Equipos" },
       { href: "/en-vivo", label: "En vivo", live: true },
       { href: "/transmisiones", label: "Transmisiones" },
+      { href: "/galeria", label: "Galería" },
       { href: "/inscribir", label: "Inscribirme" },
     ],
   },

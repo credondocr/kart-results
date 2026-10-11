@@ -25,6 +25,20 @@ const nextConfig: NextConfig = {
         pathname: '/vi/**',
         search: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'drive.google.com',
+        port: '',
+        pathname: '/**',
+        search: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        port: '',
+        pathname: '/**',
+        search: '',
+      },
     ],
   },
 };
