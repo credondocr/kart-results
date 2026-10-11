@@ -4,6 +4,7 @@ import Image from "next/image";
 import { db, dbUrl } from "@/lib/db";
 import { TEAMS } from "@/data/drivers/teams";
 import pilotPhotos from "@/data/pilotPhotos.json";
+import { Championships } from "@/data/history";
 import { findPilotProfileByName, pilotLinkHref } from "@/app/utils/pilotLinks";
 import NextRaceCountdown from "@/app/components/landing/NextRaceCountdown";
 import TaglineReveal from "@/app/components/landing/TaglineReveal";
@@ -42,18 +43,22 @@ async function getNextRace(): Promise<NextRace | null> {
   }
 }
 
-const CATEGORIES = [
-  "Kid Kart",
-  "Stars of Tomorrow",
-  "Mini Rok",
-  "Micro Rok",
-  "LO 206",
-  "Tillotson",
-  "VLR Junior",
-  "VLR Senior",
-  "VLR Master",
-  "Rok Shifter",
-];
+/** Categorías con datos en la temporada en curso (año actual o la última). */
+function activeCategories(): string[] {
+  const nowYear = String(new Date().getFullYear());
+  const champ =
+    Championships.years.find((c) => c.year === nowYear) ??
+    [...Championships.years].sort((a, b) => Number(b.year) - Number(a.year))[0];
+  const names = new Set<string>();
+  for (const season of ["invierno", "verano"] as const) {
+    for (const cls of champ?.[season]?.classes ?? []) {
+      const named = cls.categories.filter((c) => c.name);
+      if (named.length) named.forEach((c) => names.add(c.name));
+      else if (cls.title) names.add(cls.title);
+    }
+  }
+  return [...names];
+}
 
 interface Face {
   file: string;
@@ -258,7 +263,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <CategoryMarquee items={CATEGORIES} />
+      <CategoryMarquee items={activeCategories()} />
 
       {/* Tagline */}
       <section className="border-b border-[var(--line)] py-20 sm:py-28" aria-label="Manifiesto">
