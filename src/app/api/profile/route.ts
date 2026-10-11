@@ -130,14 +130,13 @@ export async function PUT(request: Request) {
     const year = String(new Date().getFullYear());
     const teamVal = team ?? "";
     try {
-      await sql.unsafe(
-        `UPDATE pilots SET
-          team = $1,
-          teams = COALESCE(teams, '{}'::jsonb) || jsonb_build_object($2::text, $3::text),
+      await sql`
+        UPDATE pilots SET
+          team = ${team ?? null},
+          teams = COALESCE(teams, '{}'::jsonb) || jsonb_build_object(${year}::text, ${teamVal}::text),
           updated_at = now()
-        WHERE key = $4`,
-        [team ?? null, year, teamVal, user.pilot_key]
-      );
+        WHERE key = ${user.pilot_key}
+      `;
     } catch (err) {
       console.error("[profile] sync pilots team failed", err);
     }
