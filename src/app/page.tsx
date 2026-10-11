@@ -25,16 +25,20 @@ interface NextRace {
   race_date: string;
   location: string | null;
   categories: string[];
+  status: string;
 }
 
 async function getNextRace(): Promise<NextRace | null> {
   if (!dbUrl()) return null;
   try {
     const sql = db();
+    // Muestra la fecha si está abierta o cerrada, hasta el día de la carrera
+    // (cerrada = no admite más inscripciones, pero el card sigue visible).
     const rows = (await sql`
-      SELECT id, name, race_date, location, categories
+      SELECT id, name, race_date, location, categories, status
       FROM race_dates
-      WHERE status = 'open' AND race_date > now()
+      WHERE status IN ('open', 'closed')
+        AND race_date > now() - interval '1 day'
       ORDER BY race_date
       LIMIT 1
     `) as unknown as Array<NextRace>;
@@ -44,14 +48,14 @@ async function getNextRace(): Promise<NextRace | null> {
   }
 }
 
-/** Inscripciones aprobadas de la fecha abierta (hype en el landing). */
-async function getApprovedCount(raceDateId: number | null): Promise<number> {
+/** Inscripciones no rechazadas de la fecha (pending + verified + approved). */
+async function getRegisteredCount(raceDateId: number | null): Promise<number> {
   if (!raceDateId || !dbUrl()) return 0;
   try {
     const sql = db();
     const rows = (await sql`
       SELECT count(*)::int AS n FROM registrations
-      WHERE race_date_id = ${raceDateId} AND status = 'approved'
+      WHERE race_date_id = ${raceDateId} AND status != 'rejected'
     `) as unknown as Array<{ n: number }>;
     return rows[0]?.n ?? 0;
   } catch {
@@ -127,7 +131,7 @@ export default async function HomePage() {
   const race = await getNextRace();
   const broadcasts = await fetchTeleredKartVideos(3);
   const categories = await activeCategories();
-  const approvedCount = await getApprovedCount(race?.id ?? null);
+  const registeredCount = await getRegisteredCount(race?.id ?? null);
   const live = await fetchTeleredLiveKart(isLiveCheckWindow(race?.race_date));
   const heroFaces = sampleFaces(7);
   const avatars = heroFaces.slice(0, 4);
@@ -244,13 +248,19 @@ export default async function HomePage() {
                   </p>
                 </div>
                 {race ? (
-                  <span className="flex items-center gap-1.5 rounded-full bg-[#4C8DFF]/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[#4C8DFF]">
-                    <span className="relative flex h-1.5 w-1.5">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#4C8DFF] opacity-60" />
-                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#4C8DFF]" />
+                  race.status === "open" ? (
+                    <span className="flex items-center gap-1.5 rounded-full bg-[#4C8DFF]/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[#4C8DFF]">
+                      <span className="relative flex h-1.5 w-1.5">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#4C8DFF] opacity-60" />
+                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#4C8DFF]" />
+                      </span>
+                      Abiertas
                     </span>
-                    Abiertas
-                  </span>
+                  ) : (
+                    <span className="rounded-full bg-white/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[var(--text-dim)]">
+                      Cerradas
+                    </span>
+                  )
                 ) : null}
               </div>
               {race ? (
@@ -265,22 +275,28 @@ export default async function HomePage() {
                   <div className="mt-4">
                     <NextRaceCountdown targetIso={race.race_date} />
                   </div>
-                  {approvedCount > 0 ? (
+                  {registeredCount > 0 ? (
                     <p className="mt-3 flex items-center gap-2 text-sm text-[var(--text-dim)]">
                       <span className="font-mono text-lg font-bold tabular-nums text-white">
-                        {approvedCount}
+                        {registeredCount}
                       </span>
-                      {approvedCount === 1
-                        ? "piloto ya confirmado"
-                        : "pilotos ya confirmados"}
+                      {registeredCount === 1
+                        ? "piloto inscrito"
+                        : "pilotos inscritos"}
                     </p>
                   ) : null}
-                  <Link
-                    href="/inscribir"
-                    className="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-[#4C8DFF] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#3a7cf0]"
-                  >
-                    Inscribirme a esta fecha
-                  </Link>
+                  {race.status === "open" ? (
+                    <Link
+                      href="/inscribir"
+                      className="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-[#4C8DFF] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#3a7cf0]"
+                    >
+                      Inscribirme a esta fecha
+                    </Link>
+                  ) : (
+                    <p className="mt-4 rounded-lg border border-[var(--line)] px-4 py-2.5 text-center text-sm font-semibold text-[var(--text-dim)]">
+                      Inscripciones cerradas
+                    </p>
+                  )}
                 </>
               ) : (
                 <>
