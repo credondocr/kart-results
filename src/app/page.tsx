@@ -5,7 +5,7 @@ import { db, dbUrl } from "@/lib/db";
 import { TEAMS } from "@/data/drivers/teams";
 import pilotPhotos from "@/data/pilotPhotos.json";
 import { Championships } from "@/data/history";
-import { fetchTeleredKartVideos } from "@/app/utils/telered";
+import { fetchTeleredKartVideos, fetchTeleredLiveKart } from "@/app/utils/telered";
 import { findPilotProfileByName, pilotLinkHref } from "@/app/utils/pilotLinks";
 import NextRaceCountdown from "@/app/components/landing/NextRaceCountdown";
 import TaglineReveal from "@/app/components/landing/TaglineReveal";
@@ -111,9 +111,10 @@ const NEWS = [
 ];
 
 export default async function HomePage() {
-  const [race, broadcasts] = await Promise.all([
+  const [race, broadcasts, live] = await Promise.all([
     getNextRace(),
     fetchTeleredKartVideos(3),
+    fetchTeleredLiveKart(),
   ]);
   const heroFaces = sampleFaces(7);
   const avatars = heroFaces.slice(0, 4);
@@ -275,6 +276,66 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* EN VIVO Telered */}
+      {live && (
+        <section className="border-b border-[var(--line)] bg-red-500/[0.06] py-10">
+          <div className="mx-auto flex max-w-7xl flex-col items-start gap-6 px-4 sm:px-6 lg:flex-row lg:items-center lg:px-8">
+            <div className="min-w-0 flex-1">
+              <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-red-400">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
+                </span>
+                En vivo · Telered
+              </p>
+              <h2 className="mt-2 max-w-xl font-display text-2xl font-extrabold uppercase leading-tight tracking-tight text-white sm:text-3xl">
+                {live.title}
+              </h2>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <a
+                  href={live.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-5 py-3 text-base font-semibold text-white transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-red-500 active:scale-[0.98]"
+                >
+                  <svg viewBox="0 0 24 24" className="h-4 w-4 fill-white" aria-hidden="true">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                  Ver en YouTube
+                </a>
+                <a
+                  href={`/transmisiones`}
+                  className="inline-flex items-center rounded-lg border border-[var(--line-strong)] px-5 py-3 text-base font-semibold text-white transition-colors hover:border-red-400/60"
+                >
+                  Otras transmisiones
+                </a>
+              </div>
+            </div>
+            <a
+              href={live.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative block w-full max-w-md shrink-0 overflow-hidden rounded-2xl border border-red-500/40 lg:w-[420px]"
+            >
+              <Image
+                src={live.thumb}
+                alt={live.title}
+                width={480}
+                height={360}
+                className="aspect-video w-full object-cover"
+              />
+              <span className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/10">
+                <span className="flex h-14 w-14 items-center justify-center rounded-full bg-red-600 shadow-xl transition-transform duration-300 group-hover:scale-110">
+                  <svg viewBox="0 0 24 24" className="ml-1 h-6 w-6 fill-white" aria-hidden="true">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </span>
+              </span>
+            </a>
+          </div>
+        </section>
+      )}
 
       <CategoryMarquee items={activeCategories()} />
 

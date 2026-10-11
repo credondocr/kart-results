@@ -60,3 +60,75 @@ export async function fetchTeleredKartVideos(
     return [];
   }
 }
+
+/**
+ * ¿Es fin de semana en Costa Rica? (sáb/dom) — solo esos días consultamos
+ * la API de YouTube para el stream en vivo; entre semana ni gastamos units.
+ */
+function isWeekendCr(): boolean {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Costa_Rica",
+    weekday: "short",
+  }).format(new Date());
+  return parts === "Sat" || parts === "Sun";
+}
+
+/**
+ * ¿Está Telered transmitiendo kartismo en vivo ahora?
+ * Solo consulta la API sábados y domingos (día de carrera).
+ * Usa uploads playlist + videos.list (~3 units, no search.list que son100).
+ * Requiere YOUTUBE_API_KEY. Sin key o error → null (la sección no se rompe).
+ * Cache server-side1h: todos los visitantes comparten la misma respuesta.
+ */
+export async function fetchTeleredLiveKart(): Promise<TeleredVideo | null> {
+  if (!isWeekendCr()) return null;
+  const key = process.env.YOUTUBE_API_KEY;
+  if (!key) return null;
+  try {
+    // Uploads playlist de un channel UC... es UU + resto
+    const uploads = `UU${CHANNEL_ID.slice(2)}`;
+    const listUrl =
+      "https://www.googleapis.com/youtube/v3/playlistItems" +
+      `?part=contentDetails&playlistId=${uploads}&maxResults=5&key=${key}`;
+    const listRes = await fetch(listUrl, { next: { revalidate: 3600 } });
+    if (!listRes.ok) return null;
+    const list = (await listRes.json()) as {
+      items?: Array<{ contentDetails?: { videoId?: string } }>;
+    };
+    const ids = (list.items ?? [])
+      .map((i) => i.contentDetails?.videoId)
+      .filter((id): id is string => Boolean(id));
+    if (!ids.length) return null;
+
+    const videosUrl =
+      "https://www.googleapis.com/youtube/v3/videos" +
+      `?part=snippet,liveStreamingDetails&id=${ids.join(",")}&key=${key}`;
+    const videosRes = await fetch(videosUrl, { next: { revalidate: 3600 } });
+    if (!videosRes.ok) return null;
+    const videos = (await videosRes.json()) as {
+      items?: Array<{
+        id?: string;
+        snippet?: { title?: string; publishedAt?: string };
+        liveStreamingDetails?: { actualStartTime?: string; actualEndTime?: string };
+      }>;
+    };
+    for (const v of videos.items ?? []) {
+      const details = v.liveStreamingDetails;
+      const isLiveNow = Boolean(
+        details?.actualStartTime && !details.actualEndTime
+      );
+      if (!isLiveNow || !v.id || !v.snippet?.title) continue;
+      if (!isKart(v.snippet.title)) continue;
+      return {
+        id: v.id,
+        title: v.snippet.title,
+        publishedAt: v.snippet.publishedAt ?? "",
+        thumb: `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`,
+        url: `https://www.youtube.com/watch?v=${v.id}`,
+      };
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
