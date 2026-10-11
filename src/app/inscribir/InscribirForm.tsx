@@ -31,7 +31,7 @@ const STATUS_LABEL: Record<string, string> = {
 export default function InscribirForm({ openDate }: { openDate: OpenDate | null }) {
   const [existing, setExisting] = useState<ExistingReg | null>(null);
   const [loading, setLoading] = useState(true);
-  const [cats, setCats] = useState<string[]>([]);
+  const [cats, setCats] = useState<string[]>(openDate?.categories ?? []);
   const [payment, setPayment] = useState<"transfer" | "track">("transfer");
   const [transponder, setTransponder] = useState("");
   const [ticket, setTicket] = useState<File | null>(null);
