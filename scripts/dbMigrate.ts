@@ -91,7 +91,31 @@ async function main() {
       created_at TIMESTAMPTZ NOT NULL DEFAULT now()
     )
   `;
-  console.log("Migración OK: tablas pilots + teams + penalties + users + invitations + race_dates.");
+  await sql`
+    CREATE TABLE IF NOT EXISTS registrations (
+      id SERIAL PRIMARY KEY,
+      race_date_id INT NOT NULL REFERENCES race_dates(id),
+      user_id INT NOT NULL REFERENCES users(id),
+      license_accr TEXT,
+      transponder TEXT,
+      payment_method TEXT NOT NULL CHECK (payment_method IN ('transfer', 'track')),
+      ticket_url TEXT,
+      amount_total NUMERIC,
+      categories JSONB NOT NULL DEFAULT '[]'::jsonb,
+      team_slug TEXT,
+      status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'verified', 'approved', 'rejected')),
+      rejection_note TEXT,
+      ack_responsibility BOOLEAN NOT NULL DEFAULT false,
+      verified_by INT REFERENCES users(id),
+      verified_at TIMESTAMPTZ,
+      approved_by INT REFERENCES users(id),
+      approved_at TIMESTAMPTZ,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+      UNIQUE (race_date_id, user_id)
+    )
+  `;
+  console.log("Migración OK: tablas pilots + teams + penalties + users + invitations + race_dates + registrations.");
 }
 
 main().catch((err) => {

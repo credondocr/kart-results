@@ -75,3 +75,90 @@ export async function sendInviteEmail(input: InviteEmailInput): Promise<boolean>
     return false;
   }
 }
+
+async function sendSafe(
+  to: string,
+  subject: string,
+  title: string,
+  body: string
+): Promise<boolean> {
+  const resend = client();
+  if (!resend) return false;
+  try {
+    const { error } = await resend.emails.send({
+      from: FROM,
+      to,
+      subject,
+      html: layout(title, body),
+    });
+    if (error) {
+      console.error("[email] error:", error);
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.error("[email] exception:", err);
+    return false;
+  }
+}
+
+/** Confirmación de inscripción recibida. */
+export async function sendRegistrationReceived(input: {
+  to: string;
+  name: string;
+  eventName: string;
+  categories: string[];
+  paymentMethod: string;
+  amountTotal: number | null;
+}): Promise<boolean> {
+  const cats = input.categories.map((c) => `• ${c}`).join("<br>");
+  const pago =
+    input.paymentMethod === "track"
+      ? "Pagarás en pista."
+      : input.amountTotal
+        ? `Monto a transferir: <strong>₡${Number(input.amountTotal).toLocaleString("es-CR")}</strong>. Sube tu comprobante y el admin lo verifica.`
+        : "Revisa el estado con el admin.";
+  return sendSafe(
+    input.to,
+    `Inscripción recibida — ${input.eventName}`,
+    `Inscripción recibida, ${input.name}`,
+    `
+    <p style="font-size:14px;color:#C6CBDB">Recibimos tu inscripción a <strong style="color:#E8EAF2">${input.eventName}</strong>:</p>
+    <p style="font-size:14px;color:#C6CBDB">${cats}</p>
+    <p style="font-size:14px;color:#C6CBDB">${pago}</p>
+    <p style="font-size:13px;color:#9BA3BD">Te avisaremos cuando el admin verifique y apruebe tu inscripción.</p>
+    `
+  );
+}
+
+/** Estado de la inscripción cambió. */
+export async function sendRegistrationStatus(input: {
+  to: string;
+  name: string;
+  eventName: string;
+  status: "verified" | "approved" | "rejected";
+  note?: string | null;
+}): Promise<boolean> {
+  if (input.status === "verified") {
+    return sendSafe(
+      input.to,
+      `Pago verificado — ${input.eventName}`,
+      `Pago verificado, ${input.name}`,
+      `<p style="font-size:14px;color:#C6CBDB">Verificamos tu pago para <strong>${input.eventName}</strong>. Falta la aprobación final.</p>`
+    );
+  }
+  if (input.status === "approved") {
+    return sendSafe(
+      input.to,
+      `¡Inscripción aprobada! — ${input.eventName}`,
+      `¡Listo para correr, ${input.name}!`,
+      `<p style="font-size:14px;color:#C6CBDB">Tu inscripción a <strong>${input.eventName}</strong> fue <strong style="color:#4C8DFF">aprobada</strong>. Nos vemos en el paddock.</p>`
+    );
+  }
+  return sendSafe(
+    input.to,
+    `Inscripción no aprobada — ${input.eventName}`,
+    `Inscripción no aprobada, ${input.name}`,
+    `<p style="font-size:14px;color:#C6CBDB">Tu inscripción a <strong>${input.eventName}</strong> no fue aprobada.${input.note ? `<br><br>Motivo: ${input.note}` : ""}</p>`
+  );
+}
