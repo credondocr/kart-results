@@ -48,7 +48,7 @@ export default function ProfileClient() {
     try {
       const [profRes, teamsRes] = await Promise.all([
         fetch("/api/profile"),
-        fetch("/api/admin/teams"),
+        fetch("/api/teams"),
       ]);
       if (profRes.status === 401) {
         router.push("/login");
