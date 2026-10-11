@@ -128,12 +128,13 @@ export default function GalleryViewer({ photos, title }: Props) {
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="flex h-10 w-10 items-center justify-center rounded-full text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+              className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/20"
               aria-label="Cerrar"
             >
-              <svg viewBox="0 0 24 24" className="h-6 w-6 fill-none stroke-current" strokeWidth="2">
+              <svg viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current" strokeWidth="2.5">
                 <path d="M18 6L6 18M6 6l12 12" />
               </svg>
+              Cerrar
             </button>
           </div>
 
