@@ -54,6 +54,8 @@ async function main() {
       license_accr TEXT UNIQUE,
       team_slug TEXT,
       pilot_key TEXT,
+      bio TEXT,
+      parent_id INT REFERENCES users(id),
       created_at TIMESTAMPTZ NOT NULL DEFAULT now()
     )
   `;

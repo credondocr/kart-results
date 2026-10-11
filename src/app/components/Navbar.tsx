@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -32,8 +32,16 @@ const Navbar: React.FC = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [authed, setAuthed] = useState(false);
   const searchButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
+
+  useEffect(() => {
+    fetch("/api/auth/me")
+      .then((r) => r.json())
+      .then((d) => setAuthed(Boolean(d.user)))
+      .catch(() => setAuthed(false));
+  }, [pathname]);
 
   const closeSearch = () => {
     setSearchOpen(false);
@@ -157,6 +165,18 @@ const Navbar: React.FC = () => {
                 <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
               )}
             </Link>
+            {authed ? (
+              <Link href="/perfil" className={linkClass("/perfil")}>
+                Perfil
+                {isActive("/perfil") && (
+                  <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
+                )}
+              </Link>
+            ) : (
+              <Link href="/login" className={linkClass("/login")}>
+                Entrar
+              </Link>
+            )}
             <button
               ref={searchButtonRef}
               type="button"
@@ -239,6 +259,25 @@ const Navbar: React.FC = () => {
           >
             FAQ
           </Link>
+          {authed ? (
+            <Link
+              href="/perfil"
+              className={`block px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-colors text-white hover:bg-white/5 ${isActive('/perfil') ? 'bg-white/10' : ''
+                }`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Perfil
+            </Link>
+          ) : (
+            <Link
+              href="/login"
+              className={`block px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-colors text-white hover:bg-white/5 ${isActive('/login') ? 'bg-white/10' : ''
+                }`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Entrar
+            </Link>
+          )}
         </div>
       </div>
 

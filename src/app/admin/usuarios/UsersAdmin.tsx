@@ -12,6 +12,7 @@ interface UserRow {
   license_accr: string | null;
   team_slug: string | null;
   pilot_key: string | null;
+  parent_id: number | null;
   created_at: string;
 }
 
@@ -32,6 +33,7 @@ export default function AdminUsersPage() {
   const [pilotLabel, setPilotLabel] = useState("");
   const [pilotQuery, setPilotQuery] = useState("");
   const [pilotHits, setPilotHits] = useState<PilotHit[]>([]);
+  const [parentId, setParentId] = useState<string>("");
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
 
@@ -81,6 +83,7 @@ export default function AdminUsersPage() {
     setPilotKey(u.pilot_key);
     setPilotLabel(u.pilot_key ?? "");
     setPilotQuery("");
+    setParentId(u.parent_id ? String(u.parent_id) : "");
     setMessage(null);
   };
 
@@ -96,6 +99,7 @@ export default function AdminUsersPage() {
           name,
           license_accr: license || null,
           pilot_key: pilotKey,
+          parent_id: parentId || null,
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -238,6 +242,29 @@ export default function AdminUsersPage() {
                     className="admin-input font-mono"
                   />
                 </div>
+
+                {editing.role === "piloto" ? (
+                  <div>
+                    <label className="admin-label">Tutor / padre (opcional)</label>
+                    <select
+                      value={parentId}
+                      onChange={(e) => setParentId(e.target.value)}
+                      className="admin-input"
+                    >
+                      <option value="">— Sin tutor —</option>
+                      {users
+                        .filter((u) => u.id !== editing.id)
+                        .map((u) => (
+                          <option key={u.id} value={u.id}>
+                            {u.name} ({u.email})
+                          </option>
+                        ))}
+                    </select>
+                    <p className="mt-1 text-[11px] text-[var(--text-dim)]">
+                      El tutor podrá editar este perfil desde /perfil.
+                    </p>
+                  </div>
+                ) : null}
 
                 {editing.role === "piloto" ? (
                   <div className="relative">

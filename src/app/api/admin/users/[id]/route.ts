@@ -30,7 +30,7 @@ export async function PUT(request: Request, { params }: Params) {
 
   const sql = db();
   const current = (await sql`
-    SELECT id, name, license_accr, team_slug, pilot_key
+    SELECT id, name, license_accr, team_slug, pilot_key, parent_id
     FROM users WHERE id = ${idNum}
   `) as unknown as Array<{
     id: number;
@@ -38,6 +38,7 @@ export async function PUT(request: Request, { params }: Params) {
     license_accr: string | null;
     team_slug: string | null;
     pilot_key: string | null;
+    parent_id: number | null;
   }>;
   const row = current[0];
   if (!row) {
@@ -66,6 +67,12 @@ export async function PUT(request: Request, { params }: Params) {
         ? null
         : String(body.pilot_key)
       : row.pilot_key;
+  const parentId =
+    body?.parent_id !== undefined
+      ? body.parent_id == null || body.parent_id === ""
+        ? null
+        : Number(body.parent_id)
+      : row.parent_id;
 
   if (license) {
     const dup = (await sql`
@@ -84,9 +91,10 @@ export async function PUT(request: Request, { params }: Params) {
       name = ${name},
       license_accr = ${license},
       team_slug = ${team},
-      pilot_key = ${pilotKey}
+      pilot_key = ${pilotKey},
+      parent_id = ${parentId}
     WHERE id = ${idNum}
-    RETURNING id, email, role, name, license_accr, team_slug, pilot_key
+    RETURNING id, email, role, name, license_accr, team_slug, pilot_key, parent_id
   `) as unknown as Array<Record<string, unknown>>;
 
   return NextResponse.json({ user: updated[0] });

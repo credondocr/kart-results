@@ -11,7 +11,7 @@ export async function GET(request: Request) {
   }
   const sql = db();
   const rows = (await sql`
-    SELECT id, email, role, name, license_accr, team_slug, pilot_key, created_at
+    SELECT id, email, role, name, license_accr, team_slug, pilot_key, parent_id, created_at
     FROM users
     ORDER BY role, name
     LIMIT 300
