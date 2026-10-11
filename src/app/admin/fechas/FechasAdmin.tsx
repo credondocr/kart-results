@@ -182,76 +182,173 @@ export default function AdminFechasPage() {
           <AdminNav />
         </div>
 
+        {/* Crear fecha */}
         <form
           onSubmit={create}
-          className="mt-6 space-y-3 rounded-xl border border-[var(--line)] bg-[var(--surface-2)]/40 p-4"
+          className="mt-6 rounded-2xl border border-[var(--line)] bg-[var(--surface-2)]/40"
         >
-          <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--text-dim)]">
-            Nueva fecha (abre inscripciones)
-          </p>
-          <div className="grid gap-3 sm:grid-cols-3">
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="CRKC — Fecha X"
-              required
-              className="admin-input sm:col-span-2"
-            />
-            <input
-              type="datetime-local"
-              value={raceDate}
-              onChange={(e) => setRaceDate(e.target.value)}
-              required
-              className="admin-input"
-            />
-            <input
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              className="admin-input"
-              placeholder="Circuito"
-            />
-            <input
-              type="number"
-              min="0"
-              step="500"
-              value={priceBase}
-              onChange={(e) => setPriceBase(e.target.value)}
-              className="admin-input"
-              placeholder="Precio por categoría ₡"
-            />
+          <div className="border-b border-[var(--line)] px-5 py-4">
+            <h2 className="font-display text-lg font-extrabold uppercase tracking-tight text-white">
+              Nueva fecha
+            </h2>
+            <p className="mt-0.5 text-xs text-[var(--text-dim)]">
+              Al crearla, las inscripciones quedan <strong className="text-emerald-400">abiertas</strong> de inmediato. Solo puede haber una fecha abierta a la vez.
+            </p>
           </div>
-          <div className="flex flex-wrap gap-1.5">
-            {DEFAULT_CATS.map((c) => (
-              <button
-                key={c}
-                type="button"
-                onClick={() => toggleCat(c)}
-                className={`rounded-md border px-2 py-1 text-[10px] font-bold uppercase tracking-wide transition-colors ${
-                  categories.includes(c)
-                    ? "border-[#4C8DFF]/60 bg-[#4C8DFF]/15 text-[#4C8DFF]"
-                    : "border-[var(--line)] text-[var(--text-dim)]"
+
+          <div className="space-y-6 p-5">
+            {/* 1. Qué */}
+            <fieldset className="space-y-3">
+              <legend className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#4C8DFF]">
+                1 · El evento
+              </legend>
+              <div>
+                <label htmlFor="fd-name" className="admin-label">
+                  Nombre de la fecha
+                </label>
+                <input
+                  id="fd-name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="CRKC Invierno — Fecha 3"
+                  required
+                  className="admin-input"
+                />
+                <p className="mt-1 text-[11px] text-[var(--text-dim)]">
+                  Como lo verá el piloto en el formulario de inscripción.
+                </p>
+              </div>
+            </fieldset>
+
+            {/* 2. Cuándo y dónde */}
+            <fieldset className="space-y-3">
+              <legend className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#4C8DFF]">
+                2 · Cuándo y dónde
+              </legend>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="fd-date" className="admin-label">
+                    Día y hora de carrera
+                  </label>
+                  <input
+                    id="fd-date"
+                    type="datetime-local"
+                    value={raceDate}
+                    onChange={(e) => setRaceDate(e.target.value)}
+                    required
+                    className="admin-input"
+                  />
+                  <p className="mt-1 text-[11px] text-[var(--text-dim)]">
+                    Se usa para la cuenta regresiva del landing y para el chequeo del stream en vivo.
+                  </p>
+                </div>
+                <div>
+                  <label htmlFor="fd-loc" className="admin-label">
+                    Circuito o sede
+                  </label>
+                  <input
+                    id="fd-loc"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                    placeholder="Cartama, Costa Rica"
+                    className="admin-input"
+                  />
+                </div>
+              </div>
+            </fieldset>
+
+            {/* 3. Categorías */}
+            <fieldset className="space-y-3">
+              <legend className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#4C8DFF]">
+                3 · Categorías inscribibles
+              </legend>
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                {DEFAULT_CATS.map((c) => {
+                  const on = categories.includes(c);
+                  return (
+                    <label
+                      key={c}
+                      className={`flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2.5 text-[11px] font-bold uppercase tracking-wide transition-colors ${
+                        on
+                          ? "border-[#4C8DFF]/60 bg-[#4C8DFF]/12 text-white"
+                          : "border-[var(--line)] text-[var(--text-dim)] hover:border-[var(--line-strong)]"
+                      }`}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={on}
+                        onChange={() => toggleCat(c)}
+                        className="accent-[#4C8DFF]"
+                      />
+                      {c}
+                    </label>
+                  );
+                })}
+              </div>
+              <p className="text-[11px] text-[var(--text-dim)]">
+                Las que no marques no aparecerán a los pilotos. Podés cambiarlo después editando la fecha.
+              </p>
+            </fieldset>
+
+            {/* 4. Precio */}
+            <fieldset className="space-y-3">
+              <legend className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#4C8DFF]">
+                4 · Precio
+              </legend>
+              <div className="max-w-xs">
+                <label htmlFor="fd-price" className="admin-label">
+                  Colones por categoría
+                </label>
+                <div className="relative">
+                  <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--text-dim)]">
+                    ₡
+                  </span>
+                  <input
+                    id="fd-price"
+                    type="number"
+                    min="0"
+                    step="500"
+                    value={priceBase}
+                    onChange={(e) => setPriceBase(e.target.value)}
+                    placeholder="35000"
+                    className="admin-input pl-8 font-mono tabular-nums"
+                  />
+                </div>
+                <p className="mt-1 text-[11px] text-[var(--text-dim)]">
+                  Se multiplica por la cantidad de categorías que elija el piloto.
+                  {priceBase && Number(priceBase) > 0 ? (
+                    <span className="text-white">
+                      {" "}
+                      Ej.: quien corre2 categorías paga{" "}
+                      <strong className="font-mono">
+                        ₡{(Number(priceBase) * 2).toLocaleString("es-CR")}
+                      </strong>
+                      .
+                    </span>
+                  ) : null}
+                </p>
+              </div>
+            </fieldset>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3 border-t border-[var(--line)] px-5 py-4">
+            <button
+              type="submit"
+              disabled={saving || !name || !raceDate || categories.length === 0}
+              className="rounded-lg bg-[#4C8DFF] px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-white hover:bg-[#3a7cf0] disabled:opacity-50"
+            >
+              {saving ? "Creando…" : "Crear fecha e abrir inscripciones"}
+            </button>
+            {message ? (
+              <p
+                className={`text-sm ${
+                  message.startsWith("Error") ? "text-red-400" : "text-emerald-400"
                 }`}
               >
-                {c}
-              </button>
-            ))}
+                {message}
+              </p>
+            ) : null}
           </div>
-          <button
-            type="submit"
-            disabled={saving}
-            className="rounded-lg bg-[#4C8DFF] px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-white hover:bg-[#3a7cf0] disabled:opacity-50"
-          >
-            {saving ? "Creando…" : "Crear e abrir"}
-          </button>
-          {message ? (
-            <p
-              className={`text-sm ${
-                message.startsWith("Error") ? "text-red-400" : "text-emerald-400"
-              }`}
-            >
-              {message}
-            </p>
-          ) : null}
         </form>
 
         <div className="mt-6 overflow-hidden rounded-xl border border-[var(--line)]">
