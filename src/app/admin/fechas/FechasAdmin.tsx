@@ -14,25 +14,21 @@ interface RaceDate {
   price_base: number | null;
 }
 
-const DEFAULT_CATS = [
-  "KID KART",
-  "STARS OF TOMORROW",
-  "MINI ROK",
-  "MICRO ROK",
-  "LO 206",
-  "TILLOTSON",
-  "VLR",
-  "ROK SHIFTER",
-];
+interface CatOption {
+  id: number;
+  name: string;
+  active: boolean;
+}
 
 export default function AdminFechasPage() {
   const router = useRouter();
   const [dates, setDates] = useState<RaceDate[]>([]);
+  const [catOptions, setCatOptions] = useState<CatOption[]>([]);
   const [loading, setLoading] = useState(true);
   const [name, setName] = useState("");
   const [raceDate, setRaceDate] = useState("");
   const [location, setLocation] = useState("Costa Rica");
-  const [categories, setCategories] = useState<string[]>(DEFAULT_CATS);
+  const [categories, setCategories] = useState<string[]>([]);
   const [priceBase, setPriceBase] = useState("35000");
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -42,16 +38,24 @@ export default function AdminFechasPage() {
   const [editPrice, setEditPrice] = useState("");
   const [editLocation, setEditLocation] = useState("");
 
+  const activeCatNames = catOptions.filter((c) => c.active).map((c) => c.name);
+  const allCatNames = catOptions.map((c) => c.name);
+
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/admin/race-dates");
-      if (res.status === 401) {
+      const [datesRes, catsRes] = await Promise.all([
+        fetch("/api/admin/race-dates"),
+        fetch("/api/categories"),
+      ]);
+      if (datesRes.status === 401) {
         router.push("/login");
         return;
       }
-      const data = await res.json();
-      setDates(data.dates ?? []);
+      const datesData = await datesRes.json();
+      setDates(datesData.dates ?? []);
+      const catsData = await catsRes.json();
+      setCatOptions(catsData.categories ?? []);
     } finally {
       setLoading(false);
     }
@@ -130,7 +134,7 @@ export default function AdminFechasPage() {
   };
 
   const allCats = Array.from(
-    new Set([...DEFAULT_CATS, ...dates.flatMap((d) => d.categories ?? [])])
+    new Set([...allCatNames, ...dates.flatMap((d) => d.categories ?? [])])
   );
 
   const saveEdit = async () => {
@@ -263,7 +267,7 @@ export default function AdminFechasPage() {
                 3 · Categorías inscribibles
               </legend>
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-                {DEFAULT_CATS.map((c) => {
+                {activeCatNames.map((c) => {
                   const on = categories.includes(c);
                   return (
                     <label
@@ -286,7 +290,7 @@ export default function AdminFechasPage() {
                 })}
               </div>
               <p className="text-[11px] text-[var(--text-dim)]">
-                Las que no marques no aparecerán a los pilotos. Podés cambiarlo después editando la fecha.
+                Solo las categorías <strong className="text-emerald-400">activas</strong> del catálogo (pestaña Categorías). Las que no marques no aparecerán a los pilotos.
               </p>
             </fieldset>
 

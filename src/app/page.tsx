@@ -4,7 +4,6 @@ import Image from "next/image";
 import { db, dbUrl } from "@/lib/db";
 import { TEAMS } from "@/data/drivers/teams";
 import pilotPhotos from "@/data/pilotPhotos.json";
-import { Championships } from "@/data/history";
 import { fetchTeleredKartVideos, fetchTeleredLiveKart, isLiveCheckWindow } from "@/app/utils/telered";
 import { findPilotProfileByName, pilotLinkHref } from "@/app/utils/pilotLinks";
 import NextRaceCountdown from "@/app/components/landing/NextRaceCountdown";
@@ -44,21 +43,19 @@ async function getNextRace(): Promise<NextRace | null> {
   }
 }
 
-/** Categorías con datos en la temporada en curso (año actual o la última). */
-function activeCategories(): string[] {
-  const nowYear = String(new Date().getFullYear());
-  const champ =
-    Championships.years.find((c) => c.year === nowYear) ??
-    [...Championships.years].sort((a, b) => Number(b.year) - Number(a.year))[0];
-  const names = new Set<string>();
-  for (const season of ["invierno", "verano"] as const) {
-    for (const cls of champ?.[season]?.classes ?? []) {
-      const named = cls.categories.filter((c) => c.name);
-      if (named.length) named.forEach((c) => names.add(c.name));
-      else if (cls.title) names.add(cls.title);
-    }
+/** Categorías activas en la DB (catálogo admin); fallback vacío. */
+async function activeCategories(): Promise<string[]> {
+  if (!dbUrl()) return [];
+  try {
+    const sql = db();
+    const rows = (await sql`
+      SELECT name FROM categories WHERE active = true
+      ORDER BY sort_order, name
+    `) as unknown as Array<{ name: string }>;
+    return rows.map((r) => r.name);
+  } catch {
+    return [];
   }
-  return [...names];
 }
 
 interface Face {
@@ -113,6 +110,7 @@ const NEWS = [
 export default async function HomePage() {
   const race = await getNextRace();
   const broadcasts = await fetchTeleredKartVideos(3);
+  const categories = await activeCategories();
   const live = await fetchTeleredLiveKart(isLiveCheckWindow(race?.race_date));
   const heroFaces = sampleFaces(7);
   const avatars = heroFaces.slice(0, 4);
@@ -335,7 +333,7 @@ export default async function HomePage() {
         </section>
       )}
 
-      <CategoryMarquee items={activeCategories()} />
+      {categories.length > 0 && <CategoryMarquee items={categories} />}
 
       {/* Tagline + sello de marca */}
       <section className="border-b border-[var(--line)] py-20 sm:py-28" aria-label="Manifiesto">

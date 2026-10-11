@@ -115,7 +115,17 @@ async function main() {
       UNIQUE (race_date_id, user_id)
     )
   `;
-  console.log("Migración OK: tablas pilots + teams + penalties + users + invitations + race_dates + registrations.");
+  await sql`
+    CREATE TABLE IF NOT EXISTS categories (
+      id SERIAL PRIMARY KEY,
+      name TEXT NOT NULL UNIQUE,
+      slug TEXT NOT NULL UNIQUE,
+      active BOOLEAN NOT NULL DEFAULT true,
+      sort_order INT NOT NULL DEFAULT 0,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `;
+  console.log("Migración OK: tablas pilots + teams + penalties + users + invitations + race_dates + registrations + categories.");
 }
 
 main().catch((err) => {
