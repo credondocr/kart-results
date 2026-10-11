@@ -129,6 +129,16 @@ export default async function HomePage() {
     <main className="min-h-screen bg-[var(--ink-950)]">
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-[var(--line)] pb-14 pt-28 sm:pt-32">
+        {/* Watermark del logo: textura de marca, no un logo "pegado" */}
+        <Image
+          src="/logos/acek.png"
+          alt=""
+          aria-hidden="true"
+          width={1176}
+          height={704}
+          priority
+          className="pointer-events-none absolute -right-20 top-4 w-[min(70vw,640px)] select-none opacity-[0.06] mix-blend-screen lg:-right-10 lg:top-8 lg:w-[min(48vw,720px)]"
+        />
         <div
           className="pointer-events-none absolute -right-16 top-0 hidden h-full w-20 rotate-12 bg-[repeating-linear-gradient(180deg,#4C8DFF_0_18px,transparent_18px_36px)] opacity-30 lg:block"
           aria-hidden="true"
@@ -212,10 +222,19 @@ export default async function HomePage() {
             </div>
 
             <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface-2)]/60 p-5 sm:p-6">
-              <div className="flex items-center justify-between">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-dim)]">
-                  Próxima fecha
-                </p>
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5">
+                  <Image
+                    src="/logos/acek.png"
+                    alt="ACEK"
+                    width={72}
+                    height={44}
+                    className="h-7 w-auto opacity-90"
+                  />
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-dim)]">
+                    Próxima fecha
+                  </p>
+                </div>
                 {race ? (
                   <span className="flex items-center gap-1.5 rounded-full bg-[#4C8DFF]/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[#4C8DFF]">
                     <span className="relative flex h-1.5 w-1.5">
