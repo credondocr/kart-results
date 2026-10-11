@@ -1,5 +1,5 @@
 import { Drivers } from "@/data/drivers/data";
-import { normalizeName, findHistoryEntry } from "./pilotHistory";
+import { normalizeName, findHistoryEntry, getPilotHistory } from "./pilotHistory";
 
 export interface PilotLink {
   slug: string;
@@ -55,6 +55,38 @@ export function findPilotProfile(
   if (team) {
     const entry = findHistoryEntry(team, String(number), driver);
     if (entry) return { slug: entry.team, id: entry.number, hint: normalizeName(driver) };
+  }
+
+  return null;
+}
+
+/**
+ * Resuelve la ficha solo por nombre (landing, búsquedas).
+ * Prioridad: Drivers exacto → Drivers parcial único → historial (reciente).
+ */
+export function findPilotProfileByName(driver: string): PilotLink | null {
+  const target = normalizeName(driver);
+  if (!target) return null;
+
+  const exact = Drivers.filter(
+    (candidate) => normalizeName(candidate.name) === target
+  );
+  if (exact.length > 0) {
+    return { slug: exact[0].teamLogo, id: exact[0].kartNumber };
+  }
+
+  const partial = Drivers.filter((candidate) => {
+    const name = normalizeName(candidate.name);
+    return name.startsWith(target + " ") || target.startsWith(name + " ");
+  });
+  if (partial.length === 1) {
+    return { slug: partial[0].teamLogo, id: partial[0].kartNumber };
+  }
+
+  const history = getPilotHistory(driver);
+  if (history.length > 0) {
+    const entry = history[0];
+    return { slug: entry.team, id: entry.number, hint: normalizeName(driver) };
   }
 
   return null;

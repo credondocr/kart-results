@@ -4,6 +4,7 @@ import Image from "next/image";
 import { db, dbUrl } from "@/lib/db";
 import { TEAMS } from "@/data/drivers/teams";
 import pilotPhotos from "@/data/pilotPhotos.json";
+import { findPilotProfileByName, pilotLinkHref } from "@/app/utils/pilotLinks";
 import NextRaceCountdown from "@/app/components/landing/NextRaceCountdown";
 import TaglineReveal from "@/app/components/landing/TaglineReveal";
 import CategoryMarquee from "@/app/components/landing/CategoryMarquee";
@@ -58,20 +59,26 @@ interface Face {
   file: string;
   name: string;
   key: string;
+  href: string;
 }
 
 /** Muestra aleatoria de pilotos con foto (se re-mezcla en cada ISR ~60s). */
 function sampleFaces(n: number, exclude: Set<string> = new Set()): Face[] {
   const pool = Object.entries(pilotPhotos as Record<string, string>)
     .filter(([key]) => !exclude.has(key))
-    .map(([key, file]) => ({
-      file,
-      key,
-      name: key
+    .map(([key, file]) => {
+      const name = key
         .split("-")
         .map((w) => (w ? w[0].toUpperCase() + w.slice(1) : w))
-        .join(" "),
-    }));
+        .join(" ");
+      const link = findPilotProfileByName(name);
+      return {
+        file,
+        key,
+        name,
+        href: link ? pilotLinkHref(link) : "/equipos",
+      };
+    });
   for (let i = pool.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [pool[i], pool[j]] = [pool[j], pool[i]];
@@ -177,9 +184,10 @@ export default async function HomePage() {
           <div className="relative">
             <div className="mb-4 flex justify-center gap-3 lg:mb-5 lg:justify-end">
               {heroCards.map((p, i) => (
-                <div
+                <Link
                   key={p.file}
-                  className="relative w-[31%] max-w-[130px] overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--surface-2)] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1.5"
+                  href={p.href}
+                  className="relative block w-[31%] max-w-[130px] overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--surface-2)] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1.5"
                   style={{ transform: `rotate(${(i - 1) * 2.5}deg)` }}
                 >
                   <Image
@@ -194,7 +202,7 @@ export default async function HomePage() {
                       {p.name}
                     </p>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
 
@@ -279,7 +287,7 @@ export default async function HomePage() {
             {paddockFaces.map((p, i) => (
               <Reveal key={p.file} delayMs={i * 60}>
                 <Link
-                  href="/equipos"
+                  href={p.href}
                   className="group block overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--surface-2)]/40 transition-colors hover:border-[#4C8DFF]/50"
                 >
                   <Image
