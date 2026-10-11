@@ -5,6 +5,7 @@ import { db, dbUrl } from "@/lib/db";
 import { TEAMS } from "@/data/drivers/teams";
 import pilotPhotos from "@/data/pilotPhotos.json";
 import { Championships } from "@/data/history";
+import { fetchTeleredKartVideos } from "@/app/utils/telered";
 import { findPilotProfileByName, pilotLinkHref } from "@/app/utils/pilotLinks";
 import NextRaceCountdown from "@/app/components/landing/NextRaceCountdown";
 import TaglineReveal from "@/app/components/landing/TaglineReveal";
@@ -110,7 +111,10 @@ const NEWS = [
 ];
 
 export default async function HomePage() {
-  const race = await getNextRace();
+  const [race, broadcasts] = await Promise.all([
+    getNextRace(),
+    fetchTeleredKartVideos(3),
+  ]);
   const heroFaces = sampleFaces(7);
   const avatars = heroFaces.slice(0, 4);
   const heroCards = heroFaces.slice(4, 7);
@@ -331,6 +335,72 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Transmisiones Telered */}
+      {broadcasts.length > 0 && (
+        <section className="border-b border-[var(--line)] py-16 sm:py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <Reveal>
+              <div className="flex flex-wrap items-end justify-between gap-3">
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#4C8DFF]">
+                    Telered
+                  </p>
+                  <h2 className="mt-1 font-display text-2xl font-extrabold uppercase tracking-tight text-white sm:text-3xl">
+                    Transmisiones
+                  </h2>
+                </div>
+                <Link
+                  href="/transmisiones"
+                  className="text-sm font-semibold text-[#4C8DFF] hover:opacity-80"
+                >
+                  Ver todas
+                </Link>
+              </div>
+            </Reveal>
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              {broadcasts.map((video, i) => (
+                <Reveal key={video.id} delayMs={i * 80}>
+                  <a
+                    href={video.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--surface-2)]/40 transition-colors hover:border-[#4C8DFF]/50"
+                  >
+                    <div className="relative aspect-video overflow-hidden bg-black">
+                      <Image
+                        src={video.thumb}
+                        alt={video.title}
+                        width={480}
+                        height={360}
+                        className="h-full w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-[1.04]"
+                      />
+                      <span
+                        className="absolute inset-0 flex items-center justify-center"
+                        aria-hidden="true"
+                      >
+                        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-red-600/90 shadow-lg transition-transform duration-300 group-hover:scale-110">
+                          <svg viewBox="0 0 24 24" className="ml-0.5 h-5 w-5 fill-white">
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </span>
+                      </span>
+                    </div>
+                    <div className="p-4">
+                      <p className="line-clamp-2 text-sm font-semibold leading-snug text-white">
+                        {video.title}
+                      </p>
+                      <time className="mt-1 block font-mono text-[11px] text-[var(--text-dim)]">
+                        {video.publishedAt.slice(0, 10)}
+                      </time>
+                    </div>
+                  </a>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Noticias + accesos */}
       <section className="py-16 sm:py-20">
