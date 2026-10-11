@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import AdminNav from "../AdminNav";
+import AdminNav from "./AdminNav";
 
 interface Dashboard {
   stats: {
