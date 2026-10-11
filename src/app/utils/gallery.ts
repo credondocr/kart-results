@@ -2,15 +2,8 @@ import { google } from "googleapis";
 
 /**
  * Galería de fotos desde Google Drive, agrupada por subcarpeta.
- * Requiere env:
- * - GOOGLE_PROJECT_ID, GOOGLE_CLIENT_EMAIL, GOOGLE_PRIVATE_KEY
- * - GALLERY_FOLDER_ID (carpeta raíz, compartida "Cualquiera con el link")
- *
- * Estructura esperada en Drive:
- *   Raíz/
- *     ├── 2026-10-31 Cartama/   ← fotos sueltas aquí
- *     ├── 2026-09-20 Autódromo/
- *     └── sueltas.jpg            ← fotos en la raíz van a "Sin fecha"
+ * Cada subcarpeta = una sub-galería en /galeria/[folderId].
+ * Las imágenes se sirven vía proxy autenticado /api/gallery/[fileId].
  */
 
 export interface GalleryPhoto {
@@ -24,7 +17,8 @@ export interface GalleryPhoto {
 export interface GalleryGroup {
   id: string;
   name: string;
-  photos: GalleryPhoto[];
+  photoCount: number;
+  cover?: string;
 }
 
 function auth() {
@@ -38,89 +32,110 @@ function auth() {
   });
 }
 
-function toPhoto(f: { id?: string | null; name?: string | null; createdTime?: string | null }): GalleryPhoto | null {
-  if (!f.id) return null;
-  return {
-    id: f.id,
-    name: f.name ?? "",
-    createdTime: f.createdTime ?? undefined,
-    thumb: `https://drive.google.com/thumbnail?id=${f.id}&sz=w1000`,
-    full: `https://drive.google.com/thumbnail?id=${f.id}&sz=w2048`,
-  };
+function drive() {
+  const jwt = auth();
+  if (!jwt) return null;
+  return google.drive({ version: "v3", auth: jwt });
 }
 
-/**
- * Fotos agrupadas por subcarpeta. Las subcarpetas se ordenan por nombre
- * (usá prefijo de fecha ISO: "2026-10-31 Carrera" para orden natural).
- * Fotos sueltas en la raíz van al grupo "Sin fecha".
- */
-export async function fetchGalleryGroups(
-  limitPerFolder = 60
-): Promise<GalleryGroup[]> {
+/** Lista las subcarpetas de la raíz (cada una = una sub-galería). */
+export async function fetchGalleryFolders(): Promise<GalleryGroup[]> {
   const folderId = process.env.GALLERY_FOLDER_ID;
-  if (!folderId) return [];
-  const jwt = auth();
-  if (!jwt) return [];
+  const d = drive();
+  if (!folderId || !d) return [];
 
   try {
-    const drive = google.drive({ version: "v3", auth: jwt });
-
-    // Fotos directas en la raíz
-    const rootFiles = await drive.files.list({
-      q: `'${folderId}' in parents and mimeType contains 'image/' and trashed = false`,
-      fields: "files(id,name,createdTime)",
-      pageSize: 30,
-      orderBy: "createdTime desc",
-      supportsAllDrives: true,
-      includeItemsFromAllDrives: true,
-    });
-
-    // Subcarpetas
-    const folders = await drive.files.list({
+    const folders = await d.files.list({
       q: `'${folderId}' in parents and mimeType = 'application/vnd.google-apps.folder' and trashed = false`,
       fields: "files(id,name,createdTime)",
-      pageSize: 50,
+      pageSize: 60,
       orderBy: "name",
       supportsAllDrives: true,
       includeItemsFromAllDrives: true,
     });
 
     const groups: GalleryGroup[] = [];
-
-    // Raíz: fotos sueltas
-    const rootPhotos = (rootFiles.data.files ?? [])
-      .map(toPhoto)
-      .filter((p): p is GalleryPhoto => p !== null);
-    if (rootPhotos.length) {
-      groups.push({ id: folderId, name: "Sin fecha", photos: rootPhotos });
-    }
-
-    // Cada subcarpeta → grupo
     for (const folder of folders.data.files ?? []) {
       if (!folder.id) continue;
-      const files = await drive.files.list({
+      // Contar fotos + cover de la subcarpeta
+      const files = await d.files.list({
         q: `'${folder.id}' in parents and mimeType contains 'image/' and trashed = false`,
-        fields: "files(id,name,createdTime)",
-        pageSize: limitPerFolder,
+        fields: "files(id,name)",
+        pageSize: 1,
         orderBy: "createdTime desc",
         supportsAllDrives: true,
         includeItemsFromAllDrives: true,
       });
-      const photos = (files.data.files ?? [])
-        .map(toPhoto)
-        .filter((p): p is GalleryPhoto => p !== null);
-      if (photos.length) {
+      const count = files.data.files?.length ?? 0;
+      // Contar total real (el pageSize1 solo da el cover; para count usamos un approach ligero)
+      const all = await d.files.list({
+        q: `'${folder.id}' in parents and mimeType contains 'image/' and trashed = false`,
+        fields: "files(id)",
+        pageSize: 100,
+        supportsAllDrives: true,
+        includeItemsFromAllDrives: true,
+      });
+      const total = all.data.files?.length ?? 0;
+      if (total > 0) {
         groups.push({
           id: folder.id,
           name: folder.name ?? "Sin nombre",
-          photos,
+          photoCount: total,
+          cover: files.data.files?.[0]?.id
+            ? `/api/gallery/${files.data.files[0].id}?sz=w600`
+            : undefined,
         });
       }
+      void count;
     }
-
     return groups;
   } catch (err) {
-    console.error("[gallery] drive list failed", err);
+    console.error("[gallery] folders failed", err);
     return [];
+  }
+}
+
+/** Fotos de una subcarpeta específica. */
+export async function fetchFolderPhotos(
+  folderId: string,
+  limit = 100
+): Promise<{ name: string; photos: GalleryPhoto[] } | null> {
+  const d = drive();
+  if (!d) return null;
+
+  try {
+    // Nombre de la carpeta
+    const meta = await d.files.get({
+      fileId: folderId,
+      fields: "name,mimeType",
+      supportsAllDrives: true,
+    });
+    if (meta.data.mimeType !== "application/vnd.google-apps.folder") {
+      return null;
+    }
+
+    const files = await d.files.list({
+      q: `'${folderId}' in parents and mimeType contains 'image/' and trashed = false`,
+      fields: "files(id,name,createdTime)",
+      pageSize: limit,
+      orderBy: "createdTime desc",
+      supportsAllDrives: true,
+      includeItemsFromAllDrives: true,
+    });
+
+    const photos: GalleryPhoto[] = (files.data.files ?? [])
+      .filter((f) => f.id)
+      .map((f) => ({
+        id: f.id as string,
+        name: f.name ?? "",
+        createdTime: f.createdTime ?? undefined,
+        thumb: `/api/gallery/${f.id}?sz=w600`,
+        full: `/api/gallery/${f.id}?sz=w1600`,
+      }));
+
+    return { name: meta.data.name ?? "Galería", photos };
+  } catch (err) {
+    console.error("[gallery] folder photos failed", err);
+    return null;
   }
 }
