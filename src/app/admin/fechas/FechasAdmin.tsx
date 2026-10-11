@@ -266,6 +266,25 @@ export default function AdminFechasPage() {
               <legend className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#4C8DFF]">
                 3 · Categorías inscribibles
               </legend>
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setCategories([...activeCatNames])}
+                  className="rounded-md border border-[#4C8DFF]/40 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-[#4C8DFF] transition-colors hover:bg-[#4C8DFF]/10"
+                >
+                  Seleccionar todas
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setCategories([])}
+                  className="rounded-md border border-[var(--line)] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-[var(--text-dim)] transition-colors hover:text-white"
+                >
+                  Limpiar
+                </button>
+                <span className="font-mono text-[11px] tabular-nums text-[var(--text-dim)]">
+                  {categories.length}/{activeCatNames.length}
+                </span>
+              </div>
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
                 {activeCatNames.map((c) => {
                   const on = categories.includes(c);
