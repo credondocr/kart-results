@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import AdminNav from "../AdminNav";
 
 interface UserRow {
   id: number;
@@ -116,8 +115,8 @@ export default function AdminUsersPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--ink-950)] pt-20">
-      <div className="mx-auto max-w-5xl px-4 pb-16 sm:px-6 lg:px-8">
+    <div>
+      <div className="mx-auto max-w-5xl">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[var(--text-dim)]">
@@ -127,10 +126,6 @@ export default function AdminUsersPage() {
               Usuarios
             </h1>
           </div>
-        </div>
-
-        <div className="mt-4">
-          <AdminNav />
         </div>
 
         <p className="mt-4 max-w-3xl text-xs text-[var(--text-dim)]">

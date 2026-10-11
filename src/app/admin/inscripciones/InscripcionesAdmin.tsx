@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import AdminNav from "../AdminNav";
 
 interface Reg {
   id: number;
@@ -82,8 +81,8 @@ export default function AdminInscripcionesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--ink-950)] pt-20">
-      <div className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 lg:px-8">
+    <div>
+      <div className="mx-auto max-w-6xl">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[var(--text-dim)]">
@@ -100,10 +99,6 @@ export default function AdminInscripcionesPage() {
             Descargar CSV
           </a>
         </div>
-        <div className="mt-4">
-          <AdminNav />
-        </div>
-
         <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
           {[
             ["Total", metrics.total],

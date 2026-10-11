@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
-import { isAdminAuthenticated } from "@/lib/adminPageAuth";
 import UsersAdmin from "./UsersAdmin";
 
 export const metadata: Metadata = {
@@ -8,9 +6,6 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default async function AdminUsersPage() {
-  if (!(await isAdminAuthenticated())) {
-    redirect("/login");
-  }
+export default function Page() {
   return <UsersAdmin />;
 }

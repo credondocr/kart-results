@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import AdminNav from "../AdminNav";
 
 interface Category {
   id: number;
@@ -100,10 +99,6 @@ export default function AdminCategoriasPage() {
             </h1>
           </div>
         </div>
-        <div className="mt-4">
-          <AdminNav />
-        </div>
-
         <p className="mt-4 max-w-2xl text-xs text-[var(--text-dim)]">
           Las categorías <strong className="text-emerald-400">activas</strong> se
           muestran en el marquee del landing y en el selector al crear una fecha.

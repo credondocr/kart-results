@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import AdminNav from "./AdminNav";
 
 interface Dashboard {
   stats: {
@@ -73,7 +72,6 @@ export default function AdminDashboard() {
     return (
       <div className="min-h-screen bg-[var(--ink-950)] pt-20">
         <div className="mx-auto max-w-5xl px-4 pt-8 sm:px-6">
-          <AdminNav />
           <p className="mt-10 text-center text-sm text-[var(--text-dim)]">Cargando panel…</p>
         </div>
       </div>
@@ -85,8 +83,8 @@ export default function AdminDashboard() {
   const attention = stats.pending + data.pendingInvites;
 
   return (
-    <div className="min-h-screen bg-[var(--ink-950)] pt-20">
-      <div className="mx-auto max-w-5xl px-4 pb-16 sm:px-6 lg:px-8">
+    <div>
+      <div className="mx-auto max-w-5xl">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[var(--text-dim)]">
@@ -105,10 +103,6 @@ export default function AdminDashboard() {
               Al día
             </span>
           )}
-        </div>
-
-        <div className="mt-4">
-          <AdminNav />
         </div>
 
         {/* Próxima fecha */}
