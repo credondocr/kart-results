@@ -128,11 +128,12 @@ export async function PUT(request: Request) {
   const user = updated[0];
   if (user?.pilot_key) {
     const year = String(new Date().getFullYear());
+    const teamVal = team ?? "";
     try {
       await sql`
         UPDATE pilots SET
-          team = ${team},
-          teams = COALESCE(teams, '{}'::jsonb) || jsonb_build_object(${year}, ${team ?? ""}::text),
+          team = ${team ?? null},
+          teams = COALESCE(teams, '{}'::jsonb) || jsonb_build_object(${year}, ${teamVal}),
           updated_at = now()
         WHERE key = ${user.pilot_key}
       `;
