@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { db, dbUrl } from "@/lib/db";
 import { getAuth } from "@/lib/auth";
+import { lookupRegistry } from "@/app/utils/pilotRegistry";
 
 interface ProfileRow {
   id: number;
@@ -12,6 +13,16 @@ interface ProfileRow {
   pilot_key: string | null;
   bio: string | null;
   parent_id: number | null;
+}
+
+/** Si users.team_slug es null, cae al equipo del registro maestro (pilot_key). */
+function withRegistryTeam(row: ProfileRow): ProfileRow {
+  if (row.team_slug || !row.pilot_key) return row;
+  const entry = lookupRegistry(row.pilot_key.replace(/-/g, " "));
+  if (entry?.team) {
+    return { ...row, team_slug: entry.team };
+  }
+  return row;
 }
 
 export async function GET(request: Request) {
@@ -29,14 +40,16 @@ export async function GET(request: Request) {
     FROM users WHERE id = ${auth.uid}
   `) as unknown as ProfileRow[];
 
-  // Hijos: usuarios cuyo parent_id es este usuario (solo si es piloto tutor).
   const children = (await sql`
     SELECT id, email, name, role, license_accr, team_slug, pilot_key, bio, parent_id
     FROM users WHERE parent_id = ${auth.uid}
     ORDER BY name
   `) as unknown as ProfileRow[];
 
-  return NextResponse.json({ user: self[0] ?? null, children });
+  return NextResponse.json({
+    user: self[0] ? withRegistryTeam(self[0]) : null,
+    children: children.map(withRegistryTeam),
+  });
 }
 
 /** PUT: actualizar perfil (name, team_slug, bio, license_accr, pilot_key). */
@@ -110,5 +123,23 @@ export async function PUT(request: Request) {
     RETURNING id, email, name, role, license_accr, team_slug, pilot_key, bio, parent_id
   `) as unknown as ProfileRow[];
 
-  return NextResponse.json({ user: updated[0] });
+  // Si el usuario tiene pilot_key, sincronizar el equipo en el registro
+  // maestro (tabla pilots) para que el piloto quede "activo" en ese equipo.
+  const user = updated[0];
+  if (user?.pilot_key) {
+    const year = String(new Date().getFullYear());
+    try {
+      await sql`
+        UPDATE pilots SET
+          team = ${team},
+          teams = COALESCE(teams, '{}'::jsonb) || jsonb_build_object(${year}, ${team ?? ""}::text),
+          updated_at = now()
+        WHERE key = ${user.pilot_key}
+      `;
+    } catch (err) {
+      console.error("[profile] sync pilots team failed", err);
+    }
+  }
+
+  return NextResponse.json({ user: withRegistryTeam(updated[0]) });
 }
