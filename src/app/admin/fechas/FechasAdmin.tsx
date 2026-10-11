@@ -29,7 +29,7 @@ export default function AdminFechasPage() {
   const [raceDate, setRaceDate] = useState("");
   const [location, setLocation] = useState("Costa Rica");
   const [categories, setCategories] = useState<string[]>([]);
-  const [priceBase, setPriceBase] = useState("35000");
+  const [priceBase, setPriceBase] = useState("35");
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [editing, setEditing] = useState<RaceDate | null>(null);
@@ -333,7 +333,7 @@ export default function AdminFechasPage() {
                     step="500"
                     value={priceBase}
                     onChange={(e) => setPriceBase(e.target.value)}
-                    placeholder="35000"
+                    placeholder="35"
                     className="admin-input pl-8 font-mono tabular-nums"
                   />
                 </div>
