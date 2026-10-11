@@ -61,7 +61,7 @@ export default function PilotsAdmin() {
         if (query) params.set("q", query);
         const res = await fetch(`/api/admin/pilots?${params}`);
         if (res.status === 401) {
-          router.push("/admin/login");
+          router.push("/login");
           return;
         }
         const data = await res.json();
@@ -138,7 +138,7 @@ export default function PilotsAdmin() {
 
   const logout = async () => {
     await fetch("/api/admin/logout", { method: "POST" });
-    router.push("/admin/login");
+    router.push("/login");
   };
 
   const selected = pilots.find((p) => p.key === selectedKey) ?? null;

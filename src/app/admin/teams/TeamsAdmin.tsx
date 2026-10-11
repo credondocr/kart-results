@@ -41,7 +41,7 @@ export default function AdminTeamsPage() {
     try {
       const res = await fetch("/api/admin/teams");
       if (res.status === 401) {
-        router.push("/admin/login");
+        router.push("/login");
         return;
       }
       const data = await res.json();

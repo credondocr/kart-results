@@ -7,6 +7,7 @@ const TABS = [
   { href: "/admin/pilots", label: "Pilotos" },
   { href: "/admin/teams", label: "Equipos" },
   { href: "/admin/penalties", label: "Penales" },
+  { href: "/admin/invitaciones", label: "Invitaciones" },
 ];
 
 export default function AdminNav() {

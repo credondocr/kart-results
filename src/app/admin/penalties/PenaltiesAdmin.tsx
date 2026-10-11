@@ -39,7 +39,7 @@ export default function AdminPenaltiesPage() {
       const params = yearFilter ? `?year=${yearFilter}` : "";
       const res = await fetch(`/api/admin/penalties${params}`);
       if (res.status === 401) {
-        router.push("/admin/login");
+        router.push("/login");
         return;
       }
       const data = await res.json();

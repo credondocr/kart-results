@@ -44,7 +44,35 @@ async function main() {
       created_at TIMESTAMPTZ NOT NULL DEFAULT now()
     )
   `;
-  console.log("Migración OK: tablas pilots + teams + penalties.");
+  await sql`
+    CREATE TABLE IF NOT EXISTS users (
+      id SERIAL PRIMARY KEY,
+      email TEXT NOT NULL UNIQUE,
+      password_hash TEXT NOT NULL,
+      role TEXT NOT NULL CHECK (role IN ('admin', 'piloto', 'mecanico')),
+      name TEXT NOT NULL,
+      license_accr TEXT UNIQUE,
+      team_slug TEXT,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `;
+  await sql`
+    CREATE TABLE IF NOT EXISTS invitations (
+      id SERIAL PRIMARY KEY,
+      email TEXT NOT NULL,
+      role TEXT NOT NULL CHECK (role IN ('piloto', 'mecanico')),
+      name TEXT,
+      license_accr TEXT,
+      team_slug TEXT,
+      token_hash TEXT NOT NULL UNIQUE,
+      expires_at TIMESTAMPTZ NOT NULL,
+      accepted_at TIMESTAMPTZ,
+      accepted_user_id INT REFERENCES users(id),
+      created_by INT REFERENCES users(id),
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `;
+  console.log("Migración OK: tablas pilots + teams + penalties + users + invitations.");
 }
 
 main().catch((err) => {
