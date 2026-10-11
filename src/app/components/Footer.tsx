@@ -25,6 +25,7 @@ const NAV_SECTIONS = [
     links: [
       { href: "/faq", label: "FAQ" },
       { href: "/reglamento", label: "Reglamento" },
+      { href: "/contacto", label: "Contacto" },
     ],
   },
 ];
