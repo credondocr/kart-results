@@ -77,7 +77,21 @@ async function main() {
   // Migraciones aditivas para bases ya existentes.
   await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS pilot_key TEXT`;
   await sql`ALTER TABLE invitations ADD COLUMN IF NOT EXISTS pilot_key TEXT`;
-  console.log("Migración OK: tablas pilots + teams + penalties + users + invitations.");
+  await sql`
+    CREATE TABLE IF NOT EXISTS race_dates (
+      id SERIAL PRIMARY KEY,
+      name TEXT NOT NULL,
+      race_date TIMESTAMPTZ NOT NULL,
+      status TEXT NOT NULL DEFAULT 'open' CHECK (status IN ('open', 'closed', 'done')),
+      location TEXT,
+      categories JSONB NOT NULL DEFAULT '[]'::jsonb,
+      price_base NUMERIC,
+      price_per_category JSONB,
+      closes_at TIMESTAMPTZ,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `;
+  console.log("Migración OK: tablas pilots + teams + penalties + users + invitations + race_dates.");
 }
 
 main().catch((err) => {

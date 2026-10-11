@@ -21,7 +21,8 @@
     "db:seed": "tsx -r tsconfig-paths/register scripts/dbSeedPilots.ts && tsx -r tsconfig-paths/register scripts/dbSeedTeams.ts",
     "db:export": "tsx -r tsconfig-paths/register scripts/dbExportPilots.ts --force && tsx -r tsconfig-paths/register scripts/dbExportTeams.ts --force && tsx -r tsconfig-paths/register scripts/dbExportPenalties.ts --force",
     "history:build": "tsx -r tsconfig-paths/register scripts/build-history.ts",
-    "db:seed-admin": "tsx -r tsconfig-paths/register scripts/dbSeedAdmin.ts"
+    "db:seed-admin": "tsx -r tsconfig-paths/register scripts/dbSeedAdmin.ts",
+    "db:seed-racedate": "tsx -r tsconfig-paths/register scripts/dbSeedRaceDate.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
