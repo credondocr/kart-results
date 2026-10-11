@@ -13,11 +13,11 @@ export async function GET(request: Request) {
 
   const stats = (await sql`
     SELECT
-      count(*) FILTER (WHERE r.status = 'pending')::int AS pending,
-      count(*) FILTER (WHERE r.status = 'verified')::int AS verified,
-      count(*) FILTER (WHERE r.status = 'approved')::int AS approved,
-      count(*) FILTER (WHERE r.status = 'rejected')::int AS rejected,
-      count(*) FILTER (WHERE r.payment_method = 'track' AND r.status IN ('pending','verified'))::int AS track_pending,
+      count(*) FILTER (WHERE status = 'pending')::int AS pending,
+      count(*) FILTER (WHERE status = 'verified')::int AS verified,
+      count(*) FILTER (WHERE status = 'approved')::int AS approved,
+      count(*) FILTER (WHERE status = 'rejected')::int AS rejected,
+      count(*) FILTER (WHERE payment_method = 'track' AND status IN ('pending','verified'))::int AS track_pending,
       count(*)::int AS total
     FROM registrations
   `) as unknown as Array<{

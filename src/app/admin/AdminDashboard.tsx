@@ -55,6 +55,10 @@ export default function AdminDashboard() {
         router.push("/login");
         return;
       }
+      if (!res.ok) {
+        console.error("dashboard", res.status);
+        return;
+      }
       setData(await res.json());
     } finally {
       setLoading(false);
