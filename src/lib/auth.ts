@@ -1,7 +1,7 @@
 import { createHmac, randomBytes, timingSafeEqual, createHash } from "crypto";
 import bcrypt from "bcryptjs";
 
-export type Role = "admin" | "piloto";
+export type Role = "admin" | "piloto" | "editor";
 
 const COOKIE = "kr_session";
 /** Sesión por defecto:30 días. */

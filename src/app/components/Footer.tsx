@@ -24,6 +24,7 @@ const NAV_SECTIONS = [
   {
     title: "Info",
     links: [
+      { href: "/noticias", label: "Noticias" },
       { href: "/faq", label: "FAQ" },
       { href: "/reglamento", label: "Reglamento" },
       { href: "/contacto", label: "Contacto" },

@@ -49,7 +49,7 @@ async function main() {
       id SERIAL PRIMARY KEY,
       email TEXT NOT NULL UNIQUE,
       password_hash TEXT NOT NULL,
-      role TEXT NOT NULL CHECK (role IN ('admin', 'piloto')),
+      role TEXT NOT NULL CHECK (role IN ('admin', 'piloto', 'editor')),
       name TEXT NOT NULL,
       license_accr TEXT UNIQUE,
       team_slug TEXT,
@@ -63,7 +63,7 @@ async function main() {
     CREATE TABLE IF NOT EXISTS invitations (
       id SERIAL PRIMARY KEY,
       email TEXT NOT NULL,
-      role TEXT NOT NULL CHECK (role IN ('piloto')),
+      role TEXT NOT NULL CHECK (role IN ('piloto', 'editor')),
       name TEXT,
       license_accr TEXT,
       team_slug TEXT,
@@ -137,7 +137,24 @@ async function main() {
       created_at TIMESTAMPTZ NOT NULL DEFAULT now()
     )
   `;
-  console.log("Migración OK.");
+  await sql`
+    CREATE TABLE IF NOT EXISTS news (
+      id SERIAL PRIMARY KEY,
+      slug TEXT NOT NULL UNIQUE,
+      title TEXT NOT NULL,
+      excerpt TEXT,
+      content TEXT NOT NULL DEFAULT '',
+      tag TEXT,
+      cover_image TEXT,
+      status TEXT NOT NULL DEFAULT 'draft' CHECK (status IN ('draft', 'published')),
+      scheduled_at TIMESTAMPTZ,
+      published_at TIMESTAMPTZ,
+      author_id INT REFERENCES users(id),
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `;
+  console.log("Migración OK: news incluida.");
 }
 
 main().catch((err) => {

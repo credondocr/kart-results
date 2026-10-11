@@ -10,6 +10,7 @@ import NextRaceCountdown from "@/app/components/landing/NextRaceCountdown";
 import TaglineReveal from "@/app/components/landing/TaglineReveal";
 import CategoryMarquee from "@/app/components/landing/CategoryMarquee";
 import Reveal from "@/app/components/landing/Reveal";
+import ShowreelVideo from "@/app/components/landing/ShowreelVideo";
 
 export const revalidate = 60;
 
@@ -109,29 +110,37 @@ function sampleFaces(n: number, exclude: Set<string> = new Set()): Face[] {
   return pool.slice(0, n);
 }
 
-const NEWS = [
-  {
-    date: "10 oct",
-    tag: "Inscripciones",
-    title: "Abren inscripciones para la próxima fecha",
-  },
-  {
-    date: "28 sep",
-    tag: "Campeonato",
-    title: "El invierno se define en la última fecha",
-  },
-  {
-    date: "15 sep",
-    tag: "Sitio",
-    title: "Live timing con datos de SpeedHive",
-  },
-];
+interface LandingNews {
+  id: number;
+  slug: string;
+  title: string;
+  tag: string | null;
+  published_at: string | null;
+}
+
+/** Últimas noticias publicadas para el landing. */
+async function getLandingNews(): Promise<LandingNews[]> {
+  if (!dbUrl()) return [];
+  try {
+    const sql = db();
+    return (await sql`
+      SELECT id, slug, title, tag, published_at
+      FROM news
+      WHERE status = 'published' AND (published_at IS NULL OR published_at <= now())
+      ORDER BY published_at DESC NULLS LAST
+      LIMIT 3
+    `) as unknown as LandingNews[];
+  } catch {
+    return [];
+  }
+}
 
 export default async function HomePage() {
   const race = await getNextRace();
   const broadcasts = await fetchTeleredKartVideos(3);
   const categories = await activeCategories();
   const registeredCount = await getRegisteredCount(race?.id ?? null);
+  const landingNews = await getLandingNews();
   const live = await fetchTeleredLiveKart(isLiveCheckWindow(race?.race_date));
   const heroFaces = sampleFaces(7);
   const avatars = heroFaces.slice(0, 4);
@@ -508,28 +517,48 @@ export default async function HomePage() {
           <Reveal>
             <div className="grid gap-4 lg:grid-cols-[1fr_1.2fr]">
               <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface-2)]/40 p-6">
-                <h2 className="font-display text-xl font-extrabold uppercase tracking-tight text-white">
-                  Noticias
-                </h2>
-                <ul className="mt-4 divide-y divide-[var(--line)]">
-                  {NEWS.map((n) => (
-                    <li key={n.title} className="py-3">
-                      <div className="flex items-baseline gap-3">
-                        <time className="w-14 shrink-0 font-mono text-[11px] text-[var(--text-dim)]">
-                          {n.date}
-                        </time>
-                        <div>
-                          <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#4C8DFF]">
-                            {n.tag}
-                          </p>
-                          <p className="mt-0.5 text-sm font-semibold leading-snug text-white">
-                            {n.title}
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                <div className="flex items-center justify-between">
+                  <h2 className="font-display text-xl font-extrabold uppercase tracking-tight text-white">
+                    Noticias
+                  </h2>
+                  {landingNews.length > 0 ? (
+                    <Link href="/noticias" className="text-xs font-semibold text-[#4C8DFF] hover:opacity-80">
+                      Ver todas
+                    </Link>
+                  ) : null}
+                </div>
+                {landingNews.length === 0 ? (
+                  <p className="mt-4 text-sm text-[var(--text-dim)]">
+                    Pronto publicaremos novedades.
+                  </p>
+                ) : (
+                  <ul className="mt-4 divide-y divide-[var(--line)]">
+                    {landingNews.map((n) => {
+                      const date = n.published_at
+                        ? new Date(n.published_at).toLocaleDateString("es-CR", { day: "numeric", month: "short" })
+                        : "";
+                      return (
+                        <li key={n.id} className="py-3">
+                          <Link href={`/noticias/${n.slug}`} className="group flex items-baseline gap-3">
+                            <time className="w-14 shrink-0 font-mono text-[11px] text-[var(--text-dim)]">
+                              {date}
+                            </time>
+                            <div>
+                              {n.tag ? (
+                                <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#4C8DFF]">
+                                  {n.tag}
+                                </p>
+                              ) : null}
+                              <p className="mt-0.5 text-sm font-semibold leading-snug text-white group-hover:text-[#4C8DFF]">
+                                {n.title}
+                              </p>
+                            </div>
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
@@ -611,6 +640,9 @@ export default async function HomePage() {
           </Reveal>
         </div>
       </section>
+
+      {/* Showreel de temporada */}
+      <ShowreelVideo />
     </main>
   );
 }

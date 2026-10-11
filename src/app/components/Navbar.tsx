@@ -165,6 +165,12 @@ const Navbar: React.FC = () => {
                 <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
               )}
             </Link>
+            <Link href="/noticias" className={linkClass("/noticias")}>
+              Noticias
+              {isActive("/noticias") && (
+                <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
+              )}
+            </Link>
             <Link href="/faq" className={linkClass("/faq")}>
               FAQ
               {isActive("/faq") && (

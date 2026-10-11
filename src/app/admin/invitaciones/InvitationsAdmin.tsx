@@ -169,7 +169,7 @@ export default function AdminInvitationsPage() {
 
         <p className="mt-4 max-w-3xl text-xs text-[var(--text-dim)]">
           El registro no es público: solo quien reciba una invitación puede
-          crear cuenta de piloto. El link es de un solo uso y dura{" "}
+          crear cuenta (piloto o editor de noticias). El link es de un solo uso y dura{" "}
           <strong>7 días</strong>. Si no tienen correo a la mano, crea la
           invitación igual y envía el link por WhatsApp.
         </p>
@@ -193,6 +193,7 @@ export default function AdminInvitationsPage() {
             <label className="admin-label">Rol</label>
             <select value={role} onChange={(e) => setRole(e.target.value)} className="admin-input">
               <option value="piloto">Piloto</option>
+              <option value="editor">Editor de noticias</option>
             </select>
           </div>
           <div className="sm:col-span-2">

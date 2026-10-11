@@ -17,6 +17,7 @@ const SECTIONS: Array<{ title: string; items: NavItem[] }> = [
       { href: "/admin", label: "Resumen", hint: "Estado del día" },
       { href: "/admin/fechas", label: "Fechas", hint: "Abrir/cerrar inscripciones" },
       { href: "/admin/inscripciones", label: "Inscripciones", hint: "Validar y aprobar" },
+      { href: "/admin/noticias", label: "Noticias", hint: "Publicar contenido" },
     ],
   },
   {
