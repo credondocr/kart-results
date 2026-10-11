@@ -7,6 +7,7 @@ export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -18,7 +19,7 @@ export default function LoginPage() {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, remember }),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
@@ -86,13 +87,26 @@ export default function LoginPage() {
 
         {error ? <p className="mt-3 text-sm text-red-400">{error}</p> : null}
 
+        <label className="mt-4 flex cursor-pointer items-center gap-2 text-sm text-[var(--text-dim)]">
+          <input
+            type="checkbox"
+            checked={remember}
+            onChange={(e) => setRemember(e.target.checked)}
+            className="accent-[#4C8DFF]"
+          />
+          Recuérdame30 días
+        </label>
+
         <button
           type="submit"
           disabled={loading}
-          className="mt-6 w-full rounded-lg bg-[#4C8DFF] px-4 py-2.5 text-sm font-bold uppercase tracking-[0.12em] text-white transition-colors hover:bg-[#3a7cf0] disabled:opacity-50"
+          className="mt-4 w-full rounded-lg bg-[#4C8DFF] px-4 py-2.5 text-sm font-bold uppercase tracking-[0.12em] text-white transition-colors hover:bg-[#3a7cf0] disabled:opacity-50"
         >
           {loading ? "Entrando…" : "Entrar"}
         </button>
+        <p className="mt-2 text-center text-[11px] text-[var(--text-dim)]">
+          Sin marcar, la sesión dura1 día.
+        </p>
       </form>
     </div>
   );

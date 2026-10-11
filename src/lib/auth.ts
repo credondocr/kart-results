@@ -4,7 +4,9 @@ import bcrypt from "bcryptjs";
 export type Role = "admin" | "piloto";
 
 const COOKIE = "kr_session";
-const MAX_AGE_S = 60 * 60 * 24 * 7; // 7 días
+/** Sesión normal:1 día. "Recuérdame":30 días. */
+const MAX_AGE_S = 60 * 60 * 24;
+const MAX_AGE_REMEMBER_S = 60 * 60 * 24 * 30;
 
 function secret(): string {
   const s = process.env.ADMIN_SESSION_SECRET;
@@ -37,11 +39,19 @@ function sign(payload: string): string {
   return createHmac("sha256", secret()).update(payload).digest("base64url");
 }
 
-export function createSessionToken(uid: number, role: Role): string {
+export function sessionMaxAge(remember = false): number {
+  return remember ? MAX_AGE_REMEMBER_S : MAX_AGE_S;
+}
+
+export function createSessionToken(
+  uid: number,
+  role: Role,
+  remember = false
+): string {
   const payload: SessionPayload = {
     uid,
     role,
-    exp: Date.now() + MAX_AGE_S * 1000,
+    exp: Date.now() + sessionMaxAge(remember) * 1000,
   };
   const body = Buffer.from(JSON.stringify(payload)).toString("base64url");
   return `${body}.${sign(body)}`;
@@ -72,9 +82,9 @@ export function verifySession(token: string | null | undefined): SessionPayload 
 
 /* ---------- cookie ---------- */
 
-export function sessionCookie(token: string): string {
+export function sessionCookie(token: string, remember = false): string {
   const secure = process.env.NODE_ENV === "production" ? "; Secure" : "";
-  return `${COOKIE}=${token}; HttpOnly; Path=/; Max-Age=${MAX_AGE_S}; SameSite=Lax${secure}`;
+  return `${COOKIE}=${token}; HttpOnly; Path=/; Max-Age=${sessionMaxAge(remember)}; SameSite=Lax${secure}`;
 }
 
 export function clearSessionCookie(): string {
