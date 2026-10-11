@@ -20,6 +20,7 @@ export const metadata: Metadata = {
 };
 
 interface NextRace {
+  id: number;
   name: string;
   race_date: string;
   location: string | null;
@@ -31,7 +32,7 @@ async function getNextRace(): Promise<NextRace | null> {
   try {
     const sql = db();
     const rows = (await sql`
-      SELECT name, race_date, location, categories
+      SELECT id, name, race_date, location, categories
       FROM race_dates
       WHERE status = 'open' AND race_date > now()
       ORDER BY race_date
@@ -40,6 +41,21 @@ async function getNextRace(): Promise<NextRace | null> {
     return rows[0] ?? null;
   } catch {
     return null;
+  }
+}
+
+/** Inscripciones aprobadas de la fecha abierta (hype en el landing). */
+async function getApprovedCount(raceDateId: number | null): Promise<number> {
+  if (!raceDateId || !dbUrl()) return 0;
+  try {
+    const sql = db();
+    const rows = (await sql`
+      SELECT count(*)::int AS n FROM registrations
+      WHERE race_date_id = ${raceDateId} AND status = 'approved'
+    `) as unknown as Array<{ n: number }>;
+    return rows[0]?.n ?? 0;
+  } catch {
+    return 0;
   }
 }
 
@@ -111,6 +127,7 @@ export default async function HomePage() {
   const race = await getNextRace();
   const broadcasts = await fetchTeleredKartVideos(3);
   const categories = await activeCategories();
+  const approvedCount = await getApprovedCount(race?.id ?? null);
   const live = await fetchTeleredLiveKart(isLiveCheckWindow(race?.race_date));
   const heroFaces = sampleFaces(7);
   const avatars = heroFaces.slice(0, 4);
@@ -248,6 +265,16 @@ export default async function HomePage() {
                   <div className="mt-4">
                     <NextRaceCountdown targetIso={race.race_date} />
                   </div>
+                  {approvedCount > 0 ? (
+                    <p className="mt-3 flex items-center gap-2 text-sm text-[var(--text-dim)]">
+                      <span className="font-mono text-lg font-bold tabular-nums text-white">
+                        {approvedCount}
+                      </span>
+                      {approvedCount === 1
+                        ? "piloto ya confirmado"
+                        : "pilotos ya confirmados"}
+                    </p>
+                  ) : null}
                   <Link
                     href="/inscribir"
                     className="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-[#4C8DFF] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#3a7cf0]"
