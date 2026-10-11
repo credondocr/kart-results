@@ -80,8 +80,8 @@ export async function POST(request: Request) {
   if (!email || !email.includes("@")) {
     return NextResponse.json({ error: "email inválido" }, { status: 400 });
   }
-  if (role !== "piloto" && role !== "mecanico") {
-    return NextResponse.json({ error: "role debe ser piloto o mecanico" }, { status: 400 });
+  if (role !== "piloto") {
+    return NextResponse.json({ error: "role debe ser piloto" }, { status: 400 });
   }
 
   const sql = db();

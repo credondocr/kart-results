@@ -49,7 +49,7 @@ async function main() {
       id SERIAL PRIMARY KEY,
       email TEXT NOT NULL UNIQUE,
       password_hash TEXT NOT NULL,
-      role TEXT NOT NULL CHECK (role IN ('admin', 'piloto', 'mecanico')),
+      role TEXT NOT NULL CHECK (role IN ('admin', 'piloto')),
       name TEXT NOT NULL,
       license_accr TEXT UNIQUE,
       team_slug TEXT,
@@ -61,7 +61,7 @@ async function main() {
     CREATE TABLE IF NOT EXISTS invitations (
       id SERIAL PRIMARY KEY,
       email TEXT NOT NULL,
-      role TEXT NOT NULL CHECK (role IN ('piloto', 'mecanico')),
+      role TEXT NOT NULL CHECK (role IN ('piloto')),
       name TEXT,
       license_accr TEXT,
       team_slug TEXT,
@@ -125,7 +125,7 @@ async function main() {
       created_at TIMESTAMPTZ NOT NULL DEFAULT now()
     )
   `;
-  console.log("Migración OK: tablas pilots + teams + penalties + users + invitations + race_dates + registrations + categories.");
+  console.log("Migración OK.");
 }
 
 main().catch((err) => {

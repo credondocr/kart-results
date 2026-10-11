@@ -10,7 +10,7 @@ import {
 interface InviteRow {
   id: number;
   email: string;
-  role: "piloto" | "mecanico";
+  role: "piloto";
   name: string | null;
   license_accr: string | null;
   team_slug: string | null;
@@ -100,7 +100,7 @@ export async function POST(request: Request) {
     WHERE id = ${invite.id}
   `;
 
-  const sessionToken = createSessionToken(user.id, user.role as "piloto" | "mecanico");
+  const sessionToken = createSessionToken(user.id, user.role as "piloto");
   return NextResponse.json(
     { ok: true, user },
     { headers: { "Set-Cookie": sessionCookie(sessionToken) } }

@@ -1,7 +1,7 @@
 import { createHmac, randomBytes, timingSafeEqual, createHash } from "crypto";
 import bcrypt from "bcryptjs";
 
-export type Role = "admin" | "piloto" | "mecanico";
+export type Role = "admin" | "piloto";
 
 const COOKIE = "kr_session";
 const MAX_AGE_S = 60 * 60 * 24 * 7; // 7 días

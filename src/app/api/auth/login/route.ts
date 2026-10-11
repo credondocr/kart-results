@@ -10,7 +10,7 @@ interface UserRow {
   id: number;
   email: string;
   password_hash: string;
-  role: "admin" | "piloto" | "mecanico";
+  role: "admin" | "piloto";
   name: string;
 }
 
