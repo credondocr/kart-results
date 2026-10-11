@@ -1,4 +1,5 @@
 import { google } from "googleapis";
+import sharp from "sharp";
 import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
@@ -16,11 +17,16 @@ function auth() {
   });
 }
 
-/** Proxy de imágenes de Drive: descarga vía API y la sirve con cache. */
-export async function GET(
-  request: Request,
-  { params }: Params
-) {
+/** Anchos permitidos por el query param sz (evita DoS con tamaños gigantes). */
+const WIDTHS: Record<string, number> = {
+  w300: 300,
+  w600: 600,
+  w1000: 1000,
+  w1600: 1600,
+};
+
+/** Proxy de imágenes de Drive: descarga, redimensiona y sirve en WebP. */
+export async function GET(request: Request, { params }: Params) {
   const { fileId } = await params;
   if (!/^[a-zA-Z0-9_-]{10,}$/.test(fileId)) {
     return NextResponse.json({ error: "id inválido" }, { status: 400 });
@@ -31,28 +37,26 @@ export async function GET(
   }
 
   const url = new URL(request.url);
-  const sz = url.searchParams.get("sz") ?? "w1000";
+  const szKey = url.searchParams.get("sz") ?? "w1000";
+  const width = WIDTHS[szKey] ?? 1000;
 
   try {
     const drive = google.drive({ version: "v3", auth: jwt });
-    // Thumb via API autenticada (el endpoint público no funciona sin share público)
     const res = await drive.files.get(
-      {
-        fileId,
-        alt: "media",
-        supportsAllDrives: true,
-      },
+      { fileId, alt: "media", supportsAllDrives: true },
       { responseType: "arraybuffer" }
     );
-    const buf = Buffer.from(res.data as ArrayBuffer);
+    const original = Buffer.from(res.data as ArrayBuffer);
 
-    // Si piden thumbnail, redimensionamos con sharp si es posible;
-    // por simplicidad devolvemos el original con cache.
-    void sz;
-    return new NextResponse(new Uint8Array(buf), {
+    const webp = await sharp(original)
+      .resize(width, width, { fit: "inside", withoutEnlargement: true })
+      .webp({ quality: 80 })
+      .toBuffer();
+
+    return new NextResponse(new Uint8Array(webp), {
       headers: {
-        "Content-Type": res.headers["content-type"] || "image/jpeg",
-        "Content-Length": String(buf.length),
+        "Content-Type": "image/webp",
+        "Content-Length": String(webp.length),
         "Cache-Control": "public, max-age=86400, stale-while-revalidate=604800",
       },
     });
