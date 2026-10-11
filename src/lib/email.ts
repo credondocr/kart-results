@@ -116,7 +116,7 @@ export async function sendRegistrationReceived(input: {
     input.paymentMethod === "track"
       ? "Pagarás en pista."
       : input.amountTotal
-        ? `Monto a transferir: <strong>₡${Number(input.amountTotal).toLocaleString("es-CR")}</strong>. Sube tu comprobante y el admin lo verifica.`
+        ? `Monto a transferir: <strong>$${Number(input.amountTotal).toLocaleString("en-US")}</strong>. Sube tu comprobante y el admin lo verifica.`
         : "Revisa el estado con el admin.";
   return sendSafe(
     input.to,

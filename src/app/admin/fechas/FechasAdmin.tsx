@@ -320,11 +320,11 @@ export default function AdminFechasPage() {
               </legend>
               <div className="max-w-xs">
                 <label htmlFor="fd-price" className="admin-label">
-                  Colones por categoría
+                  Dólares por categoría
                 </label>
                 <div className="relative">
                   <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--text-dim)]">
-                    ₡
+                    $
                   </span>
                   <input
                     id="fd-price"
@@ -344,7 +344,7 @@ export default function AdminFechasPage() {
                       {" "}
                       Ej.: quien corre2 categorías paga{" "}
                       <strong className="font-mono">
-                        ₡{(Number(priceBase) * 2).toLocaleString("es-CR")}
+                        ${(Number(priceBase) * 2).toLocaleString("en-US")}
                       </strong>
                       .
                     </span>
@@ -428,7 +428,7 @@ export default function AdminFechasPage() {
                       </span>
                     </td>
                     <td className="px-3 py-2 font-mono text-xs">
-                      {d.price_base != null ? `₡${Number(d.price_base).toLocaleString("es-CR")}` : "—"}
+                      {d.price_base != null ? `$${Number(d.price_base).toLocaleString("en-US")}` : "—"}
                     </td>
                     <td className="px-3 py-2 text-right">
                       {d.status === "open" ? (
@@ -485,7 +485,7 @@ export default function AdminFechasPage() {
                     {editing.name}
                   </h2>
                   <p className="mt-1 font-mono text-[11px] text-[var(--text-dim)]">
-                    {new Date(editing.race_date).toLocaleString("es-CR")}
+                    {new Date(editing.race_date).toLocaleString("en-US")}
                   </p>
                 </div>
                 <button
@@ -516,7 +516,7 @@ export default function AdminFechasPage() {
                     />
                   </div>
                   <div>
-                    <label className="admin-label">Precio por cat. ₡</label>
+                    <label className="admin-label">Precio por cat. USD</label>
                     <input
                       type="number"
                       min="0"

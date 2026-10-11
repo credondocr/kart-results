@@ -180,7 +180,7 @@ export default function InscribirForm({ openDate }: { openDate: OpenDate | null 
           </div>
           {total != null && cats.length > 0 ? (
             <p className="mt-2 font-mono text-sm font-bold tabular-nums text-white">
-              Total: ₡{total.toLocaleString("es-CR")}
+              Total: ${total.toLocaleString("en-US")}
             </p>
           ) : null}
         </fieldset>

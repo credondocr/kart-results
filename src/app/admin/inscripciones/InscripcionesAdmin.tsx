@@ -185,7 +185,7 @@ export default function AdminInscripcionesPage() {
                           ) : null}
                         </td>
                         <td className="px-3 py-2.5 font-mono text-xs">
-                          {r.amount_total != null ? `₡${Number(r.amount_total).toLocaleString("es-CR")}` : "—"}
+                          {r.amount_total != null ? `$${Number(r.amount_total).toLocaleString("en-US")}` : "—"}
                         </td>
                         <td className="px-3 py-2.5">
                           <span className={`rounded-md px-2 py-0.5 text-[10px] font-bold uppercase ${st.cls}`}>
