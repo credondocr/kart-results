@@ -294,6 +294,11 @@ export default function ProfileClient() {
             </p>
           ) : null}
 
+          <p className="text-[11px] leading-relaxed text-[var(--text-dim)]">
+            Los cambios de equipo se publican en el sitio público en el próximo
+            deploy. Tu ficha siempre muestra tu información actual.
+          </p>
+
           <button
             type="submit"
             disabled={saving}
