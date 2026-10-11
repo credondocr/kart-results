@@ -4,7 +4,7 @@ import { requireRole } from "@/lib/auth";
 
 export const runtime = "nodejs";
 
-/** Upload de imagen para el editor de noticias → Vercel Blob. */
+/** Upload de imagen para el editor de noticias → Vercel Blob (private store). */
 export async function POST(request: Request) {
   if (!requireRole(request, ["admin", "editor"])) {
     return NextResponse.json({ error: "no autorizado" }, { status: 401 });
@@ -32,10 +32,11 @@ export async function POST(request: Request) {
     const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
     const path = `news/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
     const blob = await put(path, bytes, {
-      access: "public",
+      access: "private",
       contentType: file.type,
     });
-    return NextResponse.json({ url: blob.url });
+    // Devolvemos la ruta relativa; el contenido se sirve vía proxy público
+    return NextResponse.json({ url: `/api/news-images/${blob.pathname}` });
   } catch (err) {
     console.error("[news upload]", err);
     return NextResponse.json({ error: "no se pudo subir" }, { status: 500 });

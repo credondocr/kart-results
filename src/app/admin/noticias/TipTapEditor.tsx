@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Image from "@tiptap/extension-image";
@@ -26,12 +26,19 @@ const TOOLBAR = [
 
 export default function TipTapEditor({ content, onChange }: Props) {
   const fileRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
 
   const editor = useEditor({
     immediatelyRender: false,
     extensions: [
       StarterKit,
-      Image.configure({ HTMLAttributes: { class: "rounded-xl max-w-full" } }),
+      Image.configure({
+        HTMLAttributes: {
+          class: "rounded-xl max-w-full my-4",
+          style: "max-width:100%;height:auto;",
+        },
+        allowBase64: true,
+      }),
       Link.configure({ openOnClick: false }),
       Placeholder.configure({ placeholder: "Escribe el cuerpo de la noticia…" }),
     ],
@@ -41,19 +48,26 @@ export default function TipTapEditor({ content, onChange }: Props) {
 
   const insertImage = useCallback(
     async (file: File) => {
-      if (!editor) return;
-      const fd = new FormData();
-      fd.set("file", file);
+      if (!editor || uploading) return;
+      setUploading(true);
       try {
+        const fd = new FormData();
+        fd.set("file", file);
         const res = await fetch("/api/admin/news/upload", { method: "POST", body: fd });
-        if (!res.ok) return;
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          alert(`Error al subir: ${data.error ?? res.status}`);
+          return;
+        }
         const { url } = await res.json();
         editor.chain().focus().setImage({ src: url }).run();
       } catch {
-        /* noop */
+        alert("Error de red al subir la imagen");
+      } finally {
+        setUploading(false);
       }
     },
-    [editor]
+    [editor, uploading]
   );
 
   // Pegar imagen del portapapeles
@@ -74,6 +88,24 @@ export default function TipTapEditor({ content, onChange }: Props) {
     const el = editor.view.dom;
     el.addEventListener("paste", handlePaste);
     return () => el.removeEventListener("paste", handlePaste);
+  }, [editor, insertImage]);
+
+  // Drag & drop de imágenes
+  useEffect(() => {
+    if (!editor) return;
+    const handleDrop = async (e: DragEvent) => {
+      e.preventDefault();
+      const file = e.dataTransfer?.files?.[0];
+      if (file && file.type.startsWith("image/")) {
+        await insertImage(file);
+      }
+    };
+    const el = editor.view.dom;
+    el.addEventListener("drop", handleDrop);
+    el.addEventListener("dragover", (e) => e.preventDefault());
+    return () => {
+      el.removeEventListener("drop", handleDrop);
+    };
   }, [editor, insertImage]);
 
   if (!editor) return null;
@@ -128,9 +160,10 @@ export default function TipTapEditor({ content, onChange }: Props) {
         <button
           type="button"
           onClick={() => fileRef.current?.click()}
-          className="rounded-md px-2.5 py-1 text-xs font-semibold text-[var(--text-dim)] transition-colors hover:bg-white/5 hover:text-white"
+          disabled={uploading}
+          className="rounded-md bg-[#4C8DFF]/15 px-3 py-1 text-xs font-bold text-[#4C8DFF] transition-colors hover:bg-[#4C8DFF]/25 disabled:opacity-50"
         >
-          Imagen
+          {uploading ? "Subiendo…" : "+ Imagen"}
         </button>
         <button
           type="button"
@@ -163,7 +196,7 @@ export default function TipTapEditor({ content, onChange }: Props) {
 
       {/* Pegar imagen hint */}
       <p className="border-t border-[var(--line)] px-3 py-1.5 text-[10px] text-[var(--text-dim)]">
-        Puedes pegar imágenes directamente con Ctrl+V
+        Imágenes: botón &quot;+ Imagen&quot;, pegar con Ctrl+V, o arrastrar al editor
       </p>
     </div>
   );
