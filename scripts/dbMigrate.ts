@@ -53,6 +53,7 @@ async function main() {
       name TEXT NOT NULL,
       license_accr TEXT UNIQUE,
       team_slug TEXT,
+      pilot_key TEXT,
       created_at TIMESTAMPTZ NOT NULL DEFAULT now()
     )
   `;
@@ -64,6 +65,7 @@ async function main() {
       name TEXT,
       license_accr TEXT,
       team_slug TEXT,
+      pilot_key TEXT,
       token_hash TEXT NOT NULL UNIQUE,
       expires_at TIMESTAMPTZ NOT NULL,
       accepted_at TIMESTAMPTZ,
@@ -72,6 +74,9 @@ async function main() {
       created_at TIMESTAMPTZ NOT NULL DEFAULT now()
     )
   `;
+  // Migraciones aditivas para bases ya existentes.
+  await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS pilot_key TEXT`;
+  await sql`ALTER TABLE invitations ADD COLUMN IF NOT EXISTS pilot_key TEXT`;
   console.log("Migración OK: tablas pilots + teams + penalties + users + invitations.");
 }
 

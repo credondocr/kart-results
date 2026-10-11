@@ -14,6 +14,7 @@ interface InviteRow {
   name: string | null;
   license_accr: string | null;
   team_slug: string | null;
+  pilot_key: string | null;
   expires_at: string;
   accepted_at: string | null;
 }
@@ -39,7 +40,8 @@ export async function POST(request: Request) {
 
   const sql = db();
   const rows = (await sql`
-    SELECT id, email, role, name, license_accr, team_slug, expires_at, accepted_at
+    SELECT id, email, role, name, license_accr, team_slug, pilot_key,
+           expires_at, accepted_at
     FROM invitations WHERE token_hash = ${hashToken(token)}
   `) as unknown as InviteRow[];
   const invite = rows[0];
@@ -77,14 +79,15 @@ export async function POST(request: Request) {
 
   const hash = await hashPassword(password);
   const created = (await sql`
-    INSERT INTO users (email, password_hash, role, name, license_accr, team_slug)
+    INSERT INTO users (email, password_hash, role, name, license_accr, team_slug, pilot_key)
     VALUES (
       ${invite.email.toLowerCase()},
       ${hash},
       ${invite.role},
       ${invite.name ?? invite.email},
       ${invite.license_accr},
-      ${invite.team_slug}
+      ${invite.team_slug},
+      ${invite.pilot_key}
     )
     RETURNING id, email, role, name
   `) as unknown as Array<{ id: number; email: string; role: string; name: string }>;

@@ -15,6 +15,7 @@ interface InviteListRow {
   name: string | null;
   license_accr: string | null;
   team_slug: string | null;
+  pilot_key: string | null;
   expires_at: string;
   accepted_at: string | null;
   created_at: string;
@@ -29,7 +30,7 @@ export async function GET(request: Request) {
   }
   const sql = db();
   const rows = (await sql`
-    SELECT id, email, role, name, license_accr, team_slug,
+    SELECT id, email, role, name, license_accr, team_slug, pilot_key,
            expires_at, accepted_at, created_at
     FROM invitations
     ORDER BY created_at DESC
@@ -74,6 +75,7 @@ export async function POST(request: Request) {
   const name = body?.name ? String(body.name).trim() : null;
   const license = body?.license_accr ? String(body.license_accr).trim() : null;
   const team = body?.team_slug ? String(body.team_slug).trim() : null;
+  const pilotKey = body?.pilot_key ? String(body.pilot_key).trim() : null;
 
   if (!email || !email.includes("@")) {
     return NextResponse.json({ error: "email inválido" }, { status: 400 });
@@ -97,11 +99,11 @@ export async function POST(request: Request) {
   const expires = new Date(Date.now() + INVITE_TTL_DAYS * 86400_000).toISOString();
   const rows = (await sql`
     INSERT INTO invitations (
-      email, role, name, license_accr, team_slug,
+      email, role, name, license_accr, team_slug, pilot_key,
       token_hash, expires_at, created_by
     )
     VALUES (
-      ${email}, ${role}, ${name}, ${license}, ${team},
+      ${email}, ${role}, ${name}, ${license}, ${team}, ${pilotKey},
       ${hashToken(token)}, ${expires}::timestamptz, ${auth.uid}
     )
     RETURNING id, email, role, name, expires_at, created_at

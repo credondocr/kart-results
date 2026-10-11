@@ -12,7 +12,7 @@ export async function GET(request: Request) {
   }
   const sql = db();
   const rows = (await sql`
-    SELECT id, email, role, name, license_accr, team_slug
+    SELECT id, email, role, name, license_accr, team_slug, pilot_key
     FROM users WHERE id = ${auth.uid}
   `) as unknown as Array<Record<string, unknown>>;
   if (!rows.length) return NextResponse.json({ user: null });

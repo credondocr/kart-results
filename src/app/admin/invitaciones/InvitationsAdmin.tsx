@@ -11,10 +11,17 @@ interface InviteRow {
   name: string | null;
   license_accr: string | null;
   team_slug: string | null;
+  pilot_key: string | null;
   expires_at: string;
   accepted_at: string | null;
   created_at: string;
   status: "pending" | "accepted" | "expired";
+}
+
+interface PilotHit {
+  key: string;
+  name: string;
+  team: string | null;
 }
 
 const TEAMS = [
@@ -38,6 +45,10 @@ export default function AdminInvitationsPage() {
   const [name, setName] = useState("");
   const [license, setLicense] = useState("");
   const [team, setTeam] = useState("");
+  const [pilotQuery, setPilotQuery] = useState("");
+  const [pilotHits, setPilotHits] = useState<PilotHit[]>([]);
+  const [pilotKey, setPilotKey] = useState<string | null>(null);
+  const [pilotLabel, setPilotLabel] = useState("");
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [lastUrl, setLastUrl] = useState<string | null>(null);
@@ -62,6 +73,26 @@ export default function AdminInvitationsPage() {
     load();
   }, [load]);
 
+  useEffect(() => {
+    if (role !== "piloto" || pilotQuery.trim().length < 2 || pilotKey) {
+      setPilotHits([]);
+      return;
+    }
+    const t = setTimeout(async () => {
+      try {
+        const res = await fetch(
+          `/api/admin/pilots?q=${encodeURIComponent(pilotQuery)}&limit=8`
+        );
+        if (!res.ok) return;
+        const data = await res.json();
+        setPilotHits(data.pilots ?? []);
+      } catch {
+        setPilotHits([]);
+      }
+    }, 250);
+    return () => clearTimeout(t);
+  }, [pilotQuery, pilotKey, role]);
+
   const create = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
@@ -77,6 +108,7 @@ export default function AdminInvitationsPage() {
           name: name || null,
           license_accr: license || null,
           team_slug: team || null,
+          pilot_key: pilotKey,
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -93,6 +125,10 @@ export default function AdminInvitationsPage() {
       setEmail("");
       setName("");
       setLicense("");
+      setPilotKey(null);
+      setPilotLabel("");
+      setPilotQuery("");
+      setPilotHits([]);
       await load();
     } finally {
       setSaving(false);
@@ -194,6 +230,66 @@ export default function AdminInvitationsPage() {
               ))}
             </select>
           </div>
+          {role === "piloto" ? (
+            <div className="relative sm:col-span-4">
+              <label className="admin-label">Piloto del registro (vincula la ficha)</label>
+              {pilotKey ? (
+                <div className="flex items-center gap-2 rounded-lg border border-[#4C8DFF]/50 bg-[#4C8DFF]/10 px-3 py-2">
+                  <span className="min-w-0 flex-1 truncate text-sm font-semibold text-white">
+                    {pilotLabel}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setPilotKey(null);
+                      setPilotLabel("");
+                      setPilotQuery("");
+                    }}
+                    className="text-[var(--text-dim)] hover:text-white"
+                    aria-label="Quitar piloto"
+                  >
+                    ×
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <input
+                    value={pilotQuery}
+                    onChange={(e) => setPilotQuery(e.target.value)}
+                    placeholder="Buscar por nombre…"
+                    className="admin-input"
+                  />
+                  {pilotHits.length > 0 ? (
+                    <ul className="absolute z-30 mt-1 max-h-52 w-full overflow-y-auto rounded-lg border border-[var(--line-strong)] bg-[var(--ink-950)] py-1 shadow-2xl">
+                      {pilotHits.map((p) => (
+                        <li key={p.key}>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setPilotKey(p.key);
+                              setPilotLabel(`${p.name}${p.team ? ` (${p.team})` : ""}`);
+                              setPilotHits([]);
+                              if (!name) setName(p.name);
+                            }}
+                            className="flex w-full items-center justify-between px-3 py-1.5 text-left text-sm text-white hover:bg-[#4C8DFF]/20"
+                          >
+                            <span className="truncate">{p.name}</span>
+                            <span className="ml-2 font-mono text-[11px] text-[var(--text-dim)]">
+                              {p.team ?? ""}
+                            </span>
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </>
+              )}
+              <p className="mt-1 text-[11px] text-[var(--text-dim)]">
+                Opcional: si el piloto ya existe en el registro, vincúlalo para
+                prellenar equipo/historial en la inscripción.
+              </p>
+            </div>
+          ) : null}
           <div className="flex items-end sm:col-span-4">
             <button
               type="submit"
