@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { findPilotPhoto } from "@/app/utils/pilotPhotos";
 
 interface Profile {
   id: number;
@@ -150,6 +152,10 @@ export default function ProfileClient() {
     router.push("/");
   };
 
+  const photoSrc = current
+    ? findPilotPhoto(current.pilot_key?.replace(/-/g, " ") ?? current.name)
+    : null;
+
   return (
     <div className="min-h-screen bg-[var(--ink-950)] pt-24">
       <div className="mx-auto max-w-lg px-4 pb-24 sm:px-6">
@@ -163,6 +169,36 @@ export default function ProfileClient() {
           >
             Salir
           </button>
+        </div>
+
+        {/* Foto del piloto */}
+        <div className="mt-6 flex flex-col items-center">
+          {photoSrc ? (
+            <div className="relative h-36 w-36 overflow-hidden rounded-2xl border border-[var(--line-strong)] bg-[var(--surface-2)] shadow-2xl sm:h-40 sm:w-40">
+              <Image
+                src={photoSrc}
+                alt={current?.name ?? "Foto del piloto"}
+                fill
+                sizes="160px"
+                className="object-cover object-top"
+                priority
+              />
+            </div>
+          ) : (
+            <div className="flex h-36 w-36 flex-col items-center justify-center rounded-2xl border-2 border-dashed border-[var(--line-strong)] bg-[var(--surface-2)]/40 sm:h-40 sm:w-40">
+              <span className="font-display text-4xl font-black text-[var(--text-dim)]">
+                #
+              </span>
+              <span className="mt-1 text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--text-dim)]">
+                Sin foto
+              </span>
+            </div>
+          )}
+          <p className="mt-3 max-w-xs text-center text-[11px] leading-relaxed text-[var(--text-dim)]">
+            {photoSrc
+              ? "La foto se gestiona con ACEK."
+              : "¿Quieres tu foto de piloto? Coordiná con ACEK para que sea tomada en el paddock."}
+          </p>
         </div>
 
         {children.length > 0 ? (
@@ -187,10 +223,13 @@ export default function ProfileClient() {
           </div>
         ) : null}
 
-        <form onSubmit={save} className="mt-6 space-y-4 rounded-2xl border border-[var(--line)] bg-[var(--surface-2)]/50 p-6">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-dim)]">
-            {isOwn ? "Tu ficha" : `Ficha de ${current.name}`}
-          </p>
+        <form onSubmit={save} className="mt-6 space-y-5 rounded-2xl border border-[var(--line)] bg-[var(--surface-2)]/50 p-6">
+          <div className="flex items-baseline justify-between gap-2">
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-dim)]">
+              {isOwn ? "Tu ficha" : `Ficha de ${current.name}`}
+            </p>
+            <p className="truncate text-[11px] text-[var(--text-dim)]">{current.email}</p>
+          </div>
 
           <div>
             <label className="admin-label">Nombre</label>
@@ -202,30 +241,32 @@ export default function ProfileClient() {
             />
           </div>
 
-          <div>
-            <label className="admin-label">Equipo</label>
-            <select
-              value={teamSlug}
-              onChange={(e) => setTeamSlug(e.target.value)}
-              className="admin-input"
-            >
-              <option value="">(sin equipo)</option>
-              {teams.map((t) => (
-                <option key={t.slug} value={t.slug}>
-                  {t.name}
-                </option>
-              ))}
-            </select>
-          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label className="admin-label">Equipo</label>
+              <select
+                value={teamSlug}
+                onChange={(e) => setTeamSlug(e.target.value)}
+                className="admin-input"
+              >
+                <option value="">(sin equipo)</option>
+                {teams.map((t) => (
+                  <option key={t.slug} value={t.slug}>
+                    {t.name}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-          <div>
-            <label className="admin-label">Licencia ACCR</label>
-            <input
-              value={license}
-              onChange={(e) => setLicense(e.target.value)}
-              className="admin-input font-mono"
-              placeholder="000000"
-            />
+            <div>
+              <label className="admin-label">Licencia ACCR</label>
+              <input
+                value={license}
+                onChange={(e) => setLicense(e.target.value)}
+                className="admin-input font-mono"
+                placeholder="000000"
+              />
+            </div>
           </div>
 
           <div>
