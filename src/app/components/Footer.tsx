@@ -17,14 +17,14 @@ const NAV_SECTIONS = [
       { href: "/equipos", label: "Equipos" },
       { href: "/en-vivo", label: "En vivo", live: true },
       { href: "/transmisiones", label: "Transmisiones" },
-      { href: "/galeria", label: "Galería" },
-      { href: "/inscribir", label: "Inscribirme" },
+      /* Temporalmente oculto: { href: "/galeria", label: "Galería" }, */
+      /* Temporalmente oculto: { href: "/inscribir", label: "Inscribirme" }, */
     ],
   },
   {
     title: "Info",
     links: [
-      { href: "/noticias", label: "Noticias" },
+      /* Temporalmente oculto: { href: "/noticias", label: "Noticias" }, */
       { href: "/faq", label: "FAQ" },
       { href: "/reglamento", label: "Reglamento" },
       { href: "/contacto", label: "Contacto" },
