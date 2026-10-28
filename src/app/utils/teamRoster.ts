@@ -38,6 +38,16 @@ export function getTeamRoster(slug: string): Pilot[] {
     const key = `${profile.teamLogo}-${profile.kartNumber}`;
     if (seenProfileNumbers.has(key)) continue; // dup literal en drivers/data
     seenProfileNumbers.add(key);
+
+    // Mismo piloto con dos números (corre2 categorías con kart distinto)
+    // → una sola ficha; se fusionan las categorías.
+    const existing = roster.find((p) => samePerson(p.name, profile.name));
+    if (existing) {
+      existing.categories = [
+        ...new Set([...existing.categories, ...profile.categories]),
+      ];
+      continue;
+    }
     roster.push(profile);
   }
 
