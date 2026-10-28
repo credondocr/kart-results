@@ -159,6 +159,7 @@ const Navbar: React.FC = () => {
                 <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
               )}
             </Link>
+            {/* Temporalmente ocultos:
             <Link href="/galeria" className={linkClass("/galeria")}>
               Galería
               {isActive("/galeria") && (
@@ -171,6 +172,7 @@ const Navbar: React.FC = () => {
                 <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
               )}
             </Link>
+            */}
             <Link href="/faq" className={linkClass("/faq")}>
               FAQ
               {isActive("/faq") && (
@@ -184,11 +186,7 @@ const Navbar: React.FC = () => {
                   <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
                 )}
               </Link>
-            ) : (
-              <Link href="/login" className={linkClass("/login")}>
-                Entrar
-              </Link>
-            )}
+            ) : null /* Temporalmente oculto: Entrar */}
             <button
               ref={searchButtonRef}
               type="button"
@@ -247,6 +245,7 @@ const Navbar: React.FC = () => {
           >
             Equipos
           </Link>
+          {/* Temporalmente oculto:
           <Link
             href="/galeria"
             className={`block px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-colors text-white hover:bg-white/5 ${isActive('/galeria') ? 'bg-white/10' : ''
@@ -255,6 +254,7 @@ const Navbar: React.FC = () => {
           >
             Galería
           </Link>
+          */}
           <Link
             href="/campeones"
             className={`block px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-colors text-white hover:bg-white/5 ${isActive('/campeones') ? 'bg-white/10' : ''
@@ -288,16 +288,7 @@ const Navbar: React.FC = () => {
             >
               Perfil
             </Link>
-          ) : (
-            <Link
-              href="/login"
-              className={`block px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-colors text-white hover:bg-white/5 ${isActive('/login') ? 'bg-white/10' : ''
-                }`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Entrar
-            </Link>
-          )}
+          ) : null /* Temporalmente oculto: Entrar */}
         </div>
       </div>
 

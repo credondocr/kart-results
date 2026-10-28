@@ -183,12 +183,14 @@ export default async function HomePage() {
               Vuelta a vuelta, de la pista a tu teléfono.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
+              {/* Temporalmente oculto:
               <Link
                 href="/inscribir"
                 className="rounded-lg bg-[#4C8DFF] px-5 py-3 text-base font-semibold text-white transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-[#3a7cf0] active:scale-[0.98]"
               >
                 Inscribirme
               </Link>
+              */}
               <Link
                 href="/Campeonato"
                 className="rounded-lg border border-[var(--line-strong)] px-5 py-3 text-base font-semibold text-white transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-[#4C8DFF]/60 active:scale-[0.98]"
@@ -294,6 +296,7 @@ export default async function HomePage() {
                         : "pilotos inscritos"}
                     </p>
                   ) : null}
+                  {/* Temporalmente oculto:
                   {race.status === "open" ? (
                     <Link
                       href="/inscribir"
@@ -302,10 +305,11 @@ export default async function HomePage() {
                       Inscribirme a esta fecha
                     </Link>
                   ) : (
+                  */}
                     <p className="mt-4 rounded-lg border border-[var(--line)] px-4 py-2.5 text-center text-sm font-semibold text-[var(--text-dim)]">
-                      Inscripciones cerradas
+                      Inscripciones próximamente
                     </p>
-                  )}
+                  {/* )} */}
                 </>
               ) : (
                 <>
@@ -511,57 +515,11 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* Noticias + accesos */}
+      {/* Accesos rápidos */}
       <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-7xl space-y-10 px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="grid gap-4 lg:grid-cols-[1fr_1.2fr]">
-              <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface-2)]/40 p-6">
-                <div className="flex items-center justify-between">
-                  <h2 className="font-display text-xl font-extrabold uppercase tracking-tight text-white">
-                    Noticias
-                  </h2>
-                  {landingNews.length > 0 ? (
-                    <Link href="/noticias" className="text-xs font-semibold text-[#4C8DFF] hover:opacity-80">
-                      Ver todas
-                    </Link>
-                  ) : null}
-                </div>
-                {landingNews.length === 0 ? (
-                  <p className="mt-4 text-sm text-[var(--text-dim)]">
-                    Pronto publicaremos novedades.
-                  </p>
-                ) : (
-                  <ul className="mt-4 divide-y divide-[var(--line)]">
-                    {landingNews.map((n) => {
-                      const date = n.published_at
-                        ? new Date(n.published_at).toLocaleDateString("es-CR", { day: "numeric", month: "short" })
-                        : "";
-                      return (
-                        <li key={n.id} className="py-3">
-                          <Link href={`/noticias/${n.slug}`} className="group flex items-baseline gap-3">
-                            <time className="w-14 shrink-0 font-mono text-[11px] text-[var(--text-dim)]">
-                              {date}
-                            </time>
-                            <div>
-                              {n.tag ? (
-                                <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#4C8DFF]">
-                                  {n.tag}
-                                </p>
-                              ) : null}
-                              <p className="mt-0.5 text-sm font-semibold leading-snug text-white group-hover:text-[#4C8DFF]">
-                                {n.title}
-                              </p>
-                            </div>
-                          </Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                )}
-              </div>
-
-              <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 <Link
                   href="/Campeonato"
                   className="group rounded-2xl border border-[var(--line)] bg-[#4C8DFF]/10 p-6 transition-colors hover:border-[#4C8DFF]/50"
@@ -608,10 +566,7 @@ export default async function HomePage() {
                   </p>
                 </Link>
               </div>
-            </div>
           </Reveal>
-
-          {/* Equipos */}
           <Reveal>
             <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface-2)]/30 p-6">
               <div className="flex flex-wrap items-center justify-between gap-4">
