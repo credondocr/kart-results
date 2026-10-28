@@ -12,6 +12,8 @@ interface PilotRow {
   teams: Record<string, string> | null;
   country: string | null;
   aliases: string[] | null;
+  birth_date?: string | null;
+  categories?: string[] | null;
   updated_at?: string;
 }
 
@@ -27,6 +29,8 @@ interface EditState {
   country: string;
   teams: Array<{ year: string; team: string }>;
   aliases: string;
+  birthDate: string;
+  categories: string;
 }
 
 function toEditState(p: PilotRow): EditState {
@@ -36,6 +40,8 @@ function toEditState(p: PilotRow): EditState {
     country: p.country ?? "",
     teams: Object.entries(p.teams ?? {}).map(([year, team]) => ({ year, team })),
     aliases: (p.aliases ?? []).join(", "),
+    birthDate: p.birth_date ?? "",
+    categories: (p.categories ?? []).join(", "),
   };
 }
 
@@ -113,6 +119,10 @@ export default function PilotsAdmin() {
         .split(",")
         .map((a) => a.trim())
         .filter(Boolean);
+      const categories = edit.categories
+        .split(",")
+        .map((c) => c.trim())
+        .filter(Boolean);
       const res = await fetch(`/api/admin/pilots/${encodeURIComponent(selectedKey)}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -122,6 +132,8 @@ export default function PilotsAdmin() {
           country: edit.country || null,
           teams,
           aliases,
+          birthDate: edit.birthDate || null,
+          categories,
         }),
       });
       if (!res.ok) {
@@ -194,6 +206,8 @@ export default function PilotsAdmin() {
                   <th className="px-4 py-2.5 font-bold">Nombre</th>
                   <th className="px-3 py-2.5 font-bold">Equipo actual</th>
                   <th className="px-3 py-2.5 font-bold">País</th>
+                  <th className="px-3 py-2.5 font-bold">Nacimiento</th>
+                  <th className="px-3 py-2.5 font-bold">Categorías</th>
                   <th className="px-3 py-2.5 font-bold">Aliases</th>
                   <th className="px-3 py-2.5 font-bold"></th>
                 </tr>
@@ -201,13 +215,13 @@ export default function PilotsAdmin() {
               <tbody>
                 {loading ? (
                   <tr>
-                    <td colSpan={5} className="px-4 py-10 text-center text-[var(--text-dim)]">
+                    <td colSpan={7} className="px-4 py-10 text-center text-[var(--text-dim)]">
                       Cargando…
                     </td>
                   </tr>
                 ) : pilots.length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="px-4 py-10 text-center text-[var(--text-dim)]">
+                    <td colSpan={7} className="px-4 py-10 text-center text-[var(--text-dim)]">
                       Sin resultados{q ? ` para “${q}”` : ""}.
                     </td>
                   </tr>
@@ -228,6 +242,12 @@ export default function PilotsAdmin() {
                       </td>
                       <td className="px-3 py-2.5 font-mono text-xs text-[var(--text-dim)]">
                         {p.country ?? "—"}
+                      </td>
+                      <td className="px-3 py-2.5 font-mono text-xs text-[var(--text-dim)]">
+                        {p.birth_date ?? "—"}
+                      </td>
+                      <td className="px-3 py-2.5 text-xs text-[var(--text-dim)]">
+                        {p.categories?.length ? p.categories.join(", ") : "—"}
                       </td>
                       <td className="px-3 py-2.5 text-xs text-[var(--text-dim)]">
                         {p.aliases?.length ? p.aliases.join(", ") : "—"}
@@ -326,6 +346,29 @@ export default function PilotsAdmin() {
                       id="pilot-country"
                       value={edit.country}
                       onChange={(code) => setEdit({ ...edit, country: code })}
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="admin-label" htmlFor="pilot-birthdate">
+                      Fecha de nacimiento
+                    </label>
+                    <input
+                      id="pilot-birthdate"
+                      type="date"
+                      value={edit.birthDate}
+                      onChange={(e) => setEdit({ ...edit, birthDate: e.target.value })}
+                      className="admin-input"
+                    />
+                  </div>
+                  <div>
+                    <label className="admin-label">Categorías (coma)</label>
+                    <input
+                      value={edit.categories}
+                      onChange={(e) => setEdit({ ...edit, categories: e.target.value })}
+                      placeholder="VLR Senior, Micro Rok"
+                      className="admin-input"
                     />
                   </div>
                 </div>

@@ -17,7 +17,20 @@ type Row = {
   teams: Record<string, string> | null;
   country: string | null;
   aliases: string[] | null;
+  birth_date: Date | string | null;
+  categories: string[] | null;
 };
+
+/** El driver de neon devuelve `date` como Date local; el registro guarda solo YYYY-MM-DD. */
+function toIsoDate(value: Date | string | null): string | null {
+  if (!value) return null;
+  if (typeof value === "string") {
+    const match = /^(\d{4}-\d{2}-\d{2})/.exec(value);
+    return match ? match[1] : null;
+  }
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${value.getFullYear()}-${pad(value.getMonth() + 1)}-${pad(value.getDate())}`;
+}
 
 async function main() {
   const isVercel = process.env.VERCEL === "1";
@@ -32,7 +45,7 @@ async function main() {
   }
   const sql = db();
   const rows = (await sql`
-    SELECT key, name, team, teams, country, aliases
+    SELECT key, name, team, teams, country, aliases, birth_date, categories
     FROM pilots
     ORDER BY key
   `) as unknown as Row[];
@@ -50,13 +63,16 @@ async function main() {
       teams?: Record<string, string>;
       country?: string;
       aliases?: string[];
+      birthDate?: string;
+      categories?: string[];
     }
   > = {};
   for (const r of rows) {
     // Orden de claves igual al pilots.json original (name, team, teams,
-    // country, aliases) y team/country siempre presentes (string vacío si
-    // no hay dato): pilotRegistry hace `as Record<string, RegistryEntry>`
-    // con esos campos requeridos y el cast rompe si las claves faltan.
+    // country, aliases, birthDate, categories) y team/country siempre
+    // presentes (string vacío si no hay dato): pilotRegistry hace
+    // `as Record<string, RegistryEntry>` con esos campos requeridos y el
+    // cast rompe si las claves faltan.
     const entry: (typeof out)[string] = {
       name: r.name,
       team: r.team ?? "",
@@ -64,6 +80,9 @@ async function main() {
     if (r.teams && Object.keys(r.teams).length) entry.teams = r.teams;
     entry.country = r.country ?? "";
     if (r.aliases?.length) entry.aliases = r.aliases;
+    const birthDate = toIsoDate(r.birth_date);
+    if (birthDate) entry.birthDate = birthDate;
+    if (r.categories?.length) entry.categories = r.categories;
     out[r.key] = entry;
   }
 

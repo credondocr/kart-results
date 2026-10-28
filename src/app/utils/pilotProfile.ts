@@ -10,6 +10,22 @@ export const prettifyTeam = (slug: string) =>
     .replace(/-/g, " ")
     .replace(/\b\w/g, (letter) => letter.toUpperCase());
 
+/** Edad cumplida a partir de una fecha ISO (YYYY-MM-DD). */
+export function ageFrom(birthDate: string, today: Date = new Date()): number | null {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(birthDate);
+  if (!match) return null;
+  const year = Number(match[1]);
+  const month = Number(match[2]) - 1;
+  const day = Number(match[3]);
+  const born = new Date(year, month, day);
+  if (Number.isNaN(born.getTime())) return null;
+  let age = today.getFullYear() - born.getFullYear();
+  const beforeBirthday =
+    today.getMonth() < month || (today.getMonth() === month && today.getDate() < day);
+  if (beforeBirthday) age--;
+  return age >= 0 ? age : null;
+}
+
 export function findDriverPilot(teamSlug: string, id: string): Pilot | undefined {
   const number = Number(id);
   if (!Number.isInteger(number)) return undefined;

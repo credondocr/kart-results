@@ -2350,7 +2350,7 @@ export const championship2022: Championship = {
                 "rank": 9,
                 "number": "311",
                 "driver": "Felipe Carvajal",
-                "team": "",
+                "team": "fsa",
                 "country": "CR",
                 "scores": [
                   21.5,

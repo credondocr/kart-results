@@ -11,6 +11,10 @@ export interface RegistryEntry {
   teams?: Record<string, string>;
   country: string;
   aliases?: string[];
+  /** Fecha de nacimiento ISO (YYYY-MM-DD), si se conoce. */
+  birthDate?: string;
+  /** Categoría(s) vigente(s) de inscripción (grafía canónica del campeonato). */
+  categories?: string[];
 }
 
 const REGISTRY = pilotsJson as Record<string, RegistryEntry>;

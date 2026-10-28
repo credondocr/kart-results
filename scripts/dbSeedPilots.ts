@@ -15,6 +15,8 @@ type Entry = {
   teams?: Record<string, string>;
   country?: string;
   aliases?: string[];
+  birthDate?: string;
+  categories?: string[];
 };
 
 async function main() {
@@ -31,13 +33,15 @@ async function main() {
     teams: e.teams ?? {},
     country: e.country ?? null,
     aliases: e.aliases ?? [],
+    birthDate: e.birthDate ?? null,
+    categories: e.categories ?? [],
   }));
 
   const sql = db();
   const result = await sql`
-    INSERT INTO pilots (key, name, team, teams, country, aliases)
+    INSERT INTO pilots (key, name, team, teams, country, aliases, birth_date, categories)
     SELECT * FROM jsonb_to_recordset(${JSON.stringify(rows)}::jsonb)
-      AS x(key text, name text, team text, teams jsonb, country text, aliases jsonb)
+      AS x(key text, name text, team text, teams jsonb, country text, aliases jsonb, birth_date date, categories jsonb)
     ON CONFLICT (key) DO NOTHING
   `;
   console.log(`Seed OK: ${rows.length} pilotos en archivo, insertados solo faltantes.`);

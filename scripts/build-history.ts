@@ -30,6 +30,7 @@ const loose = (v: string) =>
 interface RegistryEntry {
   name: string;
   team?: string;
+  teams?: Record<string, string>;
   country?: string;
   aliases?: string[];
 }
@@ -387,7 +388,9 @@ function buildSeason(
               rank: 0,
               number: bestNum || acc.name.slice(0, 3).toUpperCase(),
               driver: acc.name,
-              team: reg?.team ?? "",
+              // Equipo de la temporada (teams[año]); el `team` plano es el
+              // actual y pisaba temporadas pasadas al regenerar el histórico.
+              team: reg?.teams?.[year] ?? reg?.team ?? "",
               country: reg?.country ?? "",
               scores: acc.scores,
               points,

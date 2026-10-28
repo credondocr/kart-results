@@ -3,6 +3,36 @@ import { db, dbUrl } from "@/lib/db";
 import { isAuthenticated } from "@/lib/adminAuth";
 import { normalizeName } from "@/app/utils/pilotHistory";
 
+/** El driver de neon devuelve `date` como Date/timestamp; el admin espera YYYY-MM-DD. */
+function isoDate(value: unknown): string | null {
+  if (!value) return null;
+  if (typeof value === "string") {
+    const match = /^(\d{4}-\d{2}-\d{2})/.exec(value);
+    return match ? match[1] : null;
+  }
+  if (value instanceof Date) {
+    const pad = (n: number) => String(n).padStart(2, "0");
+    return `${value.getFullYear()}-${pad(value.getMonth() + 1)}-${pad(value.getDate())}`;
+  }
+  return null;
+}
+
+type PilotRow = {
+  key: string;
+  name: string;
+  team: string | null;
+  teams: Record<string, string> | null;
+  country: string | null;
+  aliases: string[] | null;
+  birth_date: unknown;
+  categories: string[] | null;
+  updated_at?: string;
+};
+
+function serialize(row: PilotRow) {
+  return { ...row, birth_date: isoDate(row.birth_date) };
+}
+
 export async function GET(request: Request) {
   if (!isAuthenticated(request)) {
     return NextResponse.json({ error: "no autorizado" }, { status: 401 });
@@ -19,7 +49,7 @@ export async function GET(request: Request) {
 
   const rows = q
     ? await sql`
-        SELECT key, name, team, teams, country, aliases, updated_at
+        SELECT key, name, team, teams, country, aliases, birth_date, categories, updated_at
         FROM pilots
         WHERE key ILIKE ${"%" + q + "%"}
            OR name ILIKE ${"%" + q + "%"}
@@ -29,7 +59,7 @@ export async function GET(request: Request) {
         LIMIT ${limit} OFFSET ${offset}
       `
     : await sql`
-        SELECT key, name, team, teams, country, aliases, updated_at
+        SELECT key, name, team, teams, country, aliases, birth_date, categories, updated_at
         FROM pilots
         ORDER BY name
         LIMIT ${limit} OFFSET ${offset}
@@ -46,7 +76,12 @@ export async function GET(request: Request) {
     : await sql`SELECT count(*)::int AS n FROM pilots`;
   const total = (countResult as unknown as Array<{ n: number }>)[0]?.n ?? 0;
 
-  return NextResponse.json({ pilots: rows, total, limit, offset });
+  return NextResponse.json({
+    pilots: (rows as unknown as PilotRow[]).map(serialize),
+    total,
+    limit,
+    offset,
+  });
 }
 
 export async function POST(request: Request) {
@@ -67,17 +102,30 @@ export async function POST(request: Request) {
   if (!name) {
     return NextResponse.json({ error: "name requerido" }, { status: 400 });
   }
+  const birthDateRaw = String(body?.birthDate ?? "").trim();
+  let birthDate: string | null = null;
+  if (birthDateRaw) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(birthDateRaw) || Number.isNaN(Date.parse(birthDateRaw))) {
+      return NextResponse.json({ error: "birthDate inválida (usa YYYY-MM-DD)" }, { status: 400 });
+    }
+    birthDate = birthDateRaw;
+  }
+  const categories = Array.isArray(body?.categories)
+    ? body.categories.map((c) => String(c).trim()).filter(Boolean)
+    : [];
   const key = normalizeName(name);
   const sql = db();
   const rows = await sql`
-    INSERT INTO pilots (key, name, team, teams, country, aliases)
+    INSERT INTO pilots (key, name, team, teams, country, aliases, birth_date, categories)
     VALUES (
       ${key},
       ${name},
       ${body?.team ? String(body.team) : null},
       ${JSON.stringify(body?.teams ?? {})}::jsonb,
       ${body?.country ? String(body.country) : null},
-      ${JSON.stringify(body?.aliases ?? [])}::jsonb
+      ${JSON.stringify(body?.aliases ?? [])}::jsonb,
+      ${birthDate}::date,
+      ${JSON.stringify(categories)}::jsonb
     )
     ON CONFLICT (key) DO UPDATE SET
       name = EXCLUDED.name,
@@ -85,8 +133,13 @@ export async function POST(request: Request) {
       teams = EXCLUDED.teams,
       country = EXCLUDED.country,
       aliases = EXCLUDED.aliases,
+      birth_date = EXCLUDED.birth_date,
+      categories = EXCLUDED.categories,
       updated_at = now()
-    RETURNING key, name, team, teams, country, aliases, updated_at
+    RETURNING key, name, team, teams, country, aliases, birth_date, categories, updated_at
   `;
-  return NextResponse.json({ pilot: (rows as unknown as unknown[])[0] }, { status: 201 });
+  return NextResponse.json(
+    { pilot: serialize((rows as unknown as PilotRow[])[0]) },
+    { status: 201 }
+  );
 }

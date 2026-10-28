@@ -763,7 +763,7 @@ export const championship2019: Championship = {
                 "rank": 2,
                 "number": "511",
                 "driver": "Felipe Carvajal",
-                "team": "",
+                "team": "fsa",
                 "country": "CR",
                 "scores": [
                   0,
@@ -1099,7 +1099,7 @@ export const championship2019: Championship = {
                 "rank": 9,
                 "number": "616",
                 "driver": "Carlos Fonseca",
-                "team": "",
+                "team": "fsa",
                 "country": "",
                 "scores": [
                   0,
@@ -2717,7 +2717,7 @@ export const championship2019: Championship = {
                 "rank": 2,
                 "number": "511",
                 "driver": "Felipe Carvajal",
-                "team": "",
+                "team": "fsa",
                 "country": "CR",
                 "scores": [
                   0,

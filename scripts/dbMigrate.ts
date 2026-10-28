@@ -20,6 +20,12 @@ async function main() {
     )
   `;
   await sql`
+    ALTER TABLE pilots ADD COLUMN IF NOT EXISTS birth_date DATE
+  `;
+  await sql`
+    ALTER TABLE pilots ADD COLUMN IF NOT EXISTS categories JSONB NOT NULL DEFAULT '[]'::jsonb
+  `;
+  await sql`
     CREATE INDEX IF NOT EXISTS pilots_name_idx ON pilots (lower(name))
   `;
   await sql`

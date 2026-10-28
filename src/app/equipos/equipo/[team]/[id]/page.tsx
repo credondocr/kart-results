@@ -16,7 +16,7 @@ import CountryFlag from "@/app/components/CountryFlag";
 import TeamLogo from "@/app/components/TeamLogo";
 import WhatsAppShare from "@/app/components/WhatsAppShare";
 import { lookupRegistry, getTeamSegments } from "@/app/utils/pilotRegistry";
-import { prettifyTeam, resolvePilot } from "@/app/utils/pilotProfile";
+import { prettifyTeam, resolvePilot, ageFrom } from "@/app/utils/pilotProfile";
 import { samePerson } from "@/app/utils/pilotHistory";
 import eventsManifest from "@/data/events/manifest.json";
 import { loadAllEvents, aggregateComebacks } from "@/app/utils/eventData";
@@ -76,6 +76,8 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
   const currentTeam = registryEntry?.team || pilot.teamLogo || teamSlug;
   const currentTeamName = getTeam(currentTeam)?.name ?? prettifyTeam(currentTeam);
   const teamSegments = getTeamSegments(registryEntry);
+  const age = registryEntry?.birthDate ? ageFrom(registryEntry.birthDate) : null;
+  const currentCategories = registryEntry?.categories ?? [];
 
   const polesCount = eventsManifest.events.reduce(
     (total, event) =>
@@ -137,6 +139,12 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
                 {country || "—"}
               </span>
             </div>
+            {age !== null && (
+              <div className="stat">
+                <span className="stat-label">Edad</span>
+                <span className="stat-value">{age} años</span>
+              </div>
+            )}
             <div className="stat">
               <span className="stat-label">Equipo actual</span>
               <span className="stat-value with-media">
@@ -144,6 +152,12 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
                 {currentTeamName}
               </span>
             </div>
+            {currentCategories.length > 0 && (
+              <div className="stat">
+                <span className="stat-label">Categoría actual</span>
+                <span className="stat-value">{currentCategories.join(" · ")}</span>
+              </div>
+            )}
             {career.seasons > 0 && (
               <>
                 <div className="stat">

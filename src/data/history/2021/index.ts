@@ -1237,7 +1237,7 @@ export const championship2021: Championship = {
                 "rank": 9,
                 "number": "311",
                 "driver": "Felipe Carvajal",
-                "team": "",
+                "team": "fsa",
                 "country": "CR",
                 "scores": [
                   11,
@@ -1880,7 +1880,7 @@ export const championship2021: Championship = {
                 "rank": 11,
                 "number": "477x",
                 "driver": "Diego Alvarado",
-                "team": "",
+                "team": "formula",
                 "country": "CR",
                 "scores": [
                   0,
@@ -2442,7 +2442,7 @@ export const championship2021: Championship = {
                 "rank": 5,
                 "number": "311",
                 "driver": "Felipe Carvajal",
-                "team": "",
+                "team": "fsa",
                 "country": "CR",
                 "scores": [
                   23.5,
