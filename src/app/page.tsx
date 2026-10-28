@@ -151,7 +151,7 @@ export default async function HomePage() {
               */}
               <Link
                 href="/Campeonato"
-                className="rounded-lg border border-[var(--line-strong)] px-5 py-3 text-base font-semibold text-white transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-[#4C8DFF]/60 active:scale-[0.98]"
+                className="rounded-lg bg-[#4C8DFF] px-5 py-3 text-base font-semibold text-white shadow-lg shadow-[#4C8DFF]/25 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-[#3a7cf0] active:scale-[0.98]"
               >
                 Ver campeonato
               </Link>
@@ -202,7 +202,7 @@ export default async function HomePage() {
               ))}
             </div>
 
-            <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface-2)]/60 p-5 sm:p-6">
+            <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface-2)]/60 p-5 shadow-xl shadow-black/40 sm:p-6">
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2.5">
                   <Image
@@ -347,10 +347,7 @@ export default async function HomePage() {
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#4C8DFF]">
-                  Pilotos
-                </p>
-                <h2 className="mt-1 font-display text-2xl font-extrabold uppercase tracking-tight text-white sm:text-3xl">
+                <h2 className="font-display text-2xl font-extrabold uppercase tracking-tight text-white sm:text-3xl">
                   El paddock
                 </h2>
               </div>
@@ -364,7 +361,7 @@ export default async function HomePage() {
             </div>
           </Reveal>
           <Reveal delayMs={80}>
-            <div className="mt-8 grid grid-cols-3 gap-3 sm:grid-cols-6">
+            <div className="mt-8 grid grid-cols-3 gap-4 sm:grid-cols-6">
               {paddockFaces.map((p) => (
                 <Link
                   key={p.file}

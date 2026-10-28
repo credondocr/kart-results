@@ -27,9 +27,10 @@ skills, verificada (tsc + lint + build) y commiteada.
 
 ## Registro de iteraciones
 
-| # | Objetivo | Skills | Score/estado | Commit |
+| # | Objetivo | Skills | Mejoras | Commit |
 |---|---|---|---|---|
-| — | Setup skills + branch | — | — | pendiente |
+| 0 | Setup:4 skills instaladas + registro | find-skills | `refactoring-ui`, `frontend-design`, `landing-page-design`, `microinteractions` | — |
+| 1 | Landing — jerarquía y espaciado | refactoring-ui | Score ~8/10 →9: eyebrow "Pilotos" eliminado (regla1/3), CTA primario filled con sombra (jerarquía hero), gap grilla paddock3→4, pit-board con sombra de elevación | pendiente |
 
 ## Backlog de objetivos (orden sugerido)
 
