@@ -36,6 +36,7 @@ export default function AdminFechasPage() {
   const [editName, setEditName] = useState("");
   const [editPrice, setEditPrice] = useState("");
   const [editLocation, setEditLocation] = useState("");
+  const [editDate, setEditDate] = useState("");
 
   const activeCatNames = catOptions.filter((c) => c.active).map((c) => c.name);
   const allCatNames = catOptions.map((c) => c.name);
@@ -123,6 +124,10 @@ export default function AdminFechasPage() {
     setEditName(d.name);
     setEditPrice(d.price_base != null ? String(d.price_base) : "");
     setEditLocation(d.location ?? "");
+    // datetime-local espera formato local YYYY-MM-DDTHH:mm
+    const dt = new Date(d.race_date);
+    const tz = new Date(dt.getTime() - dt.getTimezoneOffset() * 60000);
+    setEditDate(tz.toISOString().slice(0, 16));
     setMessage(null);
   };
 
@@ -150,6 +155,7 @@ export default function AdminFechasPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: editName,
+          race_date: editDate ? new Date(editDate).toISOString() : undefined,
           location: editLocation || null,
           price_base: editPrice || null,
           categories: editCats,
@@ -495,10 +501,19 @@ export default function AdminFechasPage() {
 
               <div className="mt-6 space-y-4">
                 <div>
-                  <label className="admin-label">Nombre</label>
+                  <label className="admin-label">Nombre de la fecha</label>
                   <input
                     value={editName}
                     onChange={(e) => setEditName(e.target.value)}
+                    className="admin-input"
+                  />
+                </div>
+                <div>
+                  <label className="admin-label">Fecha y hora de carrera</label>
+                  <input
+                    type="datetime-local"
+                    value={editDate}
+                    onChange={(e) => setEditDate(e.target.value)}
                     className="admin-input"
                   />
                 </div>
