@@ -1,0 +1,267 @@
+"use client";
+
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useEditor, EditorContent } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import Image from "@tiptap/extension-image";
+import Link from "@tiptap/extension-link";
+import Placeholder from "@tiptap/extension-placeholder";
+
+interface Props {
+  content: string;
+  onChange: (html: string) => void;
+}
+
+const TOOLBAR = [
+  { cmd: "bold", label: "B", style: "font-bold" },
+  { cmd: "italic", label: "I", style: "italic" },
+  { cmd: "strike", label: "S", style: "line-through" },
+  { cmd: "h2", label: "H2", style: "font-bold text-sm" },
+  { cmd: "h3", label: "H3", style: "font-bold text-xs" },
+  { cmd: "bulletList", label: "• Lista", style: "" },
+  { cmd: "orderedList", label: "1. Lista", style: "" },
+  { cmd: "blockquote", label: "❝", style: "" },
+  { cmd: "hr", label: "—", style: "" },
+];
+
+export default function TipTapEditor({ content, onChange }: Props) {
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+  const [showPicker, setShowPicker] = useState(false);
+  const [pickerImages, setPickerImages] = useState<Array<{ url: string; name: string }>>([]);
+
+  const editor = useEditor({
+    immediatelyRender: false,
+    extensions: [
+      StarterKit,
+      Image.configure({
+        HTMLAttributes: {
+          class: "rounded-xl max-w-full my-4",
+          style: "max-width:100%;height:auto;",
+        },
+        allowBase64: true,
+      }),
+      Link.configure({ openOnClick: false }),
+      Placeholder.configure({ placeholder: "Escribe el cuerpo de la noticia…" }),
+    ],
+    content,
+    onUpdate: ({ editor: e }) => onChange(e.getHTML()),
+  });
+
+  const insertImage = useCallback(
+    async (file: File) => {
+      if (!editor || uploading) return;
+      setUploading(true);
+      try {
+        const fd = new FormData();
+        fd.set("file", file);
+        const res = await fetch("/api/admin/news/upload", { method: "POST", body: fd });
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          alert(`Error al subir: ${data.error ?? res.status}`);
+          return;
+        }
+        const { url } = await res.json();
+        editor.chain().focus().setImage({ src: url }).run();
+      } catch {
+        alert("Error de red al subir la imagen");
+      } finally {
+        setUploading(false);
+      }
+    },
+    [editor, uploading]
+  );
+
+  // Pegar imagen del portapapeles
+  useEffect(() => {
+    if (!editor) return;
+    const handlePaste = async (e: ClipboardEvent) => {
+      const items = e.clipboardData?.items;
+      if (!items) return;
+      for (const item of Array.from(items)) {
+        if (item.type.startsWith("image/")) {
+          e.preventDefault();
+          const file = item.getAsFile();
+          if (file) await insertImage(file);
+          return;
+        }
+      }
+    };
+    const el = editor.view.dom;
+    el.addEventListener("paste", handlePaste);
+    return () => el.removeEventListener("paste", handlePaste);
+  }, [editor, insertImage]);
+
+  // Drag & drop de imágenes
+  useEffect(() => {
+    if (!editor) return;
+    const handleDrop = async (e: DragEvent) => {
+      e.preventDefault();
+      const file = e.dataTransfer?.files?.[0];
+      if (file && file.type.startsWith("image/")) {
+        await insertImage(file);
+      }
+    };
+    const el = editor.view.dom;
+    el.addEventListener("drop", handleDrop);
+    el.addEventListener("dragover", (e) => e.preventDefault());
+    return () => {
+      el.removeEventListener("drop", handleDrop);
+    };
+  }, [editor, insertImage]);
+
+  const openPicker = useCallback(async () => {
+    setShowPicker(true);
+    try {
+      const res = await fetch("/api/admin/media");
+      if (res.ok) {
+        const data = await res.json();
+        setPickerImages((data.images ?? []).slice(0, 60));
+      }
+    } catch {
+      /* noop */
+    }
+  }, []);
+
+  const insertFromPicker = (url: string) => {
+    editor?.chain().focus().setImage({ src: url }).run();
+    setShowPicker(false);
+  };
+
+  if (!editor) return null;
+
+  const run = (cmd: string) => {
+    switch (cmd) {
+      case "bold": return editor.chain().focus().toggleBold().run();
+      case "italic": return editor.chain().focus().toggleItalic().run();
+      case "strike": return editor.chain().focus().toggleStrike().run();
+      case "h2": return editor.chain().focus().toggleHeading({ level: 2 }).run();
+      case "h3": return editor.chain().focus().toggleHeading({ level: 3 }).run();
+      case "bulletList": return editor.chain().focus().toggleBulletList().run();
+      case "orderedList": return editor.chain().focus().toggleOrderedList().run();
+      case "blockquote": return editor.chain().focus().toggleBlockquote().run();
+      case "hr": return editor.chain().focus().setHorizontalRule().run();
+    }
+  };
+
+  const isActive = (cmd: string) => {
+    switch (cmd) {
+      case "bold": return editor.isActive("bold");
+      case "italic": return editor.isActive("italic");
+      case "strike": return editor.isActive("strike");
+      case "h2": return editor.isActive("heading", { level: 2 });
+      case "h3": return editor.isActive("heading", { level: 3 });
+      case "bulletList": return editor.isActive("bulletList");
+      case "orderedList": return editor.isActive("orderedList");
+      case "blockquote": return editor.isActive("blockquote");
+      default: return false;
+    }
+  };
+
+  return (
+    <div className="rounded-lg border border-[var(--line-strong)] bg-[var(--ink-950)]">
+      {/* Toolbar */}
+      <div className="flex flex-wrap items-center gap-1 border-b border-[var(--line)] px-2 py-1.5">
+        {TOOLBAR.map((btn) => (
+          <button
+            key={btn.cmd}
+            type="button"
+            onClick={() => run(btn.cmd)}
+            className={`rounded-md px-2.5 py-1 text-xs font-semibold transition-colors ${
+              isActive(btn.cmd)
+                ? "bg-[#4C8DFF]/20 text-[#4C8DFF]"
+                : "text-[var(--text-dim)] hover:bg-white/5 hover:text-white"
+            } ${btn.style}`}
+          >
+            {btn.label}
+          </button>
+        ))}
+        <div className="mx-1 h-4 w-px bg-[var(--line)]" />
+        <button
+          type="button"
+          onClick={() => fileRef.current?.click()}
+          disabled={uploading}
+          className="rounded-md bg-[#4C8DFF]/15 px-3 py-1 text-xs font-bold text-[#4C8DFF] transition-colors hover:bg-[#4C8DFF]/25 disabled:opacity-50"
+        >
+          {uploading ? "Subiendo…" : "+ Imagen"}
+        </button>
+        <button
+          type="button"
+          onClick={openPicker}
+          className="rounded-md px-3 py-1 text-xs font-semibold text-[var(--text-dim)] transition-colors hover:bg-white/5 hover:text-white"
+        >
+          Media
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            const url = prompt("URL del link:");
+            if (url) editor.chain().focus().setLink({ href: url }).run();
+          }}
+          className="rounded-md px-2.5 py-1 text-xs font-semibold text-[var(--text-dim)] transition-colors hover:bg-white/5 hover:text-white"
+        >
+          Link
+        </button>
+        <input
+          ref={fileRef}
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={(e) => {
+            const f = e.target.files?.[0];
+            if (f) insertImage(f);
+            e.target.value = "";
+          }}
+        />
+      </div>
+
+      {/* Contenido */}
+      <EditorContent
+        editor={editor}
+        className="prose prose-invert max-w-none px-4 py-3 text-sm leading-relaxed [&_h2]:font-display [&_h2]:text-xl [&_h2]:font-extrabold [&_h2]:uppercase [&_h2]:tracking-tight [&_h2]:text-white [&_h3]:font-display [&_h3]:text-lg [&_h3]:font-bold [&_h3]:text-white [&_p]:text-[var(--text)] [&_strong]:text-white [&_a]:text-[#4C8DFF] [&_blockquote]:border-l-2 [&_blockquote]:border-[#4C8DFF] [&_blockquote]:pl-4 [&_blockquote]:text-[var(--text-dim)] [&_img]:rounded-xl"
+      />
+
+      {/* Pegar imagen hint */}
+      <p className="border-t border-[var(--line)] px-3 py-1.5 text-[10px] text-[var(--text-dim)]">
+        Imágenes: botón &quot;+ Imagen&quot;, pegar con Ctrl+V, arrastrar, o elegir de Media
+      </p>
+
+      {/* Media picker */}
+      {showPicker ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" onClick={() => setShowPicker(false)}>
+          <div className="w-full max-w-2xl rounded-2xl border border-[var(--line)] bg-[var(--ink-950)] p-5 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between">
+              <h3 className="font-display text-lg font-extrabold uppercase tracking-tight text-white">
+                Biblioteca de media
+              </h3>
+              <button onClick={() => setShowPicker(false)} className="text-2xl text-[var(--text-dim)] hover:text-white">×</button>
+            </div>
+            {pickerImages.length === 0 ? (
+              <p className="mt-6 text-center text-sm text-[var(--text-dim)]">
+                No hay imágenes. Sube una con &quot;+ Imagen&quot;.
+              </p>
+            ) : (
+              <div className="mt-4 grid max-h-80 grid-cols-3 gap-2 overflow-y-auto sm:grid-cols-4">
+                {pickerImages.map((img) => (
+                  <button
+                    key={img.url}
+                    type="button"
+                    onClick={() => insertFromPicker(img.url)}
+                    className="group relative aspect-square overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--surface-2)] transition-colors hover:border-[#4C8DFF]"
+                    title={img.name}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={img.url} alt={img.name} className="h-full w-full object-cover" />
+                    <span className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity group-hover:opacity-100">
+                      <span className="rounded bg-[#4C8DFF] px-2 py-1 text-xs font-bold text-white">Insertar</span>
+                    </span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}

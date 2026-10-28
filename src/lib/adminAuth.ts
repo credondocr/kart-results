@@ -1,4 +1,5 @@
 import { createHmac, timingSafeEqual } from "crypto";
+import { getAuth } from "@/lib/auth";
 
 const COOKIE = "kr_admin";
 const MAX_AGE_S = 60 * 60 * 8; // 8 horas
@@ -61,7 +62,10 @@ export function readSessionCookie(request: Request): string | null {
 }
 
 export function isAuthenticated(request: Request): boolean {
-  return verifySessionToken(readSessionCookie(request));
+  // Cookie legacy del admin compartido (sigue funcionando).
+  if (verifySessionToken(readSessionCookie(request))) return true;
+  // Sesión unificada con rol.
+  return getAuth(request)?.role === "admin";
 }
 
 export const ADMIN_COOKIE = COOKIE;

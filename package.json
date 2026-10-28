@@ -21,7 +21,10 @@
     "db:migrate": "tsx -r tsconfig-paths/register scripts/dbMigrate.ts",
     "db:seed": "tsx -r tsconfig-paths/register scripts/dbSeedPilots.ts && tsx -r tsconfig-paths/register scripts/dbSeedTeams.ts",
     "db:export": "tsx -r tsconfig-paths/register scripts/dbExportPilots.ts --force && tsx -r tsconfig-paths/register scripts/dbExportTeams.ts --force && tsx -r tsconfig-paths/register scripts/dbExportPenalties.ts --force",
-    "history:build": "tsx -r tsconfig-paths/register scripts/build-history.ts"
+    "history:build": "tsx -r tsconfig-paths/register scripts/build-history.ts",
+    "db:seed-admin": "tsx -r tsconfig-paths/register scripts/dbSeedAdmin.ts",
+    "db:seed-racedate": "tsx -r tsconfig-paths/register scripts/dbSeedRaceDate.ts",
+    "db:seed-categories": "tsx -r tsconfig-paths/register scripts/dbSeedCategories.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
@@ -30,6 +33,14 @@
     "@headlessui/react": "^2.2.0",
     "@neondatabase/serverless": "^1.2.0",
     "@tailwindcss/typography": "^0.5.16",
+    "@tiptap/extension-image": "^3.31.4",
+    "@tiptap/extension-link": "^3.31.4",
+    "@tiptap/extension-placeholder": "^3.31.4",
+    "@tiptap/react": "^3.31.4",
+    "@tiptap/starter-kit": "^3.31.4",
+    "@vercel/blob": "^2.8.1",
+    "bcryptjs": "^3.0.3",
+    "googleapis": "^178.0.0",
     "gray-matter": "^4.0.3",
     "next": "15.1.11",
     "react": "^19.0.0",
@@ -46,6 +57,7 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.1",
     "remark-slug": "^8.0.0",
+    "resend": "^6.32.1",
     "tailwind-merge": "^3.0.2",
     "zod": "^3.24.2"
   },

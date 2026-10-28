@@ -2202,3 +2202,71 @@
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
 }
+
+/* Landing: marquee de categorías */
+.landing-marquee-track {
+  animation: landing-marquee 36s linear infinite;
+}
+
+@keyframes landing-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-marquee-track {
+    animation: none;
+  }
+}
+
+/* Landing: parallax por capas (CSS scroll-driven, sin JS) */
+@supports (animation-timeline: scroll()) {
+  .plx-slow {
+    animation: plx-slow linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 60vh;
+  }
+  @keyframes plx-slow {
+    from { transform: translateY(0); }
+    to { transform: translateY(-48px); }
+  }
+
+  .plx-medium {
+    animation: plx-medium linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 50vh;
+  }
+  @keyframes plx-medium {
+    from { transform: translateY(0); }
+    to { transform: translateY(-90px); }
+  }
+
+  .plx-fast {
+    animation: plx-fast linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 40vh;
+  }
+  @keyframes plx-fast {
+    from { transform: translateY(0); }
+    to { transform: translateY(-140px); }
+  }
+
+  .plx-fade-out {
+    animation: plx-fade-out linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 45vh;
+  }
+  @keyframes plx-fade-out {
+    from { opacity: 1; }
+    to { opacity: 0.25; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plx-slow,
+  .plx-medium,
+  .plx-fast,
+  .plx-fade-out {
+    animation: none !important;
+  }
+}

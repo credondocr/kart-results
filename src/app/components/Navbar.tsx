@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -9,6 +9,7 @@ import { usePathname } from 'next/navigation';
 import { Modal } from '@/components/ui/Modal';
 import { LoginForm } from '@/components/auth/LoginForm';
 import SearchPalette from './SearchPalette';
+import NavDropdown from './NavDropdown';
 
 const SearchIcon = () => (
   <svg
@@ -31,8 +32,16 @@ const Navbar: React.FC = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [authed, setAuthed] = useState(false);
   const searchButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
+
+  useEffect(() => {
+    fetch("/api/auth/me")
+      .then((r) => r.json())
+      .then((d) => setAuthed(Boolean(d.user)))
+      .catch(() => setAuthed(false));
+  }, [pathname]);
 
   const closeSearch = () => {
     setSearchOpen(false);
@@ -41,8 +50,10 @@ const Navbar: React.FC = () => {
 
   const isActive = (path: string) =>
     path === "/"
-      ? pathname === "/" || pathname.startsWith("/Campeonato")
-      : pathname.startsWith(path);
+      ? pathname === "/"
+      : path === "/Campeonato"
+        ? pathname.startsWith("/Campeonato")
+        : pathname.startsWith(path);
 
   const linkClass = (path: string) =>
     `relative text-xs xl:text-sm font-semibold uppercase tracking-[0.1em] transition-colors ${
@@ -106,11 +117,24 @@ const Navbar: React.FC = () => {
           {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center gap-4 xl:gap-7">
             <Link href="/" className={linkClass("/")}>
-              Campeonato
+              Inicio
               {isActive("/") && (
                 <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
               )}
             </Link>
+            <NavDropdown
+              label="Campeonato"
+              active={
+                isActive("/Campeonato") ||
+                isActive("/campeones") ||
+                isActive("/estadisticas")
+              }
+              items={[
+                { href: "/Campeonato", label: "Tablas" },
+                { href: "/campeones", label: "Campeones" },
+                { href: "/estadisticas", label: "Estadísticas" },
+              ]}
+            />
             <Link href="/eventos" className={linkClass("/eventos")}>
               Eventos
               {isActive("/eventos") && (
@@ -135,15 +159,15 @@ const Navbar: React.FC = () => {
                 <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
               )}
             </Link>
-            <Link href="/campeones" className={linkClass("/campeones")}>
-              Campeones
-              {isActive("/campeones") && (
+            <Link href="/galeria" className={linkClass("/galeria")}>
+              Galería
+              {isActive("/galeria") && (
                 <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
               )}
             </Link>
-            <Link href="/estadisticas" className={linkClass("/estadisticas")}>
-              Estadísticas
-              {isActive("/estadisticas") && (
+            <Link href="/noticias" className={linkClass("/noticias")}>
+              Noticias
+              {isActive("/noticias") && (
                 <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
               )}
             </Link>
@@ -153,6 +177,18 @@ const Navbar: React.FC = () => {
                 <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
               )}
             </Link>
+            {authed ? (
+              <Link href="/perfil" className={linkClass("/perfil")}>
+                Perfil
+                {isActive("/perfil") && (
+                  <span className="absolute -bottom-[21px] left-0 right-0 h-0.5 bg-[#4C8DFF]" />
+                )}
+              </Link>
+            ) : (
+              <Link href="/login" className={linkClass("/login")}>
+                Entrar
+              </Link>
+            )}
             <button
               ref={searchButtonRef}
               type="button"
@@ -173,6 +209,14 @@ const Navbar: React.FC = () => {
           <Link
             href="/"
             className={`block px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-colors text-white hover:bg-white/5 ${isActive('/') ? 'bg-white/10' : ''
+              }`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Inicio
+          </Link>
+          <Link
+            href="/Campeonato"
+            className={`block px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-colors text-white hover:bg-white/5 ${isActive('/Campeonato') ? 'bg-white/10' : ''
               }`}
             onClick={() => setIsMenuOpen(false)}
           >
@@ -204,6 +248,14 @@ const Navbar: React.FC = () => {
             Equipos
           </Link>
           <Link
+            href="/galeria"
+            className={`block px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-colors text-white hover:bg-white/5 ${isActive('/galeria') ? 'bg-white/10' : ''
+              }`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Galería
+          </Link>
+          <Link
             href="/campeones"
             className={`block px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-colors text-white hover:bg-white/5 ${isActive('/campeones') ? 'bg-white/10' : ''
               }`}
@@ -227,6 +279,25 @@ const Navbar: React.FC = () => {
           >
             FAQ
           </Link>
+          {authed ? (
+            <Link
+              href="/perfil"
+              className={`block px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-colors text-white hover:bg-white/5 ${isActive('/perfil') ? 'bg-white/10' : ''
+                }`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Perfil
+            </Link>
+          ) : (
+            <Link
+              href="/login"
+              className={`block px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-colors text-white hover:bg-white/5 ${isActive('/login') ? 'bg-white/10' : ''
+                }`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Entrar
+            </Link>
+          )}
         </div>
       </div>
 

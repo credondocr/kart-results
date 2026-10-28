@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { Archivo, Geist, Geist_Mono, Inter } from 'next/font/google';
 import './globals.css';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import SiteChrome from './components/SiteChrome';
 import { AuthProvider } from '@/contexts/AuthContext';
 import GoogleAnalytics from './components/GoogleAnalytics';
 
@@ -52,9 +51,7 @@ export default function RootLayout({
         <GoogleAnalytics />
         <AuthProvider>
           <a href="#main-content" className="skip-link">Saltar al contenido</a>
-          <Navbar />
-          <main id="main-content" className="flex-grow">{children}</main>
-          <Footer />
+          <SiteChrome>{children}</SiteChrome>
         </AuthProvider>
       </body>
     </html>

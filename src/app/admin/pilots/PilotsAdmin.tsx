@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import AdminNav from "../AdminNav";
 import CountryCombobox from "./CountryCombobox";
 
 interface PilotRow {
@@ -67,7 +66,7 @@ export default function PilotsAdmin() {
         if (query) params.set("q", query);
         const res = await fetch(`/api/admin/pilots?${params}`);
         if (res.status === 401) {
-          router.push("/admin/login");
+          router.push("/login");
           return;
         }
         const data = await res.json();
@@ -150,14 +149,14 @@ export default function PilotsAdmin() {
 
   const logout = async () => {
     await fetch("/api/admin/logout", { method: "POST" });
-    router.push("/admin/login");
+    router.push("/login");
   };
 
   const selected = pilots.find((p) => p.key === selectedKey) ?? null;
 
   return (
-    <div className="min-h-screen bg-[var(--ink-950)] pt-20">
-      <div className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 lg:px-8">
+    <div>
+      <div className="mx-auto max-w-6xl">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[var(--text-dim)]">
@@ -173,10 +172,6 @@ export default function PilotsAdmin() {
           >
             Cerrar sesión
           </button>
-        </div>
-
-        <div className="mt-4">
-          <AdminNav />
         </div>
 
         <div className="mt-6 flex flex-wrap items-center gap-3">

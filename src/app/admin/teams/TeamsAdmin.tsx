@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import AdminNav from "../AdminNav";
 
 interface TeamRow {
   slug: string;
@@ -41,7 +40,7 @@ export default function AdminTeamsPage() {
     try {
       const res = await fetch("/api/admin/teams");
       if (res.status === 401) {
-        router.push("/admin/login");
+        router.push("/login");
         return;
       }
       const data = await res.json();
@@ -126,8 +125,8 @@ export default function AdminTeamsPage() {
     t.has_logo ? `/logos/${t.slug}.png?v=${t.slug}` : "/logos/independiente.png";
 
   return (
-    <div className="min-h-screen bg-[var(--ink-950)] pt-20">
-      <div className="mx-auto max-w-5xl px-4 pb-16 sm:px-6 lg:px-8">
+    <div>
+      <div className="mx-auto max-w-5xl">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[var(--text-dim)]">
@@ -143,10 +142,6 @@ export default function AdminTeamsPage() {
           >
             + Nuevo equipo
           </button>
-        </div>
-
-        <div className="mt-4">
-          <AdminNav />
         </div>
 
         <p className="mt-4 text-xs text-[var(--text-dim)]">
