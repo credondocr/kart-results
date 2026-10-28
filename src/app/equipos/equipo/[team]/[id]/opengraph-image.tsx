@@ -1,6 +1,5 @@
 import { readFile } from "fs/promises";
 import { join } from "path";
-import sharp from "sharp";
 import { ImageResponse } from "next/og";
 import { notFound } from "next/navigation";
 import { archivoFont, OG_COLORS, OG_SIZE } from "@/app/utils/og";
@@ -17,11 +16,14 @@ interface ImageProps {
   searchParams: Promise<{ p?: string }>;
 }
 
-/** Foto /pilotos/x.webp → data URI PNG (satori no decodifica webp). */
+/** Foto /pilotos/x.webp → data URI PNG (satori no decodifica webp).
+ *  sharp se importa en dynamic para no marcar el módulo como async
+ *  en el grafo de metadata de Turbopack (rompía la página en dev). */
 async function photoDataUri(name: string): Promise<string | null> {
   const photo = findPilotPhoto(name);
   if (!photo) return null;
   try {
+    const { default: sharp } = await import("sharp");
     const file = join(process.cwd(), "public", photo);
     const png = await sharp(await readFile(file))
       .resize(480, 480, { fit: "cover", position: "attention" })
