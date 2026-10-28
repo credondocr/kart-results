@@ -345,41 +345,51 @@ export default async function HomePage() {
       <section className="border-b border-[var(--line)] py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="flex flex-wrap items-end justify-between gap-3">
-              <h2 className="font-display text-2xl font-extrabold uppercase tracking-tight text-white sm:text-3xl">
-                El paddock
-              </h2>
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#4C8DFF]">
+                  Pilotos
+                </p>
+                <h2 className="mt-1 font-display text-2xl font-extrabold uppercase tracking-tight text-white sm:text-3xl">
+                  El paddock
+                </h2>
+              </div>
               <Link
                 href="/equipos"
-                className="text-sm font-semibold text-[#4C8DFF] hover:opacity-80"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--line-strong)] px-4 py-2 text-sm font-semibold text-white transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-[#4C8DFF]/60 active:scale-[0.98]"
               >
                 Ver equipos
+                <span aria-hidden="true">→</span>
               </Link>
             </div>
           </Reveal>
-          <div className="plx-slow mt-8 grid grid-cols-3 gap-3 sm:grid-cols-6">
-            {paddockFaces.map((p, i) => (
-              <Reveal key={p.file} delayMs={i * 60}>
+          <Reveal delayMs={80}>
+            <div className="mt-8 grid grid-cols-3 gap-3 sm:grid-cols-6">
+              {paddockFaces.map((p) => (
                 <Link
+                  key={p.file}
                   href={p.href}
-                  className="group block overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--surface-2)]/40 transition-colors hover:border-[#4C8DFF]/50"
+                  className="group overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--surface-2)]/40 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-[#4C8DFF]/50"
                 >
-                  <Image
-                    src={`/pilotos/${p.file}`}
-                    alt={p.name}
-                    width={220}
-                    height={280}
-                    className="aspect-[3/4] w-full object-cover object-top grayscale transition-all duration-500 group-hover:grayscale-0"
-                  />
-                  <div className="p-2 text-center">
-                    <p className="truncate text-[11px] font-semibold text-white">
+                  <div className="relative aspect-[3/4] overflow-hidden">
+                    <Image
+                      src={`/pilotos/${p.file}`}
+                      alt={p.name}
+                      fill
+                      sizes="(max-width: 640px) 33vw, 160px"
+                      className="object-cover object-top grayscale transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:grayscale-0"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#070A14] via-[#070A14]/60 to-transparent" />
+                  </div>
+                  <div className="px-2 pb-2.5 pt-1.5">
+                    <p className="truncate text-center text-[11px] font-semibold leading-tight text-white">
                       {p.name}
                     </p>
                   </div>
                 </Link>
-              </Reveal>
-            ))}
-          </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
