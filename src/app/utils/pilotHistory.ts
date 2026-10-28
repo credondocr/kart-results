@@ -310,6 +310,15 @@ export function getPilotRaceResults(
   return [];
 }
 
+/**
+ * ¿La temporada de este año ya terminó?
+ * Si el año es el actual, el campeonato puede seguir en curso — rank1
+ * es "Líder", no "Campeón" todavía.
+ */
+export function isSeasonComplete(year: string | number): boolean {
+  return String(year) !== String(new Date().getFullYear());
+}
+
 /** Estadísticas de carrera agregadas del historial de un piloto. */
 export function getPilotCareerStats(pilotName: string, kartNumber?: number | string): CareerStats {
   const history = getPilotHistory(pilotName, kartNumber);
@@ -318,15 +327,17 @@ export function getPilotCareerStats(pilotName: string, kartNumber?: number | str
   return {
     wins: races.filter((entry) => entry.position === 1).length,
     podiums: races.filter((entry) => entry.position <= 3).length,
-    titles: history.filter((entry) => entry.rank === 1).length,
+    titles: history.filter((entry) => entry.rank === 1 && isSeasonComplete(entry.year)).length,
     points: history.reduce((sum, entry) => sum + entry.points, 0),
     seasons: seasons.size,
   };
 }
 
-/** Primeros lugares de cada clase/categoría por temporada (orden cronológico inverso). */
+/** Primeros lugares de cada clase/categoría por temporada (solo temporadas terminadas). */
 export function getChampions(): HistoryEntry[] {
-  return sortEntries(getIndex().filter((entry) => entry.rank === 1));
+  return sortEntries(
+    getIndex().filter((entry) => entry.rank === 1 && isSeasonComplete(entry.year))
+  );
 }
 
 export interface HistoryPilot {
@@ -472,7 +483,7 @@ export function getChampionshipStats(): ChampionshipStats {
     }
     person.seasons += 1;
     person.points += entry.points;
-    if (entry.rank === 1) {
+    if (entry.rank === 1 && isSeasonComplete(entry.year)) {
       person.titles += 1;
       const index = person.titleYears.findIndex(
         (label) => label === entry.year || label.startsWith(`${entry.year}×`)

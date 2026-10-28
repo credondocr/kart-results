@@ -8,6 +8,7 @@ import {
   getPilotCareerStats,
   getPilotRaceResults,
   formatYears,
+  isSeasonComplete,
   type CategoryStat,
 } from "@/app/utils/pilotHistory";
 import Breadcrumb from "@/app/components/Breadcrumb";
@@ -306,7 +307,11 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
                         {" · "}
                         {seasonLabel(entry.season)}
                         {entry.rank === 1 && (
-                          <span className="tag-chip champion">Campeón</span>
+                          isSeasonComplete(entry.year) ? (
+                            <span className="tag-chip champion">Campeón</span>
+                          ) : (
+                            <span className="tag-chip">Líder</span>
+                          )
                         )}
                       </td>
                       <td className="text-left">
