@@ -2,6 +2,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { PostMeta } from "@/types/post";
 
 interface PostCardProps {
@@ -11,10 +12,13 @@ interface PostCardProps {
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      <img
+      <Image
         src={post.coverImage || "/default-thumbnail.jpg"}
         alt={post.title}
+        width={640}
+        height={400}
         className="h-60 w-full object-cover"
+        unoptimized
       />
       <div className="p-4">
         <h2 className="text-lg font-semibold text-gray-800">{post.title}</h2>

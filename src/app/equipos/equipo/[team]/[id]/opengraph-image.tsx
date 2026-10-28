@@ -145,8 +145,8 @@ export default async function OgImage({ params, searchParams }: ImageProps) {
                 display: "flex",
               }}
             >
-              {/* satori: img con data URI */}
-              {/* eslint-disable-next-line jsx-a11y/alt-text */}
+              {/* satori no soporta next/image; img nativo con data URI */}
+              {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
               <img src={photo} width={384} height={384} style={{ objectFit: "cover" }} />
             </div>
           ) : (
