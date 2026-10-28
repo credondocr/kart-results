@@ -290,6 +290,46 @@ export function isTrackRecord(
   return Boolean(record && record.time === bestTime);
 }
 
+export interface FastestLap {
+  cls: string;
+  driver: string;
+  num: string;
+  time: string;
+  speed?: number;
+  lapNumber?: number;
+}
+
+/**
+ * Mejor vuelta (vuelta rápida) por categoría de un evento.
+ * Solo sesiones de carrera (prefinal/final), ignora prácticas y DQ.
+ */
+export function computeFastestLaps(event: EventData): FastestLap[] {
+  const best = new Map<string, FastestLap>();
+  for (const day of event.days) {
+    for (const session of day.sessions) {
+      if (session.type !== "race" || !session.classification) continue;
+      for (const row of session.classification.rows) {
+        if (!row.cls.trim() || !row.bestTime) continue;
+        if (toSeconds(row.bestTime) <= 0) continue;
+        if (row.posInClass <= 0) continue;
+        const key = normalizeLoose(row.cls);
+        const current = best.get(key);
+        if (!current || toSeconds(row.bestTime) < toSeconds(current.time)) {
+          best.set(key, {
+            cls: row.cls,
+            driver: row.name,
+            num: row.num,
+            time: row.bestTime,
+            speed: row.bestSpeed,
+            lapNumber: row.bestLap,
+          });
+        }
+      }
+    }
+  }
+  return [...best.values()].sort((a, b) => toSeconds(a.time) - toSeconds(b.time));
+}
+
 export function toSeconds(time: string): number {
   const parts = time.split(":");
   return parts.length === 2 ? Number(parts[0]) * 60 + Number(parts[1]) : Number(parts);

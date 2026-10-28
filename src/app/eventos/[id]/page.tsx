@@ -13,6 +13,7 @@ import {
   loadAllEvents,
   computeTrackRecords,
   isTrackRecord,
+  computeFastestLaps,
   eventComebacks,
   normalizeLoose,
   slugify,
@@ -60,6 +61,9 @@ export default async function EventPage({ params, searchParams }: PageProps) {
     classSessions[classSessions.length - 1];
   const activeSession: EventSession | undefined =
     classSessions.find((session) => String(session.id) === first(sp.s)) ?? defaultSession;
+
+  // Vuelta rápida por categoría (finales).
+  const fastestLaps = computeFastestLaps(event);
 
   const rows = (activeSession?.classification?.rows ?? []).filter(
     (row) => !activeClass || row.cls === activeClass
@@ -160,6 +164,30 @@ export default async function EventPage({ params, searchParams }: PageProps) {
           </Link>
         ))}
       </div>
+
+      {/* Vuelta rápida por categoría */}
+      {fastestLaps.length > 0 && (
+        <section className="fastest-laps-section" aria-label="Vuelta rápida">
+          <h2 className="stats-heading">
+            Vuelta rápida
+            <span className="heading-count">{fastestLaps.length} categorías</span>
+          </h2>
+          <div className="fastest-laps-grid">
+            {fastestLaps.map((fl) => (
+              <div key={fl.cls} className="fastest-lap-card">
+                <p className="fl-cls">{fl.cls}</p>
+                <p className="fl-time">
+                  <span className="fl-star">★</span> {fl.time}
+                  {fl.speed ? (
+                    <span className="fl-speed"> · {fl.speed} km/h</span>
+                  ) : null}
+                </p>
+                <p className="fl-driver">{fl.driver}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Línea de tiempo de la categoría (su fin de semana) */}
       <div className="event-timeline" role="group" aria-label={`Sesiones de ${activeClass}`}>

@@ -1769,6 +1769,61 @@
     margin: 1.25rem 0 2rem;
   }
 
+  /* Vuelta rápida */
+  .fastest-laps-section {
+    margin: 1.5rem 0 2rem;
+  }
+
+  .fastest-laps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+
+  .fastest-lap-card {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .fastest-lap-card .fl-cls {
+    font-family: var(--font-archivo);
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--signal);
+    margin: 0;
+  }
+
+  .fastest-lap-card .fl-time {
+    font-family: var(--font-geist-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin: 0.25rem 0 0;
+  }
+
+  .fastest-lap-card .fl-star {
+    font-size: 0.875rem;
+  }
+
+  .fastest-lap-card .fl-speed {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--text-dim);
+  }
+
+  .fastest-lap-card .fl-driver {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0.25rem 0 0;
+  }
+
   .timeline-day {
     display: flex;
     align-items: center;
