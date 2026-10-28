@@ -70,9 +70,20 @@ export default function AdminDashboard() {
 
   if (loading || !data) {
     return (
-      <div className="min-h-screen bg-[var(--ink-950)] pt-20">
-        <div className="mx-auto max-w-5xl px-4 pt-8 sm:px-6">
-          <p className="mt-10 text-center text-sm text-[var(--text-dim)]">Cargando panel…</p>
+      <div>
+        <div className="mx-auto max-w-5xl">
+          <div className="h-8 w-40 animate-pulse rounded-lg bg-white/5" />
+          <div className="mt-6 h-28 w-full animate-pulse rounded-2xl bg-white/5" />
+          <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div
+                key={i}
+                className="h-20 animate-pulse rounded-xl bg-white/5"
+                style={{ animationDelay: `${i * 60}ms` }}
+              />
+            ))}
+          </div>
+          <p className="sr-only">Cargando panel…</p>
         </div>
       </div>
     );
@@ -188,7 +199,7 @@ export default function AdminDashboard() {
             <Link
               key={String(label)}
               href={String(href)}
-              className="rounded-xl border border-[var(--line)] bg-[var(--surface-2)]/40 p-4 transition-colors hover:border-[#4C8DFF]/50"
+              className="rounded-xl border border-[var(--line)] bg-[var(--surface-2)]/40 p-4 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-0.5 hover:border-[#4C8DFF]/50 hover:shadow-lg hover:shadow-black/30 focus-visible:outline-2 focus-visible:outline-[#4C8DFF]"
             >
               <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-[var(--text-dim)]">
                 {label}
