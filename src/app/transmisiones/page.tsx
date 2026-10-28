@@ -42,9 +42,9 @@ export default async function TransmisionesPage() {
           </div>
           <Link
             href="/"
-            className="text-sm font-semibold text-[var(--text-dim)] transition-colors hover:text-white"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--line-strong)] px-4 py-2 text-sm font-semibold text-white transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-[#4C8DFF]/60 active:scale-[0.98]"
           >
-            Volver al inicio
+            ← Volver al inicio
           </Link>
         </div>
 

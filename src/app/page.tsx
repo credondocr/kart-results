@@ -398,9 +398,9 @@ export default async function HomePage() {
         <section className="border-b border-[var(--line)] py-16 sm:py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <Reveal>
-              <div className="flex flex-wrap items-end justify-between gap-3">
+              <div className="flex flex-wrap items-end justify-between gap-4">
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#4C8DFF]">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#4C8DFF]">
                     Telered
                   </p>
                   <h2 className="mt-1 font-display text-2xl font-extrabold uppercase tracking-tight text-white sm:text-3xl">
@@ -409,20 +409,22 @@ export default async function HomePage() {
                 </div>
                 <Link
                   href="/transmisiones"
-                  className="text-sm font-semibold text-[#4C8DFF] hover:opacity-80"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--line-strong)] px-4 py-2 text-sm font-semibold text-white transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-[#4C8DFF]/60 active:scale-[0.98]"
                 >
                   Ver todas
+                  <span aria-hidden="true">→</span>
                 </Link>
               </div>
             </Reveal>
-            <div className="mt-8 grid gap-4 md:grid-cols-3">
-              {broadcasts.map((video, i) => (
-                <Reveal key={video.id} delayMs={i * 80}>
+            <Reveal delayMs={80}>
+              <div className="mt-8 grid gap-4 md:grid-cols-3">
+                {broadcasts.map((video) => (
                   <a
+                    key={video.id}
                     href={video.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group block overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--surface-2)]/40 transition-colors hover:border-[#4C8DFF]/50"
+                    className="group block overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--surface-2)]/40 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-[#4C8DFF]/50"
                   >
                     <div className="relative aspect-video overflow-hidden bg-black">
                       <Image
@@ -452,9 +454,9 @@ export default async function HomePage() {
                       </time>
                     </div>
                   </a>
-                </Reveal>
-              ))}
-            </div>
+                ))}
+              </div>
+            </Reveal>
           </div>
         </section>
       )}
