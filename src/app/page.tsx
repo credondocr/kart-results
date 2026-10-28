@@ -110,37 +110,11 @@ function sampleFaces(n: number, exclude: Set<string> = new Set()): Face[] {
   return pool.slice(0, n);
 }
 
-interface LandingNews {
-  id: number;
-  slug: string;
-  title: string;
-  tag: string | null;
-  published_at: string | null;
-}
-
-/** Últimas noticias publicadas para el landing. */
-async function getLandingNews(): Promise<LandingNews[]> {
-  if (!dbUrl()) return [];
-  try {
-    const sql = db();
-    return (await sql`
-      SELECT id, slug, title, tag, published_at
-      FROM news
-      WHERE status = 'published' AND (published_at IS NULL OR published_at <= now())
-      ORDER BY published_at DESC NULLS LAST
-      LIMIT 3
-    `) as unknown as LandingNews[];
-  } catch {
-    return [];
-  }
-}
-
 export default async function HomePage() {
   const race = await getNextRace();
   const broadcasts = await fetchTeleredKartVideos(3);
   const categories = await activeCategories();
   const registeredCount = await getRegisteredCount(race?.id ?? null);
-  const landingNews = await getLandingNews();
   const live = await fetchTeleredLiveKart(isLiveCheckWindow(race?.race_date));
   const heroFaces = sampleFaces(7);
   const avatars = heroFaces.slice(0, 4);
