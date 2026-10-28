@@ -26,7 +26,7 @@ const NAV_SECTIONS = [
     links: [
       /* Temporalmente oculto: { href: "/noticias", label: "Noticias" }, */
       { href: "/faq", label: "FAQ" },
-      { href: "/reglamento", label: "Reglamento" },
+      /* Temporalmente oculto: { href: "/reglamento", label: "Reglamento" }, */
       { href: "/contacto", label: "Contacto" },
     ],
   },
