@@ -28,9 +28,19 @@ export async function fetchTeleredKartVideos(
   limit = 12
 ): Promise<TeleredVideo[]> {
   try {
-    const res = await fetch(FEED, { next: { revalidate: 3600 } });
-    if (!res.ok) return [];
+    const res = await fetch(FEED, {
+      next: { revalidate: 3600 },
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+        Accept: "application/atom+xml,application/xml;q=0.9,*/*;q=0.8",
+      },
+    });
+    // Lanzar en error (404/rate-limit) para NO cachear el fallo por1h:
+    // Next solo cachea respuestas exitosas.
+    if (!res.ok) throw new Error(`telered feed HTTP ${res.status}`);
     const xml = await res.text();
+    if (!xml.includes("<entry>")) throw new Error("telered feed vacío");
     const entries = xml.split("<entry>").slice(1);
     const videos: TeleredVideo[] = [];
     for (const entry of entries) {
