@@ -32,6 +32,7 @@ skills, verificada (tsc + lint + build) y commiteada.
 |0 | Setup:4 skills instaladas + registro | find-skills | `refactoring-ui`, `frontend-design`, `landing-page-design`, `microinteractions` | 572d968 |
 | 1 | Landing — jerarquía y espaciado | refactoring-ui | Eyebrow "Pilotos" eliminado (regla1/3), CTA primario filled+sombras, gap paddock3→4, pit-board shadow-xl | e402e02 |
 | 2 | Admin Resumen — estados y elevación | microinteractions, refactoring-ui | Skeleton con forma del layout (stagger), stat links lift+shadow+focus-visible | da1181d |
+| 3 | /eventos detalle — jerarquía de acciones y feature de datos | refactoring-ui | 'Ver posiciones' = CTA primary filled, SpeedHive = señal ghost (antes dos iguales con hover verde), vuelta más rápida destacada en oro, empty state con card | pendiente |
 
 ## Backlog de objetivos (orden sugerido)
 

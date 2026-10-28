@@ -2325,3 +2325,32 @@
     animation: none !important;
   }
 }
+
+/* Evento: variantes de acción (jerarquía primaria/secundaria) */
+.share-btn.primary {
+  color: #fff;
+  background: var(--signal);
+  border-color: var(--signal);
+  box-shadow: 0 8px 20px -8px rgba(76, 141, 255, 0.55);
+}
+.share-btn.primary:hover {
+  color: #fff;
+  background: #3a7cf0;
+  border-color: #3a7cf0;
+}
+
+.share-btn.signal:hover {
+  color: #fff;
+  border-color: rgba(76, 141, 255, 0.55);
+  background: rgba(76, 141, 255, 0.08);
+}
+
+/* Vuelta rápida: la más rápida del evento destaca (primer card) */
+.fastest-lap-card.featured {
+  border-color: rgba(232, 184, 75, 0.55);
+  box-shadow: 0 0 0 1px rgba(232, 184, 75, 0.2);
+  background: rgba(232, 184, 75, 0.05);
+}
+.fastest-lap-card.featured .fl-cls {
+  color: var(--gold);
+}
