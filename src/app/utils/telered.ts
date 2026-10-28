@@ -1,6 +1,7 @@
 /**
- * Transmisiones de Telered (YouTube) vía RSS público — sin API key.
- * Filtra videos relacionados con kartismo.
+ * Transmisiones de Telered (YouTube).
+ * Primario: Data API v3 (playlistItems + videos, ~2 units) con
+ * YOUTUBE_API_KEY — confiable. Fallback: RSS público sin key.
  */
 
 export interface TeleredVideo {
@@ -24,50 +25,103 @@ function isKart(title: string): boolean {
   );
 }
 
+function toVideo(id: string, title: string, publishedAt: string): TeleredVideo {
+  return {
+    id,
+    title,
+    publishedAt,
+    thumb: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+    url: `https://www.youtube.com/watch?v=${id}`,
+  };
+}
+
+/** Data API: uploads playlist → títulos → filtro kart. ~2 units. */
+async function fetchViaApi(limit: number): Promise<TeleredVideo[]> {
+  const key = process.env.YOUTUBE_API_KEY;
+  if (!key) return [];
+  // Uploads playlist de un channel UC… es UU + resto
+  const uploads = `UU${CHANNEL_ID.slice(2)}`;
+
+  const listRes = await fetch(
+    `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&playlistId=${uploads}&maxResults=25&key=${key}`,
+    { next: { revalidate: 3600 } }
+  );
+  if (!listRes.ok) throw new Error(`playlistItems ${listRes.status}`);
+  const list = (await listRes.json()) as {
+    items?: Array<{ contentDetails?: { videoId?: string } }>;
+  };
+  const ids = (list.items ?? [])
+    .map((i) => i.contentDetails?.videoId)
+    .filter((v): v is string => Boolean(v));
+  if (!ids.length) return [];
+
+  const vidRes = await fetch(
+    `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${ids.join(",")}&key=${key}`,
+    { next: { revalidate: 3600 } }
+  );
+  if (!vidRes.ok) throw new Error(`videos ${vidRes.status}`);
+  const vids = (await vidRes.json()) as {
+    items?: Array<{
+      id?: string;
+      snippet?: { title?: string; publishedAt?: string };
+    }>;
+  };
+
+  const videos: TeleredVideo[] = [];
+  for (const v of vids.items ?? []) {
+    if (!v.id || !v.snippet?.title || !isKart(v.snippet.title)) continue;
+    videos.push(toVideo(v.id, v.snippet.title, v.snippet.publishedAt ?? ""));
+    if (videos.length >= limit) break;
+  }
+  return videos;
+}
+
+/** RSS público (fallback cuando no hay API key o la API falla). */
+async function fetchViaRss(limit: number): Promise<TeleredVideo[]> {
+  const res = await fetch(FEED, {
+    next: { revalidate: 3600 },
+    headers: {
+      "User-Agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+      Accept: "application/atom+xml,application/xml;q=0.9,*/*;q=0.8",
+    },
+  });
+  if (!res.ok) throw new Error(`telered RSS ${res.status}`);
+  const xml = await res.text();
+  if (!xml.includes("<entry>")) throw new Error("telered RSS vacío");
+  const entries = xml.split("<entry>").slice(1);
+  const videos: TeleredVideo[] = [];
+  for (const entry of entries) {
+    const id = entry.match(/<yt:videoId>([^<]+)<\/yt:videoId>/)?.[1];
+    const title = entry
+      .match(/<title>([^<]+)<\/title>/)?.[1]
+      ?.replace(/&amp;/g, "&")
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'");
+    const published = entry.match(/<published>([^<]+)<\/published>/)?.[1];
+    if (!id || !title) continue;
+    const link = entry.match(/<link[^>]*href="([^"]+)"[^>]*rel="alternate"/)?.[1];
+    if (link?.includes("/shorts/")) continue;
+    if (!isKart(title)) continue;
+    videos.push(toVideo(id, title, published ?? ""));
+    if (videos.length >= limit) break;
+  }
+  return videos;
+}
+
 export async function fetchTeleredKartVideos(
   limit = 12
 ): Promise<TeleredVideo[]> {
   try {
-    const res = await fetch(FEED, {
-      next: { revalidate: 3600 },
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
-        Accept: "application/atom+xml,application/xml;q=0.9,*/*;q=0.8",
-      },
-    });
-    // Lanzar en error (404/rate-limit) para NO cachear el fallo por1h:
-    // Next solo cachea respuestas exitosas.
-    if (!res.ok) throw new Error(`telered feed HTTP ${res.status}`);
-    const xml = await res.text();
-    if (!xml.includes("<entry>")) throw new Error("telered feed vacío");
-    const entries = xml.split("<entry>").slice(1);
-    const videos: TeleredVideo[] = [];
-    for (const entry of entries) {
-      const id = entry.match(/<yt:videoId>([^<]+)<\/yt:videoId>/)?.[1];
-      const title = entry
-        .match(/<title>([^<]+)<\/title>/)?.[1]
-        ?.replace(/&amp;/g, "&")
-        .replace(/&quot;/g, '"')
-        .replace(/&#39;/g, "'");
-      const published = entry.match(/<published>([^<]+)<\/published>/)?.[1];
-      if (!id || !title) continue;
-      // Excluir shorts si aparecen el link canónico
-      const link = entry.match(/<link[^>]*href="([^"]+)"[^>]*rel="alternate"/)?.[1];
-      if (link?.includes("/shorts/")) continue;
-      if (!isKart(title)) continue;
-      videos.push({
-        id,
-        title,
-        publishedAt: published ?? "",
-        thumb: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
-        url: `https://www.youtube.com/watch?v=${id}`,
-      });
-      if (videos.length >= limit) break;
+    return await fetchViaApi(limit);
+  } catch (err) {
+    console.error("[telered] API failed, trying RSS:", err);
+    try {
+      return await fetchViaRss(limit);
+    } catch (err2) {
+      console.error("[telered] RSS failed too:", err2);
+      return [];
     }
-    return videos;
-  } catch {
-    return [];
   }
 }
 
