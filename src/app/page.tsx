@@ -49,21 +49,6 @@ async function getNextRace(): Promise<NextRace | null> {
   }
 }
 
-/** Inscripciones no rechazadas de la fecha (pending + verified + approved). */
-async function getRegisteredCount(raceDateId: number | null): Promise<number> {
-  if (!raceDateId || !dbUrl()) return 0;
-  try {
-    const sql = db();
-    const rows = (await sql`
-      SELECT count(*)::int AS n FROM registrations
-      WHERE race_date_id = ${raceDateId} AND status != 'rejected'
-    `) as unknown as Array<{ n: number }>;
-    return rows[0]?.n ?? 0;
-  } catch {
-    return 0;
-  }
-}
-
 /** Categorías activas en la DB (catálogo admin); fallback vacío. */
 async function activeCategories(): Promise<string[]> {
   if (!dbUrl()) return [];
@@ -114,7 +99,6 @@ export default async function HomePage() {
   const race = await getNextRace();
   const broadcasts = await fetchTeleredKartVideos(3);
   const categories = await activeCategories();
-  const registeredCount = await getRegisteredCount(race?.id ?? null);
   const live = await fetchTeleredLiveKart(isLiveCheckWindow(race?.race_date));
   const heroFaces = sampleFaces(7);
   const avatars = heroFaces.slice(0, 4);
@@ -260,30 +244,6 @@ export default async function HomePage() {
                   <div className="mt-4">
                     <NextRaceCountdown targetIso={race.race_date} />
                   </div>
-                  {registeredCount > 0 ? (
-                    <p className="mt-3 flex items-center gap-2 text-sm text-[var(--text-dim)]">
-                      <span className="font-mono text-lg font-bold tabular-nums text-white">
-                        {registeredCount}
-                      </span>
-                      {registeredCount === 1
-                        ? "piloto inscrito"
-                        : "pilotos inscritos"}
-                    </p>
-                  ) : null}
-                  {/* Temporalmente oculto:
-                  {race.status === "open" ? (
-                    <Link
-                      href="/inscribir"
-                      className="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-[#4C8DFF] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#3a7cf0]"
-                    >
-                      Inscribirme a esta fecha
-                    </Link>
-                  ) : (
-                  */}
-                    <p className="mt-4 rounded-lg border border-[var(--line)] px-4 py-2.5 text-center text-sm font-semibold text-[var(--text-dim)]">
-                      Inscripciones próximamente
-                    </p>
-                  {/* )} */}
                 </>
               ) : (
                 <>
