@@ -16,7 +16,8 @@ import path from "path";
 
 const DEFAULT_SPREADSHEET_ID =
   "1Qu08HxnQLg0TJstAl3XTBXoltMTJ7Xo3yaxHCSpSAYk";
-const SHEET = "Sheet1";
+/** Los organizadores mueven la data viva a la pestaña del año. */
+const SHEET = "2026";
 
 function unescapeKey(key: string) {
   return key.replace(/\\n/g, "\n");
@@ -121,7 +122,7 @@ export async function getPreRegistrosPublicos(): Promise<
 
 /**
  * Borra del Sheet la fila que coincida exacta con la fila indicada.
- * Best-effort: devuelve true si borró algo. El sheetId 0 = Sheet1 (gid por defecto).
+ * Best-effort: devuelve true si borró algo. Usa el sheetId real de la pestaña.
  */
 export async function deletePreRegistroSheetRow(row: {
   nombre: string;
@@ -144,13 +145,22 @@ export async function deletePreRegistroSheetRow(row: {
       String(r[3] ?? "").trim() === row.equipo.trim()
   );
   if (idx < 0) return false;
+
+  const meta = await sheets.spreadsheets.get({
+    spreadsheetId: id,
+    fields: "sheets.properties",
+  });
+  const tab = meta.data.sheets?.find((s) => s.properties?.title === SHEET);
+  const sheetId = tab?.properties?.sheetId;
+  if (sheetId == null) return false;
+
   await sheets.spreadsheets.batchUpdate({
     spreadsheetId: id,
     requestBody: {
       requests: [
         {
           deleteDimension: {
-            range: { sheetId: 0, dimension: "ROWS", startIndex: idx, endIndex: idx + 1 },
+            range: { sheetId, dimension: "ROWS", startIndex: idx, endIndex: idx + 1 },
           },
         },
       ],
