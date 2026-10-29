@@ -131,15 +131,25 @@ export default function AdminInscripcionesPage() {
               </thead>
               <tbody>
                 {loading ? (
-                  <tr>
-                    <td colSpan={7} className="px-4 py-8 text-center text-[var(--text-dim)]">
-                      Cargando…
-                    </td>
-                  </tr>
+                  Array.from({ length: 4 }).map((_, i) => (
+                    <tr key={i}>
+                      <td colSpan={7} className="px-4 py-3">
+                        <div
+                          className="h-5 animate-pulse rounded bg-white/5"
+                          style={{ animationDelay: `${i * 70}ms` }}
+                        />
+                      </td>
+                    </tr>
+                  ))
                 ) : rows.length === 0 ? (
                   <tr>
-                    <td colSpan={7} className="px-4 py-8 text-center text-[var(--text-dim)]">
-                      Sin inscripciones todavía.
+                    <td colSpan={7} className="px-4 py-10 text-center">
+                      <p className="font-display text-sm font-extrabold uppercase tracking-tight text-white">
+                        Sin inscripciones todavía
+                      </p>
+                      <p className="mt-1 text-xs text-[var(--text-dim)]">
+                        Aparecen acá cuando un piloto envíe su ficha para una fecha abierta.
+                      </p>
                     </td>
                   </tr>
                 ) : (
@@ -197,7 +207,7 @@ export default function AdminInscripcionesPage() {
                             {r.status === "pending" ? (
                               <button
                                 onClick={() => act(r.id, "verify")}
-                                className="rounded-md border border-[var(--line)] px-2 py-1 text-[10px] font-bold uppercase text-sky-400 hover:border-sky-400/50"
+                                className="rounded-md border border-[var(--line)] px-2 py-1 text-[10px] font-bold uppercase text-sky-400 transition-all hover:border-sky-400/50 active:scale-95 focus-visible:outline-2 focus-visible:outline-sky-400"
                               >
                                 Verificar pago
                               </button>
@@ -205,7 +215,7 @@ export default function AdminInscripcionesPage() {
                             {r.status !== "approved" && r.status !== "rejected" ? (
                               <button
                                 onClick={() => act(r.id, "approve")}
-                                className="rounded-md border border-emerald-500/40 px-2 py-1 text-[10px] font-bold uppercase text-emerald-400 hover:bg-emerald-500/10"
+                                className="rounded-md border border-emerald-500/40 px-2 py-1 text-[10px] font-bold uppercase text-emerald-400 transition-all hover:bg-emerald-500/10 active:scale-95 focus-visible:outline-2 focus-visible:outline-emerald-400"
                               >
                                 Aprobar
                               </button>
@@ -213,7 +223,7 @@ export default function AdminInscripcionesPage() {
                             {r.status !== "rejected" && r.status !== "approved" ? (
                               <button
                                 onClick={() => setRejectId(rejectId === r.id ? null : r.id)}
-                                className="rounded-md border border-[var(--line)] px-2 py-1 text-[10px] font-bold uppercase text-red-400 hover:border-red-400/50"
+                                className="rounded-md border border-[var(--line)] px-2 py-1 text-[10px] font-bold uppercase text-red-400 transition-all hover:border-red-400/50 active:scale-95 focus-visible:outline-2 focus-visible:outline-red-400"
                               >
                                 Rechazar
                               </button>
