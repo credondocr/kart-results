@@ -17,7 +17,7 @@ export const EVENT = {
   mapEmbed:
     "https://maps.google.com/maps?q=P1%20Speedway%20Costa%20Rica&t=&z=14&ie=UTF8&iwloc=&output=embed",
   reglamentoHref: "/content/RP LATINOAMERICANO  VORTEX-TILLOTSON 2025.pdf",
-  poster: "/media/eventos/latinoamericano-iv-edicion-2027.jpeg",
+  poster: "/media/eventos/latinoamericano-iv-edicion-2027.webp",
 } as const;
 
 export type PreRegistro = {
