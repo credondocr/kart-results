@@ -137,7 +137,7 @@ export default async function EventPage({ params, searchParams }: PageProps) {
 
       <div className="event-actions">
         {seasonLink && (
-          <Link href={seasonLink.href} className="share-btn">
+          <Link href={seasonLink.href} className="share-btn primary">
             {seasonLink.label} — ver posiciones
           </Link>
         )}
@@ -145,7 +145,7 @@ export default async function EventPage({ params, searchParams }: PageProps) {
           href={event.sourceUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="share-btn"
+          className="share-btn signal"
         >
           Ver en SpeedHive ↗
         </a>
@@ -173,8 +173,11 @@ export default async function EventPage({ params, searchParams }: PageProps) {
             <span className="heading-count">{fastestLaps.length} categorías</span>
           </h2>
           <div className="fastest-laps-grid">
-            {fastestLaps.map((fl) => (
-              <div key={fl.cls} className="fastest-lap-card">
+            {fastestLaps.map((fl, i) => (
+              <div
+                key={fl.cls}
+                className={i === 0 ? "fastest-lap-card featured" : "fastest-lap-card"}
+              >
                 <p className="fl-cls">{fl.cls}</p>
                 <p className="fl-time">
                   <span className="fl-star">★</span> {fl.time}
@@ -382,7 +385,14 @@ export default async function EventPage({ params, searchParams }: PageProps) {
           )}
         </>
       ) : (
-        <p className="empty-state">Esta categoría no tiene sesiones en el evento.</p>
+        <div className="empty-state" style={{ border: "1px dashed var(--line-strong)", borderRadius: "0.75rem", padding: "2.5rem 1.5rem" }}>
+          <p className="font-display text-lg font-extrabold uppercase tracking-tight text-white">
+            Sin resultados en esta categoría
+          </p>
+          <p className="mt-1 text-sm text-[var(--text-dim)]">
+            Prueba otra categoría o revisa el cronograma del fin de semana abajo.
+          </p>
+        </div>
       )}
 
       {/* Cronograma completo (colapsado) */}

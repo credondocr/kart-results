@@ -161,35 +161,36 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
             )}
             {career.seasons > 0 && (
               <>
-                <div className="stat">
+                <hr className="stats-divider" aria-hidden="true" />
+                <div className="stat compact">
                   <span className="stat-label">Victorias</span>
                   <span className="stat-value gold">{career.wins}</span>
                 </div>
-                <div className="stat">
+                <div className="stat compact">
                   <span className="stat-label">Podios</span>
                   <span className="stat-value">{career.podiums}</span>
                 </div>
-                <div className="stat">
+                <div className="stat compact">
                   <span className="stat-label">Títulos</span>
                   <span className="stat-value">{career.titles}</span>
                 </div>
                 {polesCount > 0 && (
-                  <div className="stat">
+                  <div className="stat compact">
                     <span className="stat-label">Poles</span>
                     <span className="stat-value">{polesCount}</span>
                   </div>
                 )}
                 {bestComeback && bestComeback.gained > 0 && (
-                  <div className="stat" title={`En ${bestComeback.eventName} (${bestComeback.cls})`}>
+                  <div className="stat compact" title={`En ${bestComeback.eventName} (${bestComeback.cls})`}>
                     <span className="stat-label">Mejor remontada</span>
                     <span className="stat-value">+{bestComeback.gained}</span>
                   </div>
                 )}
-                <div className="stat">
+                <div className="stat compact">
                   <span className="stat-label">Temporadas</span>
                   <span className="stat-value">{career.seasons}</span>
                 </div>
-                <div className="stat">
+                <div className="stat compact">
                   <span className="stat-label">Puntos carrera</span>
                   <span className="stat-value">{career.points}</span>
                 </div>
@@ -337,7 +338,17 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
             </div>
           </div>
         ) : (
-          <p className="empty-state">Sin carreras en el historial todavía.</p>
+          <div
+            className="rounded-xl border border-dashed px-6 py-10 text-center"
+            style={{ borderColor: "var(--line-strong)" }}
+          >
+            <p className="font-display text-base font-extrabold uppercase tracking-tight text-white">
+              Sin temporadas registradas
+            </p>
+            <p className="mt-1 text-sm text-[var(--text-dim)]">
+              El historial aparece cuando el piloto suma resultados en el campeonato.
+            </p>
+          </div>
         )}
       </section>
 
@@ -393,7 +404,17 @@ export default async function PilotPage({ params, searchParams }: PageProps) {
             </div>
           </div>
         ) : (
-          <p className="empty-state">Sin carreras con puntaje todavía.</p>
+          <div
+            className="rounded-xl border border-dashed px-6 py-10 text-center"
+            style={{ borderColor: "var(--line-strong)" }}
+          >
+            <p className="font-display text-base font-extrabold uppercase tracking-tight text-white">
+              Sin resultados por carrera
+            </p>
+            <p className="mt-1 text-sm text-[var(--text-dim)]">
+              Las posiciones por fecha aparecen al primer resultado con puntaje.
+            </p>
+          </div>
         )}
       </section>
     </div>
