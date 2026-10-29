@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Image from "next/image";
 import { findPilotPhoto } from "@/app/utils/pilotPhotos";
 
@@ -160,9 +161,17 @@ export default function ProfileClient() {
     <div className="min-h-screen bg-[var(--ink-950)] pt-24">
       <div className="mx-auto max-w-lg px-4 pb-24 sm:px-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h1 className="font-display text-3xl font-black uppercase tracking-tight text-white">
-            Mi perfil
-          </h1>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/"
+              className="text-sm font-semibold text-[var(--text-dim)] transition-colors hover:text-white"
+            >
+              ← Inicio
+            </Link>
+            <h1 className="font-display text-3xl font-black uppercase tracking-tight text-white">
+              Mi perfil
+            </h1>
+          </div>
           <button
             onClick={logout}
             className="rounded-lg border border-[var(--line)] px-3 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-[var(--text-dim)] hover:text-white"

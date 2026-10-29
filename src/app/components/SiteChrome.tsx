@@ -7,14 +7,15 @@ import Footer from "./Footer";
 import FeedbackWidget from "./FeedbackWidget";
 
 /**
- * Chrome del sitio público. En /admin* se ocultan Navbar y Footer:
- * el admin tiene su propio shell (AdminShell) enfocado en operación.
+ * Chrome del sitio público. En /admin* y /perfil se ocultan Navbar,
+ * Footer y feedback: el admin tiene su shell y el perfil es una vista
+ * enfocada (con enlace de vuelta propio).
  */
 export default function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname() ?? "";
-  const isAdmin = pathname.startsWith("/admin");
+  const bare = pathname.startsWith("/admin") || pathname.startsWith("/perfil");
 
-  if (isAdmin) {
+  if (bare) {
     return <>{children}</>;
   }
 
@@ -27,3 +28,4 @@ export default function SiteChrome({ children }: { children: ReactNode }) {
     </>
   );
 }
+
