@@ -34,8 +34,8 @@ skills, verificada (tsc + lint + build) y commiteada.
 | 2 | Admin Resumen — estados y elevación | microinteractions, refactoring-ui | Skeleton con forma del layout (stagger), stat links lift+shadow+focus-visible | da1181d |
 | 3 | /eventos detalle — jerarquía de acciones y feature de datos | refactoring-ui | CTA primario filled + ghost señal, vuelta más rápida destacada, empty state card | 5a160d9 |
 | 4 | Ficha de piloto — jerarquía de stats | refactoring-ui | Stats identidad (full) vs carrera (compact+divisor), empty states con card | d2b6d1e |
-| 5 | Admin fechas + inscripciones — estados | microinteractions, refactoring-ui | Skeletons con stagger, empty states con copy, botones con active:scale + focus-visible | pendiente |
-| 6 | Auditoría global — motion y accesibilidad | microinteractions, web-design-guidelines | Reset global prefers-reduced-motion, Reveal/Tagline sin stagger con reduced-motion | pendiente |
+| 5 | Admin fechas + inscripciones — estados | microinteractions, refactoring-ui | Skeletons con stagger, empty states con copy, botones con active:scale + focus-visible | 82293e4 |
+| 6 | Auditoría global — motion y accesibilidad | microinteractions, web-design-guidelines | Reset global prefers-reduced-motion, Reveal/Tagline sin stagger con reduced-motion | 41219f2 |
 
 ## Backlog de objetivos (orden sugerido)
 
