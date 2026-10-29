@@ -17,11 +17,11 @@ function calc(): Left {
 }
 
 const CELL = (v: number, l: string) => (
-  <div className="flex flex-col items-center gap-1">
-    <span className="min-w-[2.4rem] rounded-md border border-[var(--line-strong)] bg-[var(--ink-950)] px-2 py-1.5 text-center font-mono text-lg font-bold tabular-nums text-white sm:text-xl">
+  <div className="flex min-w-0 flex-col items-center gap-1">
+    <span className="min-w-[2rem] rounded-md border border-[var(--line-strong)] bg-[var(--ink-950)] px-1.5 py-1.5 text-center font-mono text-base font-bold tabular-nums text-white sm:px-2.5 sm:py-2 sm:text-xl">
       {String(v).padStart(2, "0")}
     </span>
-    <span className="text-[9px] font-bold uppercase tracking-[0.16em] text-[var(--text-dim)]">
+    <span className="text-[8px] font-bold uppercase tracking-[0.14em] text-[var(--text-dim)] sm:text-[9px] sm:tracking-[0.16em]">
       {l}
     </span>
   </div>
@@ -43,7 +43,7 @@ export default function HeroCountdown() {
         La largada está cada vez más cerca
       </p>
       {left ? (
-        <div className="flex items-start justify-between gap-2 sm:gap-3">
+        <div className="flex items-start justify-between gap-1.5 sm:gap-3">
           {CELL(left.d, "Días")}
           {CELL(left.h, "Horas")}
           {CELL(left.m, "Min")}

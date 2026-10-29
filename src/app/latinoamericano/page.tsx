@@ -97,13 +97,13 @@ export default function LatinoamericanoPage() {
                 <span>Costa Rica 2027</span>
               </p>
               <h1 className="mt-4 font-display font-black uppercase leading-[0.92] tracking-tight text-white">
-                <span className="block text-4xl sm:text-5xl lg:text-6xl">
+                <span className="block text-3xl sm:text-5xl lg:text-6xl">
                   Campeonato
                 </span>
-                <span className="block text-5xl sm:text-6xl lg:text-7xl text-[#4C8DFF]">
+                <span className="block text-[clamp(1.9rem,9.5vw,4.5rem)] text-[#4C8DFF]">
                   Latinoamericano
                 </span>
-                <span className="block text-2xl sm:text-3xl lg:text-4xl text-[var(--text-dim)]">
+                <span className="block text-xl sm:text-3xl lg:text-4xl text-[var(--text-dim)]">
                   de Karting 2027
                 </span>
               </h1>
