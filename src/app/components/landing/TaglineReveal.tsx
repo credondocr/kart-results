@@ -18,6 +18,14 @@ export default function TaglineReveal({ text }: Props) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // prefers-reduced-motion: todo el texto visible al instante, sin stagger.
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      setActive(words.length);
+      return;
+    }
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {

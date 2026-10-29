@@ -16,6 +16,14 @@ export default function Reveal({ children, className = "", delayMs = 0 }: Props)
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // Con prefers-reduced-motion, el contenido se muestra al instante.
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      setShown(true);
+      return;
+    }
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
