@@ -18,6 +18,7 @@ const SECTIONS: Array<{ title: string; items: NavItem[] }> = [
       { href: "/admin/fechas", label: "Fechas", hint: "Abrir/cerrar inscripciones" },
       { href: "/admin/inscripciones", label: "Inscripciones", hint: "Validar y aprobar" },
       { href: "/admin/noticias", label: "Noticias", hint: "Publicar contenido" },
+      { href: "/admin/latinoamericano", label: "Latinoamericano", hint: "Pre-registros del evento" },
       { href: "/admin/media", label: "Media", hint: "Biblioteca de imágenes" },
     ],
   },

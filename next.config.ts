@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'flagcdn.com',
         port: '',
-        pathname: '/w320/**',
+        pathname: '/w*/**',
         search: '',
       },
       {

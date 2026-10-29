@@ -14,6 +14,7 @@ const NAV_SECTIONS = [
   {
     title: "Paddock",
     links: [
+      { href: "/latinoamericano", label: "Latinoamericano", gold: true },
       { href: "/equipos", label: "Equipos" },
       { href: "/en-vivo", label: "En vivo", live: true },
       { href: "/transmisiones", label: "Transmisiones" },
@@ -132,6 +133,12 @@ const Footer = () => {
                         {"live" in link && link.live ? (
                           <span
                             className="inline-block h-1.5 w-1.5 rounded-full bg-red-500"
+                            aria-hidden="true"
+                          />
+                        ) : null}
+                        {"gold" in link && link.gold ? (
+                          <span
+                            className="inline-block h-1.5 w-1.5 rotate-45 bg-[#E8B84B]"
                             aria-hidden="true"
                           />
                         ) : null}

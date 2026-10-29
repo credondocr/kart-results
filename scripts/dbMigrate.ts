@@ -160,7 +160,28 @@ async function main() {
       updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
     )
   `;
-  console.log("Migración OK: news incluida.");
+  await sql`
+    CREATE TABLE IF NOT EXISTS latinoamericano_registrations (
+      id SERIAL PRIMARY KEY,
+      nombre TEXT NOT NULL,
+      nacionalidad TEXT NOT NULL,
+      categoria TEXT NOT NULL,
+      equipo TEXT NOT NULL,
+      carpa BOOLEAN NOT NULL DEFAULT false,
+      correo TEXT NOT NULL,
+      sheet_synced BOOLEAN NOT NULL DEFAULT false,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `;
+  await sql`
+    CREATE INDEX IF NOT EXISTS latinoamericano_registrations_created_idx
+    ON latinoamericano_registrations (created_at)
+  `;
+  await sql`
+    CREATE INDEX IF NOT EXISTS latinoamericano_registrations_nombre_idx
+    ON latinoamericano_registrations (lower(nombre))
+  `;
+  console.log("Migración OK: news + latinoamericano_registrations incluidas.");
 }
 
 main().catch((err) => {

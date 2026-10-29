@@ -2274,6 +2274,27 @@
   }
 }
 
+/* Latinoamericano: ticker tipo lower-third (pausa en hover; estático con reduce) */
+.la-ticker-track {
+  animation: la-ticker 42s linear infinite;
+}
+
+.la-ticker:hover .la-ticker-track {
+  animation-play-state: paused;
+}
+
+@keyframes la-ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .la-ticker-track {
+    animation: none;
+    overflow-x: auto;
+  }
+}
+
 /* Landing: parallax por capas (CSS scroll-driven, sin JS) */
 @supports (animation-timeline: scroll()) {
   .plx-slow {
