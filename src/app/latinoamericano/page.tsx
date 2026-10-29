@@ -90,7 +90,7 @@ export default function LatinoamericanoPage() {
           </div>
 
           <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pb-16 pt-28 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-14 lg:px-8 lg:pb-24 lg:pt-32">
-            <div>
+            <div className="min-w-0">
               <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] font-bold uppercase tracking-[0.22em] text-[#E8B84B]">
                 <span>IV Edición</span>
                 <span className="h-1 w-1 rounded-full bg-[#E8B84B]/60" aria-hidden="true" />
@@ -100,7 +100,7 @@ export default function LatinoamericanoPage() {
                 <span className="block text-3xl sm:text-5xl lg:text-6xl">
                   Campeonato
                 </span>
-                <span className="block text-[clamp(1.9rem,9.5vw,4.5rem)] text-[#4C8DFF]">
+                <span className="block text-[clamp(1.55rem,7.5vw,4.5rem)] text-[#4C8DFF]">
                   Latinoamericano
                 </span>
                 <span className="block text-xl sm:text-3xl lg:text-4xl text-[var(--text-dim)]">
@@ -130,8 +130,8 @@ export default function LatinoamericanoPage() {
               </div>
             </div>
 
-            <div className="flex items-center justify-center lg:justify-end">
-              <div className="w-full max-w-sm">
+            <div className="flex min-w-0 items-center justify-center lg:justify-end">
+              <div className="w-full max-w-sm min-w-0">
                 <HeroCountdown />
               </div>
             </div>
