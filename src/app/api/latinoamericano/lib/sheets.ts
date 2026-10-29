@@ -16,8 +16,8 @@ import path from "path";
 
 const DEFAULT_SPREADSHEET_ID =
   "1Qu08HxnQLg0TJstAl3XTBXoltMTJ7Xo3yaxHCSpSAYk";
-/** Los organizadores mueven la data viva a la pestaña del año. */
-const SHEET = "2026";
+/** Siempre la primera pestaña (Sheet1) — las demás son registros de otros años. */
+const SHEET = "Sheet1";
 
 function unescapeKey(key: string) {
   return key.replace(/\\n/g, "\n");
