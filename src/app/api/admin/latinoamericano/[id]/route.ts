@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { db, dbUrl } from "@/lib/db";
 import { isAuthenticated } from "@/lib/adminAuth";
 import { deletePreRegistroSheetRow } from "@/app/api/latinoamericano/lib/sheets";
@@ -37,8 +37,11 @@ export async function DELETE(request: Request, { params }: Params) {
   }
 
   // Espejo en Google Sheets (best-effort): borra la fila que coincida exacta.
-  void deletePreRegistroSheetRow(deleted[0]).catch((err) =>
-    console.error("[admin/latinoamericano] sheet delete failed:", err)
+  // after() mantiene la función viva hasta terminar (serverless no cumple voids).
+  after(() =>
+    deletePreRegistroSheetRow(deleted[0]).catch((err) =>
+      console.error("[admin/latinoamericano] sheet delete failed:", err)
+    )
   );
 
   return NextResponse.json({ ok: true });

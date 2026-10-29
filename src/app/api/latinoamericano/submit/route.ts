@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { db, dbUrl } from "@/lib/db";
 import { sendLatinoamericanoPreRegistro } from "@/lib/email";
 import { appendPreRegistro } from "../lib/sheets";
@@ -87,30 +87,39 @@ export async function POST(req: Request) {
     `;
 
     // 2) Google Sheets (espejo para organizadores) — fire-and-forget.
-    void appendPreRegistro({
-      nombre,
-      nacionalidad,
-      categoria,
-      equipo,
-      carpa,
-      correo,
-    })
-      .then(() => sql`
-        UPDATE latinoamericano_registrations
-        SET sheet_synced = true
-        WHERE id = (SELECT max(id) FROM latinoamericano_registrations
-                    WHERE nombre = ${nombre} AND correo = ${correo})
-      `)
-      .catch((err) =>
-        console.error("[latinoamericano/submit] sheets mirror failed:", err)
-      );
+    // 2) + 3) Espejo en Sheets y correo de confirmación.
+    // `after()` mantiene la función viva en Vercel hasta que terminen —
+    // un void post-respuesta se congela en serverless y nunca se cumple.
+    after(async () => {
+      try {
+        await appendPreRegistro({
+          nombre,
+          nacionalidad,
+          categoria,
+          equipo,
+          carpa,
+          correo,
+        });
+        await sql`
+          UPDATE latinoamericano_registrations
+          SET sheet_synced = true
+          WHERE id = (SELECT max(id) FROM latinoamericano_registrations
+                      WHERE nombre = ${nombre} AND correo = ${correo})
+        `;
+      } catch (err) {
+        console.error("[latinoamericano/submit] sheets mirror failed:", err);
+      }
 
-    // 3) Correo de confirmación — fire-and-forget.
-    void sendLatinoamericanoPreRegistro({
-      to: correo,
-      name: nombre.split(/\s+/)[0] ?? nombre,
-      categoria,
-      equipo,
+      try {
+        await sendLatinoamericanoPreRegistro({
+          to: correo,
+          name: nombre.split(/\s+/)[0] ?? nombre,
+          categoria,
+          equipo,
+        });
+      } catch (err) {
+        console.error("[latinoamericano/submit] email failed:", err);
+      }
     });
 
     return NextResponse.json({ message: "Pre-registro guardado." });

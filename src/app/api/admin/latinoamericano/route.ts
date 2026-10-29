@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { db, dbUrl } from "@/lib/db";
 import { isAuthenticated } from "@/lib/adminAuth";
 import { deletePreRegistroSheetRow } from "@/app/api/latinoamericano/lib/sheets";
@@ -86,8 +86,9 @@ export async function DELETE(request: Request) {
     deleted.push(...rows);
   }
 
-  // Espejo en Google Sheets (best-effort, secuencial para no pisar índices)
-  void (async () => {
+  // Espejo en Google Sheets (best-effort, secuencial para no pisar índices).
+  // after() mantiene la función viva hasta terminar (serverless no cumple voids).
+  after(async () => {
     for (const row of deleted) {
       try {
         await deletePreRegistroSheetRow(row);
@@ -95,7 +96,7 @@ export async function DELETE(request: Request) {
         console.error("[admin/latinoamericano] sheet bulk delete failed:", err);
       }
     }
-  })();
+  });
 
   return NextResponse.json({ ok: true, deleted: deleted.length });
 }
