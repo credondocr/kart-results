@@ -181,7 +181,21 @@ async function main() {
     CREATE INDEX IF NOT EXISTS latinoamericano_registrations_nombre_idx
     ON latinoamericano_registrations (lower(nombre))
   `;
-  console.log("Migración OK: news + latinoamericano_registrations incluidas.");
+  await sql`
+    CREATE TABLE IF NOT EXISTS feedback_entries (
+      id SERIAL PRIMARY KEY,
+      sentiment TEXT NOT NULL CHECK (sentiment IN ('sad','neutral','happy')),
+      message TEXT NOT NULL,
+      page_path TEXT,
+      user_agent TEXT,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `;
+  await sql`
+    CREATE INDEX IF NOT EXISTS feedback_entries_created_idx
+    ON feedback_entries (created_at)
+  `;
+  console.log("Migración OK: news + latinoamericano_registrations + feedback_entries incluidas.");
 }
 
 main().catch((err) => {

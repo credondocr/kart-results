@@ -356,3 +356,36 @@ export async function sendLatinoamericanoPreRegistro(input: {
     return false;
   }
 }
+
+const FEEDBACK_SENTIMENT_LABELS: Record<string, string> = {
+  sad: "😞 Insatisfecho",
+  neutral: "😐 Neutral",
+  happy: "😊 Satisfecho",
+};
+
+/** Notificación de feedback del sitio (widget flotante). Best-effort. */
+export async function sendFeedbackNotification(input: {
+  sentiment: string;
+  message: string;
+  pagePath: string | null;
+}): Promise<boolean> {
+  const to = process.env.FEEDBACK_EMAIL ?? "credondocr@gmail.com";
+  const label = FEEDBACK_SENTIMENT_LABELS[input.sentiment] ?? input.sentiment;
+  const escapeHtml = (s: string) =>
+    s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return sendSafe(
+    to,
+    `Feedback del sitio (${label})`,
+    "Nuevo feedback del sitio",
+    `
+    <p style="font-size:14px;color:#C6CBDB">
+      Sentimiento: <strong style="color:#E8EAF2">${escapeHtml(label)}</strong>
+    </p>
+    <p style="font-size:14px;color:#C6CBDB">Mensaje:</p>
+    <p style="font-size:14px;color:#E8EAF2;background:#0C1226;border:1px solid #1D2740;border-radius:8px;padding:14px 16px;margin:8px 0 16px;white-space:pre-wrap">${escapeHtml(input.message)}</p>
+    <p style="font-size:12px;color:#9BA3BD">
+      Página: ${input.pagePath ? escapeHtml(input.pagePath) : "—"} · ${new Date().toLocaleString("es-CR", { timeZone: "America/Costa_Rica" })}
+    </p>
+    `
+  );
+}

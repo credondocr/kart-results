@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import FeedbackWidget from "./FeedbackWidget";
 
 /**
  * Chrome del sitio público. En /admin* se ocultan Navbar y Footer:
@@ -22,6 +23,7 @@ export default function SiteChrome({ children }: { children: ReactNode }) {
       <Navbar />
       <main id="main-content" className="flex-grow">{children}</main>
       <Footer />
+      <FeedbackWidget />
     </>
   );
 }
