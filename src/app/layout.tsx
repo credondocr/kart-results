@@ -30,6 +30,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://resultados.acekcr.com'),
   title: 'Inicio | Costa Rica Kart Championship',
   description: 'Costa Rica Kart Championship.',
   twitter: {

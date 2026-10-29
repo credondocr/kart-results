@@ -20,11 +20,21 @@ export const metadata: Metadata = {
     title: "Latinoamericano de Karting 2027 — IV Edición",
     description:
       "7 – 9 de mayo · P1 Speedway, Costa Rica. Pre-regístrate para el campeonato latinoamericano de karting.",
-    images: [EVENT.poster],
+    images: [
+      {
+        url: "/media/eventos/latinoamericano-og.jpeg",
+        width: 1200,
+        height: 2133,
+        alt: "Campeonato Latinoamericano de Karting 2027 — IV Edición",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    images: [EVENT.poster],
+    title: "Latinoamericano de Karting 2027 — IV Edición",
+    description:
+      "7 – 9 de mayo · P1 Speedway, Costa Rica. Pre-regístrate para el campeonato latinoamericano de karting.",
+    images: ["/media/eventos/latinoamericano-og.jpeg"],
   },
 };
 
