@@ -313,7 +313,7 @@ export const vlr: Class = {
           rank: 14,
           number: 305,
           driver: 'Bernal Valverde',
-          team: 'valerio',
+          team: 'akm',
           country: 'CR',
           scores: [0, 0, 17, 0, 0, 0],
           points: 17,
