@@ -1,9 +1,13 @@
 import pilotsJson from "@/data/pilots.json";
-import { normalizeName, formatYears } from "./pilotHistory";
+import { normalizeName, formatYears } from "./naming";
 
 /**
  * Registro maestro de pilotos (src/data/pilots.json) accesible desde la app.
- * Es la fuente de verdad de país y equipos por temporada.
+ * Es la FUENTE DE VERDAD de país y equipos por temporada.
+ *
+ * Módulo hoja: solo importa el JSON y naming.ts, para que data/history,
+ * scripts y el resto de la app puedan resolver equipos sin ciclos.
+ * El catálogo de equipos (slug/nombre/logo) vive en teams.json (tabla teams).
  */
 export interface RegistryEntry {
   name: string;
@@ -36,6 +40,34 @@ export function lookupRegistry(name: string): RegistryEntry | null {
     return entryKey.startsWith(key + " ") || key.startsWith(entryKey + " ");
   });
   return matches.length === 1 ? matches[0] : null;
+}
+
+/** Equipo actual del piloto (registro) con fallback al dato viejo. */
+const currentTeamCache = new Map<string, string | null>();
+
+export function currentTeamOf(name: string, fallback = ""): string {
+  const key = normalizeName(name);
+  if (!key) return fallback;
+  let team = currentTeamCache.get(key);
+  if (team === undefined) {
+    team = lookupRegistry(name)?.team ?? null;
+    currentTeamCache.set(key, team);
+  }
+  return team || fallback;
+}
+
+/** Equipo del piloto en una temporada (`teams[año]`) con fallback al dato guardado. */
+const yearTeamCache = new Map<string, string | null>();
+
+export function teamForYear(name: string, year: string | number, fallback = ""): string {
+  const key = `${normalizeName(name)}|${year}`;
+  if (!normalizeName(name)) return fallback;
+  let team = yearTeamCache.get(key);
+  if (team === undefined) {
+    team = lookupRegistry(name)?.teams?.[String(year)] ?? null;
+    yearTeamCache.set(key, team);
+  }
+  return team || fallback;
 }
 
 export interface TeamSegment {

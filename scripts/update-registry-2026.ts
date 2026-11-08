@@ -5,6 +5,11 @@
  * Destino: src/data/pilots.json y (con --push-db) la tabla pilots de Neon,
  * que es la fuente de verdad (el prebuild de Vercel la exporta al JSON).
  *
+ * El Excel es de ALTAS: crea pilotos nuevos (con su equipo) y completa
+ * fechas de nacimiento que falten. NO pisa el equipo de pilotos ya
+ * registrados — eso se hace en /admin/pilots (la diferencia se reporta
+ * como "Diferencias de equipo SIN aplicar").
+ *
  * Uso:
  *   npm run registry:2026 -- --dry-run    Reporte sin escribir nada
  *   npm run registry:2026                Escribe pilots.json
@@ -42,6 +47,7 @@ const TEAM_MAP: Record<string, string> = {
   INDEPENDIENTE: "independiente",
   VRT4: "vrt4",
   "TDR - BABYLISS PRO": "losprimos",
+  "AKM MOTORSPORT": "akm",
 };
 
 type Registry = Record<string, PilotEntry>;
@@ -271,6 +277,8 @@ interface Changes {
   updated: string[];
   added: string[];
   skipped: string[];
+  /** Diferencias equipo registro ↔ Excel (no se aplican: editar en /admin/pilots). */
+  teamDrift: string[];
   restructureLog: string[];
   deleted: string[];
   changedKeys: Set<string>;
@@ -285,6 +293,7 @@ function applyRoster(roster: ExcelRow[]): Changes {
   const updated: string[] = [];
   const added: string[] = [];
   const skipped: string[] = [];
+  const teamDrift: string[] = [];
   const errors: string[] = [];
   const changedKeys = new Set<string>();
   const seen = new Map<string, string>();
@@ -339,13 +348,12 @@ function applyRoster(roster: ExcelRow[]): Changes {
     let dirty = false;
     let birthFilled = false;
 
-    if (prevYear !== slug) {
-      entry.teams = { ...(entry.teams ?? {}), [YEAR]: slug };
-      dirty = true;
-    }
-    if (prevFlat !== slug) {
-      entry.team = slug;
-      dirty = true;
+    // El Excel es de ALTAS: para pilotos ya registrados no pisa el equipo
+    // (la fuente de verdad es /admin/pilots); solo reporta las diferencias.
+    if (prevYear !== slug || prevFlat !== slug) {
+      teamDrift.push(
+        `${key}: registro=${prevYear ?? (prevFlat || "(vacío)")} · excel=${slug}`
+      );
     }
     if (!entry.birthDate && row.birthDate) {
       entry.birthDate = row.birthDate;
@@ -355,9 +363,6 @@ function applyRoster(roster: ExcelRow[]): Changes {
 
     if (dirty) {
       const detail: string[] = [];
-      if (prevFlat !== slug) detail.push(`equipo: ${prevFlat || "(vacío)"} → ${slug}`);
-      if (prevYear !== undefined && prevYear !== slug) detail.push(`${YEAR}: ${prevYear} → ${slug}`);
-      if (prevYear === undefined) detail.push(`${YEAR}: (sin dato) → ${slug}`);
       if (birthFilled) detail.push(`nacimiento: ${row.birthDate} (completado)`);
       updated.push(`${key} — ${detail.join(", ")}`);
       changedKeys.add(key);
@@ -371,6 +376,7 @@ function applyRoster(roster: ExcelRow[]): Changes {
     updated,
     added,
     skipped,
+    teamDrift,
     restructureLog: [...log, ...mergeResult.log],
     deleted: [...deleted, ...mergeResult.deleted],
     changedKeys,
@@ -433,7 +439,7 @@ async function main(): Promise<void> {
   const pushDbFlag = process.argv.includes("--push-db");
 
   const roster = await readRoster();
-  const { registry, updated, added, skipped, restructureLog, changedKeys, errors } =
+  const { registry, updated, added, skipped, teamDrift, restructureLog, changedKeys, errors } =
     applyRoster(roster);
 
   console.log(`Excel:     ${EXCEL_PATH} (${roster.length} filas)`);
@@ -457,6 +463,11 @@ async function main(): Promise<void> {
   if (added.length) {
     console.log(`Agregados (${added.length}):`);
     for (const l of added) console.log(`  + ${l}`);
+    console.log("");
+  }
+  if (teamDrift.length) {
+    console.log(`Diferencias de equipo SIN aplicar (${teamDrift.length}) — editar en /admin/pilots:`);
+    for (const l of teamDrift) console.log(`  ! ${l}`);
     console.log("");
   }
   if (errors.length) {

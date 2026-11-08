@@ -1,5 +1,10 @@
 import { Championships } from "@/data/history";
 import type { Pilot } from "@/data/types";
+import { normalizeName, nameMatches, formatYears } from "./naming";
+import { teamForYear } from "./pilotRegistry";
+
+// Hoja reutilizable (naming.ts) re-exportada para no romper los imports existentes.
+export { normalizeName, nameMatches, formatYears };
 
 export interface HistoryEntry {
   driver: string;
@@ -13,21 +18,6 @@ export interface HistoryEntry {
   rank: number;
   points: number;
   number: number | string;
-}
-
-export function normalizeName(name: string): string {
-  return name
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/\s+/g, " ")
-    .trim()
-    .toLowerCase();
-}
-
-export function nameMatches(pilotName: string, resultName: string): boolean {
-  const a = normalizeName(pilotName);
-  const b = normalizeName(resultName);
-  return a === b || a.startsWith(b + " ") || b.startsWith(a + " ");
 }
 
 function levenshtein(a: string, b: string): number {
@@ -119,7 +109,9 @@ function buildIndex(): HistoryEntry[] {
               season,
               classTitle: cls.title,
               categoryName: category.name,
-              team: row.result.team,
+              // Equipo de la temporada desde el registro (fuente de verdad);
+              // el guardado en standings es solo fallback.
+              team: teamForYear(row.result.driver, year, row.result.team),
               rank: index + 1,
               points: row.total,
               number: row.result.number,
@@ -185,15 +177,6 @@ export function getPilotRacedCategories(pilotName: string, kartNumber?: number |
   }));
 }
 
-/** "2026" · "2024–2026" (contiguas) · "2024, 2026" (discontinuas) */
-export function formatYears(years: string[]): string {
-  if (years.length === 1) return years[0];
-  const numbers = years.map(Number);
-  const contiguous = numbers.every((n, i) => i === 0 || n === numbers[i - 1] + 1);
-  if (contiguous) return `${years[0]}–${years[years.length - 1]}`;
-  return years.join(", ");
-}
-
 export interface CareerStats {
   /** Victorias en carreras individuales (posición 1 en una fecha). */
   wins: number;
@@ -256,7 +239,8 @@ function buildRaceIndex(): RaceResultEntry[] {
               entries.push({
                 driver: row.result.driver,
                 number: row.result.number,
-                team: row.result.team,
+                // Equipo de la temporada desde el registro (fallback: standings).
+                team: teamForYear(row.result.driver, year, row.result.team),
                 year,
                 season,
                 classTitle: cls.title,
@@ -384,6 +368,23 @@ export function findHistoryEntry(
     if (hinted) return hinted;
   }
   return candidates[0];
+}
+
+/** Entrada más reciente de una persona por nombre (cualquier equipo).
+ *  `number` se usa como desempate: si existe una entrada con ese número
+ *  se prefiere; si no, la más reciente de la persona. */
+export function findHistoryEntryByName(
+  name: string,
+  number?: number | string
+): HistoryEntry | undefined {
+  const byName = sortEntries(
+    getIndex().filter((entry) => nameMatches(name, entry.driver))
+  );
+  if (number !== undefined) {
+    const sameNumber = byName.find((entry) => String(entry.number) === String(number));
+    if (sameNumber) return sameNumber;
+  }
+  return byName[0];
 }
 
 /** Convierte un piloto del historial en forma Pilot para fichas/rosters. */
@@ -542,7 +543,8 @@ export function getChampionshipStats(): ChampionshipStats {
                 points,
                 driver: result.driver,
                 number: result.number,
-                team: result.team,
+                // Equipo de la temporada desde el registro (fallback: standings).
+                team: teamForYear(result.driver, year, result.team),
                 year,
                 season,
                 classTitle: cls.title,

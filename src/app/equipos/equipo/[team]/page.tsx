@@ -65,8 +65,9 @@ export default async function TeamPage({ params }: PageProps) {
             raced.length > 0
               ? raced
               : pilot.categories.map((label) => ({ label, years: [] as string[] }));
-          const isSynthetic = !pilot.profileUrl;
-          const hint = isSynthetic ? `?p=${encodeURIComponent(normalizeName(pilot.name))}` : "";
+          // ?p= siempre: los números se reutilizan y el teamLogo de
+          // drivers/data puede estar desactualizado respecto al equipo.
+          const hint = `?p=${encodeURIComponent(normalizeName(pilot.name))}`;
           return (
             <Link
               key={`${meta.slug}-${pilot.kartNumber}-${pilot.name}`}

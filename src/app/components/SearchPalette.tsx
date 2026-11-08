@@ -5,7 +5,8 @@ import { Drivers } from "@/data/drivers/data";
 import { TEAMS } from "@/data/drivers/teams";
 import { Championships } from "@/data/history";
 import { normalizeName, getHistoryPilots, samePerson } from "@/app/utils/pilotHistory";
-import { uniqueHistoryPilots } from "@/app/utils/teamRoster";
+import { currentTeamOf } from "@/app/utils/pilotRegistry";
+import { getTeamRoster, uniqueHistoryPilots } from "@/app/utils/teamRoster";
 
 interface SearchPaletteProps {
   onClose: () => void;
@@ -95,19 +96,23 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({ onClose }) => {
         : normalizeName(driver.name).includes(nq)
     )
       .slice(0, 8)
-      .filter((driver) => {
-        const href = `/equipos/equipo/${driver.teamLogo}/${driver.kartNumber}`;
-        if (seenProfileHrefs.has(href)) return false; // dup en drivers/data
-        seenProfileHrefs.add(href);
-        return true;
+      .map((driver): Result => {
+        const slug = currentTeamOf(driver.name, driver.teamLogo);
+        const hint =
+          slug === driver.teamLogo ? "" : `?p=${encodeURIComponent(normalizeName(driver.name))}`;
+        return {
+          key: `p-${slug}-${driver.kartNumber}-${normalizeName(driver.name)}`,
+          label: driver.name,
+          meta: `#${driver.kartNumber}`,
+          href: `/equipos/equipo/${slug}/${driver.kartNumber}${hint}`,
+          group: "Pilotos",
+        };
       })
-      .map((driver) => ({
-        key: `p-${driver.teamLogo}-${driver.kartNumber}-${normalizeName(driver.name)}`,
-        label: driver.name,
-        meta: `#${driver.kartNumber}`,
-        href: `/equipos/equipo/${driver.teamLogo}/${driver.kartNumber}`,
-        group: "Pilotos",
-      }));
+      .filter((result) => {
+        if (seenProfileHrefs.has(result.href)) return false; // dup en drivers/data
+        seenProfileHrefs.add(result.href);
+        return true;
+      });
 
     // Pilotos que solo existen en el historial de posiciones (sin perfil en drivers).
     const historyPilots: Result[] = uniqueHistoryPilots(
@@ -131,7 +136,9 @@ const SearchPalette: React.FC<SearchPaletteProps> = ({ onClose }) => {
     const pilots = [...profilePilots, ...historyPilots];
 
     const teams: Result[] = TEAMS.filter(
-      (team) => normalizeName(team.name).includes(nq) || team.slug.includes(nq)
+      (team) =>
+        (normalizeName(team.name).includes(nq) || team.slug.includes(nq)) &&
+        getTeamRoster(team.slug).length > 0 // sin roster → la página daría 404
     )
       .slice(0, 4)
       .map((team) => ({

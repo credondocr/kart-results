@@ -1,4 +1,22 @@
 import { Category, Class, Leaderboard, RaceResult } from "@/data/types";
+import { teamForYear } from "./pilotRegistry";
+
+/**
+ * Escribe en cada fila el equipo de la temporada según el registro
+ * (pilots.json → `teams[año]`), que es la fuente de verdad. El valor
+ * guardado en el standings queda como fallback de pilotos sin ficha.
+ * Idempotente: repetir la llamada no cambia nada.
+ */
+export const resolveLeaderboardTeams = (leaderboard: Leaderboard): void => {
+  for (const cls of leaderboard.classes) {
+    for (const category of cls.categories) {
+      for (const result of category.results) {
+        if (!result.driver) continue;
+        result.team = teamForYear(result.driver, leaderboard.year, result.team);
+      }
+    }
+  }
+};
 
 export function calculatePointsAndSort(classes: Class[]) {
   classes.forEach((classItem: Class) => {
@@ -257,14 +275,19 @@ export const generateGeneralLeaderboard = (leaderboard: {
   const referenceYear = availableSeasons.length > 0 ? availableSeasons[0]!.year : new Date().getFullYear();
 
   // Crear el nuevo Leaderboard combinado
-  return {
+  const general: Leaderboard = {
     year: referenceYear,
     season: "General",
     classes: Object.values(combinedClasses),
   };
+  resolveLeaderboardTeams(general);
+  return general;
 };
 
 export const addTeamsCategory = (leaderboard: Leaderboard): Leaderboard => {
+  // El equipo por fila sale del registro antes de acumular puntos por equipo.
+  resolveLeaderboardTeams(leaderboard);
+
   // Mantenemos un mapa para acumular puntos por equipo
   const teamPoints: Record<string, number> = {};
 

@@ -1,5 +1,27 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Datos: fuentes de verdad
+
+Solo dos cosas se editan a mano, ambas desde el panel `/admin`:
+
+| Qué | Dónde vive | UI |
+|---|---|---|
+| **Asignación de equipo** de un piloto (`team` actual y `teams[año]`) | tabla Neon `pilots` → `src/data/pilots.json` | `/admin/pilots` |
+| **Catálogo de equipos** (slug, nombre, logo, visible) | tabla Neon `teams` → `src/data/teams.json` | `/admin/teams` |
+
+Todo lo demás se deriva: rosters de `/equipos/*`, columnas y logos de equipo en
+las tablas de posiciones, estadísticas por equipo, links, búsqueda y breadcrumbs.
+El `team` guardado en `src/data/history/**` es solo un *fallback* para pilotos
+que no están en el registro — no se edita a mano.
+
+Scripts relacionados:
+
+- `npm run check:teams` — falla si hay inconsistencias (corre también en `prebuild`).
+- `npm run registry:2026` — importa **altas** desde `CUMPLEAÑOS 2026.xlsx`; no pisa equipos existentes.
+- `npm run db:export` — regenera los JSON desde Neon.
+
+Cambiar a un piloto de equipo: `/admin/pilots` → no hace falta correr ningún script.
+
 ## Getting Started
 
 First, run the development server:

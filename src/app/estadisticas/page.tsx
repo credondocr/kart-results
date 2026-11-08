@@ -10,6 +10,8 @@ import {
   slugify,
 } from "@/app/utils/eventData";
 import { findPilotProfile, pilotLinkHref } from "@/app/utils/pilotLinks";
+import { getTeamRoster } from "@/app/utils/teamRoster";
+import { TEAMS } from "@/data/drivers/teams";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import DriverAvatar from "@/app/components/DriverAvatar";
 import TeamLogo from "@/app/components/TeamLogo";
@@ -142,6 +144,12 @@ export default function EstadisticasPage() {
       return winsB - winsA || b.racePodiums - a.racePodiums;
     })
     .slice(0, 15);
+
+  // Solo enlaza a equipos con roster: sin pilotos, la página daría 404
+  // (equipo histórico o no vigente, p.ej. "epson", "unknown").
+  const teamsWithRoster = new Set(
+    TEAMS.filter((team) => getTeamRoster(team.slug).length > 0).map((team) => team.slug)
+  );
 
   return (
     <div className="max-w-6xl mx-auto px-4 pt-24 pb-16">
@@ -438,9 +446,13 @@ export default function EstadisticasPage() {
                     <td className="player-cell">
                       <TeamLogo team={team.team} altText={team.team} />
                       <span className="player-cell-text">
-                        <Link href={`/equipos/equipo/${team.team}`} className="driver-link">
-                          {team.team.replace(/-/g, " ")}
-                        </Link>
+                        {teamsWithRoster.has(team.team) ? (
+                          <Link href={`/equipos/equipo/${team.team}`} className="driver-link">
+                            {team.team.replace(/-/g, " ")}
+                          </Link>
+                        ) : (
+                          <span>{team.team.replace(/-/g, " ")}</span>
+                        )}
                       </span>
                     </td>
                     <td className="text-right">

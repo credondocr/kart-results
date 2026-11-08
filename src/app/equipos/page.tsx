@@ -11,17 +11,21 @@ export const metadata: Metadata = {
 };
 
 const TeamsPage = () => {
+  // Solo equipos con pilotos: un equipo sin roster enlazaría a un 404.
+  const teams = TEAMS.map((team) => ({ team, count: getTeamRoster(team.slug).length })).filter(
+    ({ count }) => count > 0
+  );
+
   return (
     <div className="max-w-6xl mx-auto px-4 pt-24 pb-16">
       <Breadcrumb />
       <h1 className="class-title my-4 text-4xl md:text-5xl">Equipos</h1>
       <p className="season-eyebrow">
-        Costa Rica Kart Championship · <strong>{TEAMS.length} equipos</strong>
+        Costa Rica Kart Championship · <strong>{teams.length} equipos</strong>
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-10">
-        {TEAMS.map((team) => {
-          const count = getTeamRoster(team.slug).length;
+        {teams.map(({ team, count }) => {
           return (
             <Link key={team.slug} href={`/equipos/equipo/${team.slug}`} className="team-card">
               <div className="team-card-logo">

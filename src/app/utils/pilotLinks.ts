@@ -1,5 +1,6 @@
 import { Drivers } from "@/data/drivers/data";
 import { normalizeName, findHistoryEntry, getPilotHistory } from "./pilotHistory";
+import { currentTeamOf } from "./pilotRegistry";
 
 export interface PilotLink {
   slug: string;
@@ -18,6 +19,10 @@ export function pilotLinkHref(link: PilotLink): string {
  * Resuelve la ficha de un piloto mostrado en las tablas de posiciones.
  * Prioridad: nombre exacto + equipo → nombre exacto → nombre parcial +
  * equipo → nombre parcial → equipo + número → historial (ficha sintética).
+ *
+ * El slug sale del equipo actual (registro) cuando existe: `teamLogo` de
+ * drivers/data puede quedar desactualizado tras un cambio de equipo, y en
+ * ese caso se agrega `hint` para que la ficha resuelva por nombre.
  */
 export function findPilotProfile(
   driver: string,
@@ -28,7 +33,8 @@ export function findPilotProfile(
   if (!target) return null;
 
   const pick = (list: typeof Drivers) =>
-    list.find((candidate) => candidate.teamLogo === team) ?? list[0];
+    list.find((candidate) => currentTeamOf(candidate.name, candidate.teamLogo) === team) ??
+    list[0];
 
   const exact = Drivers.filter((candidate) => normalizeName(candidate.name) === target);
   let hit = exact.length > 0 ? pick(exact) : undefined;
@@ -44,11 +50,12 @@ export function findPilotProfile(
   if (!hit && team) {
     hit = Drivers.find(
       (candidate) =>
-        candidate.teamLogo === team && String(candidate.kartNumber) === String(number)
+        currentTeamOf(candidate.name, candidate.teamLogo) === team &&
+        String(candidate.kartNumber) === String(number)
     );
   }
 
-  if (hit) return { slug: hit.teamLogo, id: hit.kartNumber };
+  if (hit) return linkFor(hit);
 
   // Pilotos que solo existen en el historial de posiciones (ficha sintética).
   // El nombre hace de hint: los números se reutilizan entre temporadas.
@@ -58,6 +65,13 @@ export function findPilotProfile(
   }
 
   return null;
+}
+
+/** Slug con el equipo actual + hint cuando el perfil quedó en otro equipo. */
+function linkFor(profile: (typeof Drivers)[number]): PilotLink {
+  const slug = currentTeamOf(profile.name, profile.teamLogo);
+  const hint = slug === profile.teamLogo ? undefined : normalizeName(profile.name);
+  return { slug, id: profile.kartNumber, hint };
 }
 
 /**
@@ -72,7 +86,7 @@ export function findPilotProfileByName(driver: string): PilotLink | null {
     (candidate) => normalizeName(candidate.name) === target
   );
   if (exact.length > 0) {
-    return { slug: exact[0].teamLogo, id: exact[0].kartNumber };
+    return linkFor(exact[0]);
   }
 
   const partial = Drivers.filter((candidate) => {
@@ -80,7 +94,7 @@ export function findPilotProfileByName(driver: string): PilotLink | null {
     return name.startsWith(target + " ") || target.startsWith(name + " ");
   });
   if (partial.length === 1) {
-    return { slug: partial[0].teamLogo, id: partial[0].kartNumber };
+    return linkFor(partial[0]);
   }
 
   const history = getPilotHistory(driver);

@@ -3,8 +3,7 @@ import { Suspense } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { getTeam } from "@/data/drivers/teams";
-import { Drivers } from "@/data/drivers/data";
-import { findHistoryEntry } from "@/app/utils/pilotHistory";
+import { resolvePilot } from "@/app/utils/pilotProfile";
 
 interface Crumb {
   label: string;
@@ -56,14 +55,8 @@ function buildCrumbs(pathname: string, nameHint?: string): Crumb[] {
     // Ficha de piloto: último segmento numérico tras el slug del equipo
     if (isLast && /^\d+$/.test(part) && parts[i - 2] === "equipo") {
       const slug = parts[i - 1] ?? "";
-      const pilot = Drivers.find(
-        (driver) =>
-          driver.teamLogo.toLowerCase() === slug.toLowerCase() &&
-          driver.kartNumber === Number(part)
-      );
-      const hinted = nameHint ? findHistoryEntry(slug, part, nameHint)?.driver : undefined;
-      const fromHistory = hinted ?? pilot?.name ?? findHistoryEntry(slug, part)?.driver;
-      crumbs.push({ label: fromHistory ?? `#${part}`, href: null });
+      const pilot = resolvePilot(slug, part, nameHint);
+      crumbs.push({ label: pilot?.name ?? `#${part}`, href: null });
       continue;
     }
 
