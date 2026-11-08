@@ -4,24 +4,6 @@ import CountryFlag from "@/app/components/CountryFlag"
 import TeamLogo from "@/app/components/TeamLogo";
 import LeaderboardTeamTable from "./table/LeaderboardTeamTable";
 import { findPilotProfile, pilotLinkHref } from "@/app/utils/pilotLinks";
-import { normalizeName } from "@/app/utils/pilotHistory";
-
-const loose = (value: string) =>
-  normalizeName(value).replace(/[^a-z0-9]+/g, " ").trim();
-
-/** Equivalencias de nombre entre nuestras clases y las de SpeedHive. */
-const CLASS_ALIASES: Record<string, string[]> = {
-  "mini t4": ["t4 tilly mini"],
-};
-
-/** ¿El resultClass del evento corresponde a nuestra categoría? */
-const matchesClass = (eventClass: string, categoryKey: string): boolean => {
-  const eventKey = loose(eventClass);
-  if (!eventKey || !categoryKey) return false;
-  if (eventKey === categoryKey) return true;
-  if (eventKey.startsWith(categoryKey + " ") || categoryKey.startsWith(eventKey + " ")) return true;
-  return (CLASS_ALIASES[categoryKey] ?? []).some((alias) => loose(alias) === eventKey);
-};
 
 function driverName(result: RaceResult) {
   const link = findPilotProfile(result.driver, result.number, result.team);
@@ -40,9 +22,8 @@ const LeaderboardTable: React.FC<{
   season: string;
   leaderboard: Leaderboard;
   fecha?: number | null;
-  classTitle?: string;
-  eventsByFecha?: Record<number, { id?: number; fastest?: Array<{ cls: string; driver: string }> }>;
-}> = ({ category, leaderboard, fecha, classTitle, eventsByFecha }) => {
+  eventsByFecha?: Record<number, { id?: number }>;
+}> = ({ category, leaderboard, fecha, eventsByFecha }) => {
 
   const races = category.results.reduce((max, result) => Math.max(max, result.scores.length), 0);
 
@@ -54,7 +35,6 @@ const LeaderboardTable: React.FC<{
 
   const inFechaMode = Boolean(fecha && fecha >= 1 && fecha <= races);
   const activeIndex = inFechaMode ? fecha! - 1 : -1;
-  const categoryKey = loose(category.name || classTitle || "");
 
   const displayResults = inFechaMode
     ? [...category.results].sort((a, b) => {
@@ -129,13 +109,6 @@ const LeaderboardTable: React.FC<{
                       {driverName(result)}
                     </td>
                     {result.scores.map((score, index) => {
-                      const eventInfo = eventsByFecha?.[index + 1];
-                      const isFastest =
-                        eventInfo?.fastest?.some(
-                          (best) =>
-                            matchesClass(best.cls, categoryKey) &&
-                            normalizeName(best.driver) === normalizeName(result.driver)
-                        ) ?? false;
                       return (
                         <td
                           data-label={`R${index + 1}`}
@@ -147,15 +120,6 @@ const LeaderboardTable: React.FC<{
                           ].filter(Boolean).join(" ")}
                         >
                           {score}
-                          {isFastest && score > 0 && (
-                            <span
-                              className="fastest-star"
-                              title="Vuelta rápida: mejor tiempo de la fecha en esta categoría"
-                              aria-label="Vuelta rápida de la fecha"
-                            >
-                              ★
-                            </span>
-                          )}
                         </td>
                       );
                     })}

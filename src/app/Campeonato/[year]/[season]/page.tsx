@@ -103,17 +103,13 @@ const SeasonLeaderboard = () => {
     const seasonLabel = season === "general" ? `General ${year}` : `${season} ${year}`;
     const activeFecha = fecha && fecha >= 1 && fecha <= fechas ? fecha : null;
 
-    // Eventos de SpeedHive por número de fecha (para linkear R1..Rn y ★).
-    const eventsByFecha: Record<number, { id?: number; fastest: Array<{ cls: string; driver: string; fecha?: number }> }> = {};
+    // Eventos de SpeedHive por número de fecha (para linkear R1..Rn).
+    const eventsByFecha: Record<number, { id?: number }> = {};
     if (season !== "general") {
         for (const event of eventsManifest.events) {
             if (String(event.year) === String(year) && event.season === season) {
                 for (const n of event.fechas) {
-                    // Eventos dobles: la ★ de cada fecha sale de su propia final.
-                    const fastest = (event.fastestLaps ?? []).filter(
-                        (fl) => fl.fecha == null || fl.fecha === n
-                    );
-                    eventsByFecha[n] = { id: event.id, fastest };
+                    eventsByFecha[n] = { id: event.id };
                 }
             }
         }
@@ -168,10 +164,6 @@ const SeasonLeaderboard = () => {
                     <div className="flex justify-center px-1 pb-3">
                         <FechaToggle fechas={fechas} value={activeFecha} onChange={handleFechaChange} />
                     </div>
-                    <p className="-mt-1 pb-2 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--text-dim)]">
-                        <span className="fastest-star" style={{ marginLeft: 0, marginRight: 4, verticalAlign: "baseline" }}>★</span>
-                        Mejor vuelta (vuelta rápida) de la fecha
-                    </p>
                     {filteredClasses.map((classItem: Class, index: number) => (
                         <div key={`${selectedTab}-${classItem.title}-${index}`} className="class-block p-2">
                             <h2 className="class-title my-4 text-4xl md:text-5xl">{classItem.title}</h2>
@@ -183,7 +175,6 @@ const SeasonLeaderboard = () => {
                                             season={season}
                                             leaderboard={leaderboard}
                                             fecha={activeFecha}
-                                            classTitle={classItem.title}
                                             eventsByFecha={eventsByFecha}
                                         />
                                     </div>

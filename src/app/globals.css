@@ -1944,13 +1944,6 @@
     text-underline-offset: 3px;
   }
 
-  .fastest-star {
-    color: var(--gold);
-    font-size: 10px;
-    margin-left: 3px;
-    vertical-align: super;
-  }
-
   .pole-count {
     color: var(--gold);
     font-weight: 700;
