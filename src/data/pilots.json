@@ -129,7 +129,8 @@
       "2025": "fmv",
       "2026": "fmv"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2015-03-12"
   },
   "alejandro vargas": {
     "name": "Alejandro Vargas",
@@ -160,7 +161,8 @@
       "2025": "advanced",
       "2026": "advanced"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2009-12-30"
   },
   "alessandro gabriel alvarado": {
     "name": "Alessandro Gabriel Alvarado",
@@ -252,7 +254,8 @@
       "2025": "advanced",
       "2026": "advanced"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "1977-08-01"
   },
   "andres ardiles": {
     "name": "Andres Ardiles",
@@ -303,7 +306,8 @@
       "2025": "formula",
       "2026": "formula"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "1979-04-16"
   },
   "andres ugalde": {
     "name": "Andres Ugalde",
@@ -416,7 +420,8 @@
       "2025": "fsa",
       "2026": "fsa"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2007-10-03"
   },
   "axel cabrera": {
     "name": "Axel Cabrera",
@@ -433,15 +438,16 @@
   },
   "ayrton hayes": {
     "name": "Ayrton Hayes",
-    "team": "mhkarting",
+    "team": "vrt4",
     "teams": {
       "2022": "mhkarting",
       "2023": "mhkarting",
       "2024": "mhkarting",
       "2025": "mhkarting",
-      "2026": "mhkarting"
+      "2026": "vrt4"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2016-09-02"
   },
   "beau wyatt": {
     "name": "Beau Wyatt",
@@ -459,7 +465,7 @@
   },
   "bernal valverde": {
     "name": "Bernal Valverde",
-    "team": "akm",
+    "team": "valerio",
     "teams": {
       "2019": "fmv",
       "2021": "fmv",
@@ -467,7 +473,7 @@
       "2023": "fmv",
       "2024": "fmv",
       "2025": "fmv",
-      "2026": "akm"
+      "2026": "valerio"
     },
     "country": "CR",
     "birthDate": "1990-10-12",
@@ -541,10 +547,10 @@
   },
   "carlos murillo": {
     "name": "Carlos Murillo",
-    "team": "dr-racing",
+    "team": "mhkarting",
     "teams": {
       "2025": "formula",
-      "2026": "dr-racing"
+      "2026": "mhkarting"
     },
     "country": "CR",
     "birthDate": "2000-08-16",
@@ -579,17 +585,19 @@
       "2025": "fsa",
       "2026": "fsa"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "1981-06-02"
   },
   "chayton rodriguez": {
     "name": "Chayton Rodriguez",
-    "team": "formula",
+    "team": "valerio",
     "teams": {
       "2024": "valerio",
       "2025": "valerio",
-      "2026": "formula"
+      "2026": "valerio"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2013-06-04"
   },
   "christian thomas": {
     "name": "Christian Thomas",
@@ -626,11 +634,12 @@
   },
   "clemente cuevas": {
     "name": "Clemente Cuevas",
-    "team": "independiente",
+    "team": "valerio",
     "teams": {
-      "2026": "independiente"
+      "2026": "valerio"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2014-04-03"
   },
   "cristian smith": {
     "name": "Cristian Smith",
@@ -639,8 +648,12 @@
   },
   "damian caceres": {
     "name": "Damian Caceres",
-    "team": "",
-    "country": "CR"
+    "team": "advanced",
+    "teams": {
+      "2026": "advanced"
+    },
+    "country": "CR",
+    "birthDate": "2014-01-03"
   },
   "damian ramirez": {
     "name": "Damian Ramirez",
@@ -651,7 +664,8 @@
       "2025": "formula",
       "2026": "formula"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2018-08-09"
   },
   "daniel bonilla": {
     "name": "Daniel Bonilla",
@@ -660,15 +674,16 @@
   },
   "daniel fabregas": {
     "name": "Daniel Fabregas",
-    "team": "independiente",
+    "team": "losprimos",
     "teams": {
       "2025": "independiente",
-      "2026": "independiente"
+      "2026": "losprimos"
     },
     "country": "CR",
     "aliases": [
       "daniel fabrega"
-    ]
+    ],
+    "birthDate": "2002-04-18"
   },
   "daniel formal": {
     "name": "Daniel Formal",
@@ -677,9 +692,11 @@
       "2021": "advanced",
       "2023": "advanced",
       "2024": "advanced",
-      "2025": "advanced"
+      "2025": "advanced",
+      "2026": "advanced"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "1995-12-23"
   },
   "daniel gardella": {
     "name": "Daniel Gardella",
@@ -725,11 +742,13 @@
   },
   "daniel parras": {
     "name": "Daniel Parras",
-    "team": "advanced",
+    "team": "valerio",
     "teams": {
-      "2025": "advanced"
+      "2025": "advanced",
+      "2026": "valerio"
     },
-    "country": "GT"
+    "country": "GT",
+    "birthDate": "1984-02-11"
   },
   "daniel sequeira": {
     "name": "Daniel Sequeira",
@@ -774,7 +793,8 @@
       "2025": "fsa",
       "2026": "fsa"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2013-07-22"
   },
   "daniela salas": {
     "name": "Daniela  Salas",
@@ -1013,11 +1033,12 @@
   },
   "emiliano cisneros": {
     "name": "Emiliano Cisneros",
-    "team": "independiente",
+    "team": "formula",
     "teams": {
-      "2026": "independiente"
+      "2026": "formula"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2015-02-03"
   },
   "emiliano herrera": {
     "name": "Emiliano Herrera",
@@ -1095,11 +1116,12 @@
   },
   "emmanuel benitez": {
     "name": "Emmanuel Benitez",
-    "team": "independiente",
+    "team": "vrt4",
     "teams": {
-      "2026": "independiente"
+      "2026": "vrt4"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2017-02-24"
   },
   "emmanuel guevara": {
     "name": "Emmanuel Guevara",
@@ -1149,7 +1171,8 @@
       "2025": "advanced",
       "2026": "advanced"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "1981-06-06"
   },
   "erick cuesto": {
     "name": "Erick Cuesto",
@@ -1325,12 +1348,13 @@
   },
   "federico calvosa": {
     "name": "Federico Calvosa",
-    "team": "advanced",
+    "team": "dr-racing",
     "teams": {
       "2025": "advanced",
-      "2026": "advanced"
+      "2026": "dr-racing"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "1985-12-22"
   },
   "federico rojas": {
     "name": "Federico Rojas",
@@ -1507,8 +1531,12 @@
   },
   "fernando rojas": {
     "name": "Fernando Rojas",
-    "team": "",
-    "country": "CR"
+    "team": "dr-racing",
+    "teams": {
+      "2026": "dr-racing"
+    },
+    "country": "CR",
+    "birthDate": "2021-02-17"
   },
   "fernando vega": {
     "name": "Fernando Vega",
@@ -1579,7 +1607,8 @@
       "2025": "advanced",
       "2026": "advanced"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2006-11-08"
   },
   "fred rodriguez": {
     "name": "Fred Rodriguez",
@@ -1631,12 +1660,13 @@
   },
   "gabriel fabrega": {
     "name": "Gabriel Fabrega",
-    "team": "fmv",
+    "team": "losprimos",
     "teams": {
       "2024": "fmv",
-      "2026": "fmv"
+      "2026": "losprimos"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2005-07-21"
   },
   "gabriel kawer": {
     "name": "Gabriel Kawer",
@@ -1774,11 +1804,12 @@
   },
   "guto mendes": {
     "name": "Guto Mendes",
-    "team": "independiente",
+    "team": "advanced",
     "teams": {
-      "2026": "independiente"
+      "2026": "advanced"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2011-03-03"
   },
   "henry nanne": {
     "name": "Henry Nanne",
@@ -1796,19 +1827,23 @@
   },
   "ian leon": {
     "name": "Ian Leon",
-    "team": "independiente",
+    "team": "fmv",
     "teams": {
-      "2026": "independiente"
+      "2026": "fmv"
     },
     "country": "CR"
   },
   "ian sebastian leon": {
     "name": "Ian Sebastian Leon",
-    "team": "independiente",
+    "team": "fmv",
     "teams": {
-      "2026": "independiente"
+      "2026": "fmv"
     },
-    "country": "CR"
+    "country": "CR",
+    "aliases": [
+      "Ian Sebastien Leon Alvarez"
+    ],
+    "birthDate": "2006-04-20"
   },
   "ignacio siles": {
     "name": "Ignacio Siles",
@@ -1850,11 +1885,11 @@
   },
   "isabella hernandez": {
     "name": "Isabella Hernandez",
-    "team": "independiente",
+    "team": "mhkarting",
     "teams": {
       "2024": "advanced",
       "2025": "dr-racing",
-      "2026": "independiente"
+      "2026": "mhkarting"
     },
     "country": "CR",
     "aliases": [
@@ -1873,16 +1908,18 @@
   },
   "isabella valldeperas": {
     "name": "Isabella Valldeperas",
-    "team": "advanced",
+    "team": "vrt4",
     "teams": {
       "2019": "advanced",
       "2020": "advanced",
       "2021": "advanced",
       "2022": "advanced",
       "2024": "advanced",
-      "2025": "advanced"
+      "2025": "advanced",
+      "2026": "vrt4"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2007-02-20"
   },
   "isacc cruz": {
     "name": "Isacc Cruz",
@@ -1911,6 +1948,9 @@
       "2026": "mhkarting"
     },
     "country": "CR",
+    "aliases": [
+      "Jaden Adrian Spielman"
+    ],
     "birthDate": "2013-12-01",
     "categories": [
       "VLR Junior"
@@ -2061,7 +2101,8 @@
       "2025": "fsa",
       "2026": "fsa"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "1982-01-08"
   },
   "jorge karlo varela": {
     "name": "Jorge Karlo Varela",
@@ -2075,9 +2116,9 @@
   },
   "jose ale. halpen": {
     "name": "Jose Ale. Halpen",
-    "team": "independiente",
+    "team": "fmv",
     "teams": {
-      "2026": "independiente"
+      "2026": "fmv"
     },
     "country": "CR"
   },
@@ -2085,9 +2126,14 @@
     "name": "Jose Alejandro Halphen",
     "team": "fmv",
     "teams": {
-      "2024": "fmv"
+      "2024": "fmv",
+      "2026": "fmv"
     },
-    "country": "PA"
+    "country": "PA",
+    "aliases": [
+      "Jose Aleandro Halphen"
+    ],
+    "birthDate": "2011-04-26"
   },
   "jose alejandro torres": {
     "name": "Jose Alejandro Torres",
@@ -2135,7 +2181,8 @@
       "2025": "dr-racing",
       "2026": "dr-racing"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "1990-06-16"
   },
   "jose pablo garita": {
     "name": "Jose Pablo Garita",
@@ -2174,8 +2221,15 @@
   },
   "joseph albouy": {
     "name": "Joseph ALBOUY",
-    "team": "",
-    "country": "CR"
+    "team": "fmv",
+    "teams": {
+      "2026": "fmv"
+    },
+    "country": "CR",
+    "aliases": [
+      "Alondro Joseph Albouy"
+    ],
+    "birthDate": "2012-01-07"
   },
   "joshua herrera": {
     "name": "Joshua Herrera",
@@ -2266,12 +2320,13 @@
   },
   "julian de oliva": {
     "name": "Julian De Oliva",
-    "team": "fmv",
+    "team": "dr-racing",
     "teams": {
       "2025": "fmv",
-      "2026": "fmv"
+      "2026": "dr-racing"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2018-11-13"
   },
   "julian guevara": {
     "name": "Julian Guevara",
@@ -2401,7 +2456,8 @@
       "2025": "formula",
       "2026": "formula"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2016-06-20"
   },
   "leo schneppen": {
     "name": "Leo Schneppen",
@@ -2440,9 +2496,11 @@
     "name": "Lina Salazar Valerio",
     "team": "valerio",
     "teams": {
-      "2025": "valerio"
+      "2025": "valerio",
+      "2026": "valerio"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2017-02-08"
   },
   "lineth valerio": {
     "name": "Lineth Valerio",
@@ -2553,14 +2611,15 @@
   },
   "luciana pazos": {
     "name": "Luciana Pazos",
-    "team": "independiente",
+    "team": "dr-racing",
     "teams": {
-      "2026": "independiente"
+      "2026": "dr-racing"
     },
     "country": "CR",
     "aliases": [
       "luiciana pazos"
-    ]
+    ],
+    "birthDate": "2009-12-17"
   },
   "luciano albanese": {
     "name": "Luciano Albanese",
@@ -2591,8 +2650,12 @@
   },
   "luciano beeche": {
     "name": "Luciano Beeche",
-    "team": "",
-    "country": ""
+    "team": "formula",
+    "teams": {
+      "2026": "formula"
+    },
+    "country": "",
+    "birthDate": "1969-07-12"
   },
   "luciano dajles": {
     "name": "Luciano Dajles",
@@ -2622,7 +2685,8 @@
       "2025": "advanced",
       "2026": "advanced"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2007-07-13"
   },
   "luiciana pazos": {
     "name": "Luiciana Pazos",
@@ -2687,7 +2751,8 @@
       "2025": "fmv",
       "2026": "fmv"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2010-01-28"
   },
   "luis jose marin": {
     "name": "Luis Jose Marin",
@@ -2728,13 +2793,14 @@
   },
   "makya rodriguez": {
     "name": "Makya Rodriguez",
-    "team": "valerio",
+    "team": "fsa",
     "teams": {
       "2024": "valerio",
       "2025": "valerio",
-      "2026": "valerio"
+      "2026": "fsa"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2013-07-04"
   },
   "manfred espinoza": {
     "name": "Manfred Espinoza",
@@ -2764,7 +2830,8 @@
       "2025": "advanced",
       "2026": "advanced"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "1974-06-05"
   },
   "manuel troncoso": {
     "name": "Manuel Troncoso",
@@ -2898,12 +2965,20 @@
     "teams": {
       "2026": "fsa"
     },
-    "country": "NL"
+    "country": "NL",
+    "birthDate": "1998-01-04"
   },
   "mario saborio": {
     "name": "Mario Saborio",
-    "team": "",
-    "country": "CR"
+    "team": "advanced",
+    "teams": {
+      "2026": "advanced"
+    },
+    "country": "CR",
+    "aliases": [
+      "Mario Andrés Saborío Vargas"
+    ],
+    "birthDate": "2011-04-13"
   },
   "marjin kremers": {
     "name": "Marjin Kremers",
@@ -2973,10 +3048,10 @@
   },
   "mathias leon": {
     "name": "Mathias Leon",
-    "team": "dr-racing",
+    "team": "independiente",
     "teams": {
       "2025": "independiente",
-      "2026": "dr-racing"
+      "2026": "independiente"
     },
     "country": "CR",
     "aliases": [
@@ -3027,6 +3102,15 @@
     "categories": [
       "Rok Shifter"
     ]
+  },
+  "mauricio hernandez duran": {
+    "name": "Mauricio Hernández Durán",
+    "team": "formula",
+    "teams": {
+      "2026": "formula"
+    },
+    "country": "",
+    "birthDate": "1982-09-22"
   },
   "mauricio villafuerte": {
     "name": "Mauricio Villafuerte",
@@ -3219,8 +3303,12 @@
   },
   "nicolas garnier": {
     "name": "Nicolas Garnier",
-    "team": "",
-    "country": "CR"
+    "team": "fsa",
+    "teams": {
+      "2026": "fsa"
+    },
+    "country": "CR",
+    "birthDate": "2006-02-28"
   },
   "nicolas marin": {
     "name": "Nicolas Marin",
@@ -3303,7 +3391,8 @@
       "2025": "advanced",
       "2026": "advanced"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2010-06-16"
   },
   "no data": {
     "name": "No Data",
@@ -3345,11 +3434,12 @@
   },
   "oscar ricardo teran": {
     "name": "Oscar Ricardo Teran",
-    "team": "independiente",
+    "team": "valerio",
     "teams": {
-      "2026": "independiente"
+      "2026": "valerio"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2017-07-27"
   },
   "osvaldo blanco": {
     "name": "Osvaldo Blanco",
@@ -3369,11 +3459,12 @@
   },
   "otto knohr": {
     "name": "Otto Knohr",
-    "team": "independiente",
+    "team": "fsa",
     "teams": {
-      "2026": "independiente"
+      "2026": "fsa"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "1999-03-24"
   },
   "pablo bolanos": {
     "name": "Pablo Bolaños",
@@ -3401,9 +3492,9 @@
   },
   "pablo vieto": {
     "name": "Pablo Vieto",
-    "team": "fmv",
+    "team": "independiente",
     "teams": {
-      "2026": "fmv"
+      "2026": "independiente"
     },
     "country": "CR",
     "birthDate": "1991-02-19",
@@ -3533,11 +3624,13 @@
   },
   "rafael buonafina rojas": {
     "name": "Rafael Buonafina Rojas",
-    "team": "fsa",
+    "team": "advanced",
     "teams": {
-      "2025": "fsa"
+      "2025": "fsa",
+      "2026": "advanced"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2014-08-21"
   },
   "rafael canas": {
     "name": "Rafael Cañas",
@@ -3578,8 +3671,12 @@
   },
   "rafael teran": {
     "name": "Rafael Terán",
-    "team": "",
-    "country": "CR"
+    "team": "valerio",
+    "teams": {
+      "2026": "valerio"
+    },
+    "country": "CR",
+    "birthDate": "2020-01-30"
   },
   "ramses santos": {
     "name": "Ramses Santos",
@@ -3690,8 +3787,15 @@
   },
   "ruben carrapatoso": {
     "name": "Ruben Carrapatoso",
-    "team": "",
-    "country": ""
+    "team": "fsa",
+    "teams": {
+      "2026": "fsa"
+    },
+    "country": "",
+    "aliases": [
+      "Ruben Carrapatozo"
+    ],
+    "birthDate": "1981-06-07"
   },
   "ryan nishioka": {
     "name": "Ryan Nishioka",
@@ -3712,8 +3816,15 @@
   },
   "samantha spielman": {
     "name": "Samantha Spielman",
-    "team": "",
-    "country": "CR"
+    "team": "mhkarting",
+    "teams": {
+      "2026": "mhkarting"
+    },
+    "country": "CR",
+    "aliases": [
+      "Samatha Spielman"
+    ],
+    "birthDate": "2012-10-31"
   },
   "samantha thomas": {
     "name": "Samantha Thomas",
@@ -3727,22 +3838,15 @@
   },
   "samuel castro": {
     "name": "Samuel Castro",
-    "team": "dr-racing",
+    "team": "fsa",
     "teams": {
       "2023": "fsa",
       "2024": "fsa",
       "2025": "fsa",
-      "2026": "dr-racing"
+      "2026": "fsa"
     },
     "country": "CR",
-    "aliases": [
-      "Samuel Venegas Castro"
-    ],
-    "birthDate": "2015-07-06",
-    "categories": [
-      "Mini Rok 60cc",
-      "T4 Tilly Mini"
-    ]
+    "birthDate": "2009-07-21"
   },
   "samuel chaverri": {
     "name": "Samuel Chaverri",
@@ -3760,13 +3864,21 @@
       "Mini Rok 60cc"
     ]
   },
-  "samuel venegas": {
-    "name": "Samuel Venegas",
-    "team": "independiente",
+  "samuel venegas castro": {
+    "name": "Samuel Venegas Castro",
+    "team": "dr-racing",
     "teams": {
-      "2026": "independiente"
+      "2026": "dr-racing"
     },
-    "country": "CR"
+    "country": "CR",
+    "aliases": [
+      "Samuel Venegas"
+    ],
+    "birthDate": "2015-07-06",
+    "categories": [
+      "Mini Rok 60cc",
+      "T4 Tilly Mini"
+    ]
   },
   "santiago aguero": {
     "name": "Santiago Aguero",
@@ -3817,9 +3929,9 @@
   },
   "santiago delgado": {
     "name": "Santiago Delgado",
-    "team": "advanced",
+    "team": "independiente",
     "teams": {
-      "2026": "advanced"
+      "2026": "independiente"
     },
     "country": "CR",
     "aliases": [
@@ -3837,8 +3949,12 @@
   },
   "santiago monge": {
     "name": "Santiago Monge",
-    "team": "",
-    "country": "CR"
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR",
+    "birthDate": "2011-08-07"
   },
   "santiago navas": {
     "name": "Santiago Navas",
@@ -3881,8 +3997,12 @@
   },
   "santiago solis": {
     "name": "Santiago Solis",
-    "team": "",
-    "country": "CR"
+    "team": "formula",
+    "teams": {
+      "2026": "formula"
+    },
+    "country": "CR",
+    "birthDate": "2026-05-24"
   },
   "santiago valenciano": {
     "name": "Santiago Valenciano",
@@ -3906,7 +4026,8 @@
       "2025": "fmv",
       "2026": "fmv"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2026-05-20"
   },
   "saul milanes": {
     "name": "Saul Milanes",
@@ -3945,12 +4066,19 @@
   },
   "saul solis": {
     "name": "Saul Solis",
-    "team": "",
-    "country": "CR"
+    "team": "independiente",
+    "teams": {
+      "2026": "independiente"
+    },
+    "country": "CR",
+    "aliases": [
+      "Saúl Emiliano Solís Guillén"
+    ],
+    "birthDate": "2019-09-24"
   },
   "sebastian arce": {
-    "name": "Sebastian Arce",
-    "team": "fmv",
+    "name": "Sebastian Arce Garcia",
+    "team": "advanced",
     "teams": {
       "2019": "advanced",
       "2020": "advanced",
@@ -3959,16 +4087,10 @@
       "2023": "advanced",
       "2024": "advanced",
       "2025": "advanced",
-      "2026": "fmv"
+      "2026": "advanced"
     },
     "country": "CR",
-    "aliases": [
-      "Sebastián Recinos Arce"
-    ],
-    "birthDate": "2010-05-13",
-    "categories": [
-      "VLR Junior"
-    ]
+    "birthDate": "2007-11-29"
   },
   "sebastian asenjo": {
     "name": "Sebastian Asenjo",
@@ -4058,7 +4180,11 @@
       "2025": "fmv",
       "2026": "fmv"
     },
-    "country": "CR"
+    "country": "CR",
+    "aliases": [
+      "Sebastián Recinos Arce"
+    ],
+    "birthDate": "2010-05-13"
   },
   "sebastian wedel": {
     "name": "Sebastian Wedel",
@@ -4075,11 +4201,15 @@
   },
   "sergio palacios": {
     "name": "Sergio Palacios",
-    "team": "independiente",
+    "team": "fsa",
     "teams": {
-      "2026": "independiente"
+      "2026": "fsa"
     },
-    "country": "CR"
+    "country": "CR",
+    "aliases": [
+      "Sergio Nicolás Palacios Requiniva"
+    ],
+    "birthDate": "2014-10-23"
   },
   "shamir licairac": {
     "name": "Shamir Licairac",
@@ -4103,7 +4233,8 @@
       "2025": "fmv",
       "2026": "fmv"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2012-08-16"
   },
   "stefano morice": {
     "name": "Stefano Morice",
@@ -4184,8 +4315,12 @@
   },
   "thiago guerrero": {
     "name": "Thiago Guerrero",
-    "team": "",
-    "country": ""
+    "team": "valerio",
+    "teams": {
+      "2026": "valerio"
+    },
+    "country": "",
+    "birthDate": "2014-11-03"
   },
   "thiago guzman": {
     "name": "Thiago Guzman",
@@ -4199,6 +4334,9 @@
       "2026": "valerio"
     },
     "country": "CR",
+    "aliases": [
+      "Thomas Joel Hof Munoz"
+    ],
     "birthDate": "2013-11-06",
     "categories": [
       "Tillotson Junior"
@@ -4225,7 +4363,11 @@
       "2025": "valerio",
       "2026": "valerio"
     },
-    "country": "CR"
+    "country": "CR",
+    "aliases": [
+      "Timothy Vivian"
+    ],
+    "birthDate": "1966-08-09"
   },
   "tomas arias": {
     "name": "Tomas Arias",
@@ -4247,7 +4389,8 @@
       "2025": "fsa",
       "2026": "fsa"
     },
-    "country": "CR"
+    "country": "CR",
+    "birthDate": "2010-10-18"
   },
   "tomas garro": {
     "name": "Tomas Garro",
@@ -4374,9 +4517,9 @@
   },
   "zachary bridgeman": {
     "name": "Zachary Bridgeman",
-    "team": "vrt4",
+    "team": "fsa",
     "teams": {
-      "2026": "vrt4"
+      "2026": "fsa"
     },
     "country": "CR",
     "birthDate": "2013-11-27",

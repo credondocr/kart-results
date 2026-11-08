@@ -7,7 +7,7 @@ export const micro: Class = {
     '8-12 years old',
     '950mm CIK/MSUK (Group 3) homologated chassis',
     'IAME 60cc Water Cooled Engine',
-    'Vega tyres'
+    'Vega tyres',
   ],
   img: 'https://kartshop.com/images/VLR1-2-p.webp',
   categories: [
@@ -22,7 +22,7 @@ export const micro: Class = {
           country: 'CR',
           scores: [42.5, 42.5, 0, 0, 0],
           points: 85,
-          worst: 0
+          worst: 0,
         },
         {
           rank: 2,
@@ -32,7 +32,7 @@ export const micro: Class = {
           country: 'CR',
           scores: [33, 32, 0, 0, 0],
           points: 65,
-          worst: 0
+          worst: 0,
         },
         {
           rank: 3,
@@ -42,7 +42,7 @@ export const micro: Class = {
           country: 'CR',
           scores: [28, 13, 0, 0, 0],
           points: 41,
-          worst: 0
+          worst: 0,
         },
         {
           rank: 4,
@@ -52,17 +52,17 @@ export const micro: Class = {
           country: 'CR',
           scores: [18.5, 23.5, 0, 0, 0],
           points: 42,
-          worst: 0
+          worst: 0,
         },
         {
           rank: 5,
           number: 717,
           driver: 'Oscar Ricardo Teran',
-          team: 'independiente',
+          team: 'valerio',
           country: 'CR',
           scores: [0, 20.5, 0, 0, 0],
           points: 20.5,
-          worst: 0
+          worst: 0,
         },
         {
           rank: 6,
@@ -72,7 +72,7 @@ export const micro: Class = {
           country: 'CR',
           scores: [20.5, 0, 0, 0, 0],
           points: 20.5,
-          worst: 0
+          worst: 0,
         },
         {
           rank: 7,
@@ -82,10 +82,9 @@ export const micro: Class = {
           country: 'CR',
           scores: [15, 0, 0, 0, 0],
           points: 15,
-          worst: 0
-        }
-      ]
-    }
-  ]
+          worst: 0,
+        },
+      ],
+    },
+  ],
 }
-
