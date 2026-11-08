@@ -1098,7 +1098,7 @@ export const championship2019: Championship = {
               {
                 "rank": 9,
                 "number": "616",
-                "driver": "Carlos Fonseca",
+                "driver": "Charlie Fonseca",
                 "team": "fsa",
                 "country": "",
                 "scores": [
