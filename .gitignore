@@ -48,6 +48,7 @@ next-env.d.ts
 
 # skills CLI artifacts
 .claude/
+.opencode/
 skills-lock.json
 
 # fotos originales de pilotos (fuente; el normalizado va a public/pilotos)
@@ -55,3 +56,4 @@ skills-lock.json
 acek-*.json
 crkc-overlay/
 import/
+Pilotos 2
